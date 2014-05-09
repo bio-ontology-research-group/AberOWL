@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Jetty Bundle Repository">
+      This repository contains the bundles required to use Jetty within an OSGI environment.
+   </description>
+   <feature url="features/org.eclipse.jetty.bundles.f_9.1.3.201403140105.jar" id="org.eclipse.jetty.bundles.f" version="9.1.3.201403140105"/>
+   <feature url="features/org.eclipse.jetty.bundles.f.source_9.1.3.201403140105.jar" id="org.eclipse.jetty.bundles.f.source" version="9.1.3.201403140105"/>
+</site>
