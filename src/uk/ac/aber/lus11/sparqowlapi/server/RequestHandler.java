@@ -61,20 +61,32 @@ public class RequestHandler extends AbstractHandler {
         String type = request.getParameter("type");
         String ontology = request.getParameter("ontology"); // the IRI of the ontology
 	
-        // Convert request type string to typed enum.
-        RequestType requestType;
-        if(type == null) type = "all";
-        type = type.toLowerCase();
-        switch(type) {
+	// for the autocomplete request
+        String term = request.getParameter("term");
+
+	if (type != null && type.equals("listontologies")) {
+	    Set results = oManager.listOntologies() ;
+	    Gson gson = new Gson();
+            response.getWriter().println(gson.toJson(results));                               
+	} else if (term != null) { // autocomplete query
+	    Set results = oManager.queryNames(term, ontology) ;
+	    Gson gson = new Gson();
+            response.getWriter().println(gson.toJson(results));                               
+	} else { // ontology query
+	    // Convert request type string to typed enum.
+	    RequestType requestType;
+	    if(type == null) type = "all";
+	    type = type.toLowerCase();
+	    switch(type) {
             case "superclass": requestType = RequestType.SUPERCLASS; break;
             case "subclass": requestType = RequestType.SUBCLASS; break;
             case "equivalent": requestType = RequestType.EQUIVALENT; break;
             default: requestType = RequestType.SUBCLASS; break;
-        }
-        
-        // Run the query, convert the results to JSON and write them back to the client.
-        Set<MyOWLClassInformation> results = oManager.runQuery(query, requestType, ontology);
-        Gson gson = new Gson();
-        response.getWriter().println(gson.toJson(results));
+	    }
+	    // Run the query, convert the results to JSON and write them back to the client.
+	    Set results = oManager.runQuery(query, requestType, ontology);
+	    Gson gson = new Gson();
+	    response.getWriter().println(gson.toJson(results));
+	}
     }
 }
