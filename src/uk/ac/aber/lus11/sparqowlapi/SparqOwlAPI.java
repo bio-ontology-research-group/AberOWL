@@ -37,7 +37,7 @@ public class SparqOwlAPI {
         
         SparqOwlServer sServer = new SparqOwlServer(oManager);
         sServer.startServer();;
-        System.out.println("Started Server.");
+        System.out.println("Started the server.");
     }
     
 }

@@ -208,7 +208,7 @@ public class NewShortFormProvider implements ShortFormProvider {
                 return res.toLowerCase() ;
             }
         }
-        return alternateShortFormProvider.getShortForm(entity);
+        return alternateShortFormProvider.getShortForm(entity).toLowerCase();
     }
 
     /** Obtains the rendering of the specified object. If the object is a

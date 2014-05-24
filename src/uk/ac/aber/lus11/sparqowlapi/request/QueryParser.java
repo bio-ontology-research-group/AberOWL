@@ -50,6 +50,7 @@ public class QueryParser {
      * @return An OWLClassExpression generated from mOwl
      */
     public OWLClassExpression parse(String mOwl) {
+	mOwl = mOwl.toLowerCase() ;
         OWLDataFactory dFactory = this.ontology.getOWLOntologyManager().getOWLDataFactory();
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
         parser.setDefaultOntology(ontology);

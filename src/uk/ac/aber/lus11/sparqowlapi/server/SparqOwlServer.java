@@ -38,7 +38,7 @@ public class SparqOwlServer {
      * @throws Exception 
      */
     public void startServer() throws InterruptedException, Exception {
-        this.server = new Server(9090);
+        this.server = new Server(9091);
         this.server.setHandler(new RequestHandler(rManager));
         this.server.start();
         this.server.setStopAtShutdown(true);

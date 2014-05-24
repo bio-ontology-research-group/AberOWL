@@ -53,31 +53,28 @@ public class QueryEngine {
      * mOwl corresponding to the type of request.
      */
     public Set<OWLClass> getClasses(String mOwl, RequestType requestType) {
-        if(mOwl.trim().length() == 0) {
+        if(mOwl == null || mOwl.trim().length() == 0) {
             return Collections.emptySet();
         }
         OWLClassExpression cExpression = parser.parse(mOwl);
         Set<OWLClass> classes = new HashSet<>();
   
         switch(requestType) {
-            case SUPERCLASS:
-                classes.addAll(sClasses(cExpression)); break;
-            case SUBCLASS:
-                classes.addAll(subClasses(cExpression)); break;
-            case EQUIVALENT:
-                classes.addAll(eClasses(cExpression)); break;
-            default:
-                classes.addAll(sClasses(cExpression));
-                classes.addAll(subClasses(cExpression));
-                classes.addAll(eClasses(cExpression));
-                break;
+	case SUPERCLASS:
+	    classes.addAll(sClasses(cExpression)); break;
+	case EQUIVALENT:
+	    classes.addAll(eClasses(cExpression)); break;
+	case SUBCLASS:
+	    classes.addAll(subClasses(cExpression)); break;
+	default: // default is a subclass query
+	    classes.addAll(subClasses(cExpression));
+	    break;
         }
-
         return classes;
     }
 
     private Set<OWLClass> sClasses(OWLClassExpression cExpression) {
-        return oReasoner.getSuperClasses(cExpression, true).getFlattened();
+        return oReasoner.getSuperClasses(cExpression, false).getFlattened();
     }
     
     private Set<OWLClass> eClasses(OWLClassExpression cExpression) {
@@ -88,7 +85,7 @@ public class QueryEngine {
     }
     
     private Set<OWLClass> subClasses(OWLClassExpression cExpression) {
-        NodeSet<OWLClass> subClasses = oReasoner.getSubClasses(cExpression, true);
+        NodeSet<OWLClass> subClasses = oReasoner.getSubClasses(cExpression, false);
         return subClasses.getFlattened();
     }
 

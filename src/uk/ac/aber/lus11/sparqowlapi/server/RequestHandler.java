@@ -25,7 +25,7 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.semanticweb.owlapi.model.OWLClass;
 import uk.ac.aber.lus11.sparqowlapi.request.RequestManager;
-import uk.ac.aber.lus11.sparqowlapi.request.RequestType;
+import uk.ac.aber.lus11.sparqowlapi.request.*;
 
 /**
  * Handle HTTP requests to the server.
@@ -59,7 +59,8 @@ public class RequestHandler extends AbstractHandler {
         // Get parameters from the request
         String query = request.getParameter("query");
         String type = request.getParameter("type");
-        
+        String ontology = request.getParameter("ontology"); // the IRI of the ontology
+	
         // Convert request type string to typed enum.
         RequestType requestType;
         if(type == null) type = "all";
@@ -68,11 +69,11 @@ public class RequestHandler extends AbstractHandler {
             case "superclass": requestType = RequestType.SUPERCLASS; break;
             case "subclass": requestType = RequestType.SUBCLASS; break;
             case "equivalent": requestType = RequestType.EQUIVALENT; break;
-            default: requestType = RequestType.ALL; break;
+            default: requestType = RequestType.SUBCLASS; break;
         }
         
         // Run the query, convert the results to JSON and write them back to the client.
-        Set<OWLClass> results = oManager.runQuery(query, requestType);
+        Set<MyOWLClassInformation> results = oManager.runQuery(query, requestType, ontology);
         Gson gson = new Gson();
         response.getWriter().println(gson.toJson(results));
     }

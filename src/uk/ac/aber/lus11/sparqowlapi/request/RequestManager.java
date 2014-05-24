@@ -15,6 +15,7 @@
  */
 package uk.ac.aber.lus11.sparqowlapi.request;
 
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -39,6 +40,9 @@ import org.semanticweb.owlapi.reasoner.InferenceType;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
+import org.semanticweb.owlapi.model.OWLOntologyAlreadyExistsException;
+import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.io.*;
 import uk.ac.aber.lus11.sparqowlapi.util.NewShortFormProvider;
 
 
@@ -50,9 +54,12 @@ import uk.ac.aber.lus11.sparqowlapi.util.NewShortFormProvider;
  */
 public class RequestManager {
     private OWLOntologyManager oManager;
-    private final List<OWLOntology> ontologies = new ArrayList<>();
+    //    private final List<OWLOntology> ontologies = new ArrayList<>();
+    private final Map<String, OWLOntology> ontologies = new TreeMap<>();
     private final List<OWLAnnotationProperty> aProperties = new ArrayList<>();
-    private final List<QueryEngine> queryEngines = new ArrayList<>();
+    private final Map<String, QueryEngine> queryEngines = new TreeMap<>();
+    private final Map<String, OWLOntologyManager> ontologyManagers = new TreeMap<>();
+    private final OWLDataFactory df = OWLManager.getOWLDataFactory() ;
     
     public RequestManager(String ontologyDescription, boolean literal) throws OWLOntologyCreationException, IOException {
         List<String> oList = new ArrayList<>();
@@ -78,16 +85,25 @@ public class RequestManager {
      * @throws OWLOntologyCreationException 
      */
     private void loadOntologies(List<String> oList) throws OWLOntologyCreationException, IOException {
-        this.oManager = OWLManager.createOWLOntologyManager();
         
         for(String oListString : oList) {
             System.out.println(oListString);
             IRI iri = IRI.create(oListString);
-            OWLOntology ontology = this.oManager.loadOntologyFromOntologyDocument(iri);
-            
-            this.ontologies.add(ontology);
-            this.ontologies.addAll(ontology.getImports());
-        }   
+	    try {
+		this.oManager = OWLManager.createOWLOntologyManager();
+		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
+		config.setFollowRedirects(true) ;
+		config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
+		OWLOntology ontology = this.oManager.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);
+		this.ontologies.put(oListString, ontology);
+		this.ontologyManagers.put(oListString, this.oManager) ;
+	    } catch (OWLOntologyAlreadyExistsException E) {
+		// do nothing
+	    } catch (Exception E) {
+		E.printStackTrace() ;
+	    }
+	    
+        }
     }
     
     /**
@@ -101,14 +117,16 @@ public class RequestManager {
         }
         
         OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
-        for(OWLOntology ontology : this.ontologies) {
+	Iterator<String> it = this.ontologies.keySet().iterator();
+	while (it.hasNext()) {
+	    String oListString = it.next() ;
+	    OWLOntology ontology = ontologies.get(oListString) ;
+	    OWLOntologyManager manager = ontologyManagers.get(oListString) ;
             OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
             oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-            NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, oManager);
-            
-            this.queryEngines.add(new QueryEngine(oReasoner, sForm));
+            NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+            this.queryEngines.put(oListString, new QueryEngine(oReasoner, sForm));
         }
-        
     }
     
     /**
@@ -116,10 +134,37 @@ public class RequestManager {
      */
     private void loadAnnotations() {
         OWLDataFactory factory = oManager.getOWLDataFactory();
-        OWLAnnotationProperty rdfsLabel = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI()) ;                                                                                           
+        OWLAnnotationProperty rdfsLabel = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI()) ;                                                       
         aProperties.add(rdfsLabel);
+	aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym"))) ;
+	aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"))) ;
+	aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"))) ;
     }
     
+    private Set<MyOWLClassInformation> classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
+        Set<MyOWLClassInformation> result = new HashSet<>();
+	for (OWLClass c : classes) {
+	    MyOWLClassInformation info = new MyOWLClassInformation() ;
+	    info.owlClass = c ;
+	    info.ontologyURI = uri ;
+	    for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
+		if (annotation.getValue() instanceof OWLLiteral) {
+		    OWLLiteral val = (OWLLiteral) annotation.getValue();
+		    info.label = val.getLiteral() ;
+		}
+	    }
+	    /* definition */
+	    for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+		if (annotation.getValue() instanceof OWLLiteral) {
+		    OWLLiteral val = (OWLLiteral) annotation.getValue();
+		    info.definition = val.getLiteral() ;
+		}
+	    }
+	    result.add(info);
+	}
+	return result ;
+    }
+
     /**
      * Iterate the query engines, collecting results from each and collating them into a single structure.
      * 
@@ -127,15 +172,53 @@ public class RequestManager {
      * @param requestType Type of class match to be performed. Valid values are: subclass, superclass, equivalent or all.
      * @return Set of OWL Classes.
      */
-    public Set<OWLClass> runQuery(String mOwlQuery, RequestType requestType) {
-        Set<OWLClass> classes = new HashSet<>();
-        for(QueryEngine queryEngine : this.queryEngines) {
-            classes.addAll(queryEngine.getClasses(mOwlQuery, requestType));
-        }
-        return classes;
+    public Set<MyOWLClassInformation> runQuery(String mOwlQuery, RequestType requestType, String ontUri) {
+        Set<MyOWLClassInformation> classes = new HashSet<>();
+	if (ontUri == null) { // query all the ontologies in the repo
+	    Iterator<String> it = queryEngines.keySet().iterator() ;
+	    while (it.hasNext()) {
+		String oListString = it.next() ;
+		QueryEngine queryEngine = queryEngines.get(oListString) ;
+		OWLOntology ontology = ontologies.get(oListString) ;
+		try {
+		    Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
+		    classes.addAll(classes2info(resultSet, ontology, oListString)) ;
+		} catch (org.semanticweb.owlapi.expression.ParserException E) { }
+	    }
+	} else if (queryEngines.get(ontUri) == null) { // download the ontology and query
+	    Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
+	    for (OWLAnnotationProperty annotationProperty : this.aProperties) {
+		preferredLanguageMap.put(annotationProperty, new ArrayList<String>());
+	    }
+	    try {
+		OWLOntologyManager manager = OWLManager.createOWLOntologyManager() ;
+		OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;                                                                            
+		config.setFollowRedirects(true) ;                                                                                                                         
+		config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;                                                                           
+		OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new IRIDocumentSource(IRI.create(ontUri)), config);
+		OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); 
+		OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
+		oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+		NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+		Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType) ;
+		classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
+	    } catch (OWLOntologyCreationException E) {
+		E.printStackTrace() ;
+	    }
+	} else { // query one single ontology
+	    QueryEngine queryEngine = queryEngines.get(ontUri) ;
+	    OWLOntology ontology = ontologies.get(ontUri) ;
+	    try {
+		Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
+		classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
+	    } catch (org.semanticweb.owlapi.expression.ParserException E) { 
+		E.printStackTrace() ; 
+	    }
+	}
+	return classes;
     }
     
-    public List<QueryEngine> getQueryEngines() {
+    public Map<String, QueryEngine> getQueryEngines() {
         return this.queryEngines;
     }
 
@@ -149,7 +232,7 @@ public class RequestManager {
     /**
      * @return the ontologies
      */
-    public List<OWLOntology> getOntologies() {
+    public Map<String, OWLOntology> getOntologies() {
         return ontologies;
     }
 }
