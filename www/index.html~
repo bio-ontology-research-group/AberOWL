@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>Onto-bOWeL Query Interface</title>
+	<link href="css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+	<link href="css/dataTables.jqueryui.css" rel="stylesheet">
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="js/jquery.dataTables.js"></script>
+	<script src="js/jquery.dataTables.js"></script>
+	<script src="js/dataTables.jqueryui.js"></script>
+	<script>
+
+var query = "" ;
+
+function redrawTable() {
+    $('#example').dataTable().fnDestroy();
+    var qType = $('input[name="type"]:checked').val();
+    var ontology = $( "#ontologyselector option:selected" ).text();
+
+    $('#example').dataTable( {
+        "processing": false,
+        "serverSide": false,
+	"paging": true,
+	"scrollY": 400,
+	renderer: "bootstrap",
+	aoColumns : [
+	    { "sWidth": "15%"},
+	    { "sWidth": "15%"},
+	    { "sWidth": "30%"},
+	    { "sWidth": "40%"},
+	],
+        "ajax": {
+            "url": "service/?type="+qType+"&query="+query+"&ontology="+ontology,
+            "dataSrc": function ( json ) {
+                var datatable = new Array() ;
+                for ( var i=0, ien=json.length ; i<ien ; i++ ) {
+                    datatable[i] = new Array() ;
+                    datatable[i][0] = "<a href='"+json[i].classURI+"'>"+json[i].classURI+"</a>" ;
+                    datatable[i][1] = json[i].ontologyURI ;
+                    datatable[i][2] = json[i].label || "" ;
+                    datatable[i][3] = json[i].definition || "" ;
+
+                }
+                return datatable;
+            }
+        }
+    } );
+}
+
+$(document).ready(function() {
+    $('#example').dataTable( {
+        "processing": false,
+        "serverSide": false,
+	"paging": true,
+	"scrollY": 400,
+	aoColumns : [
+	    { "sWidth": "15%"},
+	    { "sWidth": "15%"},
+	    { "sWidth": "30%"},
+	    { "sWidth": "40%"},
+	],
+    })
+
+    $.ajax({
+	url:'service/',
+	type:'GET',
+	data: 'type=listontologies',
+	dataType: 'json',
+	success: function( json ) {
+            $.each(json, function(i, value) {
+		$('#ontologyselector').append($('<option>').text(value).attr('value', value));
+            });
+	}
+    });
+
+} );
+
+
+    function split( val ) {
+      return val.split( /\s\s/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+$(function() {
+		
+	
+		
+            $( "#button" ).button();
+
+	    $( "#radioset" ).buttonset();
+
+		$( "#autocomplete" )
+		.bind( "keydown", function( event ) {
+		    	if ( event.keyCode === $.ui.keyCode.TAB &&
+            		$( this ).data( "ui-autocomplete" ).menu.active ) {
+          		event.preventDefault();
+        		}
+      		})
+		.autocomplete({
+		    minLength: 3,
+		    source: function( request, response ) {
+			var ontology = $( "#ontologyselector option:selected" ).text();
+			$.getJSON( "service/", {
+			    term: extractLast( request.term ),
+			    ontology : ontology,
+			}, response );
+		    },
+		    search: function() {
+			// custom minLength
+			var term = extractLast( this.value );
+			if ( term.length < 3 ) {
+			    return false;
+			}
+		    },
+		    focus: function() {
+			// prevent value inserted on focus
+			return false;
+		    },
+		    select: function( event, ui ) {
+			var terms = split( this.value );
+			// remove the current input
+			terms.pop();
+			// add the selected item
+			terms.push( ui.item.value );
+			// add placeholder to get the comma-and-space at the end
+			terms.push( "" );
+			this.value = terms.join( "  " );
+			return false;
+		    }
+		})
+	.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+	    return $( "<li>" )
+		.append( "<a>" + item.label + " (" + item.id + ")</a>" )
+		.appendTo( ul );
+	};
+		
+		
+		
+	});
+
+
+	</script>
+	<style>
+	body{
+		font: 100% "Trebuchet MS", sans-serif;
+		margin: 80px;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+
+	<center>	    <h1>Onto-bOWeL</h1></center>
+<br/><br/>
+    <div class="ui-widget">
+
+    </div>
+    
+<!-- Autocomplete -->
+
+  <form style="margin-top: 1em;" >
+    <div>
+    <center>
+    <input type="radio" id="radio1" name="type" value="superclass"><label for="radio1">Superclasses</label>
+    <input type="radio" id="radio2" name="type" value="equivalent"><label for="radio2">Equivalent classes</label>
+    <input type="radio" id="radio3" name="type" value="subclass"
+    checked="checked"><label for="radio3">Subclasses</label>
+	</center>
+	<center>
+	<select id="ontologyselector" name="ontologyselector">
+	<option selected="selected" value=""></option>
+	</select>
+
+	</center>
+	</div>
+
+	<center>    <input size=100% id="autocomplete" title="Query in
+	Manchester OWL Syntax"> </center>
+	<center>
+    <input type=button id="button" value="Submit" onClick="query=document.getElementById('autocomplete').value; redrawTable() ;"></button>
+</center>
+<center><small>
+    Try <a href="javascript:document.getElementById('autocomplete').value='heart ';return false;">heart</a>,
+    <a href="javascript:document.getElementById('autocomplete').value='part_of some \'apoptotic process\'';return false;">part_of some 'apoptotic process'</a>,
+    <a href="javascript:document.getElementById('autocomplete').value='part_of some \'apoptotic process\' and regulates some \'apoptotic process\'';return false;">part_of some 'apoptotic process' and regulates some 'apoptotic process'</a>, or
+<a href="javascript:document.getElementById('autocomplete').value='has_part some ethanol';return false;">has_part some ethanol</a>.
+
+</small></center>
+  </form>
+   </div>
+
+	<div>
+	<h2 class="demoHeaders"></h2>
+
+	<table id="example" class="display" cellspacing="0"
+	       width="100%">
+        <thead>
+            <tr>
+                <th>OWL Class</th>
+                <th>Ontology</th>
+                <th>Label</th>
+                <th>Definition</th>
+            </tr>
+        </thead>
+ 
+    </table>
+
+	</div>
+ 
+
+
+</body>
+</html>

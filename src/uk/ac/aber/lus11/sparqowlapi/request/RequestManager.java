@@ -88,8 +88,9 @@ public class RequestManager {
 	return ontologies.keySet() ;
     }
     
-    public Set<MyLabelInfo> queryNames(String query, String ontUri) {
-	Set<MyLabelInfo> results = new LinkedHashSet<>() ;
+    public Set<String> queryNames(String query, String ontUri) {
+	query = query.toLowerCase() ;
+	Set<String> results = new LinkedHashSet<>() ;
 	SuggestTree tree = null ;
 	if (ontUri == null || ontUri.length()==0) { // query allLabels
 	    tree = allLabels ;
@@ -114,12 +115,12 @@ public class RequestManager {
 			s2id = labels2id.get(ontUri) ;
 		    }
 		    for (String id : s2id.get(elem)) {
-			MyLabelInfo info = new MyLabelInfo() ;
-			info.label = elemForOWL ;
-			info.uri = id ;
-			String oboid = id.replaceAll("http://purl.obolibrary.org/obo/","").replaceAll("_",":") ;
-			info.id = oboid ;
-			results.add(info) ;
+			//			MyLabelInfo info = new MyLabelInfo() ;
+			//			info.label = elemForOWL ;
+			//			info.uri = id ;
+			//			String oboid = id.replaceAll("http://purl.obolibrary.org/obo/","").replaceAll("_",":") ;
+			//			info.id = oboid ;
+			results.add(elemForOWL) ;
 		    }
 		}
 	    }
@@ -139,16 +140,19 @@ public class RequestManager {
 		    if (annotation.getValue() instanceof OWLLiteral) {
 			OWLLiteral val = (OWLLiteral) annotation.getValue();
 			String label = val.getLiteral() ;
+			label = label.toLowerCase() ;
 			try {
 			    allLabels.insert(label, maxLength - label.length()) ;
-			    if (allLabels2id.get(label) == null) {
-				allLabels2id.put(label, new LinkedHashSet<String>()) ;
-			    }
-			    allLabels2id.get(label).add(c.getIRI().toString()) ;
-			    if (labels2id.get(uri).get(label) == null) {
-				labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-			    }
-			    labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
+			} catch (Exception E) {}
+			if (allLabels2id.get(label) == null) {
+			    allLabels2id.put(label, new LinkedHashSet<String>()) ;
+			}
+			allLabels2id.get(label).add(c.getIRI().toString()) ;
+			if (labels2id.get(uri).get(label) == null) {
+			    labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
+			}
+			labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
+			try {
 			    labels.get(uri).insert(label, maxLength - label.length()) ;
 			} catch (Exception E) {}
 		    }
@@ -160,19 +164,22 @@ public class RequestManager {
 		    if (annotation.getValue() instanceof OWLLiteral) {
 			OWLLiteral val = (OWLLiteral) annotation.getValue();
 			String label = val.getLiteral() ;
+			label = label.toLowerCase() ;
 			try {
 			    allLabels.insert(label, maxLength - label.length()) ;
-			    if (allLabels2id.get(label) == null) {
-				allLabels2id.put(label, new LinkedHashSet<String>()) ;
-			    }
-			    allLabels2id.get(label).add(c.getIRI().toString()) ;
-
-			    labels.get(uri).insert(label, maxLength - label.length()) ;
-			    if (labels2id.get(uri).get(label) == null) {
-				labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-			    }
-			    labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
 			} catch (Exception E) {}
+			if (allLabels2id.get(label) == null) {
+			    allLabels2id.put(label, new LinkedHashSet<String>()) ;
+			}
+			allLabels2id.get(label).add(c.getIRI().toString()) ;
+			
+			try {
+			    labels.get(uri).insert(label, maxLength - label.length()) ;
+			} catch (Exception E) {}
+			if (labels2id.get(uri).get(label) == null) {
+			    labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
+			}
+			labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
 		    }
                 }                                                                                                                                          
             }                                                                                                                                            
@@ -249,19 +256,21 @@ public class RequestManager {
 	    info.owlClass = c ;
 	    info.classURI = c.getIRI().toString() ;
 	    info.ontologyURI = uri ;
-	    for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-		if (annotation.getValue() instanceof OWLLiteral) {
-		    OWLLiteral val = (OWLLiteral) annotation.getValue();
-		    info.label = val.getLiteral() ;
+	    for (OWLOntology ont : o.getImportsClosure()) {
+		for (OWLAnnotation annotation : c.getAnnotations(ont, df.getRDFSLabel())) {
+		    if (annotation.getValue() instanceof OWLLiteral) {
+			OWLLiteral val = (OWLLiteral) annotation.getValue();
+			info.label = val.getLiteral() ;
+		    }
+		}
+		for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+		    if (annotation.getValue() instanceof OWLLiteral) {
+			OWLLiteral val = (OWLLiteral) annotation.getValue();
+			info.definition = val.getLiteral() ;
+		    }
 		}
 	    }
 	    /* definition */
-	    for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
-		if (annotation.getValue() instanceof OWLLiteral) {
-		    OWLLiteral val = (OWLLiteral) annotation.getValue();
-		    info.definition = val.getLiteral() ;
-		}
-	    }
 	    result.add(info);
 	}
 	return result ;
@@ -284,6 +293,8 @@ public class RequestManager {
 		OWLOntology ontology = ontologies.get(oListString) ;
 		try {
 		    Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
+		    resultSet.remove(df.getOWLNothing()) ;
+		    resultSet.remove(df.getOWLThing()) ;
 		    classes.addAll(classes2info(resultSet, ontology, oListString)) ;
 		} catch (org.semanticweb.owlapi.expression.ParserException E) { }
 	    }
@@ -303,6 +314,8 @@ public class RequestManager {
 		oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 		NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
 		Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType) ;
+		resultSet.remove(df.getOWLNothing()) ;
+		resultSet.remove(df.getOWLThing()) ;
 		classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
 	    } catch (OWLOntologyCreationException E) {
 		E.printStackTrace() ;
@@ -312,6 +325,8 @@ public class RequestManager {
 	    OWLOntology ontology = ontologies.get(ontUri) ;
 	    try {
 		Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
+		resultSet.remove(df.getOWLNothing()) ;
+		resultSet.remove(df.getOWLThing()) ;
 		classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
 	    } catch (org.semanticweb.owlapi.expression.ParserException E) { 
 		E.printStackTrace() ; 
