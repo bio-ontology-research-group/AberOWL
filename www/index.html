@@ -2,7 +2,7 @@
 <html lang="us">
 <head>
 	<meta charset="utf-8">
-	<title>Onto-bOWeL Query Interface</title>
+	<title>RABBID: Reasonable Access to Biological and Biomedical Information and Data</title>
 	<link href="css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<link href="css/dataTables.jqueryui.css" rel="stylesheet">
 	<script src="js/jquery-1.10.2.js"></script>
@@ -24,7 +24,11 @@ function redrawTable() {
         "serverSide": false,
 	"paging": true,
 	"scrollY": 400,
-	renderer: "bootstrap",
+	"renderer": "bootstrap",
+	"aaSorting": [[ 1, "asc" ]],
+	"bAutoWidth": false,
+	"iDisplayLength": 50,
+	"bJQueryUI": true,
 	aoColumns : [
 	    { "sWidth": "15%"},
 	    { "sWidth": "15%"},
@@ -39,8 +43,8 @@ function redrawTable() {
                     datatable[i] = new Array() ;
                     datatable[i][0] = "<a href='"+json[i].classURI+"'>"+json[i].classURI+"</a>" ;
                     datatable[i][1] = json[i].ontologyURI ;
-                    datatable[i][2] = json[i].label || "" ;
-                    datatable[i][3] = json[i].definition || "" ;
+                    datatable[i][2] = json[i].label || " " ;
+                    datatable[i][3] = json[i].definition || " " ;
 
                 }
                 return datatable;
@@ -77,7 +81,6 @@ $(document).ready(function() {
 	
 	$('#example').parents('div.dataTables_wrapper').first().hide();
 
-
 } );
 
 
@@ -92,7 +95,6 @@ $(function() {
 	
 		
             $( "#button" ).button();
-
 	    $( "#radioset" ).buttonset();
 
 		$( "#autocomplete" )
@@ -147,9 +149,28 @@ $(function() {
 
 	</script>
 	<style>
+	table.display {
+  	  	margin: 0 auto;
+  		width: 100%;
+  		clear: both;
+  		border-collapse: collapse;
+		table-layout: fixed;         // add this 
+		word-wrap:break-word;        // add this 
+	}
+	table{
+		font: 80% "Trebuchet MS", sans-serif;
+		margin: 80px;
+	}
 	body{
 		font: 100% "Trebuchet MS", sans-serif;
 		margin: 80px;
+	}
+	.menubar {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 999;
+	  width: 95%;
 	}
 	.demoHeaders {
 		margin-top: 2em;
@@ -176,68 +197,76 @@ $(function() {
 	.fakewindowcontain .ui-widget-overlay {
 		position: absolute;
 	}
+	.title {
+		text-align: center;
+		margin: 0px;
+	}
 	</style>
 </head>
 <body>
+	<p class="menubar" align="right"><small><a href="help.html">Help</a></small></p>
+	<h1 class="title" title="Reasonable Access to Biological and Biomedical Information and Data">RABBID</h1>
 
-	<center>	    <h1>Onto-bOWeL</h1></center>
-<br/><br/>
-    <div class="ui-widget">
+  <br/><br/>
+  <div class="ui-widget">
 
-    </div>
-    
-<!-- Autocomplete -->
+  </div>
+  
+  <!-- Autocomplete -->
 
   <form style="margin-top: 1em;" >
     <div>
-    <center>
-    <input type="radio" id="radio1" name="type" value="superclass"><label for="radio1">Superclasses</label>
-    <input type="radio" id="radio2" name="type" value="equivalent"><label for="radio2">Equivalent classes</label>
-    <input type="radio" id="radio3" name="type" value="subclass"
-    checked="checked"><label for="radio3">Subclasses</label>
-	</center>
-	<center>
+      <center>
+	<input type="radio" id="radio1" name="type" value="superclass"><label for="radio1">Superclasses</label>
+	<input type="radio" id="radio2" name="type" value="equivalent"><label for="radio2">Equivalent classes</label>
+	<input type="radio" id="radio3" name="type" value="subclass"
+	       checked="checked"><label for="radio3">Subclasses</label>
+      </center>
+      <center>
 	<select id="ontologyselector" name="ontologyselector">
-	<option selected="selected" value=""></option>
+	  <option selected="selected" value=""></option>
 	</select>
 
-	</center>
-	</div>
+      </center>
+    </div>
 
-	<center>    <input size=100% id="autocomplete" title="Query in
-	Manchester OWL Syntax"> </center>
-	<center>
-    <input type=button id="button" value="Submit" onClick="query=document.getElementById('autocomplete').value; redrawTable() ;"></button>
+    <center>    <input size=100% id="autocomplete" title="Query in
+							  Manchester OWL Syntax"> </center>
+    <center>
+      <input type=button id="button" value="Submit"
+      onClick="query=document.getElementById('autocomplete').value;
+      redrawTable() ; "></button>
 </center>
 <center><small>
-    Try <a href="#" onclick="javascript:document.getElementById('autocomplete').value='heart ';return false;">heart</a>,
-    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='part_of some \'apoptotic process\'';return false;">part_of some 'apoptotic process'</a>,
+    Try 
+    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='\'ventricular septal defect\'';return false;">'ventricular septal defect'</a>,
+    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='part_of some heart';return false;">part_of some heart</a>,
+    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='develops_from some \'stem cell\'';return false;">develops_from some 'stem cell'</a>,
     <a href="#" onclick="javascript:document.getElementById('autocomplete').value='part_of some \'apoptotic process\' and regulates some \'apoptotic process\'';return false;">part_of some 'apoptotic process' and regulates some 'apoptotic process'</a>, or
-<a href="#" onclick="javascript:document.getElementById('autocomplete').value='has_part some ethanol';return false;">has_part some ethanol</a>.
+    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='\'has part\' some alcohol';return false;">'has part' some alcohol</a>.
 
 </small></center>
-  </form>
-   </div>
+</form>
+</div>
 
-	<div id="results">
-	<h2 class="demoHeaders"></h2>
+<p>
+  <div id="results">
+    <h2 class="demoHeaders"></h2>
 
-	<table id="example" class="display" cellspacing="0"
-	       width="100%">
-        <thead id="headers">
-            <tr>
-                <th>OWL Class</th>
-                <th>Ontology</th>
-                <th>Label</th>
-                <th>Definition</th>
-            </tr>
-        </thead>
- 
+    <table id="example" class="display" cellspacing="0"
+	   width="100%">
+      <thead id="headers">
+	<tr>
+          <th>OWL Class</th>
+          <th>Ontology</th>
+          <th>Label</th>
+          <th>Definition</th>
+	</tr>
+      </thead>
     </table>
+  </div>
 
-	</div>
- 
-
+</p>
 
 </body>
 </html>
