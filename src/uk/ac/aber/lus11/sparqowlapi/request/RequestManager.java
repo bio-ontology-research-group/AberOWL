@@ -133,53 +133,55 @@ public class RequestManager {
 	for (String uri : ontologies.keySet()) {
 	    labels.put(uri, new SuggestTree(k, new HashMap<String, Integer>())) ;
 	    labels2id.put(uri, new LinkedHashMap<String, Set<String>>()) ;
-	    OWLOntology o = ontologies.get(uri) ;
-	    for (OWLClass c : o.getClassesInSignature(true)) {
-		String classIRI = c.getIRI().toString() ;
-		for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-		    if (annotation.getValue() instanceof OWLLiteral) {
-			OWLLiteral val = (OWLLiteral) annotation.getValue();
-			String label = val.getLiteral() ;
-			label = label.toLowerCase() ;
-			try {
-			    allLabels.insert(label, maxLength - label.length()) ;
-			} catch (Exception E) {}
-			if (allLabels2id.get(label) == null) {
-			    allLabels2id.put(label, new LinkedHashSet<String>()) ;
+	    OWLOntology ont = ontologies.get(uri) ;
+	    for (OWLOntology o : ont.getImportsClosure()) {
+		for (OWLClass c : o.getClassesInSignature(true)) {
+		    String classIRI = c.getIRI().toString() ;
+		    for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
+			if (annotation.getValue() instanceof OWLLiteral) {
+			    OWLLiteral val = (OWLLiteral) annotation.getValue();
+			    String label = val.getLiteral() ;
+			    label = label.toLowerCase() ;
+			    try {
+				allLabels.insert(label, maxLength - label.length()) ;
+			    } catch (Exception E) {}
+			    if (allLabels2id.get(label) == null) {
+				allLabels2id.put(label, new LinkedHashSet<String>()) ;
+			    }
+			    allLabels2id.get(label).add(c.getIRI().toString()) ;
+			    if (labels2id.get(uri).get(label) == null) {
+				labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
+			    }
+			    labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
+			    try {
+				labels.get(uri).insert(label, maxLength - label.length()) ;
+			    } catch (Exception E) {}
 			}
-			allLabels2id.get(label).add(c.getIRI().toString()) ;
-			if (labels2id.get(uri).get(label) == null) {
-			    labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-			}
-			labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
-			try {
-			    labels.get(uri).insert(label, maxLength - label.length()) ;
-			} catch (Exception E) {}
 		    }
                 }                                                                                                                                          
-            }                                                                                                                                            
-	    for (OWLObjectProperty c : o.getObjectPropertiesInSignature(true)) {
-		String classIRI = c.getIRI().toString() ;
-		for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-		    if (annotation.getValue() instanceof OWLLiteral) {
-			OWLLiteral val = (OWLLiteral) annotation.getValue();
-			String label = val.getLiteral() ;
-			label = label.toLowerCase() ;
-			try {
-			    allLabels.insert(label, maxLength - label.length()) ;
-			} catch (Exception E) {}
-			if (allLabels2id.get(label) == null) {
-			    allLabels2id.put(label, new LinkedHashSet<String>()) ;
+		for (OWLObjectProperty c : o.getObjectPropertiesInSignature(true)) {
+		    String classIRI = c.getIRI().toString() ;
+		    for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
+			if (annotation.getValue() instanceof OWLLiteral) {
+			    OWLLiteral val = (OWLLiteral) annotation.getValue();
+			    String label = val.getLiteral() ;
+			    label = label.toLowerCase() ;
+			    try {
+				allLabels.insert(label, maxLength - label.length()) ;
+			    } catch (Exception E) {}
+			    if (allLabels2id.get(label) == null) {
+				allLabels2id.put(label, new LinkedHashSet<String>()) ;
+			    }
+			    allLabels2id.get(label).add(c.getIRI().toString()) ;
+			    
+			    try {
+				labels.get(uri).insert(label, maxLength - label.length()) ;
+			    } catch (Exception E) {}
+			    if (labels2id.get(uri).get(label) == null) {
+				labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
+			    }
+			    labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
 			}
-			allLabels2id.get(label).add(c.getIRI().toString()) ;
-			
-			try {
-			    labels.get(uri).insert(label, maxLength - label.length()) ;
-			} catch (Exception E) {}
-			if (labels2id.get(uri).get(label) == null) {
-			    labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-			}
-			labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
 		    }
                 }                                                                                                                                          
             }                                                                                                                                            

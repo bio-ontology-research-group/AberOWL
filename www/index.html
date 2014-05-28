@@ -2,12 +2,11 @@
 <html lang="us">
 <head>
 	<meta charset="utf-8">
-	<title>RABBID: Reasonable Access to Biological and Biomedical Information and Data</title>
+	<title>Aber-OWL: a framework for ontology-based data access</title>
 	<link href="css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<link href="css/dataTables.jqueryui.css" rel="stylesheet">
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
-	<script src="js/jquery.dataTables.js"></script>
 	<script src="js/jquery.dataTables.js"></script>
 	<script src="js/dataTables.jqueryui.js"></script>
 	<script>
@@ -35,6 +34,10 @@ function redrawTable() {
 	    { "sWidth": "30%"},
 	    { "sWidth": "40%"},
 	],
+	"fnInitComplete": function( oSettings ) {
+	    document.getElementById('pubmedsearchlink').href = "pubmed/?type="+qType+"&owlquery="+query+"&ontology="+ontology ;
+	    $('#searchpubmed').show();                                                                                                         
+        },
         "ajax": {
             "url": "service/?type="+qType+"&query="+query+"&ontology="+ontology,
             "dataSrc": function ( json ) {
@@ -51,6 +54,7 @@ function redrawTable() {
             }
         }
     } );
+//    $('#searchpubmed').show();
 }
 
 $(document).ready(function() {
@@ -146,7 +150,6 @@ $(function() {
 		
 	});
 
-
 	</script>
 	<style>
 	table.display {
@@ -171,6 +174,14 @@ $(function() {
 	  left: 0;
 	  z-index: 999;
 	  width: 95%;
+	}
+	.menubarleft {
+	  position: fixed;
+	  top: 0;
+	  left: 20px;
+	  z-index: 999;
+	  width: 95%;
+	  display: none;
 	}
 	.demoHeaders {
 		margin-top: 2em;
@@ -205,7 +216,8 @@ $(function() {
 </head>
 <body>
 	<p class="menubar" align="right"><small><a href="help.html">Help</a></small></p>
-	<h1 class="title" title="Reasonable Access to Biological and Biomedical Information and Data">RABBID</h1>
+	<p id="searchpubmed" class="menubarleft" align="left"><small><a id="pubmedsearchlink" href="#">Search in Pubmed</a></small></p>
+	<h1 class="title" title="Framework for ontology-based data access">Aber-OWL</h1>
 
   <br/><br/>
   <div class="ui-widget">
