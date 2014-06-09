@@ -51,12 +51,10 @@ print 'Resolved Query: ' . $sparqlquery . '<br /><br />';
 $db = sparql_connect($sparqlendpoint);
 $result = sparql_query(htmlspecialchars_decode($sparqlquery));
 if(!$result) {
-    print sparql_errno() . ': ' . sparql_error() . '<br />';
     exit;
 }
 
 // Print results
-
 
 $fields = sparql_field_array($result);
 while($row = sparql_fetch_array($result)) {
@@ -71,7 +69,6 @@ function owl_query($endpoint, $onturi, $query, $type) {
     $url = $endpoint . '?query=' . urlencode($query) . 
         '&type=' . strtolower($type) .
       '&ontology=' . $onturi;
-    //print $url;
     $request = curl_init($url);
     curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($request, CURLOPT_HTTPHEADER, array(
@@ -91,17 +88,19 @@ function owl_query($endpoint, $onturi, $query, $type) {
     return $result;
 }
 
-// Turn the OWL query result into a VALUES array
 // OWL ?id
 function parse_owl($owl, $idname) {
     $data = json_decode($owl, true);
     $values = "" ;
     foreach($data as $object) {
-        if($object['iri']['remainder'] != 'Thing' && $object['iri']['remainder'] != 'Nothing') {
-		$uri = $object['classURI'];
-		$values .= ' <' . $uri . '> ';
+        if($object['owlClass']['iri']['remainder'] != 'Thing' && $object['owlClass']['iri']['remainder'] != 'Nothing') {
+            if(isset($_POST['shortforms'])) {
+                $uri = ' ' . str_replace('_', ':', $object['owlClass']['iri']['remainder']) . ' ';
+            } else {
+                $uri = ' &lt;' . $object['classURI'] . '&gt; ';
+            }
+            $values .= $uri;
         }
     }
-
     return $values;
 }
