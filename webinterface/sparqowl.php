@@ -1,3 +1,102 @@
+<html>
+<head>
+
+</head>
+<body>
+	<p class="menubar" align="right"><small><a href="help.html">Help</a></small></p>
+	<h1 class="title" title="Framework for ontology-based data access">Aber-OWL: SPARQL</h1>
+
+	<link href="../css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+	<link href="../css/dataTables.jqueryui.css" rel="stylesheet">
+        <script src="../js/jquery-1.10.2.js"></script>  
+        <script src="../js/jquery-ui-1.10.4.custom.js"></script>  
+        <script src="../js/jquery.autosize.js"></script>  
+	<script src="../js/jquery.dataTables.js"></script>
+	<style>
+	table.display {
+  	  	margin: 0 auto;
+  		width: 100%;
+  		clear: both;
+  		border-collapse: collapse;
+		table-layout: fixed;         // add this 
+		word-wrap:break-word;        // add this 
+	}
+	table{
+		font: 80% "Trebuchet MS", sans-serif;
+		margin: 80px;
+	}
+	body{
+		font: 100% "Trebuchet MS", sans-serif;
+		margin: 80px;
+	}
+	.menubar {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 999;
+	  width: 95%;
+	}
+	.menubarleft {
+	  position: fixed;
+	  top: 0;
+	  left: 20px;
+	  z-index: 999;
+	  width: 95%;
+	  display: none;
+	}
+	.demoHeaders {
+		margin-top: 2em;
+	}
+	#icons {
+		margin: 0;
+		padding: 0;
+	}
+	.display thead {
+	}
+	#icons li {
+		margin: 2px;
+		position: relative;
+		padding: 4px 0;
+		cursor: pointer;
+		float: left;
+		list-style: none;
+	}
+	#icons span.ui-icon {
+		float: left;
+		margin: 0 4px;
+	}
+	.fakewindowcontain .ui-widget-overlay {
+		position: absolute;
+	}
+	.title {
+		text-align: center;
+		margin: 0px;
+	}
+	</style>
+<script language="javascript">
+   $(function() {
+       $( "#accordion" ).accordion({
+	 collapsible: true,
+	     active: 1
+	     });
+     });
+
+$(document).ready(function() { 
+    change('values');
+    $('#ta').autosize() ;
+    $('#example').dataTable( {
+        "processing": false,
+        "serverSide": false,
+	"paging": true,
+	"scrollY": 400,
+	"renderer": "bootstrap",
+	"bAutoWidth": false,
+	"iDisplayLength": 50,
+	"bJQueryUI": true
+	  });
+} );
+  </script>
+
 <?php
 
 require_once('sparqllib.php');
@@ -8,7 +107,12 @@ if(php_sapi_name() === 'cli') {
 } else {
     $sparqlquery = $_POST['sparqlquery'];
     $sparqlendpoint = $_POST['endpoint'];
+    $short = $_POST['short'];
+    $filter = $_POST['filter'];
+    $qt = $_POST['qtype'];
 }
+
+$globalprefix = array();
 
 // Load the query...
 
@@ -35,40 +139,79 @@ foreach($owls as $owl) {
 
   $result = owl_query($endpoint, $onturi, $query, $type) ;
   if(!$result) {
-    print "OWL query failed. World ending.";
+    print "<b>OWL query failed. Please verify the URI of the Aber-OWL endpoint.</b>";
     exit;
   }
-  $values = parse_owl($result, $owl[1]);
-
+  $values = parse_owl($result, $owl[1], $short, $qt);
   // Replace OWL block with classes
   $sparqlquery = str_replace($owl[0], $values, $sparqlquery);
+  $globalprefix = array_unique($globalprefix);
+  foreach($globalprefix as $prefix) {
+    //  if (count($globalprefix)>0) {
+    $sparqlquery = "PREFIX GO: <$prefix>\n".$sparqlquery;
+  }
 }
-
-print 'Resolved Query: ' . $sparqlquery . '<br /><br />';
+?>
+<br /><br />
+<div id="accordion">
+  <h3>View/modify SPARQL Query</h3>
+  <div>
+  <form name="sparqowl" action="sparqowl.php" method="POST">
+        <textarea id="ta" name="sparqlquery" cols="150" rows="20">
+<?php
+  print $sparqlquery;
+print "</textarea>\n";
+print "<input type=\"hidden\" name=\"qtype\" value=\"$qt\" />";
+print "<p>SPARQL Endpoint URI: <input type=\"text\" size=100% name=\"endpoint\" value=\"".$sparqlendpoint."\"/></p>";
+?>
+  <p><input type="submit" /></p>
+  </div>
+    </form>
+  <h3>Results</h3>
+  <div>
+  
+<?php
 
 // Run the SPARQL query
 
 $db = sparql_connect($sparqlendpoint);
 $result = sparql_query(htmlspecialchars_decode($sparqlquery));
 if(!$result) {
+  print "<p>Error: " . sparql_error() . '('.sparql_errno().')</p>';
+  print "</div></div></body></html>";
     exit;
 }
 
 // Print results
+?>
+<table id="example" class="display" cellspacing="0"
+  width="100%">
+  <thead id="headers">
+  <tr>
+<?php
+  $fields = sparql_field_array($result);
+  foreach($fields as $field) {
+    echo "<th>$field</th>\n";
+  }
+  echo "</tr>\n</thead>\n";
 
-$fields = sparql_field_array($result);
 while($row = sparql_fetch_array($result)) {
+  echo "<tr>\n";
     foreach($fields as $field) {
-        print '[' . $field . ']: ' . $row[$field] . '<br />';
+      echo "<td>".$row[$field]."</td>\n";
     }
-    print '<br />';
+  echo "</tr>\n";
 }
+?>
+  </table>
+<?php
 
 // Perform a remote OWL query
 function owl_query($endpoint, $onturi, $query, $type) {
     $url = $endpoint . '?query=' . urlencode($query) . 
         '&type=' . strtolower($type) .
       '&ontology=' . $onturi;
+    //print $url;
     $request = curl_init($url);
     curl_setopt($request, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($request, CURLOPT_HTTPHEADER, array(
@@ -88,19 +231,38 @@ function owl_query($endpoint, $onturi, $query, $type) {
     return $result;
 }
 
+// Turn the OWL query result into a VALUES array
 // OWL ?id
-function parse_owl($owl, $idname) {
-    $data = json_decode($owl, true);
-    $values = "" ;
-    foreach($data as $object) {
-        if($object['owlClass']['iri']['remainder'] != 'Thing' && $object['owlClass']['iri']['remainder'] != 'Nothing') {
-            if(isset($_POST['shortforms'])) {
-                $uri = ' ' . str_replace('_', ':', $object['owlClass']['iri']['remainder']) . ' ';
-            } else {
-                $uri = ' &lt;' . $object['classURI'] . '&gt; ';
-            }
-            $values .= $uri;
-        }
+function parse_owl($owl, $idname, $short, $qt) {
+  $data = json_decode($owl, true);
+  $values = "" ;
+  $resarray = array();
+  foreach($data as $object) {
+    if($object['owlClass']['iri']['remainder'] != 'Thing' && $object['owlClass']['iri']['remainder'] != 'Nothing') {
+      $uri = $object['classURI'];
+      $prefix = $object['owlClass']['iri']['prefix'];
+      $local = substr($object['owlClass']['iri']['remainder'], 0, strpos($object['owlClass']['iri']['remainder'], "_")+1);
+      $GLOBALS['globalprefix'][] = $prefix.$local;
+      $id = str_replace("_", ":", $object['owlClass']['iri']['remainder']);
+      if ($short == true) {
+	$resarray[] = $id ;
+	//	$values .= ' ' . $id . ' ';
+      } else {
+	$resarray[] = '<'.$uri.'>';
+	//	$values .= ' <' . $uri . '> ';
+      }
     }
-    return $values;
+  }
+  if (strcmp($qt, "values") == 0) {
+    $values = implode(" ", $resarray) ;
+  } else {
+    $values = implode(", ", $resarray) ;
+  }
+
+  return $values;
 }
+
+?>
+  </div>
+</div>
+</body>
