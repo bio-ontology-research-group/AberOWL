@@ -1,11 +1,6 @@
 <html>
 <head>
-
-</head>
-<body>
-	<p class="menubar" align="right"><small><a href="help.html">Help</a></small></p>
-	<h1 class="title" title="Framework for ontology-based data access">Aber-OWL: SPARQL</h1>
-
+  <title>Aber-OWL: SPARQL</title>
 	<link href="../css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<link href="../css/dataTables.jqueryui.css" rel="stylesheet">
         <script src="../js/jquery-1.10.2.js"></script>  
@@ -96,6 +91,12 @@ $(document).ready(function() {
 	  });
 } );
   </script>
+
+</head>
+<body>
+	<p class="menubar" align="right"><small><a href="help.html">Help</a></small></p>
+	<h1 class="title" title="Framework for ontology-based data access">Aber-OWL: SPARQL</h1>
+
 
 <?php
 
