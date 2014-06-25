@@ -37,24 +37,35 @@
 	repository and reasoning services to provide access to
 	specific biological datasets. 
     </p>
-  </div>
-
-  <h3>Functionality</h3>
-  <div>
     <p>
-	Aber-OWL provides
+	Currently, the Aber-OWL framework provides
 	<ul>
 	<li>webservices that perform OWL-EL reasoning over a
 	repository of ontologies and user-provided ontologies</li>
 	<li>a query and search interface</li>
 	<li>ontology-based access to RDF/Linked Data through SPARQL
-	integration (forthcoming)</li>
+	integration</li>
 	<li>ontology-based access to PubMed and PubMed Central
-	articles (forthcoming)</li>
+	articles</li>
 	</ul>
     </p>
   </div>
 
+  <h3>Aber-OWL</h3>
+  <div>
+	<p>
+	Aber-OWL provides semantic access to ontologies. It performs
+	OWL-EL reasoning over a repository of ontologies using
+	the <a href="https://code.google.com/p/elk-reasoner/">ELK
+	reasoner</a> and answers queries over single ontologies or the
+	full Aber-OWL ontology repository. Ontologies in Aber-OWL are
+	identified by their URI, and queries are performed
+	in <a href="http://www.w3.org/TR/owl2-manchester-syntax/">Manchester
+	OWL Syntax</a>. Class names in Manchester OWL syntax are
+	rendered using the <tt>rdfs:label</tt> property of the class, and
+	class names containing a space are surrounded by single quotes.
+	</p>
+  </div>
   <h3>Aber-OWL: Pubmed</h3>
   <div>
     <p>
@@ -215,13 +226,13 @@
   <h3>Source code</h3>
   <div>
     <p>
-	Aber-OWL is available
+	Aber-OWL and Aber-OWL: SPARQL are available
 	as <a href="https://www.gnu.org/philosophy/free-sw.html">free
 	software</a>
 	from <a href="https://github.com/reality/SparqOWL">https://github.com/reality/SparqOWL</a>. 
+	Aber-OWL: Pubmed is available from <a href="https://github.com/leechuck/pmcanalysis">https://github.com/leechuck/pmcanalysis</a>.
 	Please use the <a href="https://github.com/reality/SparqOWL/issues">Issue
 	Tracker</a> for any problems, feature requests, etc.
-	Aber-OWL: Pubmed is available from <a href="https://github.com/leechuck/pmcanalysis">https://github.com/leechuck/pmcanalysis</a>.
     </p>
   </div>
 
