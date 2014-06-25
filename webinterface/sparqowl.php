@@ -1,4 +1,6 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>Aber-OWL: SPARQL</title>
 	<link href="../css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
@@ -77,8 +79,7 @@
      });
 
 $(document).ready(function() { 
-    change('values');
-    $('#ta').autosize() ;
+    //    $('#ta').autosize() ;
     $('#example').dataTable( {
         "processing": false,
         "serverSide": false,
@@ -147,9 +148,10 @@ foreach($owls as $owl) {
   // Replace OWL block with classes
   $sparqlquery = str_replace($owl[0], $values, $sparqlquery);
   $globalprefix = array_unique($globalprefix);
-  foreach($globalprefix as $prefix) {
-    //  if (count($globalprefix)>0) {
-    $sparqlquery = "PREFIX GO: <$prefix>\n".$sparqlquery;
+  foreach($globalprefix as $key => $prefix) {
+    if (preg_match_all("/PREFIX\s+".preg_quote($key)."/", $sparqlquery) === 0) {
+      $sparqlquery = "PREFIX $key <$prefix>\n".$sparqlquery;
+    }
   }
 }
 ?>
@@ -243,7 +245,8 @@ function parse_owl($owl, $idname, $short, $qt) {
       $uri = $object['classURI'];
       $prefix = $object['owlClass']['iri']['prefix'];
       $local = substr($object['owlClass']['iri']['remainder'], 0, strpos($object['owlClass']['iri']['remainder'], "_")+1);
-      $GLOBALS['globalprefix'][] = $prefix.$local;
+      $spref = str_replace("_",":",$local);
+      $GLOBALS['globalprefix'][$spref] = $prefix.$local;
       $id = str_replace("_", ":", $object['owlClass']['iri']['remainder']);
       if ($short == true) {
 	$resarray[] = $id ;
