@@ -60,10 +60,9 @@ http://purl.obolibrary.org/obo/miro.owl
 http://purl.obolibrary.org/obo/mmo.owl
 http://purl.obolibrary.org/obo/mmusdv.owl
 http://purl.obolibrary.org/obo/mod.owl
-http://purl.obolibrary.org/obo/mp.owl
+http://purl.obolibrary.org/obo/mp.obo
 http://purl.obolibrary.org/obo/mpath.owl
 http://purl.obolibrary.org/obo/ms.owl
-http://purl.obolibrary.org/obo/nbo.owl
 http://purl.obolibrary.org/obo/ncbitaxon.owl
 http://purl.obolibrary.org/obo/nif_dysfunction.owl
 http://purl.obolibrary.org/obo/oba.owl
@@ -119,3 +118,8 @@ http://purl.obolibrary.org/obo/xco.owl
 http://purl.obolibrary.org/obo/ypo.owl
 http://purl.obolibrary.org/obo/zfa.owl
 http://purl.obolibrary.org/obo/zfs.owl
+https://behavior-ontology.googlecode.com/svn/trunk/behavior-edit.owl
+http://jagannath.pdn.cam.ac.uk/plant/flopo-clean.owl
+http://www.biointerchange.org/gfvo
+https://phenotype-ontologies.googlecode.com/svn/trunk/src/ontology/monarch.owl
+http://semanticscience.org/ontology/sio.owl
