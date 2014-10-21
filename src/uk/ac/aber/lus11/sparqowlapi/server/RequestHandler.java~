@@ -81,9 +81,7 @@ public class RequestHandler extends AbstractHandler {
             case "superclass": requestType = RequestType.SUPERCLASS; break;
             case "subclass": requestType = RequestType.SUBCLASS; break;
             case "equivalent": requestType = RequestType.EQUIVALENT; break;
-            case "supeq": requestType = RequestType.SUPEQ; break;
-            case "subeq": requestType = RequestType.SUBEQ; break;
-            default: requestType = RequestType.SUBEQ; break;
+            default: requestType = RequestType.SUBCLASS; break;
 	    }
 	    // Run the query, convert the results to JSON and write them back to the client.
 	    Set results = oManager.runQuery(query, requestType, ontology);

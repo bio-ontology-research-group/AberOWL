@@ -61,25 +61,20 @@ public class QueryEngine {
   
         switch(requestType) {
 	case SUPERCLASS:
-	    classes.addAll(sClasses(cExpression)); 
-	    break;
+	    classes.addAll(sClasses(cExpression)); break;
 	case EQUIVALENT:
-	    classes.addAll(eClasses(cExpression)); 
-	    break;
+	    classes.addAll(eClasses(cExpression)); break;
 	case SUBCLASS:
-	    classes.addAll(subClasses(cExpression)); 
-	    break;
+	    classes.addAll(subClasses(cExpression)); break;
 	case SUBEQ:
-	    classes.addAll(subClasses(cExpression));
-	    classes.addAll(eClasses(cExpression)); 
-	    break;
+	    classes.addAll(subClasses(cExpression)); break;
+	    classes.addAll(eClasses(cExpression)); break;
 	case SUPEQ:
-	    classes.addAll(sClasses(cExpression));
-	    classes.addAll(eClasses(cExpression)); 
-	    break;
+	    classes.addAll(sClasses(cExpression)); break;
+	    classes.addAll(eClasses(cExpression)); break;
 	default: // default is a subeq query
 	    classes.addAll(subClasses(cExpression));
-	    classes.addAll(eClasses(cExpression));
+	    classes.addAll(eClasses(cExpression)); break;
 	    break;
         }
         return classes;

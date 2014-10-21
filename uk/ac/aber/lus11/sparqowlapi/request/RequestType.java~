@@ -28,21 +28,18 @@ public enum RequestType {
      */
     ALL,
 
-	/**
-	 * Only subclasses of the class matches will be returned.
-	 */
-	SUBCLASS,
-	
-	/**
-	 * Only superclasses of the class matches will be returned.
-	 */
-	SUPERCLASS,
-	
-	/**
-	 * Only classes equivalent to the class matches will be returned.
-	 */
-	EQUIVALENT,
-	
-	SUBEQ,
-	SUPEQ
-	}
+    /**
+     * Only subclasses of the class matches will be returned.
+     */
+    SUBCLASS,
+
+    /**
+     * Only superclasses of the class matches will be returned.
+     */
+    SUPERCLASS,
+
+    /**
+     * Only classes equivalent to the class matches will be returned.
+     */
+    EQUIVALENT
+}
