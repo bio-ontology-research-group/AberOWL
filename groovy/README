@@ -1,0 +1,9 @@
+== Groovy Aber OWL ==
+
+Groovy Aber OWL is a testing alternative implementation of AberOWL in Groovy. Right now, it doesn't work. But it may do in the future. Maybe.
+
+Currently, you can run the project using the following:
+
+```
+groovy -cp ../Libraries/owlapi-distribution-3.4.10.jar:../Libraries/elk-distribution-0.4.1-owlapi-library/elk-owlapi.jar AberOWLServer.groovy
+```
