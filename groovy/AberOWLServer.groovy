@@ -18,6 +18,7 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import uk.ac.aber.lus11.sparqowlapi.request.* 
+import uk.ac.aber.lus11.sparqowlapi.util.* 
 import groovy.json.*
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.servlet.*
