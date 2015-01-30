@@ -125,7 +125,6 @@ WHERE {
     context.addServlet(GroovyServlet, '/AberOWLServlet.groovy')
     context.setAttribute('version', '1.0')  
 
-
     // context.setAttribute("dis2name", dis2name)
     // context.setAttribute("pheno2name", pheno2name)
     // context.setAttribute("dismap", dismap)
