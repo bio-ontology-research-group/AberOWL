@@ -1,7 +1,0 @@
-
-public class MyOWLClassInformation implements Serializable {
-
-    public OWLClass owlClass ;
-    public 
-
-}
