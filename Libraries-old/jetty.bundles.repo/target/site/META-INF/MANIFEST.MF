@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Created-By: 1.6.0 (IBM Corporation)
-
-Name: META-INF/eclipse.inf
-SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
-
-Name: artifacts.xml
-SHA1-Digest: 5JF4/I5lJjOZ6V7dXFTjkeRssZI=
-
