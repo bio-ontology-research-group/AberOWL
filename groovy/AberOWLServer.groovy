@@ -69,10 +69,11 @@ WHERE {
 }
 """)
     ontologies.each { ont ->
-      println "Loading ${ont.name}..."
+      println "http://data.bioontology.org/ontologies/"+ont.acro.toUpperCase()+"/download?apikey=24e0413e-54e0-11e0-9d7b-005056aa3316"
+      /*println "Loading ${ont.name}..."
       //      println ont
       IRI iri = IRI.create("http://data.bioontology.org/ontologies/"+ont.acro.toUpperCase()+"/download?apikey=24e0413e-54e0-11e0-9d7b-005056aa3316")
-      try {
+      /*try {
 	def oManager = OWLManager.createOWLOntologyManager();
 	OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
 	config.setFollowRedirects(true) ;
@@ -83,7 +84,7 @@ WHERE {
 	//	println "${ont.name} loading failed..."
 	//	println iri
 	println E.getMessage()
-      }
+      }*/
       /*
 	this.ontologies.put(oListString, ontology);
 	this.ontologyManagers.put(oListString, this.oManager) ;
