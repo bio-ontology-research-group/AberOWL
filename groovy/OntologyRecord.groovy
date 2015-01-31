@@ -11,7 +11,7 @@ import org.apache.commons.io.FileUtils
 
 class OntologyRecord {
   public final static String BASE_ONTOLOGY_DIRECTORY = 'onts/'
-  public final static String API_KEY = '' // TODO: Global config
+  public final static String API_KEY = '24e0413e-54e0-11e0-9d7b-005056aa3316' // TODO: Global config
 
   String id
   String name

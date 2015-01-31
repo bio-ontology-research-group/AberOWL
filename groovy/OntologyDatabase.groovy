@@ -36,8 +36,8 @@ class OntologyDatabase {
    */
   OntologyRecord createOntology(data) {
     // Not really the right place for this
-    data.lastSubDate = System.currentTimeMillis() / 1000;
-    data.submissions = new LinkedHashMap();
+    data.lastSubDate = 0
+    data.submissions = new LinkedHashMap()
 
     def oRecord = new OntologyRecord(data)
     ontologies[data.id] = oRecord.asMap()
