@@ -5,7 +5,6 @@
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
 
 import groovyx.net.http.HTTPBuilder
-import groovy.json.*
 
 class RemoteOntologyManager {
   public final static String API_ROOT = 'http://data.bioontology.org/'
