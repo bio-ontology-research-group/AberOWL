@@ -35,7 +35,10 @@ class OntologyDatabase {
    * @param data An object with data about the ontology.
    */
   OntologyRecord createOntology(data) {
-    data.lastSubDate = new Date().toTimestamp();
+    // Not really the right place for this
+    data.lastSubDate = System.currentTimeMillis() / 1000;
+    data.submissions = new LinkedHashMap();
+
     def oRecord = new OntologyRecord(data)
     ontologies[data.id] = oRecord.asMap()
 
@@ -61,7 +64,15 @@ class OntologyDatabase {
 
   public static void main(args) {
     OntologyDatabase d = new OntologyDatabase()
-    d.createOntology(['id': 'SQUIG', 'name': 'Squirrels'])
+    def ontology = d.createOntology(['id': 'ICO', 'name': 'Informed Consent Ontology'])
+
+    ontology.addNewSubmission([
+      'released': System.currentTimeMillis() / 1000,
+      'download': 'http://data.bioontology.org/ontologies/ICO/download'
+    ]) 
+
+    d.saveOntology(ontology)
+
     d.ontologies.each{ k, v -> println "${k}:${v}" }
   }
 }
