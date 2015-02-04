@@ -1,0 +1,2536 @@
+[Term]
+id: DDPHENO:0000009
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in DDANAT:0000012 ! fruiting body
+
+[Term]
+id: DDPHENO:0000028
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0031150 ! sorocarp stalk development
+
+[Term]
+id: DDPHENO:0000032
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043934 ! sporulation
+
+[Term]
+id: DDPHENO:0000077
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000012 ! fruiting body
+
+[Term]
+id: DDPHENO:0000090
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006897 ! endocytosis
+
+[Term]
+id: DDPHENO:0000099
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006935 ! chemotaxis
+
+[Term]
+id: DDPHENO:0000108
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:17234 ! glucose
+
+[Term]
+id: DDPHENO:0000109
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0016337 ! cell-cell adhesion
+
+[Term]
+id: DDPHENO:0000111
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000403 ! aggregate cell
+
+[Term]
+id: DDPHENO:0000116
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0048870 ! cell motility
+
+[Term]
+id: DDPHENO:0000121
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:17234 ! glucose
+
+[Term]
+id: DDPHENO:0000134
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031036 ! myosin II filament assembly
+
+[Term]
+id: DDPHENO:0000136
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031036 ! myosin II filament assembly
+
+[Term]
+id: DDPHENO:0000138
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0016337 ! cell-cell adhesion
+
+[Term]
+id: DDPHENO:0000139
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0007342 ! fusion of sperm to egg plasma membrane
+
+[Term]
+id: DDPHENO:0000140
+intersection_of: PATO:0001779 ! decreased strength
+intersection_of: inheres_in DDANAT:0000076 ! slime trail
+
+[Term]
+id: DDPHENO:0000148
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0048870 ! cell motility
+
+[Term]
+id: DDPHENO:0000149
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0000910 ! cytokinesis
+
+[Term]
+id: DDPHENO:0000158
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000403 ! aggregate cell
+
+[Term]
+id: DDPHENO:0000160
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000007 ! standing slug
+
+[Term]
+id: DDPHENO:0000163
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in DDANAT:0000414 ! spore
+
+[Term]
+id: DDPHENO:0000165
+intersection_of: PATO:0000573 ! increased length
+intersection_of: inheres_in DDANAT:0000093 ! stalk
+
+[Term]
+id: DDPHENO:0000166
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000094 ! sorus
+
+[Term]
+id: DDPHENO:0000171
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0080186 ! developmental vegetative growth
+
+[Term]
+id: DDPHENO:0000173
+intersection_of: PATO:0000694 ! premature
+intersection_of: inheres_in GO:0009847 ! spore germination
+
+[Term]
+id: DDPHENO:0000183
+intersection_of: PATO:0002001 ! has fewer parts of type
+intersection_of: inheres_in GO:0000235 ! astral microtubule
+
+[Term]
+id: DDPHENO:0000184
+intersection_of: PATO:0000574 ! decreased length
+intersection_of: inheres_in GO:0000235 ! astral microtubule
+
+[Term]
+id: DDPHENO:0000185
+intersection_of: PATO:0001551 ! increased sensitivity of a process
+intersection_of: towards CHEBI:34892 ! nocodazole
+
+[Term]
+id: DDPHENO:0000187
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031589 ! cell-substrate adhesion
+
+[Term]
+id: DDPHENO:0000188
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006909 ! phagocytosis
+
+[Term]
+id: DDPHENO:0000193
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0031148 ! DIF-1 biosynthetic process
+
+[Term]
+id: DDPHENO:0000195
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031149 ! sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0000196
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004672 ! protein kinase activity
+intersection_of: inheres_in GO:0051018 ! protein kinase A binding
+
+[Term]
+id: DDPHENO:0000198
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007190 ! activation of adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0000201
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004674 ! protein serine/threonine kinase activity
+
+[Term]
+id: DDPHENO:0000203
+intersection_of: PATO:0002002 ! has extra parts of type
+intersection_of: inheres_in GO:0005815 ! microtubule organizing center
+
+[Term]
+id: DDPHENO:0000207
+intersection_of: PATO:0000573 ! increased length
+intersection_of: inheres_in DDANAT:0000007 ! standing slug
+
+[Term]
+id: DDPHENO:0000208
+intersection_of: PATO:0000599 ! decreased width
+intersection_of: inheres_in DDANAT:0000007 ! standing slug
+
+[Term]
+id: DDPHENO:0000209
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006970 ! response to osmotic stress
+
+[Term]
+id: DDPHENO:0000210
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0031153 ! slug development involved in sorocarp development
+
+[Term]
+id: DDPHENO:0000212
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0016236 ! macroautophagy
+
+[Term]
+id: DDPHENO:0000213
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031589 ! cell-substrate adhesion
+
+[Term]
+id: DDPHENO:0000214
+intersection_of: PATO:0000694 ! premature
+intersection_of: inheres_in GO:0043934 ! sporulation
+
+[Term]
+id: DDPHENO:0000216
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0031160 ! spore wall
+
+[Term]
+id: DDPHENO:0000222
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0042331 ! phototaxis
+
+[Term]
+id: DDPHENO:0000223
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043052 ! thermotaxis
+
+[Term]
+id: DDPHENO:0000230
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0005768 ! endosome
+
+[Term]
+id: DDPHENO:0000232
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0009847 ! spore germination
+
+[Term]
+id: DDPHENO:0000233
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0033298 ! contractile vacuole organization
+
+[Term]
+id: DDPHENO:0000234
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007067 ! mitosis
+
+[Term]
+id: DDPHENO:0000236
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0005623 ! cell
+
+[Term]
+id: DDPHENO:0000263
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0005634 ! nucleus
+
+[Term]
+id: DDPHENO:0000264
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0048870 ! cell motility
+
+[Term]
+id: DDPHENO:0000265
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031038 ! myosin II filament organization
+
+[Term]
+id: DDPHENO:0000269
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000089 ! basal disc
+
+[Term]
+id: DDPHENO:0000271
+intersection_of: PATO:0002001 ! has fewer parts of type
+intersection_of: inheres_in GO:0005739 ! mitochondrion
+
+[Term]
+id: DDPHENO:0000272
+intersection_of: PATO:0002002 ! has extra parts of type
+intersection_of: inheres_in GO:0005739 ! mitochondrion
+
+[Term]
+id: DDPHENO:0000276
+intersection_of: PATO:0001552 ! decreased sensitivity of a process
+intersection_of: inheres_in GO:0006974 ! response to DNA damage stimulus
+
+[Term]
+id: DDPHENO:0000300
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0010467 ! gene expression
+
+[Term]
+id: DDPHENO:0000301
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0010467 ! gene expression
+
+[Term]
+id: DDPHENO:0000303
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032231 ! regulation of actin filament bundle assembly
+
+[Term]
+id: DDPHENO:0000304
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0097178 ! ruffle assembly
+
+[Term]
+id: DDPHENO:0000376
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0046847 ! filopodium assembly
+
+[Term]
+id: DDPHENO:0000377
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0046847 ! filopodium assembly
+
+[Term]
+id: DDPHENO:0000379
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in GO:0005623 ! cell
+
+[Term]
+id: DDPHENO:0000383
+intersection_of: PATO:0000574 ! decreased length
+intersection_of: inheres_in DDANAT:0000093 ! stalk
+
+[Term]
+id: DDPHENO:0000384
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in DDANAT:0000094 ! sorus
+
+[Term]
+id: DDPHENO:0000385
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0000910 ! cytokinesis
+
+[Term]
+id: DDPHENO:0000388
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0060036 ! notochord cell vacuolation
+
+[Term]
+id: DDPHENO:0000389
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000094 ! sorus
+
+[Term]
+id: DDPHENO:0000390
+intersection_of: PATO:0001354 ! translucent
+intersection_of: inheres_in DDANAT:0000094 ! sorus
+
+[Term]
+id: DDPHENO:0000392
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0030010 ! establishment of cell polarity
+
+[Term]
+id: DDPHENO:0000393
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031589 ! cell-substrate adhesion
+
+[Term]
+id: DDPHENO:0000394
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0080186 ! developmental vegetative growth
+
+[Term]
+id: DDPHENO:0000395
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032148 ! activation of protein kinase B activity
+
+[Term]
+id: DDPHENO:0000397
+intersection_of: PATO:0000001 ! quality
+
+[Term]
+id: DDPHENO:0000399
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006897 ! endocytosis
+
+[Term]
+id: DDPHENO:0000400
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006935 ! chemotaxis
+
+[Term]
+id: DDPHENO:0000401
+intersection_of: PATO:0001552 ! decreased sensitivity of a process
+intersection_of: towards CHEBI:27899 ! cisplatin
+
+[Term]
+id: DDPHENO:0000405
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006909 ! phagocytosis
+
+[Term]
+id: DDPHENO:0000406
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in GO:0005623 ! cell
+
+[Term]
+id: DDPHENO:0000408
+intersection_of: PATO:0001552 ! decreased sensitivity of a process
+intersection_of: towards CHEBI:31355 ! carboplatin
+
+[Term]
+id: DDPHENO:0000409
+intersection_of: PATO:0001551 ! increased sensitivity of a process
+intersection_of: towards CHEBI:31355 ! carboplatin
+
+[Term]
+id: DDPHENO:0000410
+intersection_of: PATO:0001551 ! increased sensitivity of a process
+intersection_of: towards CHEBI:27899 ! cisplatin
+
+[Term]
+id: DDPHENO:0000411
+intersection_of: PATO:0001552 ! decreased sensitivity of a process
+intersection_of: inheres_in GO:0009408 ! response to heat
+
+[Term]
+id: DDPHENO:0000412
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0016337 ! cell-cell adhesion
+
+[Term]
+id: DDPHENO:0000413
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0000226 ! microtubule cytoskeleton organization
+
+[Term]
+id: DDPHENO:0000414
+intersection_of: PATO:0001551 ! increased sensitivity of a process
+intersection_of: inheres_in GO:0009408 ! response to heat
+
+[Term]
+id: DDPHENO:0000424
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0043934 ! sporulation
+
+[Term]
+id: DDPHENO:0000425
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0042542 ! response to hydrogen peroxide
+
+[Term]
+id: DDPHENO:0000426
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0009411 ! response to UV
+
+[Term]
+id: DDPHENO:0000427
+intersection_of: PATO:0001551 ! increased sensitivity of a process
+intersection_of: towards CHEBI:27504 ! mitomycin C
+
+[Term]
+id: DDPHENO:0000428
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: towards CHEBI:35366 ! fatty acid
+
+[Term]
+id: DDPHENO:0000429
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006901 ! vesicle coating
+
+[Term]
+id: DDPHENO:0000430
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006907 ! pinocytosis
+
+[Term]
+id: DDPHENO:0000431
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0007049 ! cell cycle
+
+[Term]
+id: DDPHENO:0000432
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0005977 ! glycogen metabolic process
+
+[Term]
+id: DDPHENO:0000433
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0033299 ! secretion of lysosomal enzymes
+
+[Term]
+id: DDPHENO:0000443
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0033299 ! secretion of lysosomal enzymes
+
+[Term]
+id: DDPHENO:0000446
+intersection_of: PATO:0000014 ! color
+intersection_of: inheres_in DDANAT:0000005 ! mound
+
+[Term]
+id: DDPHENO:0000448
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006907 ! pinocytosis
+
+[Term]
+id: DDPHENO:0000452
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000084 ! macrocyst
+
+[Term]
+id: DDPHENO:0000453
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0034504 ! protein localization to nucleus
+
+[Term]
+id: DDPHENO:0000457
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031289 ! actin phosphorylation
+
+[Term]
+id: DDPHENO:0000462
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0046847 ! filopodium assembly
+
+[Term]
+id: DDPHENO:0000466
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006935 ! chemotaxis
+
+[Term]
+id: DDPHENO:0000471
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0008104 ! protein localization
+
+[Term]
+id: DDPHENO:0000472
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031399 ! regulation of protein modification process
+
+[Term]
+id: DDPHENO:0000473
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0030010 ! establishment of cell polarity
+
+[Term]
+id: DDPHENO:0000474
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031271 ! lateral pseudopodium assembly
+
+[Term]
+id: DDPHENO:0000478
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031271 ! lateral pseudopodium assembly
+
+[Term]
+id: DDPHENO:0000479
+intersection_of: PATO:0001551 ! increased sensitivity of a process
+intersection_of: inheres_in GO:0006974 ! response to DNA damage stimulus
+
+[Term]
+id: DDPHENO:0000480
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0019933 ! cAMP-mediated signaling
+
+[Term]
+id: DDPHENO:0000481
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031289 ! actin phosphorylation
+
+[Term]
+id: DDPHENO:0000484
+intersection_of: PATO:0000405 ! curled
+intersection_of: inheres_in DDANAT:0000007 ! standing slug
+
+[Term]
+id: DDPHENO:0000495
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032776 ! DNA methylation on cytosine
+
+[Term]
+id: DDPHENO:0000497
+intersection_of: PATO:0002001 ! has fewer parts of type
+intersection_of: inheres_in GO:0005773 ! vacuole
+
+[Term]
+id: DDPHENO:0000498
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0000045 ! autophagic vacuole assembly
+
+[Term]
+id: DDPHENO:0000499
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0031589 ! cell-substrate adhesion
+
+[Term]
+id: DDPHENO:0000500
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in GO:0044352 ! pinosome
+
+[Term]
+id: DDPHENO:0000501
+intersection_of: PATO:0002002 ! has extra parts of type
+intersection_of: inheres_in GO:0044352 ! pinosome
+
+[Term]
+id: DDPHENO:0000504
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043934 ! sporulation
+
+[Term]
+id: DDPHENO:0000510
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031150 ! sorocarp stalk development
+
+[Term]
+id: DDPHENO:0000513
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043934 ! sporulation
+
+[Term]
+id: DDPHENO:0000514
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0031149 ! sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0000518
+intersection_of: PATO:0000600 ! increased width
+intersection_of: inheres_in DDANAT:0000093 ! stalk
+
+[Term]
+id: DDPHENO:0000522
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043327 ! chemotaxis to cAMP
+
+[Term]
+id: DDPHENO:0000523
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043326 ! chemotaxis to folate
+
+[Term]
+id: DDPHENO:0000525
+intersection_of: PATO:0000498 ! increased duration
+intersection_of: inheres_in GO:0007049 ! cell cycle
+
+[Term]
+id: DDPHENO:0000527
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0051568 ! histone H3-K4 methylation
+
+[Term]
+id: DDPHENO:0000528
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006897 ! endocytosis
+
+[Term]
+id: DDPHENO:0000529
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031149 ! sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0000530
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031047 ! gene silencing by RNA
+
+[Term]
+id: DDPHENO:0000533
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051322 ! anaphase
+
+[Term]
+id: DDPHENO:0000535
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:28087 ! glycogen
+
+[Term]
+id: DDPHENO:0000536
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:14321 ! glutamate(1-)
+
+[Term]
+id: DDPHENO:0000537
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005615 ! extracellular space
+intersection_of: towards CHEBI:16134 ! ammonia
+
+[Term]
+id: DDPHENO:0000538
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:27601 ! pteridine
+
+[Term]
+id: DDPHENO:0000540
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in GO:0031143 ! pseudopodium
+
+[Term]
+id: DDPHENO:0000544
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006826 ! iron ion transport
+
+[Term]
+id: DDPHENO:0000545
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006826 ! iron ion transport
+
+[Term]
+id: DDPHENO:0000546
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031149 ! sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0000549
+intersection_of: PATO:0000599 ! decreased width
+intersection_of: inheres_in DDANAT:0000093 ! stalk
+
+[Term]
+id: DDPHENO:0000550
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006907 ! pinocytosis
+
+[Term]
+id: DDPHENO:0000551
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031269 ! pseudopodium assembly
+
+[Term]
+id: DDPHENO:0001002
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0043226 ! organelle
+
+[Term]
+id: DDPHENO:0001003
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0050896 ! response to stimulus
+
+[Term]
+id: DDPHENO:0001005
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0044237 ! cellular metabolic process
+
+[Term]
+id: DDPHENO:0001006
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006909 ! phagocytosis
+
+[Term]
+id: DDPHENO:0001007
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006907 ! pinocytosis
+
+[Term]
+id: DDPHENO:0001008
+intersection_of: inheres_in GO:0009987 ! cellular process
+
+[Term]
+id: DDPHENO:0001009
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051179 ! localization
+
+[Term]
+id: DDPHENO:0001012
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031150 ! sorocarp stalk development
+
+[Term]
+id: DDPHENO:0001013
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0030154 ! cell differentiation
+
+[Term]
+id: DDPHENO:0001014
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031153 ! slug development involved in sorocarp development
+
+[Term]
+id: DDPHENO:0001016
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031155 ! regulation of fruiting body development
+
+[Term]
+id: DDPHENO:0001017
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031157 ! regulation of aggregate size involved in sorocarp development
+
+[Term]
+id: DDPHENO:0001020
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031285 ! regulation of sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0001021
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031286 ! negative regulation of sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0001022
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031287 ! positive regulation of sorocarp stalk cell differentiation
+
+[Term]
+id: DDPHENO:0001026
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006811 ! ion transport
+
+[Term]
+id: DDPHENO:0001027
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031269 ! pseudopodium assembly
+
+[Term]
+id: DDPHENO:0001028
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0046847 ! filopodium assembly
+
+[Term]
+id: DDPHENO:0001029
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007163 ! establishment or maintenance of cell polarity
+
+[Term]
+id: DDPHENO:0001030
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0009306 ! protein secretion
+
+[Term]
+id: DDPHENO:0001031
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0009628 ! response to abiotic stimulus
+
+[Term]
+id: DDPHENO:0001032
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0009607 ! response to biotic stimulus
+
+[Term]
+id: DDPHENO:0001033
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in DDANAT:0000084 ! macrocyst
+
+[Term]
+id: DDPHENO:0001034
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006950 ! response to stress
+
+[Term]
+id: DDPHENO:0001035
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0009408 ! response to heat
+
+[Term]
+id: DDPHENO:0001036
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006979 ! response to oxidative stress
+
+[Term]
+id: DDPHENO:0001039
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0042594 ! response to starvation
+
+[Term]
+id: DDPHENO:0001041
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007033 ! vacuole organization
+
+[Term]
+id: DDPHENO:0001042
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0016043 ! cellular component organization
+
+[Term]
+id: DDPHENO:0001044
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007155 ! cell adhesion
+
+[Term]
+id: DDPHENO:0001045
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006974 ! response to DNA damage stimulus
+
+[Term]
+id: DDPHENO:0001046
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0009847 ! spore germination
+
+[Term]
+id: DDPHENO:0001047
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006810 ! transport
+
+[Term]
+id: DDPHENO:0001048
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0030031 ! cell projection assembly
+
+[Term]
+id: DDPHENO:0001049
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0032060 ! bleb assembly
+
+[Term]
+id: DDPHENO:0001050
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032060 ! bleb assembly
+
+[Term]
+id: DDPHENO:0001052
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032060 ! bleb assembly
+
+[Term]
+id: DDPHENO:0001053
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032060 ! bleb assembly
+
+[Term]
+id: DDPHENO:0001058
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0045859 ! regulation of protein kinase activity
+
+[Term]
+id: DDPHENO:0001061
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0045859 ! regulation of protein kinase activity
+
+[Term]
+id: DDPHENO:0001062
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0045859 ! regulation of protein kinase activity
+
+[Term]
+id: DDPHENO:0001063
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0035504 ! regulation of myosin light chain kinase activity
+
+[Term]
+id: DDPHENO:0001064
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0035504 ! regulation of myosin light chain kinase activity
+
+[Term]
+id: DDPHENO:0001065
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0035504 ! regulation of myosin light chain kinase activity
+
+[Term]
+id: DDPHENO:0001066
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0000331 ! contractile vacuole
+
+[Term]
+id: DDPHENO:0001074
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007231 ! osmosensory signaling pathway
+
+[Term]
+id: DDPHENO:0001078
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0005739 ! mitochondrion
+
+[Term]
+id: DDPHENO:0001084
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0080186 ! developmental vegetative growth
+
+[Term]
+id: DDPHENO:0001086
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043327 ! chemotaxis to cAMP
+
+[Term]
+id: DDPHENO:0001087
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043326 ! chemotaxis to folate
+
+[Term]
+id: DDPHENO:0001095
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031148 ! DIF-1 biosynthetic process
+
+[Term]
+id: DDPHENO:0001097
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031148 ! DIF-1 biosynthetic process
+
+[Term]
+id: DDPHENO:0001098
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031148 ! DIF-1 biosynthetic process
+
+[Term]
+id: DDPHENO:0001099
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0031148 ! DIF-1 biosynthetic process
+
+[Term]
+id: DDPHENO:0001100
+intersection_of: PATO:0000694 ! premature
+intersection_of: inheres_in GO:0031148 ! DIF-1 biosynthetic process
+
+[Term]
+id: DDPHENO:0001101
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0043327 ! chemotaxis to cAMP
+
+[Term]
+id: DDPHENO:0001102
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0043326 ! chemotaxis to folate
+
+[Term]
+id: DDPHENO:0001105
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0003824 ! catalytic activity
+
+[Term]
+id: DDPHENO:0001108
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0010226 ! response to lithium ion
+
+[Term]
+id: DDPHENO:0001109
+intersection_of: PATO:0001457 ! sensitivity of a process
+intersection_of: towards CHEBI:39867 ! valproic acid
+
+[Term]
+id: DDPHENO:0001110
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006887 ! exocytosis
+
+[Term]
+id: DDPHENO:0001111
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006887 ! exocytosis
+
+[Term]
+id: DDPHENO:0001112
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006887 ! exocytosis
+
+[Term]
+id: DDPHENO:0001113
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0010467 ! gene expression
+
+[Term]
+id: DDPHENO:0001114
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0010467 ! gene expression
+
+[Term]
+id: DDPHENO:0001115
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0010467 ! gene expression
+
+[Term]
+id: DDPHENO:0001116
+intersection_of: PATO:0000694 ! premature
+intersection_of: inheres_in GO:0010467 ! gene expression
+
+[Term]
+id: DDPHENO:0001118
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007165 ! signal transduction
+
+[Term]
+id: DDPHENO:0001119
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0045859 ! regulation of protein kinase activity
+
+[Term]
+id: DDPHENO:0001120
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032148 ! activation of protein kinase B activity
+
+[Term]
+id: DDPHENO:0001121
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0042330 ! taxis
+
+[Term]
+id: DDPHENO:0001122
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006935 ! chemotaxis
+
+[Term]
+id: DDPHENO:0001123
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0042331 ! phototaxis
+
+[Term]
+id: DDPHENO:0001124
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043052 ! thermotaxis
+
+[Term]
+id: DDPHENO:0001125
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0042331 ! phototaxis
+
+[Term]
+id: DDPHENO:0001126
+intersection_of: inheres_in GO:0043052 ! thermotaxis
+
+[Term]
+id: DDPHENO:0001127
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0042331 ! phototaxis
+
+[Term]
+id: DDPHENO:0001128
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043052 ! thermotaxis
+
+[Term]
+id: DDPHENO:0001129
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0042330 ! taxis
+
+[Term]
+id: DDPHENO:0001130
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0042330 ! taxis
+
+[Term]
+id: DDPHENO:0001131
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0042330 ! taxis
+
+[Term]
+id: DDPHENO:0001132
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0007190 ! activation of adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001133
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0007190 ! activation of adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001134
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0007190 ! activation of adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001137
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043087 ! regulation of GTPase activity
+
+[Term]
+id: DDPHENO:0001138
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043547 ! positive regulation of GTPase activity
+
+[Term]
+id: DDPHENO:0001139
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043547 ! positive regulation of GTPase activity
+
+[Term]
+id: DDPHENO:0001140
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0032318 ! regulation of Ras GTPase activity
+
+[Term]
+id: DDPHENO:0001141
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0032314 ! regulation of Rac GTPase activity
+
+[Term]
+id: DDPHENO:0001142
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0032313 ! regulation of Rab GTPase activity
+
+[Term]
+id: DDPHENO:0001143
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0032316 ! regulation of Ran GTPase activity
+
+[Term]
+id: DDPHENO:0001144
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0032317 ! regulation of Rap GTPase activity
+
+[Term]
+id: DDPHENO:0001145
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032851 ! positive regulation of Rab GTPase activity
+
+[Term]
+id: DDPHENO:0001146
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032851 ! positive regulation of Rab GTPase activity
+
+[Term]
+id: DDPHENO:0001147
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032855 ! positive regulation of Rac GTPase activity
+
+[Term]
+id: DDPHENO:0001148
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032855 ! positive regulation of Rac GTPase activity
+
+[Term]
+id: DDPHENO:0001149
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032853 ! positive regulation of Ran GTPase activity
+
+[Term]
+id: DDPHENO:0001150
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032853 ! positive regulation of Ran GTPase activity
+
+[Term]
+id: DDPHENO:0001151
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032854 ! positive regulation of Rap GTPase activity
+
+[Term]
+id: DDPHENO:0001152
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032854 ! positive regulation of Rap GTPase activity
+
+[Term]
+id: DDPHENO:0001153
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032320 ! positive regulation of Ras GTPase activity
+
+[Term]
+id: DDPHENO:0001154
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0032320 ! positive regulation of Ras GTPase activity
+
+[Term]
+id: DDPHENO:0001155
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0009059 ! macromolecule biosynthetic process
+
+[Term]
+id: DDPHENO:0001156
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0030244 ! cellulose biosynthetic process
+
+[Term]
+id: DDPHENO:0001157
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0030244 ! cellulose biosynthetic process
+
+[Term]
+id: DDPHENO:0001158
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0030244 ! cellulose biosynthetic process
+
+[Term]
+id: DDPHENO:0001159
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0030244 ! cellulose biosynthetic process
+
+[Term]
+id: DDPHENO:0001160
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0042554 ! superoxide anion generation
+
+[Term]
+id: DDPHENO:0001161
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0042554 ! superoxide anion generation
+
+[Term]
+id: DDPHENO:0001162
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0042554 ! superoxide anion generation
+
+[Term]
+id: DDPHENO:0001167
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043327 ! chemotaxis to cAMP
+
+[Term]
+id: DDPHENO:0001168
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043326 ! chemotaxis to folate
+
+[Term]
+id: DDPHENO:0001169
+intersection_of: PATO:0000502 ! delayed
+
+[Term]
+id: DDPHENO:0001170
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0000915 ! cytokinesis, actomyosin contractile ring assembly
+
+[Term]
+id: DDPHENO:0001171
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0003674 ! molecular_function
+
+[Term]
+id: DDPHENO:0001172
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0005088 ! Ras guanyl-nucleotide exchange factor activity
+
+[Term]
+id: DDPHENO:0001177
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031269 ! pseudopodium assembly
+
+[Term]
+id: DDPHENO:0001178
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in GO:0031143 ! pseudopodium
+
+[Term]
+id: DDPHENO:0001181
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0031269 ! pseudopodium assembly
+
+[Term]
+id: DDPHENO:0001182
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000414 ! spore
+
+[Term]
+id: DDPHENO:0001183
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000414 ! spore
+
+[Term]
+id: DDPHENO:0001184
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:17268 ! myo-inositol
+
+[Term]
+id: DDPHENO:0001185
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:17268 ! myo-inositol
+
+[Term]
+id: DDPHENO:0001186
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:19324 ! 2,3-bisphosphoglycerate
+
+[Term]
+id: DDPHENO:0001187
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:19324 ! 2,3-bisphosphoglycerate
+
+[Term]
+id: DDPHENO:0001188
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0016236 ! macroautophagy
+
+[Term]
+id: DDPHENO:0001189
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0016236 ! macroautophagy
+
+[Term]
+id: DDPHENO:0001190
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0016236 ! macroautophagy
+
+[Term]
+id: DDPHENO:0001191
+intersection_of: PATO:0002002 ! has extra parts of type
+intersection_of: inheres_in GO:0005776 ! autophagic vacuole
+
+[Term]
+id: DDPHENO:0001192
+intersection_of: PATO:0002001 ! has fewer parts of type
+intersection_of: inheres_in GO:0005776 ! autophagic vacuole
+
+[Term]
+id: DDPHENO:0001199
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0030898 ! actin-dependent ATPase activity
+
+[Term]
+id: DDPHENO:0001200
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0030898 ! actin-dependent ATPase activity
+
+[Term]
+id: DDPHENO:0001204
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in GO:0005768 ! endosome
+
+[Term]
+id: DDPHENO:0001205
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in GO:0005768 ! endosome
+
+[Term]
+id: DDPHENO:0001206
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0005764 ! lysosome
+
+[Term]
+id: DDPHENO:0001207
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in GO:0005764 ! lysosome
+
+[Term]
+id: DDPHENO:0001208
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in GO:0005764 ! lysosome
+
+[Term]
+id: DDPHENO:0001209
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006412 ! translation
+
+[Term]
+id: DDPHENO:0001210
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006412 ! translation
+
+[Term]
+id: DDPHENO:0001211
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006412 ! translation
+
+[Term]
+id: DDPHENO:0001212
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006412 ! translation
+
+[Term]
+id: DDPHENO:0001213
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0016339 ! calcium-dependent cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001214
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0016338 ! calcium-independent cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001215
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0016339 ! calcium-dependent cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001216
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0016338 ! calcium-independent cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001217
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051641 ! cellular localization
+
+[Term]
+id: DDPHENO:0001218
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051640 ! organelle localization
+
+[Term]
+id: DDPHENO:0001219
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051645 ! Golgi localization
+
+[Term]
+id: DDPHENO:0001220
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051647 ! nucleus localization
+
+[Term]
+id: DDPHENO:0001221
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051642 ! centrosome localization
+
+[Term]
+id: DDPHENO:0001222
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0001845 ! phagolysosome assembly
+
+[Term]
+id: DDPHENO:0001223
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0001845 ! phagolysosome assembly
+
+[Term]
+id: DDPHENO:0001224
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0050918 ! positive chemotaxis
+
+[Term]
+id: DDPHENO:0001225
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0050919 ! negative chemotaxis
+
+[Term]
+id: DDPHENO:0001229
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004115 ! 3',5'-cyclic-AMP phosphodiesterase activity
+
+[Term]
+id: DDPHENO:0001230
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0047555 ! 3',5'-cyclic-GMP phosphodiesterase activity
+
+[Term]
+id: DDPHENO:0001231
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0009306 ! protein secretion
+
+[Term]
+id: DDPHENO:0001232
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0009306 ! protein secretion
+
+[Term]
+id: DDPHENO:0001233
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0009306 ! protein secretion
+
+[Term]
+id: DDPHENO:0001234
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007005 ! mitochondrion organization
+
+[Term]
+id: DDPHENO:0001235
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:15422 ! ATP
+
+[Term]
+id: DDPHENO:0001236
+intersection_of: PATO:0001162 ! increased concentration
+
+[Term]
+id: DDPHENO:0001237
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007040 ! lysosome organization
+
+[Term]
+id: DDPHENO:0001239
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0048870 ! cell motility
+
+[Term]
+id: DDPHENO:0001241
+intersection_of: PATO:0000033 ! concentration of
+intersection_of: towards CHEBI:36080 ! protein
+
+[Term]
+id: DDPHENO:0001242
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: towards CHEBI:36080 ! protein
+
+[Term]
+id: DDPHENO:0001243
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: towards CHEBI:36080 ! protein
+
+[Term]
+id: DDPHENO:0001244
+intersection_of: PATO:0002000 ! lacks all parts of type
+intersection_of: towards CHEBI:36080 ! protein
+
+[Term]
+id: DDPHENO:0001247
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006479 ! protein methylation
+
+[Term]
+id: DDPHENO:0001248
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006479 ! protein methylation
+
+[Term]
+id: DDPHENO:0001249
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006481 ! C-terminal protein methylation
+
+[Term]
+id: DDPHENO:0001250
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0030010 ! establishment of cell polarity
+
+[Term]
+id: DDPHENO:0001251
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0032148 ! activation of protein kinase B activity
+
+[Term]
+id: DDPHENO:0001252
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0000187 ! activation of MAPK activity
+
+[Term]
+id: DDPHENO:0001253
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0000187 ! activation of MAPK activity
+
+[Term]
+id: DDPHENO:0001254
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0000187 ! activation of MAPK activity
+
+[Term]
+id: DDPHENO:0001255
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0005488 ! binding
+
+[Term]
+id: DDPHENO:0001256
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0003824 ! catalytic activity
+
+[Term]
+id: DDPHENO:0001257
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0003824 ! catalytic activity
+
+[Term]
+id: DDPHENO:0001258
+intersection_of: inheres_in GO:0005488 ! binding
+
+[Term]
+id: DDPHENO:0001259
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0005488 ! binding
+
+[Term]
+id: DDPHENO:0001260
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0030552 ! cAMP binding
+
+[Term]
+id: DDPHENO:0001261
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0030552 ! cAMP binding
+
+[Term]
+id: DDPHENO:0001262
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0023058 ! adaptation of signaling pathway
+
+[Term]
+id: DDPHENO:0001263
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0048102 ! autophagic cell death
+
+[Term]
+id: DDPHENO:0001264
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0048102 ! autophagic cell death
+
+[Term]
+id: DDPHENO:0001265
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0048102 ! autophagic cell death
+
+[Term]
+id: DDPHENO:0001266
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0048102 ! autophagic cell death
+
+[Term]
+id: DDPHENO:0001267
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0008219 ! cell death
+
+[Term]
+id: DDPHENO:0001272
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031270 ! pseudopodium retraction
+
+[Term]
+id: DDPHENO:0001273
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0034461 ! uropod retraction
+
+[Term]
+id: DDPHENO:0001274
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006909 ! phagocytosis
+
+[Term]
+id: DDPHENO:0001275
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006911 ! phagocytosis, engulfment
+
+[Term]
+id: DDPHENO:0001276
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006911 ! phagocytosis, engulfment
+
+[Term]
+id: DDPHENO:0001277
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006911 ! phagocytosis, engulfment
+
+[Term]
+id: DDPHENO:0001278
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0060036 ! notochord cell vacuolation
+
+[Term]
+id: DDPHENO:0001279
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0000045 ! autophagic vacuole assembly
+
+[Term]
+id: DDPHENO:0001280
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004115 ! 3',5'-cyclic-AMP phosphodiesterase activity
+
+[Term]
+id: DDPHENO:0001281
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0047555 ! 3',5'-cyclic-GMP phosphodiesterase activity
+
+[Term]
+id: DDPHENO:0001282
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004016 ! adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001283
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0051018 ! protein kinase A binding
+
+[Term]
+id: DDPHENO:0001284
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0005088 ! Ras guanyl-nucleotide exchange factor activity
+
+[Term]
+id: DDPHENO:0001285
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004016 ! adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001286
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004674 ! protein serine/threonine kinase activity
+
+[Term]
+id: DDPHENO:0001287
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004383 ! guanylate cyclase activity
+
+[Term]
+id: DDPHENO:0001288
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004383 ! guanylate cyclase activity
+
+[Term]
+id: DDPHENO:0001289
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0003824 ! catalytic activity
+
+[Term]
+id: DDPHENO:0001290
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004115 ! 3',5'-cyclic-AMP phosphodiesterase activity
+
+[Term]
+id: DDPHENO:0001291
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0047555 ! 3',5'-cyclic-GMP phosphodiesterase activity
+
+[Term]
+id: DDPHENO:0001292
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0030898 ! actin-dependent ATPase activity
+
+[Term]
+id: DDPHENO:0001293
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004016 ! adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001294
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004674 ! protein serine/threonine kinase activity
+
+[Term]
+id: DDPHENO:0001295
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004383 ! guanylate cyclase activity
+
+[Term]
+id: DDPHENO:0001298
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0051018 ! protein kinase A binding
+
+[Term]
+id: DDPHENO:0001299
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0005088 ! Ras guanyl-nucleotide exchange factor activity
+
+[Term]
+id: DDPHENO:0001300
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0043422 ! protein kinase B binding
+
+[Term]
+id: DDPHENO:0001301
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043422 ! protein kinase B binding
+
+[Term]
+id: DDPHENO:0001302
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043422 ! protein kinase B binding
+
+[Term]
+id: DDPHENO:0001303
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0050790 ! regulation of catalytic activity
+
+[Term]
+id: DDPHENO:0001304
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0045761 ! regulation of adenylate cyclase activity
+
+[Term]
+id: DDPHENO:0001307
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032858 ! activation of Rab GTPase activity
+
+[Term]
+id: DDPHENO:0001308
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032863 ! activation of Rac GTPase activity
+
+[Term]
+id: DDPHENO:0001309
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032860 ! activation of Ran GTPase activity
+
+[Term]
+id: DDPHENO:0001310
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032861 ! activation of Rap GTPase activity
+
+[Term]
+id: DDPHENO:0001312
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0032856 ! activation of Ras GTPase activity
+
+[Term]
+id: DDPHENO:0001313
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0031545 ! peptidyl-proline 4-dioxygenase activity
+
+[Term]
+id: DDPHENO:0001314
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0031545 ! peptidyl-proline 4-dioxygenase activity
+
+[Term]
+id: DDPHENO:0001315
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0031545 ! peptidyl-proline 4-dioxygenase activity
+
+[Term]
+id: DDPHENO:0001316
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0031545 ! peptidyl-proline 4-dioxygenase activity
+
+[Term]
+id: DDPHENO:0001317
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006464 ! protein modification process
+
+[Term]
+id: DDPHENO:0001318
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0018208 ! peptidyl-proline modification
+
+[Term]
+id: DDPHENO:0001319
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0018208 ! peptidyl-proline modification
+
+[Term]
+id: DDPHENO:0001320
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0018208 ! peptidyl-proline modification
+
+[Term]
+id: DDPHENO:0001321
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0019511 ! peptidyl-proline hydroxylation
+
+[Term]
+id: DDPHENO:0001322
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0018208 ! peptidyl-proline modification
+
+[Term]
+id: DDPHENO:0001323
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0019511 ! peptidyl-proline hydroxylation
+
+[Term]
+id: DDPHENO:0001324
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0019511 ! peptidyl-proline hydroxylation
+
+[Term]
+id: DDPHENO:0001325
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0019511 ! peptidyl-proline hydroxylation
+
+[Term]
+id: DDPHENO:0001326
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006464 ! protein modification process
+
+[Term]
+id: DDPHENO:0001327
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006464 ! protein modification process
+
+[Term]
+id: DDPHENO:0001328
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006464 ! protein modification process
+
+[Term]
+id: DDPHENO:0001331
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0004096 ! catalase activity
+
+[Term]
+id: DDPHENO:0001332
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004096 ! catalase activity
+
+[Term]
+id: DDPHENO:0001333
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004096 ! catalase activity
+
+[Term]
+id: DDPHENO:0001334
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004096 ! catalase activity
+
+[Term]
+id: DDPHENO:0001335
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0072659 ! protein localization in plasma membrane
+
+[Term]
+id: DDPHENO:0001336
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0034504 ! protein localization to nucleus
+
+[Term]
+id: DDPHENO:0001337
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0008104 ! protein localization
+
+[Term]
+id: DDPHENO:0001338
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0008104 ! protein localization
+
+[Term]
+id: DDPHENO:0001339
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0033299 ! secretion of lysosomal enzymes
+
+[Term]
+id: DDPHENO:0001340
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0034504 ! protein localization to nucleus
+
+[Term]
+id: DDPHENO:0001341
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0034504 ! protein localization to nucleus
+
+[Term]
+id: DDPHENO:0001342
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006468 ! protein phosphorylation
+
+[Term]
+id: DDPHENO:0001343
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0006468 ! protein phosphorylation
+
+[Term]
+id: DDPHENO:0001344
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0006468 ! protein phosphorylation
+
+[Term]
+id: DDPHENO:0001345
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0018108 ! peptidyl-tyrosine phosphorylation
+
+[Term]
+id: DDPHENO:0001346
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0018108 ! peptidyl-tyrosine phosphorylation
+
+[Term]
+id: DDPHENO:0001347
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0018107 ! peptidyl-threonine phosphorylation
+
+[Term]
+id: DDPHENO:0001348
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0018105 ! peptidyl-serine phosphorylation
+
+[Term]
+id: DDPHENO:0001349
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0018107 ! peptidyl-threonine phosphorylation
+
+[Term]
+id: DDPHENO:0001350
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0018105 ! peptidyl-serine phosphorylation
+
+[Term]
+id: DDPHENO:0001351
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0018105 ! peptidyl-serine phosphorylation
+
+[Term]
+id: DDPHENO:0001352
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0018108 ! peptidyl-tyrosine phosphorylation
+
+[Term]
+id: DDPHENO:0001353
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0018107 ! peptidyl-threonine phosphorylation
+
+[Term]
+id: DDPHENO:0001355
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000089 ! basal disc
+
+[Term]
+id: DDPHENO:0001361
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000098 ! inner basal disc
+
+[Term]
+id: DDPHENO:0001362
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000099 ! outer basal disc
+
+[Term]
+id: DDPHENO:0001363
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000098 ! inner basal disc
+
+[Term]
+id: DDPHENO:0001364
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000099 ! outer basal disc
+
+[Term]
+id: DDPHENO:0001369
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000105 ! lower cup
+
+[Term]
+id: DDPHENO:0001370
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000105 ! lower cup
+
+[Term]
+id: DDPHENO:0001371
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000107 ! upper cup
+
+[Term]
+id: DDPHENO:0001372
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in DDANAT:0000107 ! upper cup
+
+[Term]
+id: DDPHENO:0001373
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0034670 ! chemotaxis to arachidonic acid
+
+[Term]
+id: DDPHENO:0001374
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0034670 ! chemotaxis to arachidonic acid
+
+[Term]
+id: DDPHENO:0001375
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0019725 ! cellular homeostasis
+
+[Term]
+id: DDPHENO:0001376
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:28087 ! glycogen
+
+[Term]
+id: DDPHENO:0001378
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005615 ! extracellular space
+intersection_of: towards CHEBI:16134 ! ammonia
+
+[Term]
+id: DDPHENO:0001379
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:16134 ! ammonia
+
+[Term]
+id: DDPHENO:0001380
+intersection_of: PATO:0001162 ! increased concentration
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:16134 ! ammonia
+
+[Term]
+id: DDPHENO:0001381
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005615 ! extracellular space
+intersection_of: towards CHEBI:17234 ! glucose
+
+[Term]
+id: DDPHENO:0001382
+intersection_of: inheres_in GO:0005615 ! extracellular space
+intersection_of: towards CHEBI:17234 ! glucose
+
+[Term]
+id: DDPHENO:0001383
+intersection_of: PATO:0001163 ! decreased concentration
+intersection_of: inheres_in GO:0005615 ! extracellular space
+intersection_of: towards CHEBI:27601 ! pteridine
+
+[Term]
+id: DDPHENO:0001384
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004129 ! cytochrome-c oxidase activity
+
+[Term]
+id: DDPHENO:0001385
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004129 ! cytochrome-c oxidase activity
+
+[Term]
+id: DDPHENO:0001386
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004129 ! cytochrome-c oxidase activity
+
+[Term]
+id: DDPHENO:0001393
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0008104 ! protein localization
+
+[Term]
+id: DDPHENO:0001394
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0072659 ! protein localization in plasma membrane
+
+[Term]
+id: DDPHENO:0001395
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0072659 ! protein localization in plasma membrane
+
+[Term]
+id: DDPHENO:0001396
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0072659 ! protein localization in plasma membrane
+
+[Term]
+id: DDPHENO:0001399
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0035372 ! protein localization to microtubule
+
+[Term]
+id: DDPHENO:0001402
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0035372 ! protein localization to microtubule
+
+[Term]
+id: DDPHENO:0001403
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0035372 ! protein localization to microtubule
+
+[Term]
+id: DDPHENO:0001409
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0035091 ! phosphatidylinositol binding
+
+[Term]
+id: DDPHENO:0001410
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0070273 ! phosphatidylinositol-4-phosphate binding
+
+[Term]
+id: DDPHENO:0001415
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in DDANAT:0000012 ! fruiting body
+
+[Term]
+id: DDPHENO:0001416
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0000920 ! cytokinetic cell separation
+
+[Term]
+id: DDPHENO:0001417
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0000920 ! cytokinetic cell separation
+
+[Term]
+id: DDPHENO:0001418
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007049 ! cell cycle
+
+[Term]
+id: DDPHENO:0001419
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007051 ! spindle organization
+
+[Term]
+id: DDPHENO:0001420
+intersection_of: PATO:0000694 ! premature
+intersection_of: inheres_in GO:0051231 ! spindle elongation
+
+[Term]
+id: DDPHENO:0001421
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0043146 ! spindle stabilization
+
+[Term]
+id: DDPHENO:0001422
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051759 ! sister chromosome movement towards spindle pole involved in meiotic sister chromatid segregation
+
+[Term]
+id: DDPHENO:0001423
+intersection_of: PATO:0000051 ! morphology
+intersection_of: inheres_in GO:0005635 ! nuclear envelope
+
+[Term]
+id: DDPHENO:0001424
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0005641 ! nuclear envelope lumen
+
+[Term]
+id: DDPHENO:0001425
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051297 ! centrosome organization
+
+[Term]
+id: DDPHENO:0001426
+intersection_of: PATO:0002002 ! has extra parts of type
+intersection_of: inheres_in GO:0005698 ! centromere
+
+[Term]
+id: DDPHENO:0001432
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0043934 ! sporulation
+
+[Term]
+id: DDPHENO:0001433
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007214 ! gamma-aminobutyric acid signaling pathway
+
+[Term]
+id: DDPHENO:0001434
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0004407 ! histone deacetylase activity
+
+[Term]
+id: DDPHENO:0001435
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0004407 ! histone deacetylase activity
+
+[Term]
+id: DDPHENO:0001436
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0004407 ! histone deacetylase activity
+
+[Term]
+id: DDPHENO:0001437
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0070265 ! necrotic cell death
+
+[Term]
+id: DDPHENO:0001438
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0070265 ! necrotic cell death
+
+[Term]
+id: DDPHENO:0001439
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0070265 ! necrotic cell death
+
+[Term]
+id: DDPHENO:0001440
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0070265 ! necrotic cell death
+
+[Term]
+id: DDPHENO:0001441
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0045165 ! cell fate commitment
+
+[Term]
+id: DDPHENO:0001442
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0045165 ! cell fate commitment
+
+[Term]
+id: DDPHENO:0001443
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0001709 ! cell fate determination
+
+[Term]
+id: DDPHENO:0001444
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0001709 ! cell fate determination
+
+[Term]
+id: DDPHENO:0001450
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0006468 ! protein phosphorylation
+
+[Term]
+id: DDPHENO:0001451
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0031289 ! actin phosphorylation
+
+[Term]
+id: DDPHENO:0001452
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0018105 ! peptidyl-serine phosphorylation
+
+[Term]
+id: DDPHENO:0001453
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0035970 ! peptidyl-threonine dephosphorylation
+
+[Term]
+id: DDPHENO:0001454
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0018108 ! peptidyl-tyrosine phosphorylation
+
+[Term]
+id: DDPHENO:0001457
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006281 ! DNA repair
+
+[Term]
+id: DDPHENO:0001463
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0050920 ! regulation of chemotaxis
+
+[Term]
+id: DDPHENO:0001464
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0061120 ! regulation of positive chemotaxis to cAMP by DIF-1
+
+[Term]
+id: DDPHENO:0001465
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0061121 ! regulation of positive chemotaxis to cAMP by DIF-2
+
+[Term]
+id: DDPHENO:0001466
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0007020 ! microtubule nucleation
+
+[Term]
+id: DDPHENO:0001467
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0007020 ! microtubule nucleation
+
+[Term]
+id: DDPHENO:0001468
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0007020 ! microtubule nucleation
+
+[Term]
+id: DDPHENO:0001469
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0034508 ! centromere complex assembly
+
+[Term]
+id: DDPHENO:0001470
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0010226 ! response to lithium ion
+
+[Term]
+id: DDPHENO:0001471
+intersection_of: PATO:0000911 ! decreased rate
+intersection_of: inheres_in GO:0010226 ! response to lithium ion
+
+[Term]
+id: DDPHENO:0001472
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043647 ! inositol phosphate metabolic process
+
+[Term]
+id: DDPHENO:0001473
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0006007 ! glucose catabolic process
+
+[Term]
+id: DDPHENO:0001474
+intersection_of: inheres_in GO:0005829 ! cytosol
+intersection_of: towards CHEBI:19324 ! 2,3-bisphosphoglycerate
+
+[Term]
+id: DDPHENO:0001475
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0034729 ! histone H3-K79 methylation
+
+[Term]
+id: DDPHENO:0001476
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0034968 ! histone lysine methylation
+
+[Term]
+id: DDPHENO:0001477
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0051567 ! histone H3-K9 methylation
+
+[Term]
+id: DDPHENO:0001478
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0016337 ! cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001479
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0016339 ! calcium-dependent cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001480
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0016338 ! calcium-independent cell-cell adhesion
+
+[Term]
+id: DDPHENO:0001481
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0030036 ! actin cytoskeleton organization
+
+[Term]
+id: DDPHENO:0001482
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0030866 ! cortical actin cytoskeleton organization
+
+[Term]
+id: DDPHENO:0001483
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0033109 ! cortical actin cytoskeleton stabilization
+
+[Term]
+id: DDPHENO:0001484
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0043146 ! spindle stabilization
+
+[Term]
+id: DDPHENO:0001485
+intersection_of: PATO:0000912 ! increased rate
+intersection_of: inheres_in GO:0043146 ! spindle stabilization
+
+[Term]
+id: DDPHENO:0001486
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0051231 ! spindle elongation
+
+[Term]
+id: DDPHENO:0001487
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0051231 ! spindle elongation
+
+[Term]
+id: DDPHENO:0001488
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0090382 ! phagosome maturation
+
+[Term]
+id: DDPHENO:0001489
+intersection_of: PATO:0000297 ! arrested
+intersection_of: inheres_in GO:0090382 ! phagosome maturation
+
+[Term]
+id: DDPHENO:0001490
+intersection_of: PATO:0000694 ! premature
+intersection_of: inheres_in GO:0090383 ! phagosome acidification
+
+[Term]
+id: DDPHENO:0001491
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0090382 ! phagosome maturation
+
+[Term]
+id: DDPHENO:0001492
+intersection_of: PATO:0000502 ! delayed
+intersection_of: inheres_in GO:0090383 ! phagosome acidification
+
+[Term]
+id: DDPHENO:0001493
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0048311 ! mitochondrion distribution
+
+[Term]
+id: DDPHENO:0001494
+intersection_of: PATO:0000001 ! quality
+intersection_of: inheres_in GO:0048312 ! intracellular distribution of mitochondria
+
+[Term]
+id: DDPHENO:0001495
+intersection_of: PATO:0000587 ! decreased size
+intersection_of: inheres_in GO:0032010 ! phagolysosome
+
+[Term]
+id: DDPHENO:0001496
+intersection_of: PATO:0000586 ! increased size
+intersection_of: inheres_in GO:0032010 ! phagolysosome
+

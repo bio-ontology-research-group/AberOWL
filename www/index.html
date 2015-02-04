@@ -5,20 +5,46 @@
 	<title>Aber-OWL: a framework for ontology-based data access</title>
 	<link href="css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<link href="css/dataTables.jqueryui.css" rel="stylesheet">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+  Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59233722-1', 'auto');
+  ga('send', 'pageview');
+</script>
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="js/jquery.dataTables.js"></script>
 	<script src="js/dataTables.jqueryui.js"></script>
+    <script src="js/TableTools-2.0.0/media/js/TableTools.min.js"></script>
 	<script>
 
 var query = "" ;
 
+
+
+$(document).keypress(function(event){
+ 
+	var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+		$("#button").click();
+//		alert('You pressed a "enter" key in somewhere');
+	
+	}
+ 
+});
+
+
 function redrawTable() {
+    window.location.hash = "#" + query ;
     $('#example').dataTable().fnDestroy();
     var qType = $('input[name="type"]:checked').val();
     var ontology = $( "#ontologyselector option:selected" ).text();
 
-    $('#example').dataTable( {
+    var table = $('#example').dataTable( {
         "processing": false,
         "serverSide": false,
 	"paging": true,
@@ -37,6 +63,8 @@ function redrawTable() {
 	"fnInitComplete": function( oSettings ) {
 	    document.getElementById('pubmedsearchlink').href = "pubmed/?type="+qType+"&owlquery="+query+"&ontology="+ontology ;
 	    $('#searchpubmed').show();                                                                                                         
+	    document.getElementById('sparqlsearchlink').href = "sparql/?type="+qType+"&query="+query+"&ontology="+ontology ;
+	    $('#searchsparql').show();                                                                                                         
         },
         "ajax": {
             "url": "service/?type="+qType+"&query="+query+"&ontology="+ontology,
@@ -45,19 +73,25 @@ function redrawTable() {
                 for ( var i=0, ien=json.length ; i<ien ; i++ ) {
                     datatable[i] = new Array() ;
                     datatable[i][0] = "<a href='"+json[i].classURI+"'>"+json[i].classURI+"</a>" ;
-                    datatable[i][1] = json[i].ontologyURI ;
+                    datatable[i][1] = "<a href='"+json[i].ontologyURI+"'>"+json[i].ontologyURI+"</a>" ;
                     datatable[i][2] = json[i].label || " " ;
                     datatable[i][3] = json[i].definition || " " ;
 
                 }
                 return datatable;
             }
+        },
+	 "dom": 'T<"clear">lfrtip',
+	"tableTools": {
+            "sSwfPath": "js/TableTools-2.0.0/media/swf/copy_csv_xls_pdf.swf"
         }
     } );
+
 //    $('#searchpubmed').show();
 }
 
 $(document).ready(function() {
+
     $('#example').dataTable( {
         "processing": false,
         "serverSide": false,
@@ -96,6 +130,13 @@ $(document).ready(function() {
     }
 $(function() {
 		
+var q = window.location.hash.replace("#","");
+if (q!=null && q.length>0) {
+	query = q ;
+	redrawTable();
+//	document.getElementById('autocomplete').value = query ;
+}
+
 	
 		
             $( "#button" ).button();
@@ -163,10 +204,12 @@ $(function() {
 	table{
 		font: 80% "Trebuchet MS", sans-serif;
 		margin: 80px;
+                word-wrap:break-word;
 	}
 	body{
 		font: 100% "Trebuchet MS", sans-serif;
 		margin: 80px;
+		 padding-bottom:60px;
 	}
 	.menubar {
 	  position: fixed;
@@ -212,12 +255,24 @@ $(function() {
 		text-align: center;
 		margin: 0px;
 	}
+	.footer {
+
+	   bottom:0;
+	   left:100px;
+	   width:85%;
+	   height:60px;   /* Height of the footer */
+	   display: flex;
+	   justify-content: space-between;
+
+	}
 	</style>
 </head>
 <body>
 	<p class="menubar" align="right"><small><a href="help.html">Help</a></small></p>
-	<p id="searchpubmed" class="menubarleft" align="left"><small><a id="pubmedsearchlink" href="#">Search in Pubmed</a></small></p>
-	<h1 class="title" title="Framework for ontology-based data access">Aber-OWL</h1>
+	<p id="searchpubmed" class="menubarleft" align="left"><small><a id="pubmedsearchlink" href="#">Search in Pubmed</a>
+	<a id="sparqlsearchlink" href="#">Use in SPARQL query</a></small></p>
+	<h1 class="title" title="Framework for ontology-based data
+	access"><img height=60 src="img/logo.png" alt="Aber-OWL" /></h1>
 
   <br/><br/>
   <div class="ui-widget">
@@ -229,10 +284,14 @@ $(function() {
   <form style="margin-top: 1em;" >
     <div>
       <center>
+	<input type="radio" id="radio0" name="type"
+	value="supeq"><label for="radio0">Super- and Equivalent classes</label>
 	<input type="radio" id="radio1" name="type" value="superclass"><label for="radio1">Superclasses</label>
 	<input type="radio" id="radio2" name="type" value="equivalent"><label for="radio2">Equivalent classes</label>
 	<input type="radio" id="radio3" name="type" value="subclass"
 	       checked="checked"><label for="radio3">Subclasses</label>
+	<input type="radio" id="radio4" name="type" value="subeq">
+	       <label for="radio4">Sub- and Equivalent classes</label>
       </center>
       <center>
 	<select id="ontologyselector" name="ontologyselector">
@@ -244,17 +303,18 @@ $(function() {
 
     <center>    <input size=100% id="autocomplete" title="Query in
 							  Manchester OWL Syntax"> </center>
+	
     <center>
       <input type=button id="button" value="Submit"
       onClick="query=document.getElementById('autocomplete').value;
-      redrawTable() ; "></button>
+      redrawTable() ; "></input>
 </center>
 <center><small>
     Try 
     <a href="#" onclick="javascript:document.getElementById('autocomplete').value='\'ventricular septal defect\'';return false;">'ventricular septal defect'</a>,
     <a href="#" onclick="javascript:document.getElementById('autocomplete').value='part_of some heart';return false;">part_of some heart</a>,
     <a href="#" onclick="javascript:document.getElementById('autocomplete').value='develops_from some \'stem cell\'';return false;">develops_from some 'stem cell'</a>,
-    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='part_of some \'apoptotic process\' and regulates some \'apoptotic process\'';return false;">part_of some 'apoptotic process' and regulates some 'apoptotic process'</a>, or
+    <a href="#" onclick="javascript:document.getElementById('autocomplete').value='\'part of\' some \'apoptotic process\' and regulates some \'apoptotic process\'';return false;">'part of' some 'apoptotic process' and regulates some 'apoptotic process'</a>, or
     <a href="#" onclick="javascript:document.getElementById('autocomplete').value='\'has part\' some alcohol';return false;">'has part' some alcohol</a>.
 
 </small></center>
@@ -280,5 +340,11 @@ $(function() {
 
 </p>
 
+<p class="footer">
+<img src="img/aber.gif" alt="Aberystwyth University" height=50 />
+<img src="img/kaust.svg" alt="King Abdullah University of Science and
+			      Technology" height=50 />
+<img src="img/cam.svg" alt="University of Cambridge" height=50 />
+</p>
 </body>
 </html>
