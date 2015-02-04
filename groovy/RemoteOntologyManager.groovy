@@ -49,7 +49,7 @@ class RemoteOntologyManager {
           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
           def lastSubDate = dateFormat.parse(submissions[0].released).toTimestamp().getTime() / 1000;
           
-          if(lastSubDate > exOnt.lastSubDate) { 
+          if(lastSubDate > exOnt.lastSubDate) {
             exOnt.addNewSubmission([
               'released': lastSubDate,
               'download': ont.links.download
@@ -70,5 +70,4 @@ class RemoteOntologyManager {
     RemoteOntologyManager r = new RemoteOntologyManager()
     r.updateOntologies();
   }
-
 }
