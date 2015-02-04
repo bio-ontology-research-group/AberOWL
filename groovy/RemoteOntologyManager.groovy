@@ -22,11 +22,7 @@ class RemoteOntologyManager {
     http.get( path: 'ontologies', query: [ 'apikey': API_KEY ] ) { resp, ontologies ->
       println '[' + resp.status + '] /ontologies'
 
-      def c = 0
       ontologies.each { ont ->
-        if(c > 5) { // Only do 5 because test
-          return true
-        }
         // We'll use the ontology acronym as a key for now. Ideally we'd use
         //  the URI, but ideally not BioPortal's.
         OntologyRecord exOnt = oBase.getOntology(ont.acronym);
@@ -61,7 +57,6 @@ class RemoteOntologyManager {
             println '[' + ont.acronym + '] Nothing new to report'
           }
         }
-      c++
       }
     }
   }
