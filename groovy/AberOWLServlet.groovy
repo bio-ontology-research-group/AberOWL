@@ -1,3 +1,15 @@
+
+@Grapes([
+	  @Grab('org.eclipse.jetty:jetty-server:9.0.0.M5'),
+	  @Grab('org.eclipse.jetty:jetty-servlet:9.0.0.M5'),
+	  @Grab('javax.servlet:javax.servlet-api:3.0.1'),
+	  @GrabExclude('org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016'),
+          @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-distribution', version='4.0.1'),
+          @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.1'),
+	  @GrabConfig(systemClassLoader=true)
+	])
+
 import java.util.*;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +40,7 @@ import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import uk.ac.aber.lus11.sparqowlapi.util.*;
 
+println "Initialising Servlet"
 
 int k = 500 ; // for SuggestTree
 int maxLength = 10000 ; // for SuggestTree
@@ -41,19 +54,13 @@ List<OWLAnnotationProperty> aProperties = new ArrayList<>();
 Map<String, QueryEngine> queryEngines = new LinkedHashMap<>();
 Map<String, OWLOntologyManager> ontologyManagers = new LinkedHashMap<>();
 OWLDataFactory df = OWLManager.getOWLDataFactory() ;
-    
-List<String> oList = new ArrayList<>();
+OntologyDatabase oBase = new OntologyDatabase()
         
-Path filePath = new File(ontologyDescription).toPath();
-Charset charset = Charset.defaultCharset();
-
-oList = Files.readAllLines(filePath, charset);
-        
-loadOntologies(oList);
+println "- Starting Load ontologies"
+loadOntologies();
 loadAnnotations();
 loadLabels();
 createReasoner();
-
     
 Set<String> listOntologies() {
   return ontologies.keySet() ;
@@ -159,16 +166,14 @@ void loadLabels() {
  * @param ontologyLink URI to the OWL ontology to be queried.
  * @throws OWLOntologyCreationException 
  */
-void loadOntologies(List<String> oList) throws OWLOntologyCreationException, IOException {
-        
-  for(String oListString : oList) {
-    IRI iri = IRI.create(oListString);
+void loadOntologies() throws OWLOntologyCreationException, IOException {
+  this.oBase.ontologies.each { ontology ->
     try {
       this.oManager = OWLManager.createOWLOntologyManager();
       OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
       config.setFollowRedirects(true) ;
       config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
-      OWLOntology ontology = this.oManager.loadOntologyFromOntologyDocument(new IRIDocumentSource(iri), config);
+      ontology = this.oManager.loadOntologyFromOntologyDocument(new File('onts/'+ontology.submissions[ontology.lastSubDate]), config);
       this.ontologies.put(oListString, ontology);
       this.ontologyManagers.put(oListString, this.oManager) ;
     } catch (OWLOntologyAlreadyExistsException E) {
@@ -176,7 +181,6 @@ void loadOntologies(List<String> oList) throws OWLOntologyCreationException, IOE
     } catch (Exception E) {
       E.printStackTrace() ;
     }
-	    
   }
 }
     
@@ -215,10 +219,10 @@ void loadAnnotations() {
   aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"))) ;
 }
 
-Set<MyOWLClassInformation> classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
-  Set<MyOWLClassInformation> result = new HashSet<>();
+Set classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
+  Set result = new HashSet<>();
   for (OWLClass c : classes) {
-    MyOWLClassInformation info = new MyOWLClassInformation() ;
+    def info = [];
     info.owlClass = c ;
     info.classURI = c.getIRI().toString() ;
     info.ontologyURI = uri ;
@@ -249,8 +253,8 @@ Set<MyOWLClassInformation> classes2info(Set<OWLClass> classes, OWLOntology o, St
  * @param requestType Type of class match to be performed. Valid values are: subclass, superclass, equivalent or all.
  * @return Set of OWL Classes.
  */
-Set<MyOWLClassInformation> runQuery(String mOwlQuery, RequestType requestType, String ontUri) {
-  Set<MyOWLClassInformation> classes = new HashSet<>();
+/*Set runQuery(String mOwlQuery, RequestType requestType, String ontUri) {
+  Set classes = new HashSet<>();
   if (ontUri == null || ontUri.length() == 0) { // query all the ontologies in the repo
     Iterator<String> it = queryEngines.keySet().iterator() ;
     while (it.hasNext()) {
@@ -299,7 +303,7 @@ Set<MyOWLClassInformation> runQuery(String mOwlQuery, RequestType requestType, S
     }
   }
   return classes;
-}
+}*/
     
 Map<String, QueryEngine> getQueryEngines() {
   return this.queryEngines;
@@ -319,3 +323,11 @@ Map<String, OWLOntology> getOntologies() {
   return ontologies;
 }
 
+void main() {
+
+loadOntologies();
+loadAnnotations();
+loadLabels();
+createReasoner();
+    
+}

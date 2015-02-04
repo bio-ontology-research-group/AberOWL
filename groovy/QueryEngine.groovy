@@ -23,6 +23,8 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import uk.ac.aber.lus11.sparqowlapi.request.*;
+import uk.ac.aber.lus11.sparqowlapi.util.*;
 
 /**
  * Manchester OWL Syntax query manager for a particular reasoned ontology.
@@ -30,9 +32,9 @@ import org.semanticweb.owlapi.reasoner.OWLReasoner;
  * @author Luke Slater
  */
 public class QueryEngine {
-    private final OWLReasoner oReasoner;
-    private final QueryParser parser;
-    private final NewShortFormProvider sProvider;
+    private OWLReasoner oReasoner;
+    private QueryParser parser;
+    private NewShortFormProvider sProvider;
     
     QueryEngine(OWLReasoner oReasoner, NewShortFormProvider sProvider) {
         this.oReasoner = oReasoner;
