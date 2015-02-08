@@ -3,6 +3,7 @@
           @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
           @Grab(group='net.sourceforge.owlapi', module='owlapi-distribution', version='4.0.1'),
           @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.1'),
+          @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
 	  @GrabConfig(systemClassLoader=true)
 	])
  
@@ -39,6 +40,11 @@ class AberOWLServer extends HttpServlet {
 
   public static void main(args) {
     RequestManager r = new RequestManager()
+    println "Attempted: " + r.attemptedOntologies
+    println "Loaded: " + r.loadedOntologies
+    def stats = r.getStats()
+    stats.each{ k, v -> println "${k}:${v}" }
+
     AberOWLServer s = new AberOWLServer()
     s.run(30003) { ->
       println "yup"
