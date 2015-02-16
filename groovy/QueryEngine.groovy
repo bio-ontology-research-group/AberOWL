@@ -23,7 +23,6 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import uk.ac.aber.lus11.sparqowlapi.request.*;
 import uk.ac.aber.lus11.sparqowlapi.util.*;
 
 /**

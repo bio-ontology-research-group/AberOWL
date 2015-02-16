@@ -37,8 +37,6 @@ class RequestManager {
     loadAnnotations();
     loadLabels();
     createReasoner();
-
-    runQuery('part_of some heart');
   }
       
   Set<String> listOntologies() {
@@ -148,6 +146,9 @@ class RequestManager {
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     GParsPool.withPool {
       this.oBase.ontologies.eachParallel { k, oRec ->
+        if(attemptedOntologies > 5) {
+          return true;
+        }
         attemptedOntologies++
         try {
           println "Loading " + oRec.id
@@ -266,8 +267,20 @@ class RequestManager {
    * @param requestType Type of class match to be performed. Valid values are: subclass, superclass, equivalent or all.
    * @return Set of OWL Classes.
    */
-  Set runQuery(String mOwlQuery, String ontUri) {
+  Set runQuery(String mOwlQuery, String type, String ontUri) {
     def start = System.currentTimeMillis()
+
+    type = type.toLowerCase()
+    def requestType
+
+    switch(type) {
+      case "superclass": requestType = RequestType.SUPERCLASS; break;
+      case "subclass": requestType = RequestType.SUBCLASS; break;
+      case "equivalent": requestType = RequestType.EQUIVALENT; break;
+      case "supeq": requestType = RequestType.SUPEQ; break;
+      case "subeq": requestType = RequestType.SUBEQ; break;
+      default: requestType = RequestType.SUBEQ; break;
+    }
 
     Set classes = new HashSet<>();
     if (ontUri == null || ontUri.length() == 0) { // query all the ontologies in the repo
@@ -319,7 +332,8 @@ class RequestManager {
     }
 
     def end = System.currentTimeMillis()
-    println('Query took: ' + (end - start))
+    println('Query took: ' + (end - start) + 'ms')
+
     return classes;
   }
       
