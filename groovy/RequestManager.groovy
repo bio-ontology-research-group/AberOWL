@@ -146,9 +146,6 @@ class RequestManager {
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     GParsPool.withPool {
       this.oBase.ontologies.eachParallel { k, oRec ->
-        if(attemptedOntologies > 5) {
-          return true;
-        }
         attemptedOntologies++
         try {
           println "Loading " + oRec.id
