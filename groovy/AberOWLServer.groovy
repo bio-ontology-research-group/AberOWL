@@ -16,6 +16,7 @@ import javax.servlet.ServletConfig
 class AberOWLServer extends HttpServlet {
   def requestHandler
   def context
+  def binding
 
   void init(ServletConfig config) {
     super.init(config)
@@ -23,14 +24,14 @@ class AberOWLServer extends HttpServlet {
   }
 
   void service(HttpServletRequest request, HttpServletResponse response) {
-    requestHandler.binding = new ServletBinding(request, response, context)
+    this.binding = new ServletBinding(request, response, context)
     use (ServletCategory) {
       requestHandler.call()
     }
   }
 
-  void run(int port, Closure RequestHandler) {
-    def servlet = new AberOWLServer(requestHandler: requestHandler)
+  static void run(int port, Closure requestHandler) {
+    def servlet = new AberOWLServer('requestHandler': requestHandler)
     def jetty = new Server(port)
     def context = new Context(jetty, '/', Context.SESSIONS)
     context.addServlet(new ServletHolder(servlet), '/*')
@@ -45,9 +46,11 @@ class AberOWLServer extends HttpServlet {
     def stats = r.getStats()
     stats.each{ k, v -> println "${k}:${v}" }
 
-    AberOWLServer s = new AberOWLServer()
-    s.run(30003) { ->
+    AberOWLServer.run(30003) { ->
       println "yup"
+
+          println "my path is ${request.pathInfo}"
+              println "my params are $params"
     }
   }
 }
