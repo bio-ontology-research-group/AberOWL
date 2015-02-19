@@ -32,8 +32,8 @@ class RequestManager {
   def queryEngines = new ConcurrentHashMap();
           
   RequestManager() {
-    loadOntologies();
     println "Loading ontologies"
+    loadOntologies();
     loadAnnotations();
     loadLabels();
     createReasoner();
@@ -52,7 +52,7 @@ class RequestManager {
     } else { // query ontUri
       tree = labels.get(ontUri) ;
     }
-    if (tree !=null) {
+    if(tree !=null) {
       SuggestTree.Node n = tree.autocompleteSuggestionsFor(query) ;
       if (n != null) {
         for (int i = 0 ; i < n.listLength() ; i++) {
@@ -75,7 +75,7 @@ class RequestManager {
         }
       }
     }
-    return results ;
+    return results;
   }
 
   void loadLabels() {
@@ -232,22 +232,26 @@ class RequestManager {
 
   Set classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
     Set result = new HashSet<>();
-    for (OWLClass c : classes) {
-      def info = [];
-      info.owlClass = c ;
-      info.classURI = c.getIRI().toString() ;
-      info.ontologyURI = uri ;
+    for(def c : classes) {
+      def info = [
+        'owlClass': c,
+        'classURI': c.getIRI().toString(),
+        'ontologyURI': uri,
+        'label': null,
+        'definition': null 
+      ];
+
       for (OWLOntology ont : o.getImportsClosure()) {
         for (OWLAnnotation annotation : c.getAnnotations(ont, df.getRDFSLabel())) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
-            info.label = val.getLiteral() ;
+            info['label'] = val.getLiteral() ;
           }
         }
         for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
-            info.definition = val.getLiteral() ;
+            info['definition'] = val.getLiteral() ;
           }
         }
       }

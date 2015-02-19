@@ -3,6 +3,8 @@
 
 import groovy.json.*
 
+import org.json.simple.JSONValue;
+
 if(!application) {
   application = request.getApplication(true)
 }
@@ -19,4 +21,10 @@ if(ontology == null) {
   ontology = ''
 }
 
-print new JsonBuilder(rManager.runQuery(query, type, ontology)).toString()
+response.contentType = 'application/json'
+try {
+def out = rManager.runQuery(query, type, ontology)
+print JSONValue.toJSONString(out);
+} catch(Exception e) {
+  print 'err'
+}

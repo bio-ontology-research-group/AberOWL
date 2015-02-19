@@ -60,11 +60,11 @@ public class QueryEngine {
         Set<OWLClass> classes = new HashSet<>();
   
         switch(requestType) {
-	case SUPERCLASS:
+	case RequestType.SUPERCLASS:
 	    classes.addAll(sClasses(cExpression)); break;
-	case EQUIVALENT:
+	case RequestType.EQUIVALENT:
 	    classes.addAll(eClasses(cExpression)); break;
-	case SUBCLASS:
+	case RequestType.SUBCLASS:
 	    classes.addAll(subClasses(cExpression)); break;
 	default: // default is a subclass query
 	    classes.addAll(subClasses(cExpression));
