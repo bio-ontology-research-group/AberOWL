@@ -31,12 +31,14 @@ class RequestManager {
   def ontologyManagers = new ConcurrentHashMap();
   def queryEngines = new ConcurrentHashMap();
           
-  RequestManager() {
+  RequestManager(boolean createReasoner) {
     println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
     loadLabels();
-    createReasoner();
+    if(createReasoner) {
+      createReasoner();
+    }
   }
       
   Set<String> listOntologies() {
@@ -333,7 +335,7 @@ class RequestManager {
     }
 
     def end = System.currentTimeMillis()
-    println('Query took: ' + (end - start) + 'ms')
+    println(mOwlQuery + ' ' + type + ' took: ' + (end - start) + 'ms')
 
     return classes;
   }

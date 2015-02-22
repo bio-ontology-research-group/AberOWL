@@ -21,7 +21,6 @@ if(ontology == null) {
   ontology = ''
 }
 
-response.contentType = 'application/json'
 try {
 def out = rManager.runQuery(query, type, ontology)
 print JSONValue.toJSONString(out);
