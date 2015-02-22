@@ -78,12 +78,12 @@ public class RequestHandler extends AbstractHandler {
 	    if(type == null) type = "all";
 	    type = type.toLowerCase();
 	    switch(type) {
-            case "superclass": requestType = RequestType.SUPERCLASS; break;
-            case "subclass": requestType = RequestType.SUBCLASS; break;
-            case "equivalent": requestType = RequestType.EQUIVALENT; break;
-            case "supeq": requestType = RequestType.SUPEQ; break;
-            case "subeq": requestType = RequestType.SUBEQ; break;
-            default: requestType = RequestType.SUBEQ; break;
+              case "superclass": requestType = RequestType.SUPERCLASS; break;
+              case "subclass": requestType = RequestType.SUBCLASS; break;
+              case "equivalent": requestType = RequestType.EQUIVALENT; break;
+              case "supeq": requestType = RequestType.SUPEQ; break;
+              case "subeq": requestType = RequestType.SUBEQ; break;
+              default: requestType = RequestType.SUBEQ; break;
 	    }
 	    // Run the query, convert the results to JSON and write them back to the client.
 	    Set results = oManager.runQuery(query, requestType, ontology);

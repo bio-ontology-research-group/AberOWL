@@ -2,36 +2,30 @@
 @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0')
 
 import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.*
 import java.util.concurrent.*
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
+import groovy.json.*
 
 def oInput = new File('queries.json')
 def queries = new JsonSlurper().parseText(oInput.text)
-def allOntologies = labels.keySet()
+def allOntologies = queries.keySet()
 
 for(String ontology : allOntologies) {
   println "[TEST] Starting " + ontology + " test"
   def start = System.currentTimeMillis()
 
-  GParsPool.withPool(20) {
+  GParsPool.withPool {
     queries[ontology].eachParallel { line ->
       def equiv = new HTTPBuilder()
-      equiv.get( uri: 'http://localhost:30003/api/runQuery.groovy', query: [ 'query': line, 'ontology': ontology 'type': 'equivalent' ] ) { eResp, c ->
-        println c
-        equiv.shutdown()
-      }
-
-      def sub = new HTTPBuilder()
-      sub.get( uri: 'http://localhost:30003/api/runQuery.groovy', query: [ 'query': line, 'ontology': ontology, 'type': 'subclass' ] ) { eResp, c ->
-        println c 
-        sub.shutdown()
-      }
-
-      def sup = new HTTPBuilder()
-      sup.get( uri: 'http://localhost:30003/api/runQuery.groovy', query: [ 'query': line, 'ontology': ontology, 'type': 'superclass' ] ) { eResp, c ->
-        println c 
-        sup.shutdown()
+      try {
+        equiv.get( uri: 'http://localhost:30003/api/runQuery.groovy', query: [ 'query': line.query, 'ontology': ontology, 'type': line.type ] ) { eResp, c ->
+          println "[TEST] " + ontology + " GOT RESPONSE"
+          equiv.shutdown()
+        }
+      } catch (HttpResponseException e) {
+        println "FAIL"
       }
     }
   }

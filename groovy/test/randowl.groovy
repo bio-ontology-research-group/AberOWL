@@ -2,6 +2,7 @@
           @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
           @Grab(group='net.sourceforge.owlapi', module='owlapi-distribution', version='4.0.1'),
           @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.1'),
+          @Grab(group='com.googlecode.json-simple', module='json-simple', version='1.1.1'),
           @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
 	  @GrabConfig(systemClassLoader=true)
 	])
@@ -11,18 +12,27 @@ import groovy.json.*
 println "Generating queries"
 
 def oInput = new File('labels.json')
-def labels = new JsonSlurper().parseText(oInput.text)
+
+def labels = new JsonSlurper().setType(JsonParserType.CHARACTER_SOURCE).parseText(oInput.text)
 def allOntologies = labels.keySet()
-def owlQueries = []
+def owlQueries = new HashMap()
+def random = new Random()
+
+println "starting"
 
 for(String ontology : allOntologies) {
   def oLabels = labels[ontology]
   owlQueries.put(ontology, [])
 
+  if(oLabels.size() == 0) {
+    continue;
+  }
+
+  println ontology + ': ' + oLabels.size()
   // 25 basic class pulls
   for(int x=0;x<75;x++) {
     def randomLabel = oLabels[random.nextInt(oLabels.size())]
-    
+
     def type = 'equivalent'
     if(x > 25) {
       type = 'subclass'
@@ -50,7 +60,7 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
-      'query': owlQueries[ontology].add(fixLabel(labelOne) + ' and ' + fixLabel(labelTwo))
+      'query': fixLabel(labelOne) + ' and ' + fixLabel(labelTwo)
     ])
   }
 
@@ -68,9 +78,8 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
-      'query': owlQueries[ontology].add(fixLabel(labelOne) + ' some ' + fixLabel(labelTwo))
+      'query': fixLabel(labelOne) + ' some ' + fixLabel(labelTwo)
     ])
-
   }
 
   // 25 A and B some C
@@ -88,10 +97,17 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
-      'query': owlQueries[ontology].add(fixLabel(labelOne) + ' and ' + fixLabel(labelTwo) + ' some ' + fixLabel(labelThree))
+      'query': fixLabel(labelOne) + ' and ' + fixLabel(labelTwo) + ' some ' + fixLabel(labelThree)
     ])
   }
+
+  println "Generated " + ontology + " queries"
 }
+
+println owlQueries
+def oOutput = new File('queries.json')
+oOutput.write(new JsonBuilder(owlQueries).toPrettyString())
+println "Done"
 
 def fixLabel(term) {
   if(term.contains(' ') && !term.contains('\'')) {
@@ -99,8 +115,3 @@ def fixLabel(term) {
   }
   return term
 }
-
-def oOutput = new File('queries.json')
-oOutput.write(new JsonBuilder(owlQueries).toPrettyString())
-
-println "Done"
