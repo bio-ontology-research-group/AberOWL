@@ -22,8 +22,18 @@ if(ontology == null) {
 }
 
 try {
-def out = rManager.runQuery(query, type, ontology)
-print JSONValue.toJSONString(out);
+  def results = new HashMap()
+  def start = System.currentTimeMillis()
+
+  def out = rManager.runQuery(query, type, ontology)
+
+  def end = System.currentTimeMillis()
+
+  results.put('time', (end - start))
+  results.put('result', JSONValue.toJSONString(out))
+
+  response.contentType = 'application/json'
+  print JSONValue.toJSONString(results);
 } catch(Exception e) {
   print 'err'
 }
