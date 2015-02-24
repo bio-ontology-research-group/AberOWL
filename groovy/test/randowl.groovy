@@ -30,13 +30,13 @@ for(String ontology : allOntologies) {
 
   println ontology + ': ' + oLabels.size()
   // 25 basic class pulls
-  for(int x=0;x<75;x++) {
+  for(int x=0;x<300;x++) {
     def randomLabel = oLabels[random.nextInt(oLabels.size())]
 
     def type = 'equivalent'
-    if(x > 25) {
+    if(x > 100) {
       type = 'subclass'
-    } else if(x > 50) {
+    } else if(x > 200) {
       type = 'superclass'
     }
 
@@ -47,14 +47,14 @@ for(String ontology : allOntologies) {
   }
 
   // 25 A and B
-  for(int y=0;y<75;y++) {
+  for(int y=0;y<300;y++) {
     def labelOne = oLabels[random.nextInt(oLabels.size())]
     def labelTwo = oLabels[random.nextInt(oLabels.size())]
 
     def type = 'equivalent'
-    if(y > 25) {
+    if(y > 100) {
       type = 'subclass'
-    } else if(y > 50) {
+    } else if(y > 200) {
       type = 'superclass'
     }
 
@@ -65,14 +65,14 @@ for(String ontology : allOntologies) {
   }
 
   // 25 A some B
-  for(int z=0;z<75;z++) {
+  for(int z=0;z<300;z++) {
     def labelOne = oLabels[random.nextInt(oLabels.size())]
     def labelTwo = oLabels[random.nextInt(oLabels.size())]
 
     def type = 'equivalent'
-    if(z > 25) {
+    if(z > 100) {
       type = 'subclass'
-    } else if(z > 50) {
+    } else if(z > 200) {
       type = 'superclass'
     }
 
@@ -83,15 +83,15 @@ for(String ontology : allOntologies) {
   }
 
   // 25 A and B some C
-  for(int a=0;a<75;a++) {
+  for(int a=0;a<300;a++) {
     def labelOne = oLabels[random.nextInt(oLabels.size())]
     def labelTwo = oLabels[random.nextInt(oLabels.size())]
     def labelThree = oLabels[random.nextInt(oLabels.size())]
 
     def type = 'equivalent'
-    if(a > 25) {
+    if(a > 100) {
       type = 'subclass'
-    } else if(a > 50) {
+    } else if(a > 200) {
       type = 'superclass'
     }
 

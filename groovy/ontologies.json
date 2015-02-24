@@ -639,14 +639,6 @@
             "1378228440": "NIFSTD_1.ont"
         }
     },
-    "APADISORDERS": {
-        "id": "APADISORDERS",
-        "lastSubDate": 1420588800,
-        "name": "Disorders cluster",
-        "submissions": {
-            "1420588800": "APADISORDERS_1.ont"
-        }
-    },
     "BT": {
         "id": "BT",
         "name": "BioTop Ontology",

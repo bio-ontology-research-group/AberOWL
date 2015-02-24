@@ -31,12 +31,12 @@ class RequestManager {
   def ontologyManagers = new ConcurrentHashMap();
   def queryEngines = new ConcurrentHashMap();
           
-  RequestManager(boolean createReasoner) {
+  RequestManager(boolean reason) {
     println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
     loadLabels();
-    if(createReasoner) {
+    if(reason) {
       createReasoner();
     }
   }
@@ -292,12 +292,10 @@ class RequestManager {
         String oListString = it.next() ;
         QueryEngine queryEngine = queryEngines.get(oListString) ;
         OWLOntology ontology = ontologies.get(oListString) ;
-        try {
           Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
           resultSet.remove(df.getOWLNothing()) ;
           resultSet.remove(df.getOWLThing()) ;
           classes.addAll(classes2info(resultSet, ontology, oListString)) ;
-        } catch (org.semanticweb.owlapi.expression.ParserException E) { }
       }
     } else if (queryEngines.get(ontUri) == null) { // download the ontology and query
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
@@ -324,14 +322,10 @@ class RequestManager {
     } else { // query one single ontology
       QueryEngine queryEngine = queryEngines.get(ontUri) ;
       OWLOntology ontology = ontologies.get(ontUri) ;
-      try {
         Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
         resultSet.remove(df.getOWLNothing()) ;
         resultSet.remove(df.getOWLThing()) ;
         classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
-      } catch (org.semanticweb.owlapi.expression.ParserException E) { 
-        E.printStackTrace() ; 
-      }
     }
 
     def end = System.currentTimeMillis()
@@ -361,21 +355,32 @@ class RequestManager {
   /**
    * Get the axiom count of all the ontologies
    */
-  Map getStats() {
-    def stats = [
-      'aCount': 0, // Axiom count
-      'cCount': 0, // Class count
-      'oCount': ontologies.size(),
-      'noFileError': noFileError,
-      'importError': importError,
-      'parseError': parseError,
-      'otherError': otherError
-    ];
+  Map getStats(String oString) {
+    def stats = []
+    if (oString == null || oString.length() == 0) { // query all the ontologies in the repo
+      stats = [
+        'aCount': 0, // Axiom count
+        'cCount': 0, // Class count
+        'oCount': ontologies.size(),
+        'noFileError': noFileError,
+        'importError': importError,
+        'parseError': parseError,
+        'otherError': otherError
+      ];
 
-    for (String id : ontologies.keySet()) { // For some reason .each doesn't work here
-      OWLOntology oRec = ontologies.get(id) ;
-      stats.aCount += oRec.getAxiomCount()
-      stats.cCount += oRec.getClassesInSignature(true).size()
+      for (String id : ontologies.keySet()) { // For some reason .each doesn't work here
+        OWLOntology oRec = ontologies.get(id) ;
+        stats.aCount += oRec.getAxiomCount()
+        stats.cCount += oRec.getClassesInSignature(true).size()
+      }
+    } else {
+      OWLOntology ont = ontologies.get(oString) ;
+      stats = [
+        'axiomCount': 0,
+        'classCount': ont.getClassesInSignature(true).size()
+      ]
+      AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount +=1 } }
+      AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount +=1 } }
     }
 
     return stats
