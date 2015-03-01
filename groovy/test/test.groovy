@@ -28,14 +28,14 @@ for(String ontology : allOntologies) {
         s.shutdown()
     }
   } catch (HttpResponseException e) {
-    println "FAIL. Not adding result."
+    println '[TEST] FAIL. Not adding result.'
   }
-  println "[TEST] GOT ONTOLOGY"
+  println '[TEST] GOT ONTOLOGY'
 
   // Run the tests
   def start = System.currentTimeMillis()
 
-  GParsPool.withPool(100) {
+  GParsPool.withPool(1000) {
     queries[ontology].eachParallel { line ->
       def equiv = new HTTPBuilder()
       try {
