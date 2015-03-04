@@ -49,6 +49,13 @@ class OntologyController {
         respond ontologyInstance
     }
 
+    def view() {
+      def acronym = params.id
+      def oInstance = Ontology.findByAcronym(acronym.toString())
+
+      return [ontology: oInstance]
+    }
+
     @Transactional
     def update(Ontology ontologyInstance) {
         if (ontologyInstance == null) {

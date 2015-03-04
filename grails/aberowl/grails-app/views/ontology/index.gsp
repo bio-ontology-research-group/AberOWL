@@ -23,13 +23,17 @@
 			<table>
 			<thead>
 					<tr>
-					
+					  ID
 					</tr>
+                                        <tr>
+                                          Name
+                                        </tr>
 				</thead>
 				<tbody>
 				<g:each in="${ontologyInstanceList}" status="i" var="ontologyInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
+				          <td>${ontologyInstanceList[i].acronym}</td>
+				          <td>${ontologyInstanceList[i].name}</td>
 					</tr>
 				</g:each>
 				</tbody>
