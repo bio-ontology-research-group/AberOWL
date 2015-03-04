@@ -5,6 +5,7 @@ class Ontology {
 
     String acronym
     String name
+    String description
     long lastSubDate
 
     static constraints = {
