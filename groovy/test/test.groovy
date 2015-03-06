@@ -35,7 +35,7 @@ for(String ontology : allOntologies) {
   // Run the tests
   def start = System.currentTimeMillis()
 
-  GParsPool.withPool(1000) {
+  GParsPool.withPool(100) {
     queries[ontology].eachParallel { line ->
       def equiv = new HTTPBuilder()
       try {

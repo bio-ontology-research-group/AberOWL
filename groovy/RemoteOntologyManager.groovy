@@ -39,24 +39,38 @@ class RemoteOntologyManager {
 
         // Check if there are any new entries
         def subsReq = new HTTPBuilder()
+    try {
         subsReq.get( uri: ont.links.submissions, query: [ 'apikey': API_KEY ] ) { eResp, submissions ->
           println '[' + resp.status + '] ' + ont.links.submissions
-          
+          if(!submissions[0]) {
+            return;
+          }
+
+
           SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
           def lastSubDate = dateFormat.parse(submissions[0].released).toTimestamp().getTime() / 1000;
+          
+          if(submissions[0].description) {
+            exOnt.description = submissions[0].description
+            println 'Adding description'
+          } 
           
           if(lastSubDate > exOnt.lastSubDate) {
             exOnt.addNewSubmission([
               'released': lastSubDate,
               'download': ont.links.download
             ]) 
-            oBase.saveOntology(exOnt)
 
             println '[' + ont.acronym + '] Adding new version'
           } else {
             println '[' + ont.acronym + '] Nothing new to report'
           }
+
+          oBase.saveOntology(exOnt)
         }
+    } catch(groovyx.net.http.HttpResponseException e) {
+      println "Ontology disappeared"
+    }
       }
     }
   }

@@ -4,6 +4,7 @@ import org.semanticweb.owlapi.reasoner.*
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
+import org.semanticweb.owlapi.owllink.*;
 import uk.ac.aber.lus11.sparqowlapi.util.* 
 import java.util.concurrent.*
 import groovyx.gpars.ParallelEnhancer
@@ -156,7 +157,7 @@ class RequestManager {
           OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
           config.setFollowRedirects(true) ;
           config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
-          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()] + '_el'))
           def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
           ontologies.put(oRec.id ,ontology)
           ontologyManagers.put(oRec.id, lManager)
@@ -198,19 +199,31 @@ class RequestManager {
     for (OWLAnnotationProperty annotationProperty : this.aProperties) {
       preferredLanguageMap.put(annotationProperty, langs);
     }
-     
-    OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
+
+    URL url = new URL("http://localhost:8060");
+    OWLlinkReasonerConfiguration reasonerConfiguration =
+    new OWLlinkReasonerConfiguration(url);
+
+    OWLlinkHTTPXMLReasonerFactory factory = new OWLlinkHTTPXMLReasonerFactory();
+
+    //OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
     GParsPool.withPool {
       ontologies.eachParallel { k, oRec ->
         try {
           OWLOntology ontology = ontologies.get(k) ;
           OWLOntologyManager manager = ontologyManagers.get(k) ;
-          OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
+          OWLReasoner oReasoner = factory.createNonBufferingReasoner(ontology, reasonerConfiguration);      
           oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
           NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
           this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
         } catch(InconsistentOntologyException e) {
           println "inconsistent ontology " + k
+        } catch(org.semanticweb.owlapi.owllink.OWLlinkReasonerRuntimeException e) {
+          println "Failed " + k
+        } catch (java.lang.IndexOutOfBoundsException e) {
+          println "Failed " + k
+        } catch (Exception e) {
+          println "Failed " + k
         }
       }
     }

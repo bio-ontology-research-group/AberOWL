@@ -19,6 +19,7 @@ class OntologyRecord {
 
   String id
   String name
+  String description
   LinkedHashMap submissions
   long lastSubDate
 
