@@ -58,6 +58,10 @@ public class QueryEngine {
         }
         OWLClassExpression cExpression = parser.parse(mOwl);
         Set<OWLClass> classes = new HashSet<>();
+
+        if(cExpression == null) {
+          return classes
+        }
   
         switch(requestType) {
 	case RequestType.SUPERCLASS:

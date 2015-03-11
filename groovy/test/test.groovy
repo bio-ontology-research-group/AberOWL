@@ -13,7 +13,8 @@ def queries = new JsonSlurper().parseText(oInput.text)
 def allOntologies = queries.keySet()
 def results = new HashMap()
 
-for(String ontology : allOntologies) {
+//for(String ontology : allOntologies) {
+  def ontology = 'NCIT'
   println "[TEST] Starting " + ontology + " test"
   results.put(ontology, [
     'queries': [],
@@ -35,17 +36,17 @@ for(String ontology : allOntologies) {
   // Run the tests
   def start = System.currentTimeMillis()
 
-  GParsPool.withPool(100) {
-    queries[ontology].eachParallel { line ->
+    queries[ontology].each { line ->
       def equiv = new HTTPBuilder()
       try {
       println "sending " + line.query
         equiv.get( uri: 'http://localhost:30003/api/runQuery.groovy', query: [ 'query': line.query, 'ontology': ontology, 'type': line.type ] ) { eResp, c ->
           if(c != 'err' && c['time']) {
-            println "[TEST] " + ontology + " GOT RESPONSE in " + c['time']
+            println "[TEST] " + ontology + " GOT RESPONSE in " + c['time'] + ' FOR ' + line.class
             results[ontology].queries.add([
               'query': line.query,
               'type': line.type,
+              'class': line.class,
               'time': c['time']
             ])
           } else {
@@ -57,11 +58,10 @@ for(String ontology : allOntologies) {
         println "FAIL"
       }
     }
-  }
 
   def end = System.currentTimeMillis()
   println('[TEST] Took ' + (end - start) + 'ms to get ' + queries[ontology].size() + ' queries from ' + ontology)
-}
+//}
 
-def oOutput = new File('results.json')
+def oOutput = new File('results_single_ncit.json')
 oOutput.write(new JsonBuilder(results).toPrettyString())

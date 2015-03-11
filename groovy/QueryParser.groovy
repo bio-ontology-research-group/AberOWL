@@ -51,12 +51,18 @@ public class QueryParser {
      * @return An OWLClassExpression generated from mOwl
      */
     public OWLClassExpression parse(String mOwl) {
+      def result = null
+
+      try {
 	mOwl = mOwl.toLowerCase() ;
         OWLDataFactory dFactory = this.ontology.getOWLOntologyManager().getOWLDataFactory();
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
         parser.setDefaultOntology(ontology);
         OWLEntityChecker eChecker = new ShortFormEntityChecker(biSFormProvider);
         parser.setOWLEntityChecker(eChecker);
-        return parser.parseClassExpression();
+        result = parser.parseClassExpression();
+      } catch(Exception e) {
+        result = null 
+      }
     }
 }

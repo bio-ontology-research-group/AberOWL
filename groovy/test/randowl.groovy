@@ -42,6 +42,7 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
+      'class': 'simple', 
       'query': fixLabel(randomLabel)
     ])
   }
@@ -60,6 +61,7 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
+      'class': 'conjunctive', 
       'query': fixLabel(labelOne) + ' and ' + fixLabel(labelTwo)
     ])
   }
@@ -78,6 +80,7 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
+      'class': 'some',
       'query': fixLabel(labelOne) + ' some ' + fixLabel(labelTwo)
     ])
   }
@@ -97,6 +100,7 @@ for(String ontology : allOntologies) {
 
     owlQueries[ontology].add([
       'type': type,
+      'class': 'conjunctive_some',
       'query': fixLabel(labelOne) + ' and ' + fixLabel(labelTwo) + ' some ' + fixLabel(labelThree)
     ])
   }

@@ -5,16 +5,6 @@
 	<title>Aber-OWL: a framework for ontology-based data access</title>
 	<link href="css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 	<link href="css/dataTables.jqueryui.css" rel="stylesheet">
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
-  Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-59233722-1', 'auto');
-  ga('send', 'pageview');
-</script>
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="js/jquery.dataTables.js"></script>
@@ -67,15 +57,19 @@ function redrawTable() {
 	    $('#searchsparql').show();                                                                                                         
         },
         "ajax": {
-            "url": "service/?type="+qType+"&query="+query+"&ontology="+ontology,
+            "url": "api/runQuery.groovy?type="+qType+"&query="+query+"&ontology="+ontology,
+	    "dataType": 'json',
             "dataSrc": function ( json ) {
-                var datatable = new Array() ;
-                for ( var i=0, ien=json.length ; i<ien ; i++ ) {
+                var datatable = new Array();
+		$('#timer').text("Query took " + json.time + 'ms');
+		result = json.result;
+
+                for ( var i=0, ien=result.length ; i<ien ; i++ ) {
                     datatable[i] = new Array() ;
-                    datatable[i][0] = "<a href='"+json[i].classURI+"'>"+json[i].classURI+"</a>" ;
-                    datatable[i][1] = "<a href='"+json[i].ontologyURI+"'>"+json[i].ontologyURI+"</a>" ;
-                    datatable[i][2] = json[i].label || " " ;
-                    datatable[i][3] = json[i].definition || " " ;
+                    datatable[i][0] = "<a href='"+result[i].classURI+"'>"+result[i].classURI+"</a>" ;
+                    datatable[i][1] = "<a href='"+result[i].ontologyURI+"'>"+result[i].ontologyURI+"</a>" ;
+                    datatable[i][2] = result[i].label || " " ;
+                    datatable[i][3] = result[i].definition || " " ;
 
                 }
                 return datatable;
@@ -91,7 +85,6 @@ function redrawTable() {
 }
 
 $(document).ready(function() {
-
     $('#example').dataTable( {
         "processing": false,
         "serverSide": false,
@@ -106,9 +99,8 @@ $(document).ready(function() {
     })
 
     $.ajax({
-	url:'service/',
+	url:'api/listOntologies.groovy',
 	type:'GET',
-	data: 'type=listontologies',
 	dataType: 'json',
 	success: function( json ) {
             $.each(json, function(i, value) {
@@ -308,6 +300,7 @@ if (q!=null && q.length>0) {
       <input type=button id="button" value="Submit"
       onClick="query=document.getElementById('autocomplete').value;
       redrawTable() ; "></input>
+<div id="timer"></div>
 </center>
 <center><small>
     Try 

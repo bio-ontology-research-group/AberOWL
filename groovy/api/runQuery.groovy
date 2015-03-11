@@ -4,11 +4,11 @@
 import groovy.json.*
 
 import org.json.simple.JSONValue;
+import com.google.gson.Gson;
 
 if(!application) {
   application = request.getApplication(true)
 }
-
 def query = request.getParameter('query')
 def type = request.getParameter('type')
 def ontology = request.getParameter('ontology')
@@ -30,10 +30,13 @@ try {
   def end = System.currentTimeMillis()
 
   results.put('time', (end - start))
-  results.put('result', JSONValue.toJSONString(out))
+  results.put('result', out)
 
   response.contentType = 'application/json'
-  print JSONValue.toJSONString(results);
+      /*Gson gson = new Gson();
+      println gson.toJson(results);*/
+  //print JSONValue.toJSONString(results)
+  print new JsonBuilder(results).toString()
 } catch(Exception e) {
-  print 'err'
+  print e
 }

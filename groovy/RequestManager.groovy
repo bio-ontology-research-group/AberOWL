@@ -40,6 +40,9 @@ class RequestManager {
     if(reason) {
       createReasoner();
     }
+    println loadedOntologies
+    println ontologies.size()
+    getStats()
   }
       
   Set<String> listOntologies() {
@@ -149,28 +152,33 @@ class RequestManager {
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     GParsPool.withPool {
       this.oBase.ontologies.eachParallel { k, oRec ->
+      if(attemptedOntologies > 5) {
+      return;
+      }
         attemptedOntologies++
         try {
-          println "Loading " + oRec.id
-
+          if(oRec.lastSubDate == 0) {
+            return;
+          }
           OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
           OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
           config.setFollowRedirects(true) ;
           config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
-          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()] + '_el'))
+          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
           def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
           ontologies.put(oRec.id ,ontology)
           ontologyManagers.put(oRec.id, lManager)
-          println "Successfully loaded " + oRec.id
+       //   println "Successfully loaded " + oRec.id
 
           loadedOntologies++
         } catch (OWLOntologyAlreadyExistsException E) {
           // do nothing
+          println 'DUPLICATE ' + oRec.id
         } catch (OWLOntologyInputSourceException e) {
-          println "File not found"
+          println "File not found for " + oRec.id
           noFileError++
         } catch (IOException e) {
-          println "Can't load external import"
+          println "Can't load external import for " + oRec.id 
           importError++
         } catch(OWLOntologyCreationIOException e) {
           println "Failed to load imports for " + oRec.id
@@ -182,7 +190,7 @@ class RequestManager {
           println "Failed to load imports for " + oRec.id
           importError++
         } catch (Exception E) {
-          println E.printStackTrace()
+          println oRec.id + ' other'
           otherError++
         }
       }
@@ -200,19 +208,13 @@ class RequestManager {
       preferredLanguageMap.put(annotationProperty, langs);
     }
 
-    URL url = new URL("http://localhost:8060");
-    OWLlinkReasonerConfiguration reasonerConfiguration =
-    new OWLlinkReasonerConfiguration(url);
-
-    OWLlinkHTTPXMLReasonerFactory factory = new OWLlinkHTTPXMLReasonerFactory();
-
-    //OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
+    OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
     GParsPool.withPool {
       ontologies.eachParallel { k, oRec ->
         try {
           OWLOntology ontology = ontologies.get(k) ;
           OWLOntologyManager manager = ontologyManagers.get(k) ;
-          OWLReasoner oReasoner = factory.createNonBufferingReasoner(ontology, reasonerConfiguration);      
+          OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
           oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
           NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
           this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
@@ -246,14 +248,14 @@ class RequestManager {
   }
 
   Set classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
-    Set result = new HashSet<>();
+    ArrayList result = new ArrayList<HashMap>();
     for(def c : classes) {
       def info = [
-        'owlClass': c,
-        'classURI': c.getIRI().toString(),
-        'ontologyURI': uri,
-        'label': null,
-        'definition': null 
+        "owlClass": c.toString(),
+        "classURI": c.getIRI().toString(),
+        "ontologyURI": uri.toString(),
+        "label": null,
+        "definition": null 
       ];
 
       for (OWLOntology ont : o.getImportsClosure()) {
@@ -386,14 +388,16 @@ class RequestManager {
         stats.aCount += oRec.getAxiomCount()
         stats.cCount += oRec.getClassesInSignature(true).size()
       }
+
+      println stats
     } else {
       OWLOntology ont = ontologies.get(oString) ;
       stats = [
         'axiomCount': 0,
         'classCount': ont.getClassesInSignature(true).size()
       ]
-      AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount +=1 } }
-      AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount +=1 } }
+      AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount += 1 } }
+      AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount += 1 } }
     }
 
     return stats
