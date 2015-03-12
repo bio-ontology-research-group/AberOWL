@@ -145,7 +145,7 @@ if (q!=null && q.length>0) {
 		    minLength: 3,
 		    source: function( request, response ) {
 			var ontology = $( "#ontologyselector option:selected" ).text();
-			$.getJSON( "service/", {
+			$.getJSON( "api/queryNames.groovy", {
 			    term: extractLast( request.term ),
 			    ontology : ontology,
 			}, response );

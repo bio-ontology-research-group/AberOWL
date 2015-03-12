@@ -5,8 +5,8 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
-import uk.ac.aber.lus11.sparqowlapi.util.* 
 import java.util.concurrent.*
+import uk.ac.aber.lus11.sparqowlapi.util.*
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
@@ -152,7 +152,7 @@ class RequestManager {
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     GParsPool.withPool {
       this.oBase.ontologies.eachParallel { k, oRec ->
-      if(attemptedOntologies > 5) {
+      if(attemptedOntologies > 1) {
       return;
       }
         attemptedOntologies++
@@ -220,8 +220,6 @@ class RequestManager {
           this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
         } catch(InconsistentOntologyException e) {
           println "inconsistent ontology " + k
-        } catch(org.semanticweb.owlapi.owllink.OWLlinkReasonerRuntimeException e) {
-          println "Failed " + k
         } catch (java.lang.IndexOutOfBoundsException e) {
           println "Failed " + k
         } catch (Exception e) {
