@@ -17,64 +17,64 @@
         }
     },
     "ABA-AMB": {
-        "id": "ABA-AMB",
         "description": "Allen Brain Atlas P56 Mouse Ontology",
-        "name": "Allen Brain Atlas (ABA) Adult Mouse Brain Ontology",
+        "id": "ABA-AMB",
         "lastSubDate": 1244761200,
+        "name": "Allen Brain Atlas (ABA) Adult Mouse Brain Ontology",
         "submissions": {
             "1244761200": "ABA-AMB_1.ont"
         }
     },
     "ACGT-MO": {
-        "id": "ACGT-MO",
         "description": "The intention of the ACGT Master Ontology (MO) is to represent the domain of cancer research and management in a computationally tractable manner.",
-        "name": "Cancer Research and Management ACGT Master Ontology",
+        "id": "ACGT-MO",
         "lastSubDate": 1262476800,
+        "name": "Cancer Research and Management ACGT Master Ontology",
         "submissions": {
             "1262476800": "ACGT-MO_1.ont"
         }
     },
     "ADO": {
-        "id": "ADO",
         "description": "ADO is a first attempt to develop an open, public ontology representing relevant knowledge on Alzheimer\u2019s disease.",
-        "name": "Alzheimer's disease ontology",
+        "id": "ADO",
         "lastSubDate": 1374534000,
+        "name": "Alzheimer's disease ontology",
         "submissions": {
             "1374534000": "ADO_1.ont"
         }
     },
     "ADW": {
-        "id": "ADW",
         "description": "An ontology for animal life history and natural history characteristics suitable for populations and higher taxonomic entities.",
-        "name": "Animal Natural History and Life History Ontology",
+        "id": "ADW",
         "lastSubDate": 1283209200,
+        "name": "Animal Natural History and Life History Ontology",
         "submissions": {
             "1283209200": "ADW_1.ont"
         }
     },
     "AEO": {
-        "id": "AEO",
         "description": "AEO is an ontology of anatomical structures that expands CARO, the Common Anatomy Reference Ontology, to about 200 classes using the is_a relationship; it thus provides a detailed type classification for tissues. The new classes were chosen for their use in categorizing the major vertebrate and invertebrate anatomy ontologies at a granularity adequate for tissues of a single cell type. The ontology should be useful in increasing the amount of knowledge in anatomy ontologies, facilitating annotation and enabling interoperability across anatomy ontologies",
-        "name": "Anatomical Entity Ontology",
+        "id": "AEO",
         "lastSubDate": 1338570360,
+        "name": "Anatomical Entity Ontology",
         "submissions": {
             "1338570360": "AEO_1.ont"
         }
     },
     "AERO": {
-        "id": "AERO",
         "description": "The Adverse Event Reporting Ontology (AERO) is an ontology aimed at supporting clinicians at the time of data entry, increasing quality and accuracy of reported adverse events.",
-        "name": "Adverse Event Reporting Ontology",
+        "id": "AERO",
         "lastSubDate": 1379005800,
+        "name": "Adverse Event Reporting Ontology",
         "submissions": {
             "1379005800": "AERO_1.ont"
         }
     },
     "AI-RHEUM": {
-        "id": "AI-RHEUM",
         "description": "AI/RHEUM is used for the diagnosis of rheumatologic diseases. AI/RHEUM contains findings, such as clinical signs, symptoms, laboratory test results, radiologic observations, tissue biopsy results, and intermediate diagnosis hypotheses. Findings and hypotheses, which include definitions, are used to reach diagnostic conclusions with definite, probable, or possible certainty. AI/RHEUM is used by clinicians and informatics researchers.",
-        "name": "Artificial Intelligence Rheumatology Consultant System Ontology",
+        "id": "AI-RHEUM",
         "lastSubDate": 1422553860,
+        "name": "Artificial Intelligence Rheumatology Consultant System Ontology",
         "submissions": {
             "1422553860": "AI-RHEUM_1.ont"
         }
@@ -89,10 +89,10 @@
         }
     },
     "APACOMPUTER": {
-        "id": "APACOMPUTER",
         "description": "APA Computer Cluster",
-        "name": "Computer Cluster",
+        "id": "APACOMPUTER",
         "lastSubDate": 1420761600,
+        "name": "Computer Cluster",
         "submissions": {
             "1420761600": "APACOMPUTER_1.ont"
         }
@@ -116,19 +116,19 @@
         }
     },
     "APANEUROCLUSTER": {
-        "id": "APANEUROCLUSTER",
         "description": "APA Neuropsychology and Neurology Cluster",
-        "name": "APA Neuro Cluster",
+        "id": "APANEUROCLUSTER",
         "lastSubDate": 1420588800,
+        "name": "APA Neuro Cluster",
         "submissions": {
             "1420588800": "APANEUROCLUSTER_1.ont"
         }
     },
     "APAOCUEMPLOY": {
-        "id": "APAOCUEMPLOY",
         "description": "APA Occupational and Employment Cluster",
-        "name": "APA Occupational and Employment cluster",
+        "id": "APAOCUEMPLOY",
         "lastSubDate": 1420502400,
+        "name": "APA Occupational and Employment cluster",
         "submissions": {
             "1420502400": "APAOCUEMPLOY_1.ont"
         }
@@ -152,28 +152,28 @@
         }
     },
     "APATANDT": {
-        "id": "APATANDT",
         "description": "APA Tests and Testing Cluster",
-        "name": "APA Tests and Testing cluster",
+        "id": "APATANDT",
         "lastSubDate": 1419811200,
+        "name": "APA Tests and Testing cluster",
         "submissions": {
             "1419811200": "APATANDT_1.ont"
         }
     },
     "APATREATMENT": {
-        "id": "APATREATMENT",
         "description": "APA Treatment Cluster",
-        "name": "APA Treatment Cluster",
+        "id": "APATREATMENT",
         "lastSubDate": 1418688000,
+        "name": "APA Treatment Cluster",
         "submissions": {
             "1418688000": "APATREATMENT_1.ont"
         }
     },
     "APO": {
-        "id": "APO",
         "description": "A structured controlled vocabulary for the phenotypes of Ascomycete fungi",
-        "name": "Ascomycete Phenotype Ontology",
+        "id": "APO",
         "lastSubDate": 1404142200,
+        "name": "Ascomycete Phenotype Ontology",
         "submissions": {
             "1404142200": "APO_1.ont"
         }
@@ -197,19 +197,19 @@
         }
     },
     "ATO": {
-        "id": "ATO",
         "description": "A taxonomy of Amphibia",
-        "name": "Amphibian Taxonomy Ontology",
+        "id": "ATO",
         "lastSubDate": 1235606400,
+        "name": "Amphibian Taxonomy Ontology",
         "submissions": {
             "1235606400": "ATO_1.ont"
         }
     },
     "ATOL": {
-        "id": "ATOL",
         "description": "ATOL (Animal Trait Ontology for Livestock) is an ontology of characteristics defining phenotypes of livestock in their environment (EOL).\r\nATOL aims to:\r\n- provide a reference ontology of phenotypic traits of farm animals for the international scientific and educational - communities, farmers, etc.;\r\n- deliver this reference ontology in a language which can be used by computers in order to support database management, semantic analysis and modeling;\r\n- represent traits as generic as possible for livestock vertebrates;\r\n- make the ATOL ontology as operational as possible and closely related to measurement techniques;\r\n- structure the ontology in relation to animal production\r\n\r\n",
-        "name": "Animal Trait Ontology for Livestock",
+        "id": "ATOL",
         "lastSubDate": 1413932400,
+        "name": "Animal Trait Ontology for Livestock",
         "submissions": {
             "1413932400": "ATOL_1.ont"
         }
@@ -224,10 +224,10 @@
         }
     },
     "BAO": {
-        "id": "BAO",
         "description": "The BioAssay Ontology (BAO) describes chemical biology screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis.  BAO is an extensible, knowledge-based, highly expressive (currently SHOIQ(D)) description of biological assays making use of descriptive logic based features of the Web Ontology Language (OWL).  BAO currently has over 1000 classes and also makes use of several other ontologies.  It describes several concepts related to biological screening, including Perturbagen, Format, Meta Target, Design,  Detection Technology, and Endpoint.  Perturbagens are perturbing agents that are screened in an assay; they are mostly small molecules. Assay Meta Target describes what is known about the biological system and / or its components interrogated in the assay (and influenced by the Perturbagen).  Meta target can be directly described as a molecular entity (e.g. a purified protein or a protein complex), or indirectly by a biological process or event (e.g. phosphorylation).  Format describes the biological or chemical features common to each test condition in the assay and includes biochemical, cell-based, organism-based, and variations thereof.  The assay Design describes the assay methodology and implementation of how the perturbation of the biological system is translated into a detectable signal.  Detection Technology relates to the physical method and technical details to detect and record a signal.  Endpoints are the final HTS results as they are usually published (such as IC50, percent inhibition, etc.).  BAO has been designed to accommodate multiplexed assays.  All main BAO components include multiple levels of sub-categories and specification classes, which are linked via object property relationships forming an expressive knowledge-based representation.",
-        "name": "BioAssay Ontology",
+        "id": "BAO",
         "lastSubDate": 1416305400,
+        "name": "BioAssay Ontology",
         "submissions": {
             "1416305400": "BAO_1.ont"
         }
@@ -242,27 +242,28 @@
         }
     },
     "BCGO": {
-        "id": "BCGO",
         "description": "assigns a grade to a tumor starting from the 3 criteria of the NGS",
-        "name": "Breast Cancer Grading Ontology",
+        "id": "BCGO",
         "lastSubDate": 1289001600,
+        "name": "Breast Cancer Grading Ontology",
         "submissions": {
             "1289001600": "BCGO_1.ont"
         }
     },
     "BCO": {
         "id": "BCO",
-        "lastSubDate": 1401285600,
+        "description": "The biological collection ontology includes consideration of the distinctions between individuals, organisms, voucher specimens, lots, and samples the relations between these entities, and processes governing the creation and use of \"samples\".  Within scope as well are properties including collector, location, time, storage environment, containers, institution, and collection identifiers.",
         "name": "Biological Collections Ontology",
+        "lastSubDate": 1401285600,
         "submissions": {
             "1401285600": "BCO_1.ont"
         }
     },
     "BCTEO": {
-        "id": "BCTEO",
         "description": "Ontology that describes the field of Tissue Engineering for what concerns bone and cartilage tissues.",
-        "name": "Bone and Cartilage Tissue Engineering Ontology",
+        "id": "BCTEO",
         "lastSubDate": 1378076400,
+        "name": "Bone and Cartilage Tissue Engineering Ontology",
         "submissions": {
             "1378076400": "BCTEO_1.ont"
         }
@@ -277,10 +278,10 @@
         }
     },
     "BFO": {
-        "id": "BFO",
         "description": "BFO grows out of a philosophical orientation which overlaps with that of DOLCE and SUMO. Unlike these, however, it is narrowly focused on the task of providing a genuine upper ontology which can be used in support of domain ontologies developed for scientific research, as for example in biomedicine within the framework of the OBO Foundry. Thus BFO does not contain physical, chemical, biological or other terms which would properly fall within the special sciences domains.",
-        "name": "Basic Formal Ontology",
+        "id": "BFO",
         "lastSubDate": 1230768000,
+        "name": "Basic Formal Ontology",
         "submissions": {
             "1230768000": "BFO_1.ont"
         }
@@ -304,19 +305,19 @@
         }
     },
     "BIM": {
-        "id": "BIM",
         "description": "BIM is an open biomedical image features ontology, it provides semantic vocabularies to represent the biomedical images and their features. BIM specifically addresses the provenance and crowd image annotation issues during biomedical image manipulation. ",
-        "name": "Biomedical Image Ontology",
+        "id": "BIM",
         "lastSubDate": 1411686000,
+        "name": "Biomedical Image Ontology",
         "submissions": {
             "1411686000": "BIM_1.ont"
         }
     },
     "BIOMO": {
-        "id": "BIOMO",
         "description": "The BIOMO ontology maps the HDF5 based BIOM format (http://biom-format.org/) to OWL, offering a method to convert a BIOM file to RDF and therefore publish it as Linked Data",
-        "name": "Biological Observation Matrix Ontology",
+        "id": "BIOMO",
         "lastSubDate": 1406588400,
+        "name": "Biological Observation Matrix Ontology",
         "submissions": {
             "1406588400": "BIOMO_1.ont"
         }
@@ -358,19 +359,19 @@
         }
     },
     "BNO": {
-        "id": "BNO",
         "description": "The Bionutrition Ontology relates concepts and terminologies used for human nutrition in a clinical and biomedical setting.",
-        "name": "Bionutrition Ontology",
+        "id": "BNO",
         "lastSubDate": 1375916400,
+        "name": "Bionutrition Ontology",
         "submissions": {
             "1375916400": "BNO_1.ont"
         }
     },
     "BOF": {
-        "id": "BOF",
         "description": "An ontology of biodiversity of INPA",
-        "name": "Biodiversity Ontology",
+        "id": "BOF",
         "lastSubDate": 1343775600,
+        "name": "Biodiversity Ontology",
         "submissions": {
             "1343775600": "BOF_1.ont"
         }
@@ -394,19 +395,19 @@
         }
     },
     "BRCT": {
-        "id": "BRCT",
         "description": "The BRCT stands for Brain Region and Cell Type terminology, which was built with the purpose of organizing the knowledge domain of brain anatomy with a top-down granularity, from\r\ngross regions to cell types. ",
-        "name": "Brain Region & Cell Type terminology",
+        "id": "BRCT",
         "lastSubDate": 1413414000,
+        "name": "Brain Region & Cell Type terminology",
         "submissions": {
             "1413414000": "BRCT_1.ont"
         }
     },
     "BRIDG": {
-        "id": "BRIDG",
         "description": "The Biomedical Research Integrated Domain Group (BRIDG) Model is a collaborative effort engaging stakeholders from the Clinical Data Interchange Standards Consortium (CDISC), the HL7 Regulated Clinical Research Information Management Technical Committee (RCRIM TC), the National Cancer Institute (NCI) and its Cancer Biomedical Informatics Grid (caBIG\u00ae), and the US Food and Drug Administration (FDA). The BRIDG model is an instance of a Domain Analysis Model (DAM). The goal of the BRIDG Model is to produce a shared view of the dynamic and static semantics for the domain of protocol-driven research and its associated regulatory artifacts. This domain of interest is further defined as:\r\n\r\nProtocol-driven research and its associated regulatory artifacts: i.e. the data, organization, resources, rules, and processes involved in the formal assessment of the utility, impact, or other pharmacological, physiological, or psychological effects of a drug, procedure, process, or device on a human, animal, or other subject or substance plus all associated regulatory artifacts required for or derived from this effort, including data specifically associated with post-marketing adverse event reporting.\r\n\r\nThis OWL version of the BRIDG model is create by the National Cancer Institute (NCI). \r\n\r\nSource repository: https://ncisvn.nci.nih.gov/WebSVN/listing.php?repname=bridg-model&path=%2Ftrunk%2FModel+-+OWL%2F&",
-        "name": "Biomedical Research Integrated Domain Group Model",
+        "id": "BRIDG",
         "lastSubDate": 1346281200,
+        "name": "Biomedical Research Integrated Domain Group Model",
         "submissions": {
             "1346281200": "BRIDG_1.ont"
         }
@@ -421,46 +422,46 @@
         }
     },
     "BSAO": {
-        "id": "BSAO",
         "description": "The first ontology describing the anatomy and the development of Botryllus schlosseri.\r\nWorking group : Lucia Manni, Fabio Gasparini, Kohji Hotta, Katherine J. Ishizuka J,  Lorenzo Ricci, Stefano Tiozzo, Ayelet Voskoboynik, Delphine Dauga",
-        "name": "Botryllus schlosseri anatomy and development ontology",
+        "id": "BSAO",
         "lastSubDate": 1372287600,
+        "name": "Botryllus schlosseri anatomy and development ontology",
         "submissions": {
             "1372287600": "BSAO_1.ont"
         }
     },
     "BSPO": {
-        "id": "BSPO",
         "description": "A small ontology for anatomical spatial references, such as dorsal, ventral, axis, and so forth.",
-        "name": "Spatial Ontology",
+        "id": "BSPO",
         "lastSubDate": 1368810060,
+        "name": "Spatial Ontology",
         "submissions": {
             "1368810060": "BSPO_1.ont"
         }
     },
     "BT": {
-        "id": "BT",
         "description": "A top-domain ontology that provides definitions for the foundational entities of biomedicine as a basic vocabulary to unambiguously describe facts in this domain.",
-        "name": "BioTop Ontology",
+        "id": "BT",
         "lastSubDate": 1400585400,
+        "name": "BioTop Ontology",
         "submissions": {
             "1400585400": "BT_1.ont"
         }
     },
     "BTO": {
-        "id": "BTO",
         "description": "A structured controlled vocabulary for the source of an enzyme. It comprises terms for tissues, cell lines, cell types and cell cultures from uni- and multicellular organisms.",
-        "name": "BRENDA Tissue and Enzyme Source Ontology",
+        "id": "BTO",
         "lastSubDate": 1418206200,
+        "name": "BRENDA Tissue and Enzyme Source Ontology",
         "submissions": {
             "1418206200": "BTO_1.ont"
         }
     },
     "CABRO": {
-        "id": "CABRO",
         "description": "a web ontology for the semantic representation of the computer assisted brain trauma rehabilitation domain. This is a novel and emerging domain, since it employs the use of robotic devices, adaptation software and machine learning to facilitate interactive, adaptive and personalized rehabilitation care, patient monitoring and assisted living. ",
-        "name": "Computer Assisted Brain Injury Rehabilitation Ontology",
+        "id": "CABRO",
         "lastSubDate": 1362096000,
+        "name": "Computer Assisted Brain Injury Rehabilitation Ontology",
         "submissions": {
             "1362096000": "CABRO_1.ont"
         }
@@ -493,46 +494,46 @@
         }
     },
     "CARELEX": {
-        "id": "CARELEX",
         "description": "Contains controlled vocabulary terms from National Cancer Institute used to classify clinical trial electronic content (documents, images, etc).     A Content model contains content classification categories (classes) and metadata properties (data properties).  Data properties should be assigned to each Content Type.   This model has been published as part of the new OASIS eTMF Standard, a draft specification available at: http://oasis-open.org/committees/etmf. CareLex is a non-profit organization formed to promote eClinical application and content interoperability for the life sciences and healthcare industries. For more info go to www.CareLex.Org",
-        "name": "Content Archive Resource Exchange Lexicon",
+        "id": "CARELEX",
         "lastSubDate": 1411565400,
+        "name": "Content Archive Resource Exchange Lexicon",
         "submissions": {
             "1411565400": "CARELEX_1.ont"
         }
     },
     "CARO": {
-        "id": "CARO",
         "description": "The Common Anatomy Reference Ontology (CARO) is being developed to facilitate interoperability between existing anatomy ontologies for different species, and will provide a template for building new anatomy ontologies. CARO will be described in Anatomy Ontologies for Bioinformatics: Principles and Practice Albert Burger, Duncan Davidson and Richard Baldock (Editors)",
-        "name": "Common Anatomy Reference Ontology",
+        "id": "CARO",
         "lastSubDate": 1323820800,
+        "name": "Common Anatomy Reference Ontology",
         "submissions": {
             "1323820800": "CARO_1.ont"
         }
     },
     "CARRE": {
-        "id": "CARRE",
         "description": "Clinical risk factors, evidence and observables",
-        "name": "CARRE Risk Factor ontology",
+        "id": "CARRE",
         "lastSubDate": 1412031600,
+        "name": "CARRE Risk Factor ontology",
         "submissions": {
             "1412031600": "CARRE_1.ont"
         }
     },
     "CBO": {
-        "id": "CBO",
         "description": "The Cell Behavior Ontology (CBO) describes multi-cell computational models. In particular to describe both the existential behaviors of cells (spatiality, growth, movement, adhesion, death, ...) and computational models of those behaviors.",
-        "name": "Cell Behavior Ontology",
+        "id": "CBO",
         "lastSubDate": 1401663600,
+        "name": "Cell Behavior Ontology",
         "submissions": {
             "1401663600": "CBO_1.ont"
         }
     },
     "CCO": {
-        "id": "CCO",
         "description": "An application ontology integrating knowledge about the eukaryotic cell cycle.",
-        "name": "Cell Cycle Ontology",
+        "id": "CCO",
         "lastSubDate": 1403564400,
+        "name": "Cell Cycle Ontology",
         "submissions": {
             "1403564400": "CCO_1.ont"
         }
@@ -584,10 +585,10 @@
         }
     },
     "CHEMBIO": {
-        "id": "CHEMBIO",
         "description": "Ontology for Systems Chemical Biology and Chemogenomics",
-        "name": "Systems Chemical Biology and Chemogenomics Ontology ",
+        "id": "CHEMBIO",
         "lastSubDate": 1421921400,
+        "name": "Systems Chemical Biology and Chemogenomics Ontology ",
         "submissions": {
             "1421921400": "CHEMBIO_1.ont"
         }
@@ -602,56 +603,56 @@
         }
     },
     "CHMO": {
-        "id": "CHMO",
         "description": "CMO, the chemical methods ontology, describes methods used to\r\n\r\n    collect data in chemical experiments, such as mass spectrometry and electron microscopy\r\n    prepare and separate material for further analysis, such as sample ionisation, chromatography, and electrophoresis\r\n    synthesise materials, such as epitaxy and continuous vapour deposition \r\n\r\nIt also describes the instruments used in these experiments, such as mass spectrometers and chromatography columns. It is intended to be complementary to the Ontology for Biomedical Investigations (OBI).",
-        "name": "Chemical Methods Ontology",
+        "id": "CHMO",
         "lastSubDate": 1423811460,
+        "name": "Chemical Methods Ontology",
         "submissions": {
             "1417428600": "CHMO_1.ont",
             "1423811460": "CHMO_2.ont"
         }
     },
     "CL": {
-        "id": "CL",
         "description": "The Cell Ontology is designed as a structured controlled vocabulary for cell types. This ontology was constructed for use by the model organism and other bioinformatics databases, where there is a need for a controlled vocabulary of cell types. This ontology is not organism specific it covers cell types from prokaryotes to mammals. However, it excludes plant cell types, which are covered by PO. See the website <a href=\"http://cellontology.org\">http://cellontology.org</a> for more details.",
-        "name": "Cell Ontology",
+        "id": "CL",
         "lastSubDate": 1422613080,
+        "name": "Cell Ontology",
         "submissions": {
             "1422613080": "CL_1.ont"
         }
     },
     "CLO": {
-        "id": "CLO",
         "description": "The Cell Line Ontology (CLO) is a community-based ontology in domain of biological cell lines with a focus on permanent cell lines from culture collections. Upper ontology structures that frame the skeleton of CLO include Basic Formal Ontology and Relation Ontology. Cell lines contained in CLO are associated with terms from other ontologies such as Cell Type Ontology, NCBI Taxonomy, and Ontology for Biomedical Investigation. A common design pattern for the cell line is used to model cell lines and their attributes, the Jurkat cell line provides ane xample.  Currently CLO contains over 36,000 cell line entries obtained from ATCC, HyperCLDB, Coriell, and bymanual curation. The cell lines are derived from 194 cell types, 656 anatomical entries, and 217 organisms. The OWL-based CLO is machine-readable and can be used in various applications.",
-        "name": "Cell Line Ontology",
+        "id": "CLO",
         "lastSubDate": 1383755520,
+        "name": "Cell Line Ontology",
         "submissions": {
             "1383755520": "CLO_1.ont"
         }
     },
     "CMO": {
-        "id": "CMO",
         "description": "The Clinical Measurement Ontology is designed to be used to standardize morphological and physiological measurement records generated from clinical and model organism research and health programs",
-        "name": "Clinical Measurement Ontology",
+        "id": "CMO",
         "lastSubDate": 1415959860,
+        "name": "Clinical Measurement Ontology",
         "submissions": {
             "1415959860": "CMO_1.ont"
         }
     },
     "CMPO": {
-        "id": "CMPO",
         "description": "The Cellular Microscopy Phenotype Ontology (CMPO) is a species neutral ontology for describing general phenotypic observations relating to the whole cell, cellular components, cellular processes and cell populations. CMPO is an application ontology developed in OWL that contains precomposed phenotypes descriptions that are defined using the Gene Ontology (GO) and the Phenotype Trait Ontology (PATO).",
-        "name": "Cellular microscopy phenotype ontology",
+        "id": "CMPO",
         "lastSubDate": 1418983860,
+        "name": "Cellular microscopy phenotype ontology",
         "submissions": {
             "1418983860": "CMPO_1.ont"
         }
     },
     "CN": {
-        "id": "CN",
         "description": "Computer networks ontology ",
-        "name": "computer network",
+        "id": "CN",
         "lastSubDate": 1410994800,
+        "name": "computer network",
         "submissions": {
             "1410994800": "CN_1.ont"
         }
@@ -674,10 +675,10 @@
         }
     },
     "CO-WHEAT": {
-        "id": "CO-WHEAT",
         "description": "This ontology defines traits of the International Wheat Information System (IWIS) database and wheat descriptor.",
-        "name": "Wheat Trait Ontology ",
+        "id": "CO-WHEAT",
         "lastSubDate": 1281481200,
+        "name": "Wheat Trait Ontology ",
         "submissions": {
             "1281481200": "CO-WHEAT_1.ont"
         }
@@ -701,28 +702,28 @@
         }
     },
     "COSTART": {
-        "id": "COSTART",
         "description": "Coding Symbols for Thesaurus of Adverse Reaction Terms (COSTART). 5th ed. Rockville (MD). COSTART is used for coding, filing, and retrieving post-marketing adverse drug and biologic experience reports. COSTART is organized in body system and pathophysiology hierarchies, as well as a separate fetal/neonatal category of less than 20 terms.\r\n\r\nCOSTART has been superseded by the Medical Dictionary for Regulatory Activities (MedDRA) Terminology. For more information about MedDRA in the Metathesaurus, see the MedDRA source synopsis.\r\n\r\nCOSTART was last updated in the Metathesaurus in 1999.",
-        "name": "Coding Symbols for a Thesaurus of Adverse Reaction Terms",
+        "id": "COSTART",
         "lastSubDate": 1422553860,
+        "name": "Coding Symbols for a Thesaurus of Adverse Reaction Terms",
         "submissions": {
             "1422553860": "COSTART_1.ont"
         }
     },
     "CPRO": {
-        "id": "CPRO",
         "description": "A uniform core set of data elements (whose formal semantics are captured in OWL) for use in a Computer-Based Patient Record (CPR)",
-        "name": "Computer-Based Patient Record Ontology",
+        "id": "CPRO",
         "lastSubDate": 1366758000,
+        "name": "Computer-Based Patient Record Ontology",
         "submissions": {
             "1366758000": "CPRO_1.ont"
         }
     },
     "CPT": {
-        "id": "CPT",
         "description": "Current Procedural Terminology",
-        "name": "Current Procedural Terminology",
+        "id": "CPT",
         "lastSubDate": 1422553920,
+        "name": "Current Procedural Terminology",
         "submissions": {
             "1422553920": "CPT_1.ont"
         }
@@ -736,73 +737,73 @@
         }
     },
     "CPTAC": {
-        "id": "CPTAC",
         "description": "a basic ontology which describes the proteomics pipeline infrastructure for CPTAC project",
-        "name": "CPTAC Proteomics Pipeline Infrastructure Ontology",
+        "id": "CPTAC",
         "lastSubDate": 1242774000,
+        "name": "CPTAC Proteomics Pipeline Infrastructure Ontology",
         "submissions": {
             "1242774000": "CPTAC_1.ont"
         }
     },
     "CRISP": {
-        "id": "CRISP",
         "description": "Computer Retrieval of Information on Scientific Projects (CRISP)",
-        "name": "Computer Retrieval of Information on Scientific Projects Thesaurus",
+        "id": "CRISP",
         "lastSubDate": 1422553860,
+        "name": "Computer Retrieval of Information on Scientific Projects Thesaurus",
         "submissions": {
             "1422553860": "CRISP_1.ont"
         }
     },
     "CSEO": {
-        "id": "CSEO",
         "description": "The CSEO has potential to become a widely used standard within the academic and industrial community. Mainly because of the emerging need of systems toxicology to controlled vocabularies and also the lack of suitable ontologies for this domain, the CSEO prepares the ground for integrative systems-based research in the exposure science.",
-        "name": "Cigarette Smoke Exposure Ontology",
+        "id": "CSEO",
         "lastSubDate": 1404946800,
+        "name": "Cigarette Smoke Exposure Ontology",
         "submissions": {
             "1404946800": "CSEO_1.ont"
         }
     },
     "CSSO": {
-        "id": "CSSO",
         "description": "An ontology for describing clinical signs and symptoms.",
-        "name": "Clinical Signs and Symptoms Ontology",
+        "id": "CSSO",
         "lastSubDate": 1408489200,
+        "name": "Clinical Signs and Symptoms Ontology",
         "submissions": {
             "1408489200": "CSSO_1.ont"
         }
     },
     "CTCAE": {
-        "id": "CTCAE",
         "description": "A coding system for reporting adverse events that occur in the course of cancer therapy.  It was derived from the Common Toxicity Criteria (CTC) v2.0 and is maintained by the Cancer Therapy Evaluation Program (CTEP) at the National Cancer Institution (NCI).",
-        "name": "Common Terminology Criteria for Adverse Events",
+        "id": "CTCAE",
         "lastSubDate": 1276470000,
+        "name": "Common Terminology Criteria for Adverse Events",
         "submissions": {
             "1276470000": "CTCAE_1.ont"
         }
     },
     "CTO": {
-        "id": "CTO",
         "description": "The CTO-NDD stands for Clinical Trial Ontology-Neurodegenerative Diseases, which was built with the purpose of organizing the knowledge domain of clinical trials in neurodegeneration field. ",
-        "name": "Clinical Trials Ontology",
+        "id": "CTO",
         "lastSubDate": 1414454400,
+        "name": "Clinical Trials Ontology",
         "submissions": {
             "1414454400": "CTO_1.ont"
         }
     },
     "CTONT": {
-        "id": "CTONT",
         "description": null,
-        "name": "Epoch Clinical Trial Ontology",
+        "id": "CTONT",
         "lastSubDate": 1174348800,
+        "name": "Epoch Clinical Trial Ontology",
         "submissions": {
             "1174348800": "CTONT_1.ont"
         }
     },
     "CTX": {
-        "id": "CTX",
         "description": "The ontology represents CTX phenotypes, genetic variants, and bidirectional relationships between them though a patient model. The CTX ontology was build reusing the Human Phenotype Ontology (HPO) and the Snomed ct ontologies. \r\nA set of temporal clinical manifestations are semantically annotated with a domain phenotype ontology and registered with a time-stamped value.",
-        "name": "Cerebrotendinous Xanthomatosis Ontology",
+        "id": "CTX",
         "lastSubDate": 1331510400,
+        "name": "Cerebrotendinous Xanthomatosis Ontology",
         "submissions": {
             "1331510400": "CTX_1.ont"
         }
@@ -826,10 +827,10 @@
         }
     },
     "DCO": {
-        "id": "DCO",
         "description": "Dispedia Core Ontology is a schema for information brokering and knowledge management in the complex field of rare diseases. On the one hand, the Dispedia schema uses semantic technologies to describe patients affected by rare diseases, and on the other hand, to record expertise concerning these particular diseases in machine-processable form. In addition to the differentiated attribution of facts to the individual need for information, Dispedia enables information brokering which adjusts to the type of recipient, its character as well as its personal attitude. The schema was initially geared to an exemplified disease, Amyotrophe Lateralsclerose (ALS).",
-        "name": "Dispedia Core Ontology",
+        "id": "DCO",
         "lastSubDate": 1425021060,
+        "name": "Dispedia Core Ontology",
         "submissions": {
             "1420884660": "DCO_1.ont",
             "1425021060": "DCO_2.ont"
@@ -845,10 +846,10 @@
         }
     },
     "DDANAT": {
-        "id": "DDANAT",
         "description": "A structured controlled vocabulary of the anatomy of the slime-mould <i>Dictyostelium discoideum</i>.",
-        "name": "Dictyostelium Discoideum Anatomy Ontology",
+        "id": "DDANAT",
         "lastSubDate": 1358812800,
+        "name": "Dictyostelium Discoideum Anatomy Ontology",
         "submissions": {
             "1358812800": "DDANAT_1.ont"
         }
@@ -863,47 +864,47 @@
         }
     },
     "DERMLEX": {
-        "id": "DERMLEX",
         "description": "Version 1.0 of the American Academy of Dermatology's DermLex: The Dermatology Lexicon, a standardized terminology of dermatologic diagnoses, therapies, procedures, and laboratory tests.",
-        "name": "Dermatology Lexicon",
+        "id": "DERMLEX",
         "lastSubDate": 1241046000,
+        "name": "Dermatology Lexicon",
         "submissions": {
             "1241046000": "DERMLEX_1.ont"
         }
     },
     "DERMO": {
-        "id": "DERMO",
         "description": "Ontology of human dermatologic disease",
-        "name": "Human Dermatological Disease Ontology",
+        "id": "DERMO",
         "lastSubDate": 1374015600,
+        "name": "Human Dermatological Disease Ontology",
         "submissions": {
             "1374015600": "DERMO_1.ont"
         }
     },
     "DIAB": {
-        "id": "DIAB",
         "description": "Diabetes ontology",
-        "name": "WP7 Diabetes Ontology",
+        "id": "DIAB",
         "lastSubDate": 1423774800,
+        "name": "WP7 Diabetes Ontology",
         "submissions": {
             "1421020800": "DIAB_1.ont",
             "1423774800": "DIAB_2.ont"
         }
     },
     "DIAGONT": {
-        "id": "DIAGONT",
         "description": "We built a computational diagnostic ontology containing 91 elements, including classes and sub-classes, which are required to conduct SR-MA (Systematic Review - Meta Analysis) for diagnostic studies, that will assist in standardized reporting of diagnostic articles. We also report high percentage of agreement among five observers as a result of the inter-observer agreement that we conducted among them to tag 13 articles using the diagnostic ontology. Moreover, we extend our existing repository CERR-N (Center of Excellence in Research Reporting in Neurosurgery) to include diagnostic studies.",
-        "name": "Diagnostic Ontology",
+        "id": "DIAGONT",
         "lastSubDate": 1323907200,
+        "name": "Diagnostic Ontology",
         "submissions": {
             "1323907200": "DIAGONT_1.ont"
         }
     },
     "DIKB": {
-        "id": "DIKB",
         "description": "An evidence taxonomy for pharmacologic studies that, when combined with a set of inclusion criteria, enable drug experts to specify what their confidence in a drug mechanism assertion would be if it were supported by a specific set of evidence.\r\n\r\nBoyce R, Collins C, Horn J, Kalet I. Computing with evidence Part I: A drug-mechanism evidence taxonomy oriented toward confidence assignment. J Biomed Inform. 2009 Dec;42(6):979-89. Epub 2009 May 10. PubMed PMID: 19435613; PubMed Central PMCID: PMC2783801. ",
-        "name": "Drug Interaction Knowledge Base Ontology",
+        "id": "DIKB",
         "lastSubDate": 1318546800,
+        "name": "Drug Interaction Knowledge Base Ontology",
         "submissions": {
             "1318546800": "DIKB_1.ont"
         }
@@ -917,10 +918,10 @@
         }
     },
     "DOCCC": {
-        "id": "DOCCC",
         "description": "Diagnosis Ontology of Clinical Care Classification (CCC) ",
-        "name": "Diagnosis Ontology of Clinical Care Classification",
+        "id": "DOCCC",
         "lastSubDate": 1380841200,
+        "name": "Diagnosis Ontology of Clinical Care Classification",
         "submissions": {
             "1380841200": "DOCCC_1.ont"
         }
@@ -929,36 +930,37 @@
         "id": "DOID",
         "description": "Creating a comprehensive hierarchical controlled vocabulary for human disease representation.",
         "name": "Human Disease Ontology",
-        "lastSubDate": 1425107640,
+        "lastSubDate": 1426863720,
         "submissions": {
             "1422873780": "DOID_1.ont",
-            "1425107640": "DOID_2.ont"
+            "1425107640": "DOID_2.ont",
+            "1426863720": "DOID_3.ont"
         }
     },
     "DRON": {
-        "id": "DRON",
         "description": "An ontology of drugs.\r\n\r\nDrOn contains content developed by the National LIbrary of Medicine in RxNorm.  In creating DrOn, we have used RxNorm content only with SAB = RXNORM.",
-        "name": "The Drug Ontology",
+        "id": "DRON",
         "lastSubDate": 1423811580,
+        "name": "The Drug Ontology",
         "submissions": {
             "1405011960": "DRON_1.ont",
             "1423811580": "DRON_2.ont"
         }
     },
     "ECG": {
-        "id": "ECG",
         "description": "The Electrocardiography (ECG) Ontology is a Driving Biological Project of the NCBO. The ECG Ontology will contain terms for describing electrocardiograms, their capture method(s) and their waveforms.",
-        "name": "Electrocardiography Ontology",
+        "id": "ECG",
         "lastSubDate": 1410217200,
+        "name": "Electrocardiography Ontology",
         "submissions": {
             "1410217200": "ECG_1.ont"
         }
     },
     "ECO": {
-        "id": "ECO",
         "description": "An ontology of evidence types & assertion methods for supporting biological statements of conclusion.",
-        "name": "Evidence Codes Ontology",
+        "id": "ECO",
         "lastSubDate": 1421143860,
+        "name": "Evidence Codes Ontology",
         "submissions": {
             "1421143860": "ECO_1.ont"
         }
@@ -973,10 +975,10 @@
         }
     },
     "EDAMTO": {
-        "id": "EDAMTO",
         "description": "An ontology of bioinformatics, biological and biomedical topics (EDAM Topics) ",
-        "name": "EDAM Topics",
+        "id": "EDAMTO",
         "lastSubDate": 1412550000,
+        "name": "EDAM Topics",
         "submissions": {
             "1412550000": "EDAMTO_1.ont"
         }
@@ -994,10 +996,11 @@
         "id": "EFO",
         "description": "The Experimental Factor Ontology (EFO) is an application focused ontology modelling the experimental variables in multiple resources at the EBI and the Centre for Therapeutic Target Validation. The ontology has been developed to increase the richness of the annotations that are currently made in resources and to promote consistent annotation, to facilitate automatic annotation and to integrate external data. The ontology pulls together classes from reference ontologies such as disease, cell line, cell type and anatomy and adds axiomatisation as necessary to connect areas such as disease to phenotype. Contact EFO users list for information: efo-users@lists.sourceforge.net",
         "name": "Experimental Factor Ontology",
-        "lastSubDate": 1424243460,
+        "lastSubDate": 1426490100,
         "submissions": {
             "1421316780": "EFO_1.ont",
-            "1424243460": "EFO_2.ont"
+            "1424243460": "EFO_2.ont",
+            "1426490100": "EFO_3.ont"
         }
     },
     "EHDA": {
@@ -1010,74 +1013,74 @@
         }
     },
     "EHDAA": {
-        "id": "EHDAA",
         "description": "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The abstract version of the human developmental anatomy ontology compresses all the tissues present over Carnegie stages 1-20 into a single hierarchy. The heart, for example, is present from Carnegie Stage 9 onwards and is thus represented by 12 EHDA IDs (one for each stage). In the abstract mouse, it has a single ID so that the abstract term given as just <i>heart</i> really means <i>heart (CS 9-20)</i>. Timing details will be added to the abstract version of the ontology in a future release.",
-        "name": "Human Developmental Anatomy Ontology, abstract version 1",
+        "id": "EHDAA",
         "lastSubDate": 1297728000,
+        "name": "Human Developmental Anatomy Ontology, abstract version 1",
         "submissions": {
             "1297728000": "EHDAA_1.ont"
         }
     },
     "EHDAA2": {
-        "id": "EHDAA2",
         "description": "A structured controlled vocabulary of stage-specific anatomical structures of the human. It has been designed to mesh with the mouse anatomy and incorporates each Carnegie stage of development (CS1-20). The abstract version of the human developmental anatomy ontology compresses all the tissues present over Carnegie stages 1-20 into a single hierarchy. The heart, for example, is present from Carnegie Stage 9 onwards and is thus represented by 12 EHDA IDs (one for each stage). In the abstract mouse, it has a single ID so that the abstract term given as just <i>heart</i> really means <i>heart (CS 9-20)</i>. Timing details will be added to the abstract version of the ontology in a future release.",
-        "name": "Human Developmental Anatomy Ontology, abstract version 2",
+        "id": "EHDAA2",
         "lastSubDate": 1366758000,
+        "name": "Human Developmental Anatomy Ontology, abstract version 2",
         "submissions": {
             "1366758000": "EHDAA2_1.ont"
         }
     },
     "ELIG": {
-        "id": "ELIG",
         "description": "We derived a set of 1,437 eligibility features that were organized into a feature hierarchy using 80 breast cancer trials. ",
-        "name": "Eligibility Feature Hierarchy",
+        "id": "ELIG",
         "lastSubDate": 1367881200,
+        "name": "Eligibility Feature Hierarchy",
         "submissions": {
             "1367881200": "ELIG_1.ont"
         }
     },
     "EMAP": {
-        "id": "EMAP",
         "description": "A structured controlled vocabulary of stage-specific anatomical structures of the mouse (Mus).",
-        "name": "Mouse Gross Anatomy and Development Ontology",
+        "id": "EMAP",
         "lastSubDate": 1297728000,
+        "name": "Mouse Gross Anatomy and Development Ontology",
         "submissions": {
             "1297728000": "EMAP_1.ont"
         }
     },
     "ENM": {
-        "id": "ENM",
-        "name": "eNanoMapper",
         "description": null,
+        "id": "ENM",
+        "lastSubDate": 0,
+        "name": "eNanoMapper",
         "submissions": {
             
-        },
-        "lastSubDate": 0
+        }
     },
     "ENVO": {
-        "id": "ENVO",
         "description": "Ontology of environmental features and habitats",
-        "name": "Environment Ontology",
+        "id": "ENVO",
         "lastSubDate": 1423811580,
+        "name": "Environment Ontology",
         "submissions": {
             "1410973440": "ENVO_1.ont",
             "1423811580": "ENVO_2.ont"
         }
     },
     "EOL": {
-        "id": "EOL",
         "description": "L'ontologie EOL d\u00e9crit les conditions d'environnement des \u00e9levages d'animaux domestiques. Elle d\u00e9crit plus particuli\u00e8rement les modalit\u00e9s de l'alimentation, de l'environnement, de la structure des \u00e9levages et des syst\u00e8mes d'\u00e9levage",
-        "name": "Environment Ontology for Livestock",
+        "id": "EOL",
         "lastSubDate": 1413932400,
+        "name": "Environment Ontology for Livestock",
         "submissions": {
             "1413932400": "EOL_1.ont"
         }
     },
     "EP": {
-        "id": "EP",
         "description": "The Cardiac Electrophysiology Ontology contains terms describing single-channel electrophysiological experiments and data obtained using voltage-clamp, current clamp and fluorescence imaging techniques applied at the cell level and multi-channel fluorescence imaging techniques applied at the cell, tissue and whole heart levels.",
-        "name": "Cardiac Electrophysiology Ontology",
+        "id": "EP",
         "lastSubDate": 1228867200,
+        "name": "Cardiac Electrophysiology Ontology",
         "submissions": {
             "1228867200": "EP_1.ont"
         }
@@ -1101,12 +1104,21 @@
         }
     },
     "EXACT": {
-        "id": "EXACT",
         "description": "EXACT aims to explicitly define the semantics of experimental protocols in order to ensure their reproducibility, and to support computer applications that assist biologists in the preparation, maintenance, submission and sharing of experimental protocols. ",
-        "name": "An ontology for experimental actions",
+        "id": "EXACT",
         "lastSubDate": 1410994800,
+        "name": "An ontology for experimental actions",
         "submissions": {
             "1410994800": "EXACT_1.ont"
+        }
+    },
+    "FALL": {
+        "description": null,
+        "id": "FALL",
+        "lastSubDate": 0,
+        "name": "MyOntoServiceFull_FallDetection",
+        "submissions": {
+            
         }
     },
     "FAO": {
@@ -1119,10 +1131,10 @@
         }
     },
     "FB-BT": {
-        "id": "FB-BT",
         "description": "A structured controlled vocabulary of the anatomy of <i>Drosophila melanogaster</i>.",
-        "name": "Drosophila Gross Anatomy Ontology",
+        "id": "FB-BT",
         "lastSubDate": 1415355120,
+        "name": "Drosophila Gross Anatomy Ontology",
         "submissions": {
             "1415355120": "FB-BT_1.ont"
         }
@@ -1137,19 +1149,19 @@
         }
     },
     "FB-DV": {
-        "id": "FB-DV",
         "description": "A structured controlled vocabulary of the development of <i>Drosophila melanogaster</i>.",
-        "name": "Drosophila Development Ontology",
+        "id": "FB-DV",
         "lastSubDate": 1406653260,
+        "name": "Drosophila Development Ontology",
         "submissions": {
             "1406653260": "FB-DV_1.ont"
         }
     },
     "FB-SP": {
-        "id": "FB-SP",
         "description": "The taxonomy of the family <i>Drosophilidae</i> (largely after Baechli) and of other taxa referred to in FlyBase.",
-        "name": "Fly Taxonomy",
+        "id": "FB-SP",
         "lastSubDate": 1371747720,
+        "name": "Fly Taxonomy",
         "submissions": {
             "1371747720": "FB-SP_1.ont"
         }
@@ -1182,19 +1194,19 @@
         }
     },
     "FIX": {
-        "id": "FIX",
         "description": "FIX consists of two ontologies: methods and properties (but not objects, which are subject of the chemical ontology). The methods are applied to study the properties.",
-        "name": "Physico-Chemical Methods and Properties",
+        "id": "FIX",
         "lastSubDate": 1392107460,
+        "name": "Physico-Chemical Methods and Properties",
         "submissions": {
             "1392107460": "FIX_1.ont"
         }
     },
     "FLOPO": {
-        "id": "FLOPO",
         "description": "This is a draft of the Flora Phenotype Ontology. The original version was developed at the pro-iBiosphere Hackathon in Leiden. This is the pre-classified version of the ontology; the original OWL file is at http://jagannath.pdn.cam.ac.uk/plant/flopo-unclassified.owl\r\n\r\nThe Flora Phenotype Ontology is generated from the Flora Malesiana, Flora Gabon, Flora of Central Africa, and a collection of Kew's African Floras. Every class in the ontology has at least one taxon annotation. The (draft) taxon annotation are available at http://jagannath.pdn.cam.ac.uk/plant/flora/clean-rerun/",
-        "name": "Flora Phenotype Ontology",
+        "id": "FLOPO",
         "lastSubDate": 1396738800,
+        "name": "Flora Phenotype Ontology",
         "submissions": {
             "1396738800": "FLOPO_1.ont"
         }
@@ -1209,47 +1221,47 @@
         }
     },
     "FMA": {
-        "id": "FMA",
         "description": "FMA is a domain ontology that represents a coherent body of explicit declarative knowledge about human anatomy. The description of how this OWL version was generated is in \"Pushing the Envelope: Challenges in a Frame-Based Representation of Human Anatomy\" by N. F. Noy, J. L. Mejino, C. Rosse, M. A. Musen: \r\nhttp://bmir.stanford.edu/publications/view.php/pushing_the_envelope_challenges_in_a_frame_based_representation_of_human_anatomy",
-        "name": "Foundational Model of Anatomy",
+        "id": "FMA",
         "lastSubDate": 1267574400,
+        "name": "Foundational Model of Anatomy",
         "submissions": {
             "1267574400": "FMA_1.ont"
         }
     },
     "FYPO": {
-        "id": "FYPO",
         "description": "FYPO is a formal ontology of phenotypes observed in fission yeast. FYPO is being developed to support the comprehensive and detailed representation of phenotypes in PomBase, the new online fission yeast resource (www.pombaes.org). Its scope is similar to that of the Ascomycete Phenotype Ontology (APO), but FYPO includes more detailed pre-composed terms as well as computable definitions.",
-        "name": "Fission Yeast Phenotype Ontology",
+        "id": "FYPO",
         "lastSubDate": 1425021120,
+        "name": "Fission Yeast Phenotype Ontology",
         "submissions": {
             "1422873840": "FYPO_1.ont",
             "1425021120": "FYPO_2.ont"
         }
     },
     "GALEN": {
-        "id": "GALEN",
         "description": "A translation of the full Galen ontology (from the OpenGALEN project) into the OWL description logic.",
-        "name": "Galen Ontology",
+        "id": "GALEN",
         "lastSubDate": 1168300800,
+        "name": "Galen Ontology",
         "submissions": {
             "1168300800": "GALEN_1.ont"
         }
     },
     "GAZ": {
-        "id": "GAZ",
         "description": "Gazetteer",
-        "name": "Gazetteer",
+        "id": "GAZ",
         "lastSubDate": 1410973500,
+        "name": "Gazetteer",
         "submissions": {
             "1410973500": "GAZ_1.ont"
         }
     },
     "GCO": {
-        "id": "GCO",
         "description": "The Genome Component Ontology is intended to define the abstract division of the total genetic information of an organism by its physical separation into different components, thereby providing a high level reference point to which more specific descriptions of the characteristics of these components can be linked.",
-        "name": "Genome Component Ontology",
+        "id": "GCO",
         "lastSubDate": 1369177200,
+        "name": "Genome Component Ontology",
         "submissions": {
             "1369177200": "GCO_1.ont"
         }
@@ -1272,6 +1284,15 @@
             "1241564400": "GEOSPECIES_1.ont"
         }
     },
+    "GEXO": {
+        "id": "GEXO",
+        "description": "An application ontology for the domain of gene expression. The ontology integrates fragments of GO and MI with data from GOA, IntAct, UniProt, NCBI, and orthology relations using ontological properties from RO and ISO.",
+        "name": "Gene Expression Ontology",
+        "lastSubDate": 1347051600,
+        "submissions": {
+            "1347051600": "GEXO_1.ont"
+        }
+    },
     "GFO": {
         "id": "GFO",
         "description": "The General Formal Ontology (GFO) is a top-level ontology integrating objects and processes.",
@@ -1291,10 +1312,10 @@
         }
     },
     "GFVO": {
-        "id": "GFVO",
         "description": "The Genomic Feature and Variation Ontology (GFVO) is modeled to represent genomic data using the Resource Description Format (RDF). It is captures the contents of data files that adhere to the Generic Feature Format Version 3 (GFF3, http://www.sequenceontology.org/resources/gff3.html), the General Transfer Format (GTF, http://mblab.wustl.edu/GTF22.html), the Genome Variation Format Version 1 (GVF, http://www.sequenceontology.org/resources/gvf.html), and the Variant Call Format (VCF, http://vcftools.sourceforge.net/specs.html). The creation of the ontology was inspired by previous work of Robert Hoehndorf on RDF2OWL (http://code.google.com/p/rdf2owl).\r\n\r\nNOTE: GFVO in BioPortal is a simplified version without ontology imports and having class/property equivalences removed. The full ontology is available at: http://www.biointerchange.org/gfvo",
-        "name": "Genomic Feature and Variation Ontology",
+        "id": "GFVO",
         "lastSubDate": 1403391600,
+        "name": "Genomic Feature and Variation Ontology",
         "submissions": {
             "1403391600": "GFVO_1.ont"
         }
@@ -1312,54 +1333,56 @@
         "id": "GMM",
         "description": "GoMapMan is an open web-accessible resource for gene functional annotations in the plant sciences. It was developed to facilitate improvement, consolidation and visualization of gene annotations across several plant species.",
         "name": "GoMapMan",
-        "lastSubDate": 1425367080,
+        "lastSubDate": 1427036520,
         "submissions": {
             "1422873840": "GMM_1.ont",
-            "1425367080": "GMM_2.ont"
+            "1425367080": "GMM_2.ont",
+            "1426950120": "GMM_3.ont",
+            "1427036520": "GMM_4.ont"
         }
     },
     "GO": {
-        "id": "GO",
         "description": null,
-        "name": "Gene Ontology",
+        "id": "GO",
         "lastSubDate": 1419329580,
+        "name": "Gene Ontology",
         "submissions": {
             "1419329580": "GO_1.ont"
         }
     },
     "GO-EXT": {
-        "id": "GO-EXT",
         "description": "Gene Ontology Extension",
-        "name": "Gene Ontology Extension",
+        "id": "GO-EXT",
         "lastSubDate": 1308870000,
+        "name": "Gene Ontology Extension",
         "submissions": {
             "1308870000": "GO-EXT_1.ont"
         }
     },
     "GPML": {
-        "id": "GPML",
         "description": "GPML is the file format used to store pathway content at WikiPathways. GPML is short for Graphical Pathway Markup Language, and it is a custom XML format compatible with pathway visualization and analysis tools such as Cytoscape and PathVisio.",
-        "name": "Graphical Pathway Markup Language",
+        "id": "GPML",
         "lastSubDate": 1425367080,
+        "name": "Graphical Pathway Markup Language",
         "submissions": {
             "1422873900": "GPML_1.ont",
             "1425367080": "GPML_2.ont"
         }
     },
     "GRO": {
-        "id": "GRO",
         "description": "The Gene Regulation Ontology (GRO) is a conceptual model for the domain of gene regulation. It covers processes  that are linked to the regulation of gene expression as well as physical entities that are involved in these processes (such as genes and transcription factors) in terms of ontology classes and semantic relations between classes.",
-        "name": "Gene Regulation Ontology",
+        "id": "GRO",
         "lastSubDate": 1271718000,
+        "name": "Gene Regulation Ontology",
         "submissions": {
             "1271718000": "GRO_1.ont"
         }
     },
     "GRO-CPD": {
-        "id": "GRO-CPD",
         "description": "A structured controlled vocabulary for describing cereal plant development and growth stages. Please note that this ontology has now been superseded by the Plant Ontology.\r\n",
-        "name": "Cereal Plant Development Ontology",
+        "id": "GRO-CPD",
         "lastSubDate": 1187910000,
+        "name": "Cereal Plant Development Ontology",
         "submissions": {
             "1187910000": "GRO-CPD_1.ont"
         }
@@ -1383,10 +1406,10 @@
         }
     },
     "HAO": {
-        "id": "HAO",
         "description": "A structured controlled vocabulary of the anatomy of the Hymenoptera (bees, wasps, sawflies and ants)",
-        "name": "Hymenoptera Anatomy Ontology",
+        "id": "HAO",
         "lastSubDate": 1382963880,
+        "name": "Hymenoptera Anatomy Ontology",
         "submissions": {
             "1382963880": "HAO_1.ont"
         }
@@ -1400,10 +1423,10 @@
         }
     },
     "HCPCS": {
-        "id": "HCPCS",
         "description": "Healthcare Common Procedure Coding System",
-        "name": "Healthcare Common Procedure Coding System",
+        "id": "HCPCS",
         "lastSubDate": 1422553860,
+        "name": "Healthcare Common Procedure Coding System",
         "submissions": {
             "1422553860": "HCPCS_1.ont"
         }
@@ -1418,10 +1441,10 @@
         }
     },
     "HINO": {
-        "id": "HINO",
         "description": "The Human Interaction Network Ontology (HINO) is an INO extension for the domain of human interaction networks. It has currently incoporated Reactome reactions and pathways. Like INO, HINO aligns with BFO. HINO is developed by following the OBO Foundry principles. ",
-        "name": "Human Interaction Network Ontology",
+        "id": "HINO",
         "lastSubDate": 1403868720,
+        "name": "Human Interaction Network Ontology",
         "submissions": {
             "1403868720": "HINO_1.ont"
         }
@@ -1454,38 +1477,38 @@
         }
     },
     "HOM": {
-        "id": "HOM",
         "description": "This ontology represents concepts related to homology, as well as other concepts used to describe similarity and non-homology.",
-        "name": "Ontology of Homology and Related Concepts in Biology",
+        "id": "HOM",
         "lastSubDate": 1262563200,
+        "name": "Ontology of Homology and Related Concepts in Biology",
         "submissions": {
             "1262563200": "HOM_1.ont"
         }
     },
     "HP": {
-        "id": "HP",
         "description": "The Human Phenotype Ontology is being developed to provide a structured and controlled vocabulary for the phenotypic features encountered in human hereditary and other disease. Our goal is to provide resource for the computational analysis of the human phenome, with a current focus on monogenic diseases listed in the Online Mendelian Inheritance in Man (OMIM) database, for which annotations are also provided.",
-        "name": "Human Phenotype Ontology",
+        "id": "HP",
         "lastSubDate": 1425367200,
+        "name": "Human Phenotype Ontology",
         "submissions": {
             "1422701220": "HP_1.ont",
             "1425367200": "HP_2.ont"
         }
     },
     "HPIO": {
-        "id": "HPIO",
         "description": "Ontology for host pathogen interactions in farmed animals",
-        "name": "Host Pathogen Interactions Ontology",
+        "id": "HPIO",
         "lastSubDate": 1295913600,
+        "name": "Host Pathogen Interactions Ontology",
         "submissions": {
             "1295913600": "HPIO_1.ont"
         }
     },
     "HRDO": {
-        "id": "HRDO",
         "description": "This resource was designed during a PhD in medical informatics (funded by INSERM, 2010-2012). Its components are (i) a core ontology consistent with a metamodel (disorders and groups of disorders, genes, clinical signs and their relations) and (ii) an instantiation of this metamodel with Orphanet Data (available on http://orphadata.org).\r\n</ br>\r\nResearch experiments demonstrated (i) efficient classifications generation based on SPARQL Construct, (ii) perspectives in semantic audit of a knowledge base, (iii) semantic comparison with OMIM (www.omim.org) using proximity measurements and (iv) opened perspectives in knowledge sharing (LORD, http://lord.bndmr.fr). \r\n\r\nCurrent production services of Orphanet developed ORDO, released in 2014, an ontology synchronized with their production database. This ontology is now available on Bioportal.",
-        "name": "Disease core ontology applied to Rare Diseases",
+        "id": "HRDO",
         "lastSubDate": 1378854000,
+        "name": "Disease core ontology applied to Rare Diseases",
         "submissions": {
             "1378854000": "HRDO_1.ont"
         }
@@ -1500,55 +1523,55 @@
         }
     },
     "HUPSON": {
-        "id": "HUPSON",
         "description": "Large biomedical simulation initiatives, such as the Virtual Physiological Human (VPH), are substantially dependent on controlled vocabularies to facilitate the exchange of information, of data and of models. Hindering these initiatives is a lack of a comprehensive ontology that covers the essential concepts of the simulation domain. \r\nWe propose a first version of a newly constructed ontology, HuPSON, as a basis for shared semantics and interoperability of simulations, of models, of algorithms and of other resources in this domain. The ontology is based on the Basic Formal Ontology, and adheres to the MIREOT principles.",
-        "name": "Human Physiology Simulation Ontology",
+        "id": "HUPSON",
         "lastSubDate": 1396911600,
+        "name": "Human Physiology Simulation Ontology",
         "submissions": {
             "1396911600": "HUPSON_1.ont"
         }
     },
     "IAO": {
-        "id": "IAO",
         "description": "The Information Artifact Ontology (IAO) is an  ontology of information entities, originally driven by work by the OBI consortium.<p>\r\n\r\n<p><b>To import</b><p>\r\n\r\nLatest released version: <a href=\"http://purl.obolibrary.org/obo/iao.owl\">http://purl.obolibrary.org/obo/iao.owl</a><p>\r\n\r\n<b>Other versions</b><p>\r\n\r\nDeveloper (live) version: <a href=\"http://purl.obolibrary.org/obo/iao/dev/iao.owl\">http://purl.obolibrary.org/obo/iao/dev/iao.owl</a><p>\r\n\r\nOntology metadata properties and classes only: <a href=\"http://purl.obolibrary.org/obo/iao/dev/ontology-metadata.owl\">http://purl.obolibrary.org/obo/iao/dev/iao.owl</a><p>\r\n\r\n<b>Dated versions</b>\r\n<ul>\r\n<li><a href=\"http://purl.obolibrary.org/obo/iao/2009-11-06/iao.owl\">http://purl.obolibrary.org/obo/iao/2009-11-06/iao.owl</a>\r\n<li><a href=\"http://purl.obolibrary.org/obo/iao/2010-09-14/iao.owl\">http://purl.obolibrary.org/obo/iao/2010-09-14/iao.owl</a>\r\n<li><a href=\"http://purl.obolibrary.org/obo/iao/2010-10-26/iao.owl\">http://purl.obolibrary.org/obo/iao/2010-10-26/iao.owl</a>\r\n<li><a href=\"http://purl.obolibrary.org/obo/iao/2011-05-09/iao.owl\">http://purl.obolibrary.org/obo/iao/2011-05-09/iao.owl</a>\r\n</ul><p>\r\n\r\n<p>Please note: The ontology metrics displayed by BioPortal do not distinguish IAO-developed terms from terms imported from other ontologies.\r\n\r\n<p><b>Tracker</b>: <a href=\"http://purl.obolibrary.org/obo/iao/tracker\">http://purl.obolibrary.org/obo/iao/tracker</a><br>\r\n<b>Discussion group</b>: <a href=\"http://groups.google.com/group/information-ontology\">http://groups.google.com/group/information-ontology</a>",
-        "name": "Information Artifact Ontology",
+        "id": "IAO",
         "lastSubDate": 1247612400,
+        "name": "Information Artifact Ontology",
         "submissions": {
             "1247612400": "IAO_1.ont"
         }
     },
     "ICD10": {
-        "id": "ICD10",
         "description": "International Statistical Classification of Diseases and Related Health Problems (ICD-10). 10th rev. Geneva ",
-        "name": "International Classification of Diseases, Version 10",
+        "id": "ICD10",
         "lastSubDate": 1422553920,
+        "name": "International Classification of Diseases, Version 10",
         "submissions": {
             "1422553920": "ICD10_1.ont"
         }
     },
     "ICD10CM": {
-        "id": "ICD10CM",
         "description": "International Classification of Diseases, 10th Edition, Clinical Modification, 2011_01",
-        "name": "International Classification of Diseases, Version 10 - Clinical Modification",
+        "id": "ICD10CM",
         "lastSubDate": 1422553800,
+        "name": "International Classification of Diseases, Version 10 - Clinical Modification",
         "submissions": {
             "1422553800": "ICD10CM_1.ont"
         }
     },
     "ICD10PCS": {
-        "id": "ICD10PCS",
         "description": "ICD-10-PCS, 2009",
-        "name": "International Classification of Diseases, Version 10 - Procedure Coding System",
+        "id": "ICD10PCS",
         "lastSubDate": 1422553860,
+        "name": "International Classification of Diseases, Version 10 - Procedure Coding System",
         "submissions": {
             "1422553860": "ICD10PCS_1.ont"
         }
     },
     "ICD11-BODYSYSTEM": {
-        "id": "ICD11-BODYSYSTEM",
         "description": "This is a set of body-system terms used in the ICD 11 revision",
-        "name": "Body System Terms from ICD11",
+        "id": "ICD11-BODYSYSTEM",
         "lastSubDate": 1271286000,
+        "name": "Body System Terms from ICD11",
         "submissions": {
             "1271286000": "ICD11-BODYSYSTEM_1.ont"
         }
@@ -1563,10 +1586,10 @@
         }
     },
     "ICECI": {
-        "id": "ICECI",
         "description": "The International Classification of External Causes of Injury (ICECI) is a system of classifications to enable systematic description of how injuries occur. It is designed especially to assist injury prevention. \r\n\r\nThe ICECI was originally designed for use in settings in which information is recorded in a way that allows statistical reporting--for example, injury surveillance based on collection of information about cases attending a sample of hospital emergency departments. It has also been found useful for other purposes. For example, it has been used as a reference classification during revision of another classification, to record risk-factor exposure of children in a cohort study, as the basis for special-purpose classifications and in a growing number of other ways.",
-        "name": "International Classification of  External Causes of Injuries",
+        "id": "ICECI",
         "lastSubDate": 1088636400,
+        "name": "International Classification of  External Causes of Injuries",
         "submissions": {
             "1088636400": "ICECI_1.ont"
         }
@@ -1599,10 +1622,10 @@
         }
     },
     "ICPC": {
-        "id": "ICPC",
         "description": "The International Classification of Primary Care (ICPC). Denmark: World Organisation of Family Doctors, 1993.",
-        "name": "International Classification of Primary Care",
+        "id": "ICPC",
         "lastSubDate": 1422553920,
+        "name": "International Classification of Primary Care",
         "submissions": {
             "1422553920": "ICPC_1.ont"
         }
@@ -1617,10 +1640,10 @@
         }
     },
     "ICPS": {
-        "id": "ICPS",
         "description": "Ontology network about Patient Safety Incident. This work has been carried out by the Ontological Engineering Group, using sources from the University of Saint Etienne and the Australian Patient Safety Foundation, and supported by the World Health Organisation under the International Classification for Patient Safety programme.",
-        "name": "International Classification for Patient Safety",
+        "id": "ICPS",
         "lastSubDate": 1277679600,
+        "name": "International Classification for Patient Safety",
         "submissions": {
             "1277679600": "ICPS_1.ont"
         }
@@ -1635,46 +1658,46 @@
         }
     },
     "IDOBRU": {
-        "id": "IDOBRU",
         "description": "Brucellosis Ontology is a biomedical ontology in the domain of zoonotic disease brucellosis that is caused by Brucella, a facultative intracellular baterium.",
-        "name": "Brucellosis Ontology",
+        "id": "IDOBRU",
         "lastSubDate": 1418897640,
+        "name": "Brucellosis Ontology",
         "submissions": {
             "1418897640": "IDOBRU_1.ont"
         }
     },
     "IDODEN": {
-        "id": "IDODEN",
         "description": "An ontology for dengue fever.",
-        "name": "Dengue Fever Ontology",
+        "id": "IDODEN",
         "lastSubDate": 1373583600,
+        "name": "Dengue Fever Ontology",
         "submissions": {
             "1373583600": "IDODEN_1.ont"
         }
     },
     "IDOMAL": {
-        "id": "IDOMAL",
         "description": "An application ontology for malaria extending the infectious disease ontology (IDO).\r\n",
-        "name": "Malaria Ontology",
+        "id": "IDOMAL",
         "lastSubDate": 1413759600,
+        "name": "Malaria Ontology",
         "submissions": {
             "1413759600": "IDOMAL_1.ont"
         }
     },
     "IDQA": {
-        "id": "IDQA",
         "description": "Image and Data Quality Assessment for scientific data management",
-        "name": "Image and Data Quality Assessment Ontology",
+        "id": "IDQA",
         "lastSubDate": 1377385200,
+        "name": "Image and Data Quality Assessment Ontology",
         "submissions": {
             "1377385200": "IDQA_1.ont"
         }
     },
     "IFAR": {
-        "id": "IFAR",
         "description": "An application ontology devoted to the standardized recording of data related to Fanconi Anemia (FA). This ontology was created using an OWL file provided by Dr. Ada Hamish (and Francois Schiettecatte) at the Centers for Mendelian Genetics, with their permission. Their original ontology can be found at: http://phenodb.net/help/features. Modifications were made using HPO, OMIM, NCI, and SNOMED. Novel classes pertaining to FA were added and defined as appropriate. ",
-        "name": "Fanconi Anemia Ontology",
+        "id": "IFAR",
         "lastSubDate": 1372201200,
+        "name": "Fanconi Anemia Ontology",
         "submissions": {
             "1372201200": "IFAR_1.ont"
         }
@@ -1689,28 +1712,28 @@
         }
     },
     "IMGT-ONTOLOGY": {
-        "id": "IMGT-ONTOLOGY",
         "description": "IMGT-ONTOLOGY is the first ontology for immunogenetics and immunoinformatics. It provides a semantic specification of the terms to be used in immunogenetics and immunoinformatics and manages the related knowledge, thus allowing the standardization for immunogenetics data from genome, proteome, genetics, two-dimensional (2D) and three-dimensional (3D) structures.  \r\nIMGT-ONTOLOGY manages the knowledge through diverse facets relying on seven axioms, \"IDENTIFICATION\", \"CLASSIFICATION\", \"DESCRIPTION\", \"NUMEROTATION\", \"LOCALIZATION\", \"ORIENTATION\" and \"OBTENTION\". These axioms postulate that any object, any process and any relation can be identified, classified, described, numbered, localized and orientated, and the way it is obtained can be characterized. The axioms constitute the Formal IMGT-ONTOLOGY, also designated as IMGT-Kaleidoscope. As the same axioms can be used to generate concepts for multi-scale level approaches, the Formal IMGT-ONTOLOGY represents a paradigm for system biology ontologies, which need to identify, to classify, to describe, to number, to localize and to orientate objects, processes and relations at the molecule, cell, tissue, organ, organism or population levels.\r\nIMGT\u00ae, the international ImMunoGeneTics information system\u00ae, has been built on IMGT-ONTOLOGY.\r\n\r\nThe version 1.0.2 of IMGT-ONTOLOGY includes the concepts of IDENTIFICATION and the concepts of CLASSIFICATION.",
-        "name": "Immunogenetics Ontology",
+        "id": "IMGT-ONTOLOGY",
         "lastSubDate": 1374015600,
+        "name": "Immunogenetics Ontology",
         "submissions": {
             "1374015600": "IMGT-ONTOLOGY_1.ont"
         }
     },
     "IMMDIS": {
-        "id": "IMMDIS",
         "description": "The Immune Disorder Ontology was generated as part of the Bioinformatics Integration Support Contract (BISC) funded by the Division of Allergy, Immunology and Transplantation (DAIT) within NIAID.  The ontology is based on the National Library of Medicine (NLM) Medical Subject Headings; National Cancer Institute Thesaurus; International Classification of Diseases, Ninth Revision, Clinical Modification (ICD-9-CM); ICD-10; and other open source public databases.  \r\n<br><br>\r\n<b>Lineage(s)</b>\r\n<br><br>\r\nA class may be related to its superclass through a true is_a relationship (e.g., Polymyositis is a Dermatomyositis, which is an Autoimmune_Disease, which is an Immune_Disorder). Based on description logic, a class inherits all the Relationships (Object Properties) and Datatype Properties (if any) assigned to its superclass. In a few occasions, a class may have more than one superclass and belongs to more than one lineage.  \r\n<br><br>\r\n<b>Annotations</b>\r\n<br><br>\r\nSpecific information may be available about a class, including Preferred_Name, DEFINITION, Synonym, etc. The following provides more detail on annotation information presented:<br>\r\nDEFINITION: A human-readable definition is provided for each class in the ontology and the displayed format is Owner|Definition (Source).<br>\r\nFULL_SYN: Synonym of a class in the ontology with type (PT: preferred term, SY: synonym) and source of this synonym indicated. Synonym|Type of Synonym|Source of Synonym is the format displayed.<br>\r\nICD-10_Code: Code of International Classification of Diseases and Related Health Problems, 10th revision. ICD-10 is a detailed description of known diseases and injuries. It is published by the World Health Organization (WHO) and is used worldwide for mortality statistics.<br>\r\nICD-9_Code: Code of International Classification of Diseases and Related Health Problems, 9th revision.<br>\r\nClass Name: Class_Name is used as a unique identifier by Protege-OWL, the environment where this ontology is being developed and therefore has to be OWL-compliant. Class_Name is composed of a string only made of digits, letters, underscores, and hyphens. A Class_Name cannot start with a digit.<br>\r\nPreferred_Name: A human-friendly and commonly used name in plain English.<br>\r\nSynonym: Synonym of a class in plain English, including those in plural form or British spelling. In contrast to FULL_SYN, no type nor source of synonym is indicated. Synonym is human-friendly and not OWL-compliant. A class may have multiple synonyms.<br>\r\nUMLS_CUI: Concept Unique Identifier in Unified Medical Language System that is produced and distributed by NLM. There are three UMLS Knowledge Sources: the Metathesaurus, the Semantic Network, and SPECIALIST Lexicon. The purpose of UMLS is to facilitate the development of computer systems that behave as if they \"understand\" the meaning of the language of biomedicine and health.\r\n<br><br>\r\n<b>Relationships (Object Properties)</b>\r\n<br><br>\r\nRelationships are properties by which one class is related to another class in the ontology. For example, \"Population_Group\" (a class) has_susceptibility_to_disease (a relationship) \"Immune_Disorder\" (a class). This box may be empty if no relationship has been used for modeling. \r\n<br><br>\r\n<b>Datatype Properties</b>\r\n<br><br>\r\nDatatype Properties are properties by which a class is related to a datatype. This box may be empty if no datatype property has been used for modeling.\r\n",
-        "name": "Immune Disorder Ontology",
+        "id": "IMMDIS",
         "lastSubDate": 1343689200,
+        "name": "Immune Disorder Ontology",
         "submissions": {
             "1343689200": "IMMDIS_1.ont"
         }
     },
     "INO": {
-        "id": "INO",
         "description": "The Interaction Network Ontology (INO) is an ontology in the domain of interaction network. INO aims to standardize interaction network annotation, integrate various interaction network data, and support computer-assisted reasoning. It is aimed to represent general interactions (e.g., molecular interactions) and interaction networks (e.g., Bayesian network). INO was initiated by supporting literature mining related to interactions and interaction networks.  INO aligns with BFO. INO is a community-based ontology, and its development follows the OBO Foundry principles.",
-        "name": "Interaction Network Ontology",
+        "id": "INO",
         "lastSubDate": 1416133140,
+        "name": "Interaction Network Ontology",
         "submissions": {
             "1416133140": "INO_1.ont"
         }
@@ -1725,46 +1748,46 @@
         }
     },
     "InterNano": {
-        "id": "InterNano",
         "description": "The InterNano Taxonomy is a unique, custom-built terminology to describe the nanomanufacturing enterprise. This project is supported by the\r\nNational Science Foundation CMMI-1025020",
-        "name": "InterNano Nanomanufacturing Taxonomy",
+        "id": "InterNano",
         "lastSubDate": 1412170920,
+        "name": "InterNano Nanomanufacturing Taxonomy",
         "submissions": {
             "1412170920": "InterNano_1.ont"
         }
     },
     "JERM": {
-        "id": "JERM",
         "description": "an ontology to describe the entities and relationships in the SEEK database, a Systems Biology environment for the sharing and exchange of data and models.\r\nThe SysMO-SEEK database contains the work of the SysMO consortium (Systems Biology of Micro-Organisms) https://seek.sysmo-db.org/",
-        "name": "SysMO JERM Ontology of Systems Biology for Micro-Organisms",
+        "id": "JERM",
         "lastSubDate": 1368745200,
+        "name": "SysMO JERM Ontology of Systems Biology for Micro-Organisms",
         "submissions": {
             "1368745200": "JERM_1.ont"
         }
     },
     "KISAO": {
-        "id": "KISAO",
         "description": "The Kinetic Simulation Algorithm Ontology aims at providing support in unambiguously referring to simulation algorithms when describing a\r\nsimulation experiment. It describes and classifies existing algorithms and their inter-relationships through the algorithm characteristics and parameters.",
-        "name": "Kinetic Simulation Algorithm Ontology",
+        "id": "KISAO",
         "lastSubDate": 1398411240,
+        "name": "Kinetic Simulation Algorithm Ontology",
         "submissions": {
             "1398411240": "KISAO_1.ont"
         }
     },
     "LDA": {
-        "id": "LDA",
         "description": "We present the short review of language terms used in the domain of autism and populate them into ontology available for consultation and sharing. The language terms were obtained via text mining and automatic retrieval of terms from the corpus of PubMed abstracts.",
-        "name": "Ontology of Language Disorder in Autism",
+        "id": "LDA",
         "lastSubDate": 1229299200,
+        "name": "Ontology of Language Disorder in Autism",
         "submissions": {
             "1229299200": "LDA_1.ont"
         }
     },
     "LEGALAPA": {
-        "id": "LEGALAPA",
         "description": "this is a test with the legal cluster of apa ontology",
-        "name": "legalapa",
+        "id": "LEGALAPA",
         "lastSubDate": 1418947200,
+        "name": "legalapa",
         "submissions": {
             "1418947200": "LEGALAPA_1.ont"
         }
@@ -1788,37 +1811,37 @@
         }
     },
     "LIPRO": {
-        "id": "LIPRO",
         "description": "Lipid research is increasingly integrated within systems level biology such as lipidomics where lipid classification is required before appropriate annotation of chemical functions can be applied. The ontology describes the LIPIDMAPS nomenclature classification explicitly using description logics (OWL-DL). Lipid classes are organized hierarchically with the super-classes restricted by generic necessary conditions. More specific necessary conditions are used to define membership requirements for sub classes of lipid according to appropriate functional groups.",
-        "name": "Lipid Ontology",
+        "id": "LIPRO",
         "lastSubDate": 1392150840,
+        "name": "Lipid Ontology",
         "submissions": {
             "1392150840": "LIPRO_1.ont"
         }
     },
     "LOINC": {
-        "id": "LOINC",
         "description": "Logical Observation Identifier Names and Codes (LOINC)",
-        "name": "Logical Observation Identifier Names and Codes",
+        "id": "LOINC",
         "lastSubDate": 1422553860,
+        "name": "Logical Observation Identifier Names and Codes",
         "submissions": {
             "1422553860": "LOINC_1.ont"
         }
     },
     "MA": {
-        "id": "MA",
         "description": "A structured controlled vocabulary of the adult anatomy of the mouse (Mus).",
-        "name": "Mouse Adult Gross Anatomy Ontology",
+        "id": "MA",
         "lastSubDate": 1416309000,
+        "name": "Mouse Adult Gross Anatomy Ontology",
         "submissions": {
             "1416309000": "MA_1.ont"
         }
     },
     "MAMO": {
-        "id": "MAMO",
         "description": "The Mathematical Modelling Ontology (MAMO) is a classification of the types of mathematical models used mostly in the life sciences, their variables, relationships and other relevant features.",
-        "name": "Mathematical Modelling Ontology",
+        "id": "MAMO",
         "lastSubDate": 1422094440,
+        "name": "Mathematical Modelling Ontology",
         "submissions": {
             "1422094440": "MAMO_1.ont"
         }
@@ -1833,19 +1856,19 @@
         }
     },
     "MCBCC": {
-        "id": "MCBCC",
         "description": "Contains a comprehensive list of cell lines derived from breast tissue, both normal and pathological. The ontology in built in OWL with cross relation to classes- genetic variation, pathological condition, genes, chemicals and drugs. The relations built enable semantic query across different classes",
-        "name": "Breast Tissue Cell Lines Ontology",
+        "id": "MCBCC",
         "lastSubDate": 1280444400,
+        "name": "Breast Tissue Cell Lines Ontology",
         "submissions": {
             "1280444400": "MCBCC_1.ont"
         }
     },
     "MCCL": {
-        "id": "MCCL",
         "description": "Ontologies provide a common platform of controlled vocabulary for researchers who need to share information across a particular domain, inclusive of machine-interpretable definitions of basic concepts in the domain and relations among them. The need for ontologies that provide a systematic arrangement of available data and allow cross talk across various related domains is gaining momentum. In this backdrop, we have developed a comprehensive ontology on primary and established cell lines-both normal and pathologic. It covers around 400 cell lines. This ontology has been built to include the major domains in the field of biology like anatomy, bio-molecules, chemicals and drugs, pathological conditions and genetic variations around the cell lines. An extensive network of relations has been built across these concepts to enable different combinations of queries. The ontology covers all cell lines from major sources like ATCC, DSMZ, ECACC, ICLC etc. and is built in OWL format.",
-        "name": "Cell Line Ontology [by Mahadevan]",
+        "id": "MCCL",
         "lastSubDate": 1407193200,
+        "name": "Cell Line Ontology [by Mahadevan]",
         "submissions": {
             "1407193200": "MCCL_1.ont"
         }
@@ -1860,10 +1883,10 @@
         }
     },
     "MDDB": {
-        "id": "MDDB",
         "description": "Master Drug Data Base, 2009_08_05",
-        "name": "Master Drug Data Base Clinical Drugs",
+        "id": "MDDB",
         "lastSubDate": 1422553860,
+        "name": "Master Drug Data Base Clinical Drugs",
         "submissions": {
             "1422553860": "MDDB_1.ont"
         }
@@ -1878,10 +1901,10 @@
         }
     },
     "MEDLINEPLUS": {
-        "id": "MEDLINEPLUS",
         "description": "MedlinePlus Health Topics;National Library of Medicine;June 14, 2008;Bethesda, MD",
-        "name": "MedlinePlus Health Topics",
+        "id": "MEDLINEPLUS",
         "lastSubDate": 1422553860,
+        "name": "MedlinePlus Health Topics",
         "submissions": {
             "1422553860": "MEDLINEPLUS_1.ont"
         }
@@ -1896,10 +1919,10 @@
         }
     },
     "MEGO": {
-        "id": "MEGO",
         "description": "MeGO is a Gene Ontology under construction dedicated to the functions of mobile genetic elements. The terms defined in MeGO are used to annotate phage and plasmid protein families in ACLAME.",
-        "name": "Mobile Genetic Element Ontology",
+        "id": "MEGO",
         "lastSubDate": 1242255600,
+        "name": "Mobile Genetic Element Ontology",
         "submissions": {
             "1242255600": "MEGO_1.ont"
         }
@@ -1914,82 +1937,82 @@
         }
     },
     "MESH": {
-        "id": "MESH",
         "description": "Medical Subject Headings (MeSH);National Library of Medicine; 2011",
-        "name": "Medical Subject Headings",
+        "id": "MESH",
         "lastSubDate": 1422553860,
+        "name": "Medical Subject Headings",
         "submissions": {
             "1422553860": "MESH_1.ont"
         }
     },
     "MF": {
-        "id": "MF",
         "description": "The Mental Functioning Ontology is an ontology for mental functioning, including mental processes such as cognition and traits such as intelligence, and related diseases and disorders. It is developed in the context of the Ontology for General Medical Science and the Basic Formal Ontology. The project is being developed in collaboration between the University of Geneva, Switzerland, and the University at Buffalo, USA.\r\n\r\nThe project is being developed with full involvement of all relevant communities, following best practices laid out by the OBO Foundry. Efforts are currently underway to align with related projects including the Behaviour Ontology, the Cognitive Atlas, the Cognitive Paradigm Ontology and the Neural Electro Magnetic Ontologies. ",
-        "name": "Mental Functioning Ontology",
+        "id": "MF",
         "lastSubDate": 1383641640,
+        "name": "Mental Functioning Ontology",
         "submissions": {
             "1383641640": "MF_1.ont"
         }
     },
     "MFO": {
-        "id": "MFO",
         "description": "A structured controlled vocabulary of the anatomy and development of the Japanese medaka fish, <i>Oryzias latipes</i>.",
-        "name": "Medaka Fish Anatomy and Development Ontology",
+        "id": "MFO",
         "lastSubDate": 1307574000,
+        "name": "Medaka Fish Anatomy and Development Ontology",
         "submissions": {
             "1307574000": "MFO_1.ont"
         }
     },
     "MFOEM": {
-        "id": "MFOEM",
         "description": "An ontology of affective phenomena such as emotions, moods, appraisals and subjective feelings, designed to support interdisciplinary research by providing unified annotations.  The ontology is a domain specialisation of the broader Mental Functioning Ontology. ",
-        "name": "Emotion Ontology",
+        "id": "MFOEM",
         "lastSubDate": 1381132440,
+        "name": "Emotion Ontology",
         "submissions": {
             "1381132440": "MFOEM_1.ont"
         }
     },
     "MHC": {
-        "id": "MHC",
         "description": "The MaHCO contains terms necessary for describing and categorizing concepts related to MHC, in general, and for a number of model species, and also for humans. ",
-        "name": "Major Histocompatibility Complex Ontology",
+        "id": "MHC",
         "lastSubDate": 1239750000,
+        "name": "Major Histocompatibility Complex Ontology",
         "submissions": {
             "1239750000": "MHC_1.ont"
         }
     },
     "MIM": {
-        "id": "MIM",
         "description": "The Molecular Interaction Map (MIM) notation seeks to provide a standardized method to draw diagrams for bioregulatory networks with features similar to technical diagrams in other fields.\r\n\r\nThis vocabulary uses the term hierarchy from the Formal MIM Notation Specification. Where possible, Systems Biology Ontology (SBO) and Biological Pathway Exchange (BioPAX) terms and IRIs are used. If no SBO or BioPAX term is available, a new term and IRI are created.\r\n\r\nThis is currently only a partial implementation. Many elements still need to be added to cover the full the specification.",
-        "name": "Molecular Interaction Map",
+        "id": "MIM",
         "lastSubDate": 1414627200,
+        "name": "Molecular Interaction Map",
         "submissions": {
             "1414627200": "MIM_1.ont"
         }
     },
     "MIRNAO": {
-        "id": "MIRNAO",
         "description": "An application ontology for microRNAs.",
-        "name": "MicroRNA Ontology",
+        "id": "MIRNAO",
         "lastSubDate": 1386633600,
+        "name": "MicroRNA Ontology",
         "submissions": {
             "1386633600": "MIRNAO_1.ont"
         }
     },
     "MIRO": {
-        "id": "MIRO",
         "description": "Application ontology for entities related to insecticide resistance in mosquitos",
-        "name": "Mosquito Insecticide Resistance Ontology",
+        "id": "MIRO",
         "lastSubDate": 1422094440,
+        "name": "Mosquito Insecticide Resistance Ontology",
         "submissions": {
             "1422094440": "MIRO_1.ont"
         }
     },
     "MIXS": {
-        "id": "MIXS",
         "description": "An RDF representation of the MIxS Family of Checklists",
-        "name": "Minimal Information about any Sequence Ontology",
+        "id": "MIXS",
         "lastSubDate": 1365548400,
+        "name": "Minimal Information about any Sequence Ontology",
         "submissions": {
             "1365548400": "MIXS_1.ont"
         }
@@ -2005,17 +2028,18 @@
     },
     "MMO": {
         "id": "MMO",
-        "lastSubDate": 1415961180,
+        "description": "The Measurement Method Ontology is designed to represent the variety of methods used to make qualitative and quantitative clincial and phenotype measurements both in the clinic and with model organisms.",
         "name": "Measurement Method Ontology",
+        "lastSubDate": 1415961180,
         "submissions": {
             "1415961180": "MMO_1.ont"
         }
     },
     "MO": {
-        "id": "MO",
         "description": "Concepts, definitions, terms, and resources for standardized description of a microarray experiment in support of MAGE v.1.",
-        "name": "Microarray and Gene Expression Data Ontology",
+        "id": "MO",
         "lastSubDate": 1170979200,
+        "name": "Microarray and Gene Expression Data Ontology",
         "submissions": {
             "1170979200": "MO_1.ont"
         }
@@ -2030,38 +2054,38 @@
         }
     },
     "MPATH": {
-        "id": "MPATH",
         "description": "A structured controlled vocabulary of mutant and transgenic mouse pathology phenotypes",
-        "name": "Mouse Pathology Ontology",
+        "id": "MPATH",
         "lastSubDate": 1376327100,
+        "name": "Mouse Pathology Ontology",
         "submissions": {
             "1376327100": "MPATH_1.ont"
         }
     },
     "MS": {
-        "id": "MS",
         "description": "A structured controlled vocabulary for the annotation of mass spectrometry experiments. Developed by the HUPO Proteomics Standards Initiative (PSI).",
-        "name": "Mass Spectrometry Ontology",
+        "id": "MS",
         "lastSubDate": 1425021360,
+        "name": "Mass Spectrometry Ontology",
         "submissions": {
             "1415961180": "MS_1.ont",
             "1425021360": "MS_2.ont"
         }
     },
     "MSO": {
-        "id": "MSO",
         "description": "Multiple sclerosis ontology integrated with Basic formal ontology.",
-        "name": "Multiple sclerosis ontology",
+        "id": "MSO",
         "lastSubDate": 1415664000,
+        "name": "Multiple sclerosis ontology",
         "submissions": {
             "1415664000": "MSO_1.ont"
         }
     },
     "MSTDE": {
-        "id": "MSTDE",
         "description": "Metathesaurus Version of Minimal Standard Terminology Digestive Endoscopy. Bethesda, MD: National Library of Medicine, 2001.",
-        "name": "Minimal Standard Terminology of Digestive Endoscopy",
+        "id": "MSTDE",
         "lastSubDate": 1422553920,
+        "name": "Minimal Standard Terminology of Digestive Endoscopy",
         "submissions": {
             "1422553920": "MSTDE_1.ont"
         }
@@ -2076,68 +2100,68 @@
         }
     },
     "MSV": {
-        "id": "MSV",
         "description": "An ontology for metagenome sample metadata. This ontology mainly defines predicates.",
-        "name": "Metagenome Sample Vocabulary",
+        "id": "MSV",
         "lastSubDate": 1391212800,
+        "name": "Metagenome Sample Vocabulary",
         "submissions": {
             "1391212800": "MSV_1.ont"
         }
     },
     "NATPRO": {
-        "id": "NATPRO",
         "description": "An ontology for describing biological activities of natural products.",
-        "name": "Natural Products Ontology",
+        "id": "NATPRO",
         "lastSubDate": 1328659200,
+        "name": "Natural Products Ontology",
         "submissions": {
             "1328659200": "NATPRO_1.ont"
         }
     },
     "NBO": {
-        "id": "NBO",
         "description": "The Neurobehavior Ontology (NBO) consists of two main components, an ontology of behavioral processes and an ontology of behavioral phenotypes. The behavioral process branch of NBO contains a classification of behavior processes complementing and extending GO\u2019s process ontology. The behavior phenotype branch of NBO consists of a classification of both normal and abnormal behavioral characteristics of organisms ",
-        "name": "Neuro Behavior Ontology",
+        "id": "NBO",
         "lastSubDate": 1404493380,
+        "name": "Neuro Behavior Ontology",
         "submissions": {
             "1404493380": "NBO_1.ont"
         }
     },
     "NCBITAXON": {
-        "id": "NCBITAXON",
         "description": "The NCBI Taxonomy Database is a curated classification and nomenclature for all of the organisms in the public sequence databases.",
-        "name": "National Center for Biotechnology Information (NCBI) Organismal Classification",
+        "id": "NCBITAXON",
         "lastSubDate": 1422553800,
+        "name": "National Center for Biotechnology Information (NCBI) Organismal Classification",
         "submissions": {
             "1422553800": "NCBITAXON_1.ont"
         }
     },
     "NCCO": {
-        "id": "NCCO",
         "description": "Nursing Care Coordination Ontology contains activities that nurses use while coordinating care among patients.",
-        "name": "Nursing Care Coordination Ontology",
+        "id": "NCCO",
         "lastSubDate": 1383609600,
+        "name": "Nursing Care Coordination Ontology",
         "submissions": {
             "1383609600": "NCCO_1.ont"
         }
     },
     "NCIT": {
-        "id": "NCIT",
         "description": "A vocabulary for clinical care, translational and basic research, and public information and administrative activities.",
-        "name": "National Cancer Institute Thesaurus",
+        "id": "NCIT",
         "lastSubDate": 1423811880,
+        "name": "National Cancer Institute Thesaurus",
         "submissions": {
             "1422094620": "NCIT_1.ont",
             "1423811880": "NCIT_1.ont"
         }
     },
     "NCIT14": {
-        "id": "NCIT14",
-        "name": "NCIT1412e",
         "description": null,
+        "id": "NCIT14",
+        "lastSubDate": 0,
+        "name": "NCIT1412e",
         "submissions": {
             
-        },
-        "lastSubDate": 0
+        }
     },
     "NDDF": {
         "id": "NDDF",
@@ -2149,46 +2173,46 @@
         }
     },
     "NDFRT": {
-        "id": "NDFRT",
         "description": "National Drug File - Reference Terminology Public Inferred Edition, 2008_03_11",
-        "name": "National Drug File - Reference Terminology",
+        "id": "NDFRT",
         "lastSubDate": 1422553860,
+        "name": "National Drug File - Reference Terminology",
         "submissions": {
             "1422553860": "NDFRT_1.ont"
         }
     },
     "NEMO": {
-        "id": "NEMO",
         "description": "Neural ElectroMagnetic Ontology (NEMO) describes classes of event-related brain potentials (ERP) and their properties, including spatial, temporal, and functional (cognitive/behavioral) attributes, and data-level attributes (acquisition and analysis parameters). Working (unstable), Release (stable), and Old (archival) versions of NEMO can be found on sourceforge: http://sourceforge.net/projects/nemoontologies/.",
-        "name": "Neural ElectroMagnetic Ontology",
+        "id": "NEMO",
         "lastSubDate": 1382310000,
+        "name": "Neural ElectroMagnetic Ontology",
         "submissions": {
             "1382310000": "NEMO_1.ont"
         }
     },
     "NEOMARK3": {
-        "id": "NEOMARK3",
         "description": "Ontology that describes the medical information necessary for early detection of the oral cancer reoccurrence extracted from the NeoMark Project.",
-        "name": "Neomark Oral Cancer Ontology, version 3",
+        "id": "NEOMARK3",
         "lastSubDate": 1274050800,
+        "name": "Neomark Oral Cancer Ontology, version 3",
         "submissions": {
             "1274050800": "NEOMARK3_1.ont"
         }
     },
     "NEOMARK4": {
-        "id": "NEOMARK4",
         "description": "Ontology that describes the medical information necessary for early detection of the oral cancer reoccurrence extracted from the NeoMark Project.",
-        "name": "Neomark Oral Cancer Ontology, version 4",
+        "id": "NEOMARK4",
         "lastSubDate": 1300924800,
+        "name": "Neomark Oral Cancer Ontology, version 4",
         "submissions": {
             "1300924800": "NEOMARK4_1.ont"
         }
     },
     "NEUMORE": {
-        "id": "NEUMORE",
         "description": "Neural Functional Motor Recovery Ontology",
-        "name": "Neural Motor Recovery Ontology",
+        "id": "NEUMORE",
         "lastSubDate": 1280271600,
+        "name": "Neural Motor Recovery Ontology",
         "submissions": {
             "1280271600": "NEUMORE_1.ont"
         }
@@ -2219,10 +2243,10 @@
         }
     },
     "NIFCELL": {
-        "id": "NIFCELL",
         "description": "Cell types from NIFSTD",
-        "name": "Neuroscience Information Framework (NIF) Cell Ontology",
+        "id": "NIFCELL",
         "lastSubDate": 1375710840,
+        "name": "Neuroscience Information Framework (NIF) Cell Ontology",
         "submissions": {
             "1375710840": "NIFCELL_1.ont"
         }
@@ -2237,29 +2261,29 @@
         }
     },
     "NIFSTD": {
-        "id": "NIFSTD",
         "description": "NIF Standard ontology (NIFSTD) is a core component of Neuroscience Information Framework (NIF) project (http://neuinfo.org), a semantically enhanced portal for accessing and integrating neuroscience data, tools and information. NIFSTD includes a set of modular ontologies that provide a comprehensive collection of terminologies to describe neuroscience data and resources.",
-        "name": "Neuroscience Information Framework (NIF) Standard Ontology",
+        "id": "NIFSTD",
         "lastSubDate": 1423811880,
+        "name": "Neuroscience Information Framework (NIF) Standard Ontology",
         "submissions": {
             "1378228440": "NIFSTD_1.ont",
             "1423811880": "NIFSTD_2.ont"
         }
     },
     "NIFSUBCELL": {
-        "id": "NIFSUBCELL",
         "description": "http://ontology.neuinfo.org/NIF/BiomaterialEntities/NIF-Subcellular.owl",
-        "name": "Neuroscience Information Framework (NIF) Subcellular Ontology",
+        "id": "NIFSUBCELL",
         "lastSubDate": 1338418800,
+        "name": "Neuroscience Information Framework (NIF) Subcellular Ontology",
         "submissions": {
             "1338418800": "NIFSUBCELL_1.ont"
         }
     },
     "NIGO": {
-        "id": "NIGO",
         "description": "The Neural-Immune Gene Ontology (NIGO) is a subset of GO directed for neurological and immunological systems. NIGO was created by clipping those GO terms that are not associated to any gene in human, rat and mouse, and by clipping terms not found to be relevant to the neural and/or immune domains.",
-        "name": "Neural-Immune Gene Ontology",
+        "id": "NIGO",
         "lastSubDate": 1284246000,
+        "name": "Neural-Immune Gene Ontology",
         "submissions": {
             "1284246000": "NIGO_1.ont"
         }
@@ -2274,10 +2298,10 @@
         }
     },
     "NMOSP": {
-        "id": "NMOSP",
         "description": "The NeuroMorpho.Org species ontology was updated in release 6.0 with the transgenic, mutant and wild-type fly strains to OntoSearch v1.1. This consists of 23 newly added flybase.org concepts including the thirteen different GAL4 strains targeting neurotransmitter specific cell types. This mapping with http://flybase.org preserves names, synonyms, and their external concept IDs allowing for the fly data to be searchable on NeuroMorpho.Org using over 200 terms, with strains such as Cha-GAL4 mapping to 43 alternative names.",
-        "name": "NeuroMorpho.Org species ontology",
+        "id": "NMOSP",
         "lastSubDate": 1397430000,
+        "name": "NeuroMorpho.Org species ontology",
         "submissions": {
             "1397430000": "NMOSP_1.ont"
         }
@@ -2292,10 +2316,10 @@
         }
     },
     "NONRCTO": {
-        "id": "NONRCTO",
         "description": "We built an ontology to help the systematic review and meta-analysis process of non randomized clinical trials.",
-        "name": "Non-Randomized Controlled Trials Ontology",
+        "id": "NONRCTO",
         "lastSubDate": 1326844800,
+        "name": "Non-Randomized Controlled Trials Ontology",
         "submissions": {
             "1326844800": "NONRCTO_1.ont"
         }
@@ -2310,10 +2334,10 @@
         }
     },
     "NPO": {
-        "id": "NPO",
         "description": "An ontology that represents the basic knowledge of physical, chemical and functional characteristics of nanotechnology as used in cancer diagnosis and therapy.",
-        "name": "NanoParticle Ontology",
+        "id": "NPO",
         "lastSubDate": 1297468800,
+        "name": "NanoParticle Ontology",
         "submissions": {
             "1297468800": "NPO_1.ont"
         }
@@ -2331,26 +2355,27 @@
         "id": "OAE",
         "description": "The Ontology of Adverse Events (OAE) is a biomedical ontology in the domain of adverse events. OAE aims to standardize adverse event annotation, integrate various adverse event data, and support computer-assisted reasoning. AEO is a community-based ontology. Its development follows the OBO Foundry principles. ",
         "name": "Ontology of Adverse Events",
-        "lastSubDate": 1425021540,
+        "lastSubDate": 1426604760,
         "submissions": {
             "1422353880": "OAE_1.ont",
-            "1425021540": "OAE_2.ont"
+            "1425021540": "OAE_2.ont",
+            "1426604760": "OAE_3.ont"
         }
     },
     "OBCS": {
-        "id": "OBCS",
         "description": "The Ontology of Biological and Clinical Statistics (OBCS) is a biomedical ontology in the domain of biological and clinical statistics. OBCS is primarily targeted for statistical representation in the fields in biological, biomedical, and clinical domains.\r\n\r\nOBCS uses the Basic Formal Ontology (BFO) as the upper level ontology. OBCS imports all biostatistics related terms in the Ontology for Biomedical Investigations (OBI) including all logical axioms.",
-        "name": "Ontology of Biological and Clinical Statistics",
+        "id": "OBCS",
         "lastSubDate": 1421835600,
+        "name": "Ontology of Biological and Clinical Statistics",
         "submissions": {
             "1421835600": "OBCS_1.ont"
         }
     },
     "OBI": {
-        "id": "OBI",
         "description": "OBI is an ontology of investigations, the protocols and instrumentation used, the material used, the data generated and the types of analysis performed on it. <br><br>\r\nTo import,<br>\r\nLatest version: <a href=\"http://purl.obolibrary.org/obo/obi.owl\">http://purl.obolibrary.org/obo/obi.owl</a><br>\r\n<br>\r\nLatest release notes at <a href=\"http://purl.obolibrary.org/obo/obi/release-notes.html\">http://purl.obolibrary.org/obo/obi/release-notes.html</a><br>\r\n<br>\r\nNote: BFO 2.0 pre-Graz release (not official release version) was used in this release.",
-        "name": "Ontology for Biomedical Investigations",
+        "id": "OBI",
         "lastSubDate": 1418811600,
+        "name": "Ontology for Biomedical Investigations",
         "submissions": {
             "1418811600": "OBI_1.ont"
         }
@@ -2374,19 +2399,19 @@
         }
     },
     "OBI_BCGO": {
-        "id": "OBI_BCGO",
         "description": "Beta Cell Genomics Ontology (BCGO) is an application ontology built for the Beta Cell Genomics database (http://genomics.betacell.org/gbco/) aiming to support database annotation, complicated semantic queries, and automated cell type classification. The ontology is developed using Basic Formal Ontology (BFO) as upper ontology, Ontology for Biomedical Investigations (OBI) as ontology framework and integrated subsets of multiple OBO Foundry (candidate) ontologies. Current the BCGO contains 2383 classes including terms referencing to 24 various OBO Foundry ontologies including CL, CLO, UBERON, GO, PRO, UO, etc.",
-        "name": "Beta Cell Genomics Ontology",
+        "id": "OBI_BCGO",
         "lastSubDate": 1418206740,
+        "name": "Beta Cell Genomics Ontology",
         "submissions": {
             "1418206740": "OBI_BCGO_1.ont"
         }
     },
     "OBOE-SBC": {
-        "id": "OBOE-SBC",
         "description": "Extensible Observation Ontology for the Santa Barbara Coastal Long Term Ecological Research project (SBC-LTER).\r\nOBOE SBC extends core concepts defined in the OBOE suite that are particular to the Santa Barbara Coastal Long Term Ecological Research project's data collection activities. These include specific measurement protocols, sites, etc. This is mean as a case study ontology for the Semtools project.",
-        "name": "Santa Barbara Coastal Observation Ontology",
+        "id": "OBOE-SBC",
         "lastSubDate": 1281567600,
+        "name": "Santa Barbara Coastal Observation Ontology",
         "submissions": {
             "1281567600": "OBOE-SBC_1.ont"
         }
@@ -2410,37 +2435,37 @@
         }
     },
     "OGDI": {
-        "id": "OGDI",
         "description": "It is the ontology used to model the scientific investigation, especially  Genome-Wide Association Study (GWAS),  to find out  genetic susceptibility factor to disease, such as Diabetes. It models the genetic varaints, polymorphisms, statistical measurement, populations and other elements that are essential to determine a genetic susceptibility factor in GWAS study. It must be used with other two ontologies, in the case of Diabetes, :Ontology of Geographical Region (OGR) and Ontology of Glucose Metabolism Disorder (OGMD) .",
-        "name": "Ontology for Genetic Disease Investigations",
+        "id": "OGDI",
         "lastSubDate": 1359504000,
+        "name": "Ontology for Genetic Disease Investigations",
         "submissions": {
             "1359504000": "OGDI_1.ont"
         }
     },
     "OGG": {
-        "id": "OGG",
         "description": "OGG is a biological ontology in the area of genes and genomes. OGG uses the Basic Formal Ontology (BFO) as its upper level ontology. This OGG document contains the genes and genomes of a list of selected organisms, including human, two viruses (HIV and influenza virus), and bacteria (B. melitensis strain 16M, E. coli strain K-12 substrain MG1655, M. tuberculosis strain H37Rv, and P. aeruginosa strain PAO1). More OGG information for other organisms (e.g., mouse, zebrafish, fruit fly, yeast, etc.) may be found in other OGG subsets.",
-        "name": "Ontology of Genes and Genomes",
+        "id": "OGG",
         "lastSubDate": 1409591220,
+        "name": "Ontology of Genes and Genomes",
         "submissions": {
             "1409591220": "OGG_1.ont"
         }
     },
     "OGG-MM": {
-        "id": "OGG-MM",
         "description": "OGG-Mm is the OGG Mus musculus (mouse) subset. The OGG (Ontology of Genes and Genomes) is a formal ontology of genes and genomes of biological organisms. OGG is developed by following OBO Foundry principles and aligning with the BFO top ontology. ",
-        "name": "Ontology of Genes and Genomes - Mouse",
+        "id": "OGG-MM",
         "lastSubDate": 1415750400,
+        "name": "Ontology of Genes and Genomes - Mouse",
         "submissions": {
             "1415750400": "OGG-MM_1.ont"
         }
     },
     "OGI": {
-        "id": "OGI",
         "description": "Using BFO as its framwork, OGI formalized the genomic element by defining an upper class 'genetic interval'.\r\n\r\nThe definition of 'genetic interval' is \"the spatial continuous physical entity which contains ordered genomic sets(DNA, RNA, Allele, Marker,etc.) between and including two points (Nucleic_Acid_Base_Residue) on a chromosome or RNA molecule which must have a liner primary sequence sturcture.",
-        "name": "Ontology for Genetic Interval",
+        "id": "OGI",
         "lastSubDate": 1364580360,
+        "name": "Ontology for Genetic Interval",
         "submissions": {
             "1364580360": "OGI_1.ont"
         }
@@ -2465,10 +2490,10 @@
         }
     },
     "OGR": {
-        "id": "OGR",
         "description": "This OWL ontology classified the  geograhical regions related vocabularies extracted from UMLS. It used with other ontologies to represent the genetic susceptibility factors of diabetes.",
-        "name": "Ontology of Geographical Region",
+        "id": "OGR",
         "lastSubDate": 1204934400,
+        "name": "Ontology of Geographical Region",
         "submissions": {
             "1204934400": "OGR_1.ont"
         }
@@ -2483,19 +2508,19 @@
         }
     },
     "OMIM": {
-        "id": "OMIM",
         "description": "Online Mendelian Inheritance in Man, OMIM (TM). McKusick-Nathans Institute for Genetic Medicine, Johns Hopkins University (Baltimore, MD) and National Center for Biotechnology Information, National Library of Medicine",
-        "name": "Online Mendelian Inheritance in Man",
+        "id": "OMIM",
         "lastSubDate": 1422553860,
+        "name": "Online Mendelian Inheritance in Man",
         "submissions": {
             "1422553860": "OMIM_1.ont"
         }
     },
     "OMIT": {
-        "id": "OMIT",
         "description": "The purpose of the OMIT ontology is to establish data exchange standards and common data elements in the microRNA (miR) domain. \r\n\r\nBiologists (cell biologists in particular) and bioinformaticians can make use of OMIT to leverage emerging semantic technologies in knowledge acquisition and discovery for more effective identification of important roles performed by miRs in humans' various diseases and biological processes (usually through miRs' respective target genes).\r\n\r\nOMIT has reused and extended a set of well-established concepts from existing bio-ontologies, e.g., Gene Ontology, Sequence Ontology, Protein Ontology, NCBI Organism Taxonomy, Human Disease Ontology, Foundational Model of Anatomy, and so forth.",
-        "name": "Ontology for MicroRNA Target Prediction",
+        "id": "OMIT",
         "lastSubDate": 1386979200,
+        "name": "Ontology for MicroRNA Target Prediction",
         "submissions": {
             "1386979200": "OMIT_1.ont"
         }
@@ -2510,46 +2535,46 @@
         }
     },
     "ONL-DP": {
-        "id": "ONL-DP",
         "description": "This ontology is a module of the OntoNeuroLOG ontology, developed in the context of the NeuroLOG project, a french project supported by ANR (ANR-06-TLOG-024 grant) aiming at integrating distributed heterogeous resources in neuroimaging.\r\nIf covers the domain of Datasets and the processing of datasets. It includes a detailed taxonomy of datasets in the area of neuroimaging (and especially MR imaging) as well as a taxonomy of medical image processing.",
-        "name": "Dataset processing",
+        "id": "ONL-DP",
         "lastSubDate": 1373410800,
+        "name": "Dataset processing",
         "submissions": {
             "1373410800": "ONL-DP_1.ont"
         }
     },
     "ONL-MR-DA": {
-        "id": "ONL-MR-DA",
         "description": "This ontology is a module of the OntoNeuroLOG ontology, developed in the context of the NeuroLOG project, a french project supported by ANR (ANR-06-TLOG-024 grant) aiming at integrating distributed heterogeneous resources in neuroimaging.\r\nIf covers the domain of Magnetic Resonance Imaging (MRI) dataset acquisition, i.e. MRI protocols, and MRI sequence parameters. In particular, it includes a multi-axial classification of MR sequences.",
-        "name": "Magnetic Resonance Dataset Acquisition Ontology",
+        "id": "ONL-MR-DA",
         "lastSubDate": 1373410800,
+        "name": "Magnetic Resonance Dataset Acquisition Ontology",
         "submissions": {
             "1373410800": "ONL-MR-DA_1.ont"
         }
     },
     "ONL-MSA": {
-        "id": "ONL-MSA",
         "description": "This ontology is a module of the OntoNeuroLOG ontology, developed in the context of the NeuroLOG project, a french project supported by ANR (ANR-06-TLOG-024 grant) aiming at integrating distributed heterogeous resources in neuroimaging.\r\nThis MSA ontology module covers the field of mental state assessments, i.e. instruments, instrument variables, assessments, and resulting scores. It includes a generic domain core ontology, that provides a general model of such entities and a general taxonomy of behavioural, neurosychological and neuroclinical instruments, that can be easily extended to model any particular kind of instrument. It also includes such extensions for 8 relatively standard instruments, namely: (1) the Beck-depression-inventory-(BDI-II), (2) the Expanded-Disability-Status-Scale, (3) the Controlled-oral-word-association-test, (4) the Free-and-Cued-Selective-Reminding-Test-with-Immediate-Recall-16-item-version-(The-Gr\u00f6ber-and-Buschke-test), (5) the Mini-Mental-State, (6) the Stroop-color-and-word-test, (7) the Trail-making-test-(TMT), (8) the Wechsler-Adult-Intelligence-Scale-third-edition, (9) the Clinical-Dementia-Rating-scale, (10) the Category-verbal-fluency, (11) the Rey-Osterrieth-Complex-Figure-Test-(CFT).\r\n",
-        "name": "Mental State Assessment",
+        "id": "ONL-MSA",
         "lastSubDate": 1373324400,
+        "name": "Mental State Assessment",
         "submissions": {
             "1373324400": "ONL-MSA_1.ont"
         }
     },
     "ONLIRA": {
-        "id": "ONLIRA",
         "description": "ONLIRA (Ontology of the Liver for Radiology) focuses on a semantic specification of imaging observations of CT scans for the liver. ONLIRA extends RadLex with semantic relationships that describe and relate the concepts. Thus, automated processing tasks, such as identifying similar patients, are supported.",
-        "name": "Ontology of Liver for Radiology",
+        "id": "ONLIRA",
         "lastSubDate": 1422267480,
+        "name": "Ontology of Liver for Radiology",
         "submissions": {
             "1422267480": "ONLIRA_1.ont"
         }
     },
     "ONSTR": {
-        "id": "ONSTR",
         "description": "Ontology for Newborn Screening Follow-up and Translational Research (ONSTR) is an application ontology covering the domain of newborn screening, follow-up and translational research pertaining to patients diagnosed with inheritable and congenital diseases mainly identified through newborn dried blood spot screening. \r\nONSTR is a central component of the project Newborn Screening Follow-up Data Integration Collaborative (NBSDC).\r\n\r\nONSTR uses the Basic Formal Ontology v2 (BFO2, v2012-07-20) as top-level ontology and extends the classes imported from OBO Foundry ontologies and candidate ontologies.\r\n\r\nFor latest release notes please see: \r\nhttp://onstr.googlecode.com/svn/tags/currentRelease/2013-05-02/\r\n\r\nNBSDC project page: https://nbsdc.org  (under construction).\r\n\r\n",
-        "name": "Ontology for Newborn Screening Follow-up and Translational Research",
+        "id": "ONSTR",
         "lastSubDate": 1409698800,
+        "name": "Ontology for Newborn Screening Follow-up and Translational Research",
         "submissions": {
             "1409698800": "ONSTR_1.ont"
         }
@@ -2565,8 +2590,9 @@
     },
     "ONTODM-CORE": {
         "id": "ONTODM-CORE",
-        "lastSubDate": 1333234800,
+        "description": "OntoDM is a generic ontology for the domain of data mining. The ontology includes the information processing processes that occur in the domain of data mining, participants in the processes and their specifications. OntoDM is highly transferable and extendable due to its adherence to accepted standards, and compliance with existing ontology resources. The generality in scope allows wide number of applications of the ontology, such as semantic annotation of data mining scenarios, ontology based support for QSARs, etc.",
         "name": "Ontology of Core Data Mining Entities",
+        "lastSubDate": 1333234800,
         "submissions": {
             "1333234800": "ONTODM-CORE_1.ont"
         }
@@ -2581,10 +2607,10 @@
         }
     },
     "ONTODT": {
-        "id": "ONTODT",
         "description": "This ontology contains entities such as: datatype, datatype generator, datatype qualiy and others giving the possibility to represent arbitrary complex datatypes. This is an important fact for a general data mining ontology that wants to represent and query over modelling algorithms for mining structured data. \r\n\r\nThe ontology was first developed under the OntoDM (Ontology of Data Mining is available at http://kt.ijs.si/panovp/OntoDM) ontology, but for generality and reuse purpose it was decided to export it as a separate ontology. Additionaly, the OntoDT ontology is based on and ISO/IEC 11404 (http://www.iso.org/iso/catalogue_detail.htm?csnumber=39479) standard and can be reused used independently by any domain ontology that requires representation and reasoning about general purpose datatypes.",
-        "name": "Ontology of General Purpose Datatypes",
+        "id": "ONTODT",
         "lastSubDate": 1338418800,
+        "name": "Ontology of General Purpose Datatypes",
         "submissions": {
             "1338418800": "ONTODT_1.ont"
         }
@@ -2599,28 +2625,37 @@
         }
     },
     "ONTOMA": {
-        "id": "ONTOMA",
         "description": "Common concepts for  communication between traditional medicine and western medicine.\r\n\r\n(In French)",
-        "name": "Ontology of Alternative Medicine, French",
+        "id": "ONTOMA",
         "lastSubDate": 1344726000,
+        "name": "Ontology of Alternative Medicine, French",
         "submissions": {
             "1344726000": "ONTOMA_1.ont"
         }
     },
     "ONTOPNEUMO": {
-        "id": "ONTOPNEUMO",
         "description": "Ontology of pneumology (french version).\r\n\r\nThe ONTOPNEUMO ontology was developped by Audrey Baneyx, under the direction\r\nof Jean Charlet about knowledge engineering expertise and by Fran\u00e7ois-Xavier\r\nBlanc in collaboration with Bruno Housset about medical expertise.\r\nThe OWL compliant ONTOPNEUMO ontology is available under Creative Commons\r\nlicense \u201cAttribution-Non-Commercial-No Derivative Works 2.0 UK\u201d. Details of\r\nthis license are accessible at : http://creativecommons.org/licenses/\r\nby-nc-nd/2.0/uk/.",
-        "name": "Ontology of Pneumology",
+        "id": "ONTOPNEUMO",
         "lastSubDate": 1305068400,
+        "name": "Ontology of Pneumology",
         "submissions": {
             "1305068400": "ONTOPNEUMO_1.ont"
         }
     },
+    "ONTOTOXNUC": {
+        "id": "ONTOTOXNUC",
+        "description": "Ontology of nuclear toxicity developed during ToxNuc project <>.",
+        "name": "Ontology of Nuclear Toxicity",
+        "lastSubDate": 1410901200,
+        "submissions": {
+            "1410901200": "ONTOTOXNUC_1.ont"
+        }
+    },
     "OOEVV": {
-        "id": "OOEVV",
         "description": "The ontology of experimental variables and values provides a lightweight representation of (a) the variables used to measure experimental properties and (b) the measurement scales that form the complex data types supporting that data. Many different variables measure the same thing, here we use a lightweight representation driven by a small number of classes and a large number of variables to focus only on providing a vocabulary of variables that may be extended for consolidation to standardized variables for specific things and functions to map between values from different measurements scales. We use the base ontology description to provide a very lightweight representation of the basic elements of an experimental design and we use views to instantiate it for specific domains. ",
-        "name": "Ontology of Experimental Variables and Values",
+        "id": "OOEVV",
         "lastSubDate": 1335654000,
+        "name": "Ontology of Experimental Variables and Values",
         "submissions": {
             "1335654000": "OOEVV_1.ont"
         }
@@ -2636,10 +2671,10 @@
         }
     },
     "OPE": {
-        "id": "OPE",
         "description": "The Ontology of Physical Exercises (OPE) provides a reference for describing an exercise in terms of functional movements, engaged musculoskeletal system parts, related equipment or monitoring devices, intended health outcomes, as well as target ailments for which the exercise might be employed as a treatment or preventative measure. ",
-        "name": "Ontology of Physical Exercises",
+        "id": "OPE",
         "lastSubDate": 1363132800,
+        "name": "Ontology of Physical Exercises",
         "submissions": {
             "1363132800": "OPE_1.ont"
         }
@@ -2654,38 +2689,38 @@
         }
     },
     "ORDO": {
-        "id": "ORDO",
         "description": "The Orphanet Rare Disease ontology (ORDO) is jointly developed by Orphanet and the EBI to provide a structured vocabulary for rare diseases capturing relationships between diseases, genes and other relevant features which will form a useful resource for the computational analysis of rare diseases. \r\n\r\nIt derived from the Orphanet database (www.orpha.net <http://www.orpha.net>) , a multilingual database dedicated to rare diseases populated from literature and validated by international experts. It integrates a nosology (classification of rare diseases), relationships (gene-disease relations, epiemological data) and connections with other terminologies (MeSH, SNOMED CT, UMLS, MedDRA),databases (OMIM, UniProtKB, HGNC, ensembl, Reactome, IUPHAR, Geantlas) or classifications (ICD10). \r\n\r\nThe ontology will be maintained by Orphanet and further populated with new data. Orphanet classifications can be browsed in the OLS view.\r\n\r\nThe Orphanet Rare Disease Ontology is updated monthly and follows the OBO guidelines on deprecation of terms. It constitutes the official ontology of rare diseases produced and maintained by Orphanet (INSERM, US14). ",
-        "name": "Orphanet Rare Disease Ontology",
+        "id": "ORDO",
         "lastSubDate": 1421144340,
+        "name": "Orphanet Rare Disease Ontology",
         "submissions": {
             "1421144340": "ORDO_1.ont"
         }
     },
     "ORTHO": {
-        "id": "ORTHO",
         "description": "Ortholog Ontology (OrthO)",
-        "name": "Ortholog Ontology",
+        "id": "ORTHO",
         "lastSubDate": 1414491720,
+        "name": "Ortholog Ontology",
         "submissions": {
             "1414491720": "ORTHO_1.ont"
         }
     },
     "OVAE": {
-        "id": "OVAE",
         "description": "The Ontology of Vaccine Adverse Events (OVAE) is a biomedical ontology in the area of vaccine adverse events. OVAE is an extension of the Ontology of Adverse Events (OAE) and the Vaccine Ontology (VO). OVAE is aimed to represent and analyze various vaccine-specific adverse events. ",
-        "name": "Ontology of Vaccine Adverse Events",
+        "id": "OVAE",
         "lastSubDate": 1423811940,
+        "name": "Ontology of Vaccine Adverse Events",
         "submissions": {
             "1376500260": "OVAE_1.ont",
             "1423811940": "OVAE_2.ont"
         }
     },
     "OntoVIP": {
-        "id": "OntoVIP",
         "description": "The OntoVIP ontology was developed in the context of the Virtual Imaging Platform project (VIP), a french project supported by ANR (ANR-09-COSI-03 grant) aiming at sharing medical image simulation resources. \r\nThis ontology describes the content of the models used in medical image simulation. This ontology can be used to annotate such models in order to highlight the different entities that are present in the 3D scene to be imaged, i.e. anatomical structures, pathological structures, foreign bodies, contrast agents etc. The model allows also to associate to these entities information about their physical qualities, which are used in the medical image simulation process (to mimick physical phenomena involved in CT, MR, US and PET imaging). This ontology partly relies on the OntoNeuroLOG ontology (ONL-DP ONL-MR-DA), as well as PATO, RadLex, FMA and ChEBI.",
-        "name": "Medical image simulation",
+        "id": "OntoVIP",
         "lastSubDate": 1373583600,
+        "name": "Medical image simulation",
         "submissions": {
             "1373583600": "OntoVIP_1.ont"
         }
@@ -2709,73 +2744,73 @@
         }
     },
     "PATO": {
-        "id": "PATO",
         "description": "Phenotypic qualities (properties). This ontology can be used in conjunction with other ontologies such as GO or anatomical ontologies to refer to phenotypes. Examples of qualities are red, ectopic, high temperature, fused, small, edematous and arrested.",
-        "name": "Phenotypic Quality Ontology",
+        "id": "PATO",
         "lastSubDate": 1408122480,
+        "name": "Phenotypic Quality Ontology",
         "submissions": {
             "1408122480": "PATO_1.ont"
         }
     },
     "PCO": {
-        "id": "PCO",
         "description": "The Population and Community Ontology (PCO) models material entities, qualities, and processes related to collections of interacting organisms such as populations and communities. It is taxon neutral, and can be used for any species, including humans. The classes in the PCO are useful for describing evolutionary processes, organismal interactions, and ecological experiments. Practical applications of the PCO include community health care, plant pathology, behavioral studies, sociology, and ecology.\r\n\r\nThe PCO is complient with the Basic Formal Ontology (BFO) and is designed to be compatible with other OBO Foundry ontologies. ",
-        "name": "Population and Community Ontology",
+        "id": "PCO",
         "lastSubDate": 1400859840,
+        "name": "Population and Community Ontology",
         "submissions": {
             "1400859840": "PCO_1.ont"
         }
     },
     "PDO": {
-        "id": "PDO",
         "description": "An ontology for describing both human infectious diseases caused by microbes and the diseases that is related to microbial infection. ",
-        "name": "Pathogenic Disease Ontology",
+        "id": "PDO",
         "lastSubDate": 1411945200,
+        "name": "Pathogenic Disease Ontology",
         "submissions": {
             "1411945200": "PDO_1.ont"
         }
     },
     "PDON": {
-        "id": "PDON",
         "description": "Here, we introduce the Parkinson\u2019s disease ontology (PDO) as a comprehensive semantic framework covering the whole breadth of the Parkinson\u2019s knowledge domain. This ontology with a subclass-based taxonomic hierarchy not only covers the broad spectrum of major biomedical concepts from molecular to clinical features of the disease, but also the different views on disease features held by molecular biologists, clinicians and drug developers. ",
-        "name": "Parkinson's Disease Ontology",
+        "id": "PDON",
         "lastSubDate": 1408316400,
+        "name": "Parkinson's Disease Ontology",
         "submissions": {
             "1408316400": "PDON_1.ont"
         }
     },
     "PDQ": {
-        "id": "PDQ",
         "description": "Physician Data Query (PDQ) Terminology is part of NCI's comprehensive cancer information database, which contains expert summaries on a wide range of cancer topics, a listing of some 30,000 cancer clinical trials from around the world, a directory of genetics services professionals, the NCI Dictionary of Cancer Terms, and the NCI Drug Dictionary.",
-        "name": "Physician Data Query",
+        "id": "PDQ",
         "lastSubDate": 1422553860,
+        "name": "Physician Data Query",
         "submissions": {
             "1422553860": "PDQ_1.ont"
         }
     },
     "PEAO": {
-        "id": "PEAO",
         "description": "The Plant domain has been the subject of several attempts to structure and formally define terms and corresponding relations, such as their anatomical features, developmental stages, and the application of particular experimental procedures to a biological problem. However, a focus on experimental assays in order to describe the whole experimental procedure, to the best of our knowledge, has only been attempted in the context of a very general description based on classical views of the scientific method. In this study, we focus on the development and proposal of an ontology dedicated to the description of these experimental procedures, regardless of the scientific questions that prompted the assays. This ontology includes entities from three distinct realms (biological, physical and data), which include both experimental products, their relations and the protocols describing their manipulation. The final outcome is a useful and comprehensive ontology in the plant domain, to be used as a log book by experimentalists, providing a formal relation between entities.",
-        "name": "Plant Experimental Assay Ontology",
+        "id": "PEAO",
         "lastSubDate": 1418774400,
+        "name": "Plant Experimental Assay Ontology",
         "submissions": {
             "1418774400": "PEAO_1.ont"
         }
     },
     "PECO": {
-        "id": "PECO",
         "description": "The Plant Environment Ontology describes the treatments,growing conditions, and/or study types used in various types of plant biology experiments. The subjects of the studies may also include in vitro plant structures (PO:0000004). A plant treatment is the most specific,and may be a component of a plant growing condition, and the plant study type. The broadest classes are the plant study types where the terms can be used to identify the growth study facility. Each growth facility such as field study, growth chamber, green house etc is a environment on its own and it may also involve instances of biotic and abiotic treatments and different growing conditions.",
-        "name": "Plant Environmental Conditions",
+        "id": "PECO",
         "lastSubDate": 1401881820,
+        "name": "Plant Environmental Conditions",
         "submissions": {
             "1401881820": "PECO_1.ont"
         }
     },
     "PEDTERM": {
-        "id": "PEDTERM",
         "description": "Terms associated with pediatrics, representing information related to child health and development from pre-birth through 21 years of age; contributed by the National Institute of Child Health and Human Development.",
-        "name": "Pediatric Terminology",
+        "id": "PEDTERM",
         "lastSubDate": 1359072000,
+        "name": "Pediatric Terminology",
         "submissions": {
             "1359072000": "PEDTERM_1.ont"
         }
@@ -2816,55 +2851,55 @@
         }
     },
     "PHENX": {
-        "id": "PHENX",
         "description": "Standard measures related to complex diseases, phenotypic traits and environmental exposures",
-        "name": "PhenX Phenotypic Terms",
+        "id": "PHENX",
         "lastSubDate": 1362355200,
+        "name": "PhenX Phenotypic Terms",
         "submissions": {
             "1362355200": "PHENX_1.ont"
         }
     },
     "PHYLONT": {
-        "id": "PHYLONT",
         "description": "Ontology for Phylogenetic Analysis",
-        "name": "Phylogenetic Ontology",
+        "id": "PHYLONT",
         "lastSubDate": 1349132400,
+        "name": "Phylogenetic Ontology",
         "submissions": {
             "1349132400": "PHYLONT_1.ont"
         }
     },
     "PIERO": {
-        "id": "PIERO",
         "description": "Enzyme Reaction Ontology for annotating Partial Information of chemical transformation",
-        "name": "Enzyme Reaction Ontology for annotating Partial Information of chemical transformation",
+        "id": "PIERO",
         "lastSubDate": 1398959220,
+        "name": "Enzyme Reaction Ontology for annotating Partial Information of chemical transformation",
         "submissions": {
             "1398959220": "PIERO_1.ont"
         }
     },
     "PLIO": {
-        "id": "PLIO",
         "description": "The protein--ligand interaction ontology (PLIO) was developed around three main concepts, namely target, ligand and interaction, and was enriched by adding synonyms, useful annotations and references.",
-        "name": "Protein-ligand interaction ontology",
+        "id": "PLIO",
         "lastSubDate": 1308092400,
+        "name": "Protein-ligand interaction ontology",
         "submissions": {
             "1308092400": "PLIO_1.ont"
         }
     },
     "PLOSTHES": {
-        "id": "PLOSTHES",
-        "name": "PLOS Thesaurus",
         "description": null,
+        "id": "PLOSTHES",
+        "lastSubDate": 0,
+        "name": "PLOS Thesaurus",
         "submissions": {
             
-        },
-        "lastSubDate": 0
+        }
     },
     "PMA": {
-        "id": "PMA",
         "description": "The Portfolio Management Application (PMA) is a system for tracking grants and producing reports - Users can access grant data through a query interface and a variety of pre-defined forms and reports",
-        "name": "Portfolio Management Application",
+        "id": "PMA",
         "lastSubDate": 1273532400,
+        "name": "Portfolio Management Application",
         "submissions": {
             "1273532400": "PMA_1.ont"
         }
@@ -2879,37 +2914,37 @@
         }
     },
     "PO": {
-        "id": "PO",
         "description": "The Plant Ontology is a structured vocabulary and database resource that links plant anatomy, morphology and growth and development to plant genomics data. The PO is under active development to expand to encompass terms and annotations from all plants.",
-        "name": "Plant Ontology",
+        "id": "PO",
         "lastSubDate": 1376953200,
+        "name": "Plant Ontology",
         "submissions": {
             "1376953200": "PO_1.ont"
         }
     },
     "PORO": {
-        "id": "PORO",
         "description": "An ontology covering the anatomy of Porifera (sponges)",
-        "name": "Porifera Ontology",
+        "id": "PORO",
         "lastSubDate": 1405789620,
+        "name": "Porifera Ontology",
         "submissions": {
             "1405789620": "PORO_1.ont"
         }
     },
     "PP": {
-        "id": "PP",
         "description": "To answer the need for a workflow representing a sequence of data transformations, a high-level process ontology was defined, denoted Pipeline Patterns (PP) ontology. \r\n\r\nEvery concept is generically a Data (class from EDAM), which can be further specified as an Entry (P:00002) or an Exit (P:00009). All Entries can be subjected to an Operation (class from EDAM) producing an Intermediate (P:00010). An Intermediate has a TemporalEntity associated to represent its time of creation. Some Entries are specifically of the type Exit, meaning that they will represent concepts that exit the current category and be passed to the next one on the workflow. Additionally, in order to permit the treatment of a set of objects as a single entity, this high-level ontology considers the concept of List (P:00004) and more specifically an Aggregate (P:00005), containing a set of Data or Entry, respectively.\r\nThe concept Intermediate is an Entry, allowing for the successive application of an operation to an Element. This is particularly useful in the case of the application of sequential set of operations.",
-        "name": "Pipeline Patterns Ontology",
+        "id": "PP",
         "lastSubDate": 1418774400,
+        "name": "Pipeline Patterns Ontology",
         "submissions": {
             "1418774400": "PP_1.ont"
         }
     },
     "PPIO": {
-        "id": "PPIO",
         "description": "A structured controlled vocabulary for the annotation of experiments concerned with protein-protein interactions. Developed by the HUPO Proteomics Standards Initiative.",
-        "name": "Protein-Protein Interaction Ontology",
+        "id": "PPIO",
         "lastSubDate": 1425021660,
+        "name": "Protein-Protein Interaction Ontology",
         "submissions": {
             "1415961540": "PPIO_1.ont",
             "1425021660": "PPIO_2.ont"
@@ -2925,28 +2960,28 @@
         }
     },
     "PROPREO": {
-        "id": "PROPREO",
         "description": "A comprehensive proteomics data and process provenance ontology.",
-        "name": "Proteomics Data and Process Provenance Ontology",
+        "id": "PROPREO",
         "lastSubDate": 1187910000,
+        "name": "Proteomics Data and Process Provenance Ontology",
         "submissions": {
             "1187910000": "PROPREO_1.ont"
         }
     },
     "PROVO": {
-        "id": "PROVO",
         "description": "The PROV Ontology (PROV-O) expresses the PROV Data Model using the OWL2 Web Ontology Language (OWL2). It provides a set of classes, properties, and restrictions that can be used to represent and interchange provenance information generated in different systems and under different contexts. It can also be specialized to create new classes and properties to model provenance information for different applications and domains.",
-        "name": "Provenance Ontology",
+        "id": "PROVO",
         "lastSubDate": 1372892400,
+        "name": "Provenance Ontology",
         "submissions": {
             "1372892400": "PROVO_1.ont"
         }
     },
     "PSDS": {
-        "id": "PSDS",
         "description": "REPLACED BY: Plant Ontology (PO).  A controlled vocabulary of growth and developmental stages in various plants. Note that this has been subsumed into the Plant Ontology (PO).\r\nThis file is created by filtering plant_ontology_assert.obo to contain only terms from the plant structure development stage branch of the PO. For more information, please see: http://palea.cgrb.oregonstate.edu/viewsvn/Poc/tags/live/",
-        "name": "Plant Structure Development Stage",
+        "id": "PSDS",
         "lastSubDate": 1377039600,
+        "name": "Plant Structure Development Stage",
         "submissions": {
             "1377039600": "PSDS_1.ont"
         }
@@ -2964,25 +2999,26 @@
         "id": "PTO",
         "description": "A controlled vocabulary to describe phenotypic traits in plants. Each trait is a distinguishable feature, characteristic, quality or phenotypic feature of a developing or mature plant, or a plant part.",
         "name": "Plant Trait Ontology",
-        "lastSubDate": 1414578420,
+        "lastSubDate": 1426777620,
         "submissions": {
-            "1414578420": "PTO_1.ont"
+            "1414578420": "PTO_1.ont",
+            "1426777620": "PTO_2.ont"
         }
     },
     "PTRANS": {
-        "id": "PTRANS",
         "description": "This vocabulary describes a process that is the means of how a pathogen is transmitted from one host, reservoir, or source to another host. This transmission may occur either directly or indirectly and may involve animate vectors or inanimate vehicles.",
-        "name": "Pathogen Transmission Ontology",
+        "id": "PTRANS",
         "lastSubDate": 1292284800,
+        "name": "Pathogen Transmission Ontology",
         "submissions": {
             "1292284800": "PTRANS_1.ont"
         }
     },
     "PVONTO": {
-        "id": "PVONTO",
         "description": "A pharmacovigilance ontology to connect known facts on drugs, disease, ADEs, and their molecular mechanisms.",
-        "name": "Pharmacovigilance Ontology",
+        "id": "PVONTO",
         "lastSubDate": 1295222400,
+        "name": "Pharmacovigilance Ontology",
         "submissions": {
             "1295222400": "PVONTO_1.ont"
         }
@@ -2991,34 +3027,36 @@
         "id": "PW",
         "description": "The goal of the Pathway Ontology is to cover all types of biological pathways, including altered and disease pathways, and to capture the relationships between them within the hierarchical structure of a Directed Acyclic Graph (DAG). The five nodes of the ontology are: classic metabolic, regulatory, signaling, drug and disease pathways. An extensive survey of the review literature along with searches of existing pathway databases have been used to choose terms and their position within the tree. The ontology is continually expanding along with the development of Pathway and Disease Portals at RGD. Mapping of pathways in other databases to terms in PW as synonyms further increased the content of the ontology. It also provided the means to bring in annotations made by these databases and link to their sites via automatic pipelines built at RGD. The ontology allows for the standardized annotation of rat as well as human and mouse genes to pathway terms. It also serves as a vehicle to connect between genes and ontology reports, between reports and interactive pathway diagrams, between pathways that directly connect to one another within a diagram or between pathways that in some fashion are globally related in pathway suites and suite networks. Metabolic, regulatory or signaling pathway terms have associated terms for the altered version of the pathway and the level at which the alteration(s) may occur. Proteins with mutations known to affect a particular pathway can be annotated to the normal and altered version(s) of the pathway and to a disease pathway, if known. Both the provision of terms for the altered versions of pathways and the representation of disease pathway diagrams as a collection of altered pathways are unique to the PW ontology and RGD's pathway data.\r\nThe Pathway ontology is distributed under the terms of the Creative Commons Attribution license version 3.0 Unported (CC BY 3.0), see\r\nhttp://creativecommons.org/licenses/by/3.0 for details. ",
         "name": "Pathway Ontology",
-        "lastSubDate": 1424379600,
+        "lastSubDate": 1425541260,
         "submissions": {
             "1421625600": "PW_1.ont",
-            "1424379600": "PW_2.ont"
+            "1424379600": "PW_2.ont",
+            "1425541260": "PW_3.ont"
         }
     },
     "QIBO": {
-        "id": "QIBO",
         "description": "An ontology that describes various concepts in quantitative imaging biomarkers. ",
-        "name": "Quantitative Imaging Biomarker Ontology",
+        "id": "QIBO",
         "lastSubDate": 1317855600,
+        "name": "Quantitative Imaging Biomarker Ontology",
         "submissions": {
             "1317855600": "QIBO_1.ont"
         }
     },
     "QUDT": {
         "id": "QUDT",
-        "lastSubDate": 1376241240,
+        "description": "The QUDT, or 'Quantity, Unit, Dimension and Type' collection of ontologies define the base classes properties, and restrictions used for modeling physical quantities, units of measure, and their dimensions in various measurement systems. The goal of the QUDT ontology is to provide a unified model of, measurable quantities, units for measuring different kinds of quantities, the numerical values of quantities in different units of measure and the data structures and data types used to store and manipulate these objects in software. This OWL schema is a foundation for a basic treatment of units.",
         "name": "Quantities, Units, Dimensions, and Types Ontology",
+        "lastSubDate": 1376241240,
         "submissions": {
             "1376241240": "QUDT_1.ont"
         }
     },
     "RADLEX": {
-        "id": "RADLEX",
         "description": "RadLex is a controlled terminology for radiology-a single unified source of radiology terms for radiology practice, education, and research. For license information see : <a href=\"http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf\">http://www.rsna.org/uploadedFiles/RSNA/Content/Informatics/RadLex_License_Agreement_and_Terms_of_Use_V2_Final.pdf</a>\r\n\r\nConverted to use OWL format submissions",
-        "name": "Radiology Lexicon",
+        "id": "RADLEX",
         "lastSubDate": 1416787200,
+        "name": "Radiology Lexicon",
         "submissions": {
             "1416787200": "RADLEX_1.ont"
         }
@@ -3033,10 +3071,10 @@
         }
     },
     "RCD": {
-        "id": "RCD",
         "description": "Clinical Terms Version 3 (CTV3) (Read Codes) (Q199): National Health Service National Coding and Classification Centre",
-        "name": "Read Codes, Clinical Terms Version 3 (CTV3) ",
+        "id": "RCD",
         "lastSubDate": 1422553860,
+        "name": "Read Codes, Clinical Terms Version 3 (CTV3) ",
         "submissions": {
             "1422553860": "RCD_1.ont"
         }
@@ -3051,19 +3089,19 @@
         }
     },
     "REPO": {
-        "id": "REPO",
         "description": "Ontology for livestock reproductive traits and phenotypes",
-        "name": "Reproductive Trait and Phenotype Ontology",
+        "id": "REPO",
         "lastSubDate": 1318374000,
+        "name": "Reproductive Trait and Phenotype Ontology",
         "submissions": {
             "1318374000": "REPO_1.ont"
         }
     },
     "RETO": {
-        "id": "RETO",
         "description": "An application ontology for the domain of gene transcription regulation. The ontology integrates fragments of GO and MI with data from GOA, IntAct, UniProt, NCBI and orthology relations from RO and SIO.",
-        "name": "Regulation of Transcription Ontology",
+        "id": "RETO",
         "lastSubDate": 1346799600,
+        "name": "Regulation of Transcription Ontology",
         "submissions": {
             "1346799600": "RETO_1.ont"
         }
@@ -3078,10 +3116,10 @@
         }
     },
     "REXO": {
-        "id": "REXO",
         "description": "An application ontology for the domain of gene expression regulation. The ontology integrates fragments of GO and MI with data from GOA, IntAct, UniProt, NCBI, KEGG and orthology relations.",
-        "name": "Regulation of Gene Expression Ontolology",
+        "id": "REXO",
         "lastSubDate": 1349391600,
+        "name": "Regulation of Gene Expression Ontolology",
         "submissions": {
             "1349391600": "REXO_1.ont"
         }
@@ -3096,36 +3134,37 @@
         }
     },
     "RNAO": {
-        "id": "RNAO",
         "description": "The central aim of the RNA Ontology Consortium (ROC) is to develop an ontology to capture all aspects of RNA - from primary sequence to alignments, secondary and tertiary structure from base pairing and base stacking to sophisticated motifs.",
-        "name": "RNA Ontology",
+        "id": "RNAO",
         "lastSubDate": 1276124400,
+        "name": "RNA Ontology",
         "submissions": {
             "1276124400": "RNAO_1.ont"
         }
     },
     "RNPRIO": {
-        "id": "RNPRIO",
         "description": "Ontology for Inventories of Clinical Data Research Networks, Patient-Powered Research Networks, and Patient Registries ",
-        "name": "Research Network and Patient Registry Inventory Ontology",
+        "id": "RNPRIO",
         "lastSubDate": 1370559600,
+        "name": "Research Network and Patient Registry Inventory Ontology",
         "submissions": {
             "1370559600": "RNPRIO_1.ont"
         }
     },
     "RNRMU": {
         "id": "RNRMU",
-        "lastSubDate": 1412031600,
+        "description": "The terms of RNRMU",
         "name": "RNRMU",
+        "lastSubDate": 1412031600,
         "submissions": {
             "1412031600": "RNRMU_1.ont"
         }
     },
     "ROLEO": {
-        "id": "ROLEO",
         "description": "The Role Ontology (RoleO) is a ontology in the domain of role classification. RoleO aims to standardize role classification and support computer-assisted reasoning.  RoleO is a community-based ontology, and its development follows the OBO Foundry principles.",
-        "name": "Role Ontology",
+        "id": "ROLEO",
         "lastSubDate": 1287788400,
+        "name": "Role Ontology",
         "submissions": {
             "1287788400": "ROLEO_1.ont"
         }
@@ -3160,9 +3199,10 @@
         "id": "RS",
         "description": "This ontology defines the hierarchical display of the different rat strains as derived from the parental strains",
         "name": "Rat Strain Ontology",
-        "lastSubDate": 1421835720,
+        "lastSubDate": 1425541320,
         "submissions": {
-            "1421835720": "RS_1.ont"
+            "1421835720": "RS_1.ont",
+            "1425541320": "RS_2.ont"
         }
     },
     "RSA": {
@@ -3175,47 +3215,47 @@
         }
     },
     "RXNO": {
-        "id": "RXNO",
         "description": "RXNO, the name reaction ontology, connects organic name reactions such as the Diels-Alder cyclization and the Cannizzaro reaction to their roles in an organic synthesis. ",
-        "name": "Name Reaction Ontology",
+        "id": "RXNO",
         "lastSubDate": 1414492020,
+        "name": "Name Reaction Ontology",
         "submissions": {
             "1414492020": "RXNO_1.ont"
         }
     },
     "RXNORM": {
-        "id": "RXNORM",
         "description": "RxNorm Vocabulary",
-        "name": "RxNORM",
+        "id": "RXNORM",
         "lastSubDate": 1422553860,
+        "name": "RxNORM",
         "submissions": {
             "1422553860": "RXNORM_1.ont"
         }
     },
     "SAO": {
-        "id": "SAO",
         "description": "SAO describes structures from the dimensional range encompassing cellular and subcellular structure, supracellular domains, and macromolecules.",
-        "name": "Subcellular Anatomy Ontology",
+        "id": "SAO",
         "lastSubDate": 1187650800,
+        "name": "Subcellular Anatomy Ontology",
         "submissions": {
             "1187650800": "SAO_1.ont"
         }
     },
     "SBO": {
-        "id": "SBO",
         "description": "The Systems Biology Ontology is a set of controlled, relational vocabularies of terms commonly used in Systems Biology, and in particular in computational modeling. The ontology consists of six orthogonal vocabularies defining: the roles of reaction participants (eg. \"substrate\"), quantitative parameters (eg. \"Michaelis constant\"), a precise classification of mathematical expressions that describe the system (eg. \"mass action rate law\"), the modeling framework used (eg. \"logical framework\"), and a branch each to describe entity (eg. \"macromolecule\") and interaction (eg. \"process\") types, and a branch to define the different types of metadata that may be present within a model.\r\n\r\nSBO terms can be used to introduce a layer of semantic information into the standard description of a model, or to annotate the results of biochemical experiments in order to facilitate their efficient reuse. SBO is an Open Biomedical Ontologies (OBO) candidate ontology, and is free for use. More information about SBO can be found from the project FAQ, at http://www.ebi.ac.uk/sbo/\r\n\r\nSBO is a project of the BioModels.net effort and is developed through community collaboration.",
-        "name": "Systems Biology Ontology",
+        "id": "SBO",
         "lastSubDate": 1425367620,
+        "name": "Systems Biology Ontology",
         "submissions": {
             "1417083660": "SBO_1.ont",
             "1425367620": "SBO_2.ont"
         }
     },
     "SBOL": {
-        "id": "SBOL",
         "description": "Synthetic Biology Open Language Visual (SBOLv) is an ontology to represent standardized graphical notation for synthetic biology.",
-        "name": "Synthetic Biology Open Language Visual Ontology",
+        "id": "SBOL",
         "lastSubDate": 1366930800,
+        "name": "Synthetic Biology Open Language Visual Ontology",
         "submissions": {
             "1366930800": "SBOL_1.ont"
         }
@@ -3230,37 +3270,37 @@
         }
     },
     "SDO": {
-        "id": "SDO",
         "description": "An application ontology for the domain of Sleep Medicine. \r\n",
-        "name": "Sleep Domain Ontology",
+        "id": "SDO",
         "lastSubDate": 1360540800,
+        "name": "Sleep Domain Ontology",
         "submissions": {
             "1360540800": "SDO_1.ont"
         }
     },
     "SEDI": {
-        "id": "SEDI",
         "description": "An ontology for DICOM as used in the SeDI project.",
-        "name": "Semantic DICOM Ontology",
+        "id": "SEDI",
         "lastSubDate": 1406588400,
+        "name": "Semantic DICOM Ontology",
         "submissions": {
             "1406588400": "SEDI_1.ont"
         }
     },
     "SEP": {
-        "id": "SEP",
         "description": "A structured controlled vocabulary for the annotation of sample processing and separation techniques in scientific experiments, such as, and including, gel electrophoresis, column chromatography, capillary electrophoresis, centrifugation and so on. Developed jointly by the HUPO Proteomics Standards Initiative and The Metabolomics Standards Initiative.",
-        "name": "Sample Processing and Separation Techniques Ontology",
+        "id": "SEP",
         "lastSubDate": 1215385200,
+        "name": "Sample Processing and Separation Techniques Ontology",
         "submissions": {
             "1215385200": "SEP_1.ont"
         }
     },
     "SHR": {
-        "id": "SHR",
         "description": "The goal of SHR project is to develop an ontology for the description of student health records. Student health records are created for entering college students in order to provide better health services will be formed. This file contains various sections such as history of disease, family history of disease, public examinations and ... .",
-        "name": "Student Health Record Ontology",
+        "id": "SHR",
         "lastSubDate": 1317250800,
+        "name": "Student Health Record Ontology",
         "submissions": {
             "1317250800": "SHR_1.ont"
         }
@@ -3293,55 +3333,55 @@
         }
     },
     "SNMI": {
-        "id": "SNMI",
         "description": "Cote, Roger A., editor. Systematized Nomenclature of Human and Veterinary Medicine: SNOMED International. Northfield (IL): College of American Pathologists; Schaumburg (IL): American Veterinary Medical Association, Version 3.5, 1998.",
-        "name": "Systematized Nomenclature of Medicine, International Version",
+        "id": "SNMI",
         "lastSubDate": 1422553920,
+        "name": "Systematized Nomenclature of Medicine, International Version",
         "submissions": {
             "1422553920": "SNMI_1.ont"
         }
     },
     "SNOMEDCT": {
-        "id": "SNOMEDCT",
         "description": "SNOMED Clinical Terms",
-        "name": "Systematized Nomenclature of Medicine - Clinical Terms",
+        "id": "SNOMEDCT",
         "lastSubDate": 1422553920,
+        "name": "Systematized Nomenclature of Medicine - Clinical Terms",
         "submissions": {
             "1422553920": "SNOMEDCT_1.ont"
         }
     },
     "SNPO": {
-        "id": "SNPO",
         "description": "SNP-Ontology is a domain ontology that provides a formal representation (OWL-DL) of genomic variations. Despite its name, SNP-Ontology, is not limited to the representation of SNPs but it encompasses genomic variations in a broader meaning. SNP-Ontology is general enough to enable the representation of variations observed in genome of various species. Latest versions of SNP-Ontology include the representation of haplotype and of CNV. The unambiguous representation of genomic variations provided by SNP-Ontology enables to integrate heterogeneous data related to genomic variations. To achieve this goal SNP-Ontology enables (1) to represent one variation in accordance with various ways that exist for describing it, (2) to represent the equivalence between two distinct descriptions of one variation, and (3) to represent correspondence between a genomic variation and its outcome at the transcriptome and proteome levels.",
-        "name": "Single-Nucleotide Polymorphism (SNP) Ontology",
+        "id": "SNPO",
         "lastSubDate": 1231977600,
+        "name": "Single-Nucleotide Polymorphism (SNP) Ontology",
         "submissions": {
             "1231977600": "SNPO_1.ont"
         }
     },
     "SO": {
-        "id": "SO",
         "description": "SO is a collaborative ontology project for the definition of sequence features used in biological sequence annotation. SO was initially developed by the Gene Ontology Consortium. Contributors to SO include the GMOD community, model organism database groups such as WormBase, FlyBase, Mouse Genome Informatics group, and institutes such as the Sanger Institute and the EBI. Input to SO is welcomed from the sequence annotation community. The OBO revision is available here: http://sourceforge.net/p/song/svn/HEAD/tree/",
-        "name": "Sequence Types and Features Ontology",
+        "id": "SO",
         "lastSubDate": 1390957020,
+        "name": "Sequence Types and Features Ontology",
         "submissions": {
             "1390957020": "SO_1.ont"
         }
     },
     "SOPHARM": {
-        "id": "SOPHARM",
         "description": "SO-Pharm (Suggested Ontology for Pharmacogenomics) is a domain ontology implemented in OWL-DL, which proposes a formal description of pharmacogenomic knowledge. SO-Pharm articulates different ontologies that represent complementary sub-domains of pharmacogenomics, i.e. related to genotype, phenotype, drugs, and clinical trials. SO-Pharm enables to represent pharmacogenomic relationships between a drug, a genomic variation and a phenotype trait. In addition, it enables to represent patient and more largely panel included in trials, and populations. SO-Pharm enables the representation of measured items on this patients such as results from the observation of a phenotype trait or of genomic variations. SO-Pharm supports knowledge about pharmacogenomic hypothesis, case study, and investigations in pharmacogenomics. SO-Pharm is designed to facilitate data integration and knowledge discovery in pharmacogenomics. In addition it provides a consistent articulation of ontologies of pharmacogenomic sub-domains.",
-        "name": "Suggested Ontology for Pharmacogenomics",
+        "id": "SOPHARM",
         "lastSubDate": 1233878400,
+        "name": "Suggested Ontology for Pharmacogenomics",
         "submissions": {
             "1233878400": "SOPHARM_1.ont"
         }
     },
     "SOY": {
-        "id": "SOY",
         "description": "Growth, trait and development ontology for soybean",
-        "name": "Soy Ontology",
+        "id": "SOY",
         "lastSubDate": 1367276400,
+        "name": "Soy Ontology",
         "submissions": {
             "1367276400": "SOY_1.ont"
         }
@@ -3356,10 +3396,10 @@
         }
     },
     "SPO": {
-        "id": "SPO",
         "description": null,
-        "name": "Skin Physiology Ontology",
+        "id": "SPO",
         "lastSubDate": 1221778800,
+        "name": "Skin Physiology Ontology",
         "submissions": {
             "1221778800": "SPO_1.ont"
         }
@@ -3383,65 +3423,65 @@
         }
     },
     "SSO": {
-        "id": "SSO",
         "description": "The SSO encodes agreement among experts about how Emergency Department (ED) chief complaints are grouped into syndromes of public health importance (consensus definitions). ",
-        "name": "Syndromic Surveillance Ontology",
+        "id": "SSO",
         "lastSubDate": 1253228400,
+        "name": "Syndromic Surveillance Ontology",
         "submissions": {
             "1253228400": "SSO_1.ont"
         }
     },
     "STATO": {
-        "id": "STATO",
         "description": "STATO is a general-purpose STATistics Ontology. Its aim is to provide coverage for processes such as statistical tests, their conditions of applications, and information needed or resulting from statistical methods, such as probability distributions, variable, spread and variation metrics. STATO also covers aspects of experimental design and description of plots and graphical representations commonly used to provide visual cues of data distribution or layout and to assist review of the results.",
-        "name": "Statistics Ontology",
+        "id": "STATO",
         "lastSubDate": 1402614000,
+        "name": "Statistics Ontology",
         "submissions": {
             "1402614000": "STATO_1.ont"
         }
     },
     "STY": {
-        "id": "STY",
         "description": "Fixed hierarchy.",
-        "name": "Semantic Types Ontology",
+        "id": "STY",
         "lastSubDate": 1422553800,
+        "name": "Semantic Types Ontology",
         "submissions": {
             "1422553800": "STY_1.ont"
         }
     },
     "SWEET": {
-        "id": "SWEET",
         "description": "The Semantic Web for Earth and Environmental Terminology is a mature foundational ontology de-veloped at the NASA Jet Propulsion Laboratory that currently contains over 6000 concepts organized in 200 ontologies represented in OWL. Top level con-cepts include Representation (math, space, science, time, data), Realm (Ocean, Land Surface, Terrestrial Hydroshere, Atmosphere, etc.), Phenomena (macro-scale ecological and physical), Processes (micro-scale physical, biological, chemical, and mathematical), Human Activities (Decision, Commerce, Jurisdiction, Environmental, Research). SWEET is now officially under the governance of the ESIP foundation. ",
-        "name": "Semantic Web for Earth and Environment Technology Ontology",
+        "id": "SWEET",
         "lastSubDate": 1318460400,
+        "name": "Semantic Web for Earth and Environment Technology Ontology",
         "submissions": {
             "1318460400": "SWEET_1.ont"
         }
     },
     "SWO": {
-        "id": "SWO",
         "description": "The Software Ontology (SWO) has the scope of describing types of software used in Bioinformatics. The SWO covers areas such as the software type, the manufacturer of the software, the input and output data types and the uses (i.e. objectives) the software can be put to. The SWO intends to use BFO as an upper level ontolgoy and subclasses types from the Ontology of Biomedical Investigations. Contact James Malone for info: malone@ebi.ac.uk",
-        "name": "Software Ontology",
+        "id": "SWO",
         "lastSubDate": 1424157600,
+        "name": "Software Ontology",
         "submissions": {
             "1371596400": "SWO_1.ont",
             "1424157600": "SWO_2.ont"
         }
     },
     "SYMP": {
-        "id": "SYMP",
         "description": "The symptom ontology was designed around the guiding concept of a symptom being: \"A perceived change in function, sensation or appearance reported by a patient indicative of a disease\". Understanding the close relationship of Signs and Symptoms, where Signs are the objective observation of an illness, the Symptom Ontology will work to broaden it's scope to capture and document in a more robust manor these two sets of terms. Understanding that at times, the same term may be both a Sign and a Symptom",
-        "name": "Symptom Ontology",
+        "id": "SYMP",
         "lastSubDate": 1370279040,
+        "name": "Symptom Ontology",
         "submissions": {
             "1370279040": "SYMP_1.ont"
         }
     },
     "SYN": {
-        "id": "SYN",
         "description": "The controlled vocabulary used for various entity properties in the Synapse platform.",
-        "name": "Sage Bionetworks Synapse Ontology",
+        "id": "SYN",
         "lastSubDate": 1352937600,
+        "name": "Sage Bionetworks Synapse Ontology",
         "submissions": {
             "1352937600": "SYN_1.ont"
         }
@@ -3456,28 +3496,28 @@
         }
     },
     "TAO": {
-        "id": "TAO",
         "description": "TAO is a multispecies anatomy ontology for teleost fishes. Originally seeded from ZFA, but intended to cover terms relevant to other taxa.",
-        "name": "Teleost Anatomy Ontology",
+        "id": "TAO",
         "lastSubDate": 1377191400,
+        "name": "Teleost Anatomy Ontology",
         "submissions": {
             "1377191400": "TAO_1.ont"
         }
     },
     "TAXRANK": {
-        "id": "TAXRANK",
         "description": "A vocabulary of taxonomic ranks intended to replace the sets of rank terms found in the Teleost Taxonomy Ontology, the OBO translation of the NCBI taxonomy and similar OBO taxonomy ontologies.  It provides terms for taxonomic ranks drawn from both the NCBI taxonomy database and from a rank vocabulary developed for the TDWG biodiversity information standards group.  Cross references to appearances of each term in each source are provided.  Consistent with its intended use as a vocabulary of labels, there is no relation specifying an ordering of the rank terms.",
-        "name": "Taxonomic Rank Vocabulary",
+        "id": "TAXRANK",
         "lastSubDate": 1391085780,
+        "name": "Taxonomic Rank Vocabulary",
         "submissions": {
             "1391085780": "TAXRANK_1.ont"
         }
     },
     "TEDDY": {
-        "id": "TEDDY",
         "description": "The TErminology for the Description of DYnamics (TEDDY) project aims to provide an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems Biology and Synthetic Biology.",
-        "name": "Terminology for the Description of Dynamics",
+        "id": "TEDDY",
         "lastSubDate": 1398412260,
+        "name": "Terminology for the Description of Dynamics",
         "submissions": {
             "1398412260": "TEDDY_1.ont"
         }
@@ -3510,10 +3550,10 @@
         }
     },
     "TM-MER": {
-        "id": "TM-MER",
         "description": "The meridian value set used in the International Classification of Traditional Medicine.",
-        "name": "Traditional Medicine Meridian Value Sets",
+        "id": "TM-MER",
         "lastSubDate": 1296518400,
+        "name": "Traditional Medicine Meridian Value Sets",
         "submissions": {
             "1296518400": "TM-MER_1.ont"
         }
@@ -3555,10 +3595,10 @@
         }
     },
     "TOK": {
-        "id": "TOK",
         "description": "An Ontology describing Resources having different formats. This Ontology can be used to annotate and describe Terminological, Ontological Knowledge resources.",
-        "name": "Terminological and Ontological Knowledge Resources Ontology",
+        "id": "TOK",
         "lastSubDate": 1262304000,
+        "name": "Terminological and Ontological Knowledge Resources Ontology",
         "submissions": {
             "1262304000": "TOK_1.ont"
         }
@@ -3599,10 +3639,10 @@
         }
     },
     "TTO": {
-        "id": "TTO",
         "description": "The Teleost taxonomy ontology is being used to facilitate annotation of phenotypes, particularly for taxa that are not covered by NCBI because no submissions of molecular data have been made. Taxonomy ontologies can also be valuable in annotating legacy data, where authors make phenotype or ecological assertions (e.g., host-parasite associations) that refer to groups that are reorganized or no longer recognized. The taxonomy ontology serves as the source of taxa for our project's use for identifying evolutionary changes that match the phenotype of a zebrafish mutant.",
-        "name": "Teleost Taxonomy Ontology",
+        "id": "TTO",
         "lastSubDate": 1342652400,
+        "name": "Teleost Taxonomy Ontology",
         "submissions": {
             "1342652400": "TTO_1.ont"
         }
@@ -3617,20 +3657,20 @@
         }
     },
     "UBERON": {
-        "id": "UBERON",
         "description": "Uberon is an integrated cross-species anatomy ontology representing a variety of entities classified according to traditional anatomical criteria such as structure, function and developmental lineage. The ontology includes comprehensive relationships to taxon-specific anatomical ontologies, allowing integration of functional, phenotype and expression data.",
-        "name": "Uber Anatomy Ontology",
+        "id": "UBERON",
         "lastSubDate": 1423984800,
+        "name": "Uber Anatomy Ontology",
         "submissions": {
             "1420194060": "UBERON_1.ont",
             "1423984800": "UBERON_2.ont"
         }
     },
     "UNITSONT": {
-        "id": "UNITSONT",
         "description": "A small ontology for the units of measurement developed during the development of the Sleep Domain Ontology (SDO). It supports the use of SDO within the PhysioMIMI application.",
-        "name": "Units Ontology",
+        "id": "UNITSONT",
         "lastSubDate": 1291161600,
+        "name": "Units Ontology",
         "submissions": {
             "1291161600": "UNITSONT_1.ont"
         }
@@ -3644,19 +3684,19 @@
         }
     },
     "UO": {
-        "id": "UO",
         "description": "Metrical units for use in conjunction with PATO",
-        "name": "Units of Measurement Ontology",
+        "id": "UO",
         "lastSubDate": 1398095460,
+        "name": "Units of Measurement Ontology",
         "submissions": {
             "1398095460": "UO_1.ont"
         }
     },
     "VANDF": {
-        "id": "VANDF",
         "description": "NDF includes information on clinical drugs, drug classes, ingredients and National Drug Code (NDC) Directory codes.",
-        "name": "Veterans Health Administration National Drug File",
+        "id": "VANDF",
         "lastSubDate": 1422553920,
+        "name": "Veterans Health Administration National Drug File",
         "submissions": {
             "1422553920": "VANDF_1.ont"
         }
@@ -3671,83 +3711,83 @@
         }
     },
     "VHOG": {
-        "id": "VHOG",
         "description": "vHOG is a multi-species anatomical ontology for the vertebrate lineage, developed as part of the Bgee project.\r\nThe mapping to species-specific anatomical ontologies is provided as a separated file:\r\nhttp://bgee.unil.ch/download/organ_association_vHOG.txt\r\nThis mapping represents homology-strict relationships, in the sense of HOM:0000007 \"historical homology\". Each mapping has been manually reviewed, and we provide confidence codes and references when available.",
-        "name": "Vertebrate Homologous Organ Group Ontology",
+        "id": "VHOG",
         "lastSubDate": 1354752000,
+        "name": "Vertebrate Homologous Organ Group Ontology",
         "submissions": {
             "1354752000": "VHOG_1.ont"
         }
     },
     "VIVO": {
-        "id": "VIVO",
         "description": "The VIVO ontology represents researchers in the context of their experience, outputs, interests, accomplishments, and associated institutions.",
-        "name": "VIVO Ontology for Researcher Discovery",
+        "id": "VIVO",
         "lastSubDate": 1342047600,
+        "name": "VIVO Ontology for Researcher Discovery",
         "submissions": {
             "1342047600": "VIVO_1.ont"
         }
     },
     "VO": {
-        "id": "VO",
         "description": "A biomedical ontology in the vaccine domain",
-        "name": "Vaccine Ontology",
+        "id": "VO",
         "lastSubDate": 1423812060,
+        "name": "Vaccine Ontology",
         "submissions": {
             "1420626420": "VO_1.ont",
             "1423812060": "VO_2.ont"
         }
     },
     "VSAO": {
-        "id": "VSAO",
         "description": "VSAO is an anatomy ontology covering the vertebrate skeletal system. VSAO integrates terms for skeletal cells, tissues, biological processes, organs (skeletal elements such as bones and cartilages), and subdivisions of the skeletal system.",
-        "name": "Vertebrate Skeletal Anatomy Ontology",
+        "id": "VSAO",
         "lastSubDate": 1377192120,
+        "name": "Vertebrate Skeletal Anatomy Ontology",
         "submissions": {
             "1377192120": "VSAO_1.ont"
         }
     },
     "VSO": {
-        "id": "VSO",
         "description": "The Vital Sign Ontology (VSO) is an extension of the Ontology for General Medical Science (OGMS). VSO covers the four consensus human vital signs: blood pressure, body temperature, respiration rate, pulse rate. \r\nVSO provides also a controlled structured vocabulary for describing vital signs measurement data, the various processes of measuring vital signs, and the various devices and anatomical entities participating in such measurements. ",
-        "name": "Vital Sign Ontology",
+        "id": "VSO",
         "lastSubDate": 1335308400,
+        "name": "Vital Sign Ontology",
         "submissions": {
             "1335308400": "VSO_1.ont"
         }
     },
     "VT": {
-        "id": "VT",
         "description": "The Vertebrate Trait Ontology is a controlled vocabulary for the description of traits (measurable or observable characteristics) pertaining to the morphology, physiology, or development of vertebrate organisms.",
-        "name": "Vertebrate Trait Ontology",
+        "id": "VT",
         "lastSubDate": 1410735600,
+        "name": "Vertebrate Trait Ontology",
         "submissions": {
             "1410735600": "VT_1.ont"
         }
     },
     "VTO": {
-        "id": "VTO",
         "description": "The Vertebrate Taxonomy Ontology includes both extinct and extant vertebrates, aiming to provide one comprehensive hierarchy. The hierarchy backbone for extant taxa is based on the NCBI taxonomy. Since the NCBI taxonomy only includes species associated with archived genetic data, to complement this, we also incorporate taxonomic information across the vertebrates from the Paleobiology Database (PaleoDB). The Teleost Taxonomy Ontology (TTO) and AmphibiaWeb (AWeb) are incorporated to provide a more authoritative hierarchy and a richer set of names for specific taxonomic groups.",
-        "name": "Vertebrate Taxonomy Ontology",
+        "id": "VTO",
         "lastSubDate": 1400082720,
+        "name": "Vertebrate Taxonomy Ontology",
         "submissions": {
             "1400082720": "VTO_1.ont"
         }
     },
     "WB-BT": {
-        "id": "WB-BT",
         "description": "A structured controlled vocabulary of the anatomy of <i>Caenorhabditis elegans</i>.",
-        "name": "C. elegans Gross Anatomy Vocabulary",
+        "id": "WB-BT",
         "lastSubDate": 1415701320,
+        "name": "C. elegans Gross Anatomy Vocabulary",
         "submissions": {
             "1415701320": "WB-BT_1.ont"
         }
     },
     "WB-LS": {
-        "id": "WB-LS",
         "description": "A structured controlled vocabulary of the development of <i>Caenorhabditis elegans</i>.",
-        "name": "C. elegans Development Vocabulary",
+        "id": "WB-LS",
         "lastSubDate": 1425367680,
+        "name": "C. elegans Development Vocabulary",
         "submissions": {
             "1417083720": "WB-LS_1.ont",
             "1425367680": "WB-LS_2.ont"
@@ -3772,20 +3812,20 @@
         }
     },
     "WIKIPATHWAYS": {
-        "id": "WIKIPATHWAYS",
         "description": "WikiPathways is an open, collaborative platform dedicated to the curation of biological pathways.",
-        "name": "WikiPathways",
+        "id": "WIKIPATHWAYS",
         "lastSubDate": 1425367680,
+        "name": "WikiPathways",
         "submissions": {
             "1422874380": "WIKIPATHWAYS_1.ont",
             "1425367680": "WIKIPATHWAYS_2.ont"
         }
     },
     "WSIO": {
-        "id": "WSIO",
         "description": "Web Service Interaction Ontology (WSIO) enables automated interaction with more complex Web services that are typical for example within life sciences. WSIO is however independent of the application domain and relevant for both SOAP and REST Web services, and for batch execution engines in general. If the interaction scenario with a Web service is nontrivial (and incorporates session handling), annotation with WSIO concepts will enable automatic generation of client programs, scripts, or interactive applications with a graphical user interface. WSIO also enables automation of different ways of data transfer and data un-/compression or en-/decoding. We strongly discourage providers from developing complex interaction and data-transfer/compression scenarios, however when needed, WSIO may enable smooth automated interaction with them. Future versions will support more interaction scenarios. WSIO aims to serve also as a means to standardise the complex interaction scenarios primarily within both SOAP and REST Web services, and secondarily to apply also to batch execution infrastructure in general.",
-        "name": "Web-Service Interaction Ontology",
+        "id": "WSIO",
         "lastSubDate": 1403215380,
+        "name": "Web-Service Interaction Ontology",
         "submissions": {
             "1403215380": "WSIO_1.ont"
         }
@@ -3801,10 +3841,10 @@
         }
     },
     "XCO": {
-        "id": "XCO",
         "description": "The Experimental Conditions Ontology is designed to represent the conditions under which physiological and morphological measurements are made both in the clinic and in studies involving humans or model organisms.",
-        "name": "Experimental Conditions Ontology",
+        "id": "XCO",
         "lastSubDate": 1421231160,
+        "name": "Experimental Conditions Ontology",
         "submissions": {
             "1421231160": "XCO_1.ont"
         }
@@ -3819,37 +3859,37 @@
         }
     },
     "ZEA": {
-        "id": "ZEA",
         "description": null,
-        "name": "Maize Gross Anatomy Ontology",
+        "id": "ZEA",
         "lastSubDate": 1165449600,
+        "name": "Maize Gross Anatomy Ontology",
         "submissions": {
             "1165449600": "ZEA_1.ont"
         }
     },
     "ZFA": {
-        "id": "ZFA",
         "description": "A structured controlled vocabulary of the anatomy and development of the Zebrafish (<i>Danio rerio</i>).",
-        "name": "Zebrafish Anatomy and Development Ontology",
+        "id": "ZFA",
         "lastSubDate": 1410974220,
+        "name": "Zebrafish Anatomy and Development Ontology",
         "submissions": {
             "1410974220": "ZFA_1.ont"
         }
     },
     "pseudo": {
-        "id": "pseudo",
         "description": null,
-        "name": "Pseudogene",
+        "id": "pseudo",
         "lastSubDate": 1225152000,
+        "name": "Pseudogene",
         "submissions": {
             "1225152000": "pseudo_1.ont"
         }
     },
     "suicideo": {
-        "id": "suicideo",
         "description": "ontology for suicidology ",
-        "name": "suicideonto",
+        "id": "suicideo",
         "lastSubDate": 1377471600,
+        "name": "suicideonto",
         "submissions": {
             "1377471600": "suicideo_1.ont"
         }

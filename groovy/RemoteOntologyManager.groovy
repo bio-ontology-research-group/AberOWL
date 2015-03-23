@@ -3,6 +3,7 @@
  * date.
  */
 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
+@Grab(group='redis.clients', module='jedis', version='2.6.2')
 
 import groovyx.net.http.HTTPBuilder
 import java.text.SimpleDateFormat
@@ -26,6 +27,7 @@ class RemoteOntologyManager {
         // We'll use the ontology acronym as a key for now. Ideally we'd use
         //  the URI, but ideally not BioPortal's.
         OntologyRecord exOnt = oBase.getOntology(ont.acronym);
+        println "here look: " + exOnt.id
         
         if(!exOnt) { // Create a new ontology record
           exOnt = oBase.createOntology([
