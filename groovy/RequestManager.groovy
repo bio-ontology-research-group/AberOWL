@@ -151,7 +151,8 @@ class RequestManager {
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     GParsPool.withPool {
-      this.oBase.ontologies.eachParallel { k, oRec ->
+      def allOnts = oBase.allOntologies()
+      allOnts.eachParallel { oRec ->
         attemptedOntologies++
         try {
           if(oRec.lastSubDate == 0) {
@@ -167,7 +168,7 @@ class RequestManager {
           ontologyManagers.put(oRec.id, lManager)
 
           loadedOntologies++
-          println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+this.oBase.ontologies.size()+"]"
+          println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
         } catch (OWLOntologyAlreadyExistsException E) {
           // do nothing
           println 'DUPLICATE ' + oRec.id

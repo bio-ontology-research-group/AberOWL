@@ -21,13 +21,24 @@ class OntologyDatabase {
    * @param id The id of the record to return.
    * @return The ontology, or null.
    */
-  OntologyRecord getOntology(String id) {
-    def item = db.get(DB_PREFIX + id)
+  OntologyRecord getOntology(String id, boolean noprefix) {
+    if(noprefix != true) {
+      id = DB_PREFIX + id 
+    }
+    def item = db.get(id)
     if(item) {
       return new OntologyRecord(new JsonSlurper().parseText(item))
     } else {
       return null
     }
+  }
+
+  Set<String> allOntologies() {
+    def onts = []
+    db.keys('ontologies:*').each { id ->
+      onts.add(getOntology(id, true))
+    }
+    return onts
   }
 
   /**
