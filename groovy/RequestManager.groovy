@@ -199,7 +199,7 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(attemptedOntologies > 50) {
+        if(attemptedOntologies > 10) {
           return;
         }
         try {
@@ -243,7 +243,7 @@ class RequestManager {
     }
   }
 
-  void createOntologyReasoner(String k) {
+  void createOntologyReasoner(String k, OWLReasonerFactory reasonerFactory, Map preferredLanguageMap) {
     try {
       OWLOntology ontology = ontologies.get(k) ;
       OWLOntologyManager manager = ontologyManagers.get(k) ;
@@ -257,6 +257,7 @@ class RequestManager {
       println "Failed " + k
     } catch (Exception e) {
       println "Failed " + k
+      e.printStackTrace()
     }
   }
       
@@ -274,7 +275,7 @@ class RequestManager {
     OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
     GParsPool.withPool {
       ontologies.eachParallel { k, oRec ->
-        createOntologyReasoner(k)
+        createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
       }
     }
     println "REASONED"
