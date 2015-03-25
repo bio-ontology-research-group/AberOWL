@@ -249,6 +249,7 @@ class RequestManager {
         "owlClass": c.toString(),
         "classURI": c.getIRI().toString(),
         "ontologyURI": uri.toString(),
+        "remainder": c.getIRI().getFragment(),
         "label": null,
         "definition": null 
       ];
