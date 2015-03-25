@@ -5,14 +5,14 @@
  *
  */
 import groovy.json.*
+import redis.clients.jedis.*
 
 class OntologyDatabase {
-  public final static String INDEX_FILE = 'ontologies.json'
-  def ontologies
+  public final static String DB_PREFIX = 'ontologies:'
+  def db
   
-  OntologyDatabase() { // Load the ontology index...
-    def oInput = new File(INDEX_FILE)
-    ontologies = new JsonSlurper().parseText(oInput.text)
+  OntologyDatabase() {
+    db = new Jedis('localhost');
   }
 
   /**
@@ -21,12 +21,24 @@ class OntologyDatabase {
    * @param id The id of the record to return.
    * @return The ontology, or null.
    */
-  OntologyRecord getOntology(String id) {
-    if(ontologies[id]) {
-      return new OntologyRecord(ontologies[id])
+  OntologyRecord getOntology(String id, boolean noprefix) {
+    if(noprefix != true) {
+      id = DB_PREFIX + id 
+    }
+    def item = db.get(id)
+    if(item) {
+      return new OntologyRecord(new JsonSlurper().parseText(item))
     } else {
       return null
     }
+  }
+
+  Set<String> allOntologies() {
+    def onts = []
+    db.keys('ontologies:*').each { id ->
+      onts.add(getOntology(id, true))
+    }
+    return onts
   }
 
   /**
@@ -40,9 +52,8 @@ class OntologyDatabase {
     data.submissions = new LinkedHashMap()
 
     def oRecord = new OntologyRecord(data)
-    ontologies[data.id] = oRecord.asMap()
+    db.set(DB_PREFIX + data.id, new JsonBuilder(oRecord.asMap()).toString())
 
-    flushDatabase()
     return oRecord
   }
 
@@ -53,26 +64,6 @@ class OntologyDatabase {
    * @param record The record to save.
    */
   void saveOntology(OntologyRecord record) {
-    ontologies[record.id] = record
-    flushDatabase()
-  }
-
-  private void flushDatabase() {
-    def oOutput = new File(INDEX_FILE)
-    oOutput.write(new JsonBuilder(ontologies).toPrettyString())
-  }
-
-  public static void main(args) {
-    OntologyDatabase d = new OntologyDatabase()
-    def ontology = d.createOntology(['id': 'ICO', 'name': 'Informed Consent Ontology'])
-
-    ontology.addNewSubmission([
-      'released': System.currentTimeMillis() / 1000,
-      'download': 'http://data.bioontology.org/ontologies/ICO/download'
-    ]) 
-
-    d.saveOntology(ontology)
-
-    d.ontologies.each{ k, v -> println "${k}:${v}" }
+    db.set(DB_PREFIX + record.id, new JsonBuilder(record.asMap()).toString())
   }
 }

@@ -84,75 +84,124 @@ class RequestManager {
     return results;
   }
 
+  void reloadOntologyLabels(String uri) {
+    labels.put(uri, new SuggestTree(k, new HashMap<String, Integer>())) ;
+    labels2id.put(uri, new LinkedHashMap<String, Set<String>>()) ;
+    OWLOntology ont = ontologies.get(uri) ;
+    for (OWLOntology o : ont.getImportsClosure()) {
+      for (OWLClass c : o.getClassesInSignature(true)) {
+        String classIRI = c.getIRI().toString() ;
+        for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
+          if (annotation.getValue() instanceof OWLLiteral) {
+            OWLLiteral val = (OWLLiteral) annotation.getValue();
+            String label = val.getLiteral() ;
+            label = label.toLowerCase() ;
+            try {
+              allLabels.insert(label, maxLength - label.length()) ;
+            } catch (Exception E) {}
+            if (allLabels2id.get(label) == null) {
+              allLabels2id.put(label, new LinkedHashSet<String>()) ;
+            }
+            allLabels2id.get(label).add(c.getIRI().toString()) ;
+            if (labels2id.get(uri).get(label) == null) {
+              labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
+            }
+            labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
+            try {
+              labels.get(uri).insert(label, maxLength - label.length()) ;
+            } catch (Exception E) {}
+          }
+        }
+      }                                                                                                                                          
+      for (OWLObjectProperty c : o.getObjectPropertiesInSignature(true)) {
+        String classIRI = c.getIRI().toString() ;
+        for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
+          if (annotation.getValue() instanceof OWLLiteral) {
+            OWLLiteral val = (OWLLiteral) annotation.getValue();
+            String label = val.getLiteral() ;
+            label = label.toLowerCase() ;
+            try {
+              allLabels.insert(label, maxLength - label.length()) ;
+            } catch (Exception E) {}
+            if (allLabels2id.get(label) == null) {
+              allLabels2id.put(label, new LinkedHashSet<String>()) ;
+            }
+            allLabels2id.get(label).add(c.getIRI().toString()) ;
+                            
+            try {
+              labels.get(uri).insert(label, maxLength - label.length()) ;
+            } catch (Exception E) {}
+            if (labels2id.get(uri).get(label) == null) {
+              labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
+            }
+            labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
+          }
+        }
+      }                                                                                                                                          
+    }
+  }
+
   void loadLabels() {
     for (String uri : ontologies.keySet()) {
-      labels.put(uri, new SuggestTree(k, new HashMap<String, Integer>())) ;
-      labels2id.put(uri, new LinkedHashMap<String, Set<String>>()) ;
-      OWLOntology ont = ontologies.get(uri) ;
-      for (OWLOntology o : ont.getImportsClosure()) {
-        for (OWLClass c : o.getClassesInSignature(true)) {
-          String classIRI = c.getIRI().toString() ;
-          for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-            if (annotation.getValue() instanceof OWLLiteral) {
-              OWLLiteral val = (OWLLiteral) annotation.getValue();
-              String label = val.getLiteral() ;
-              label = label.toLowerCase() ;
-              try {
-                allLabels.insert(label, maxLength - label.length()) ;
-              } catch (Exception E) {}
-              if (allLabels2id.get(label) == null) {
-                allLabels2id.put(label, new LinkedHashSet<String>()) ;
-              }
-              allLabels2id.get(label).add(c.getIRI().toString()) ;
-              if (labels2id.get(uri).get(label) == null) {
-                labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-              }
-              labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
-              try {
-                labels.get(uri).insert(label, maxLength - label.length()) ;
-              } catch (Exception E) {}
-            }
-          }
-        }                                                                                                                                          
-        for (OWLObjectProperty c : o.getObjectPropertiesInSignature(true)) {
-          String classIRI = c.getIRI().toString() ;
-          for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-            if (annotation.getValue() instanceof OWLLiteral) {
-              OWLLiteral val = (OWLLiteral) annotation.getValue();
-              String label = val.getLiteral() ;
-              label = label.toLowerCase() ;
-              try {
-                allLabels.insert(label, maxLength - label.length()) ;
-              } catch (Exception E) {}
-              if (allLabels2id.get(label) == null) {
-                allLabels2id.put(label, new LinkedHashSet<String>()) ;
-              }
-              allLabels2id.get(label).add(c.getIRI().toString()) ;
-                              
-              try {
-                labels.get(uri).insert(label, maxLength - label.length()) ;
-              } catch (Exception E) {}
-              if (labels2id.get(uri).get(label) == null) {
-                labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-              }
-              labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
-            }
-          }
-        }                                                                                                                                          
-      }                                                                                                                                            
+      reloadOntologyLabels(uri)                                                                                                              
+    }
+  }
+
+  /**
+   * Load a new or replace an existing ontology
+   *
+   * @param name corresponding to name of the ontology in the database
+   */
+  void reloadOntology(String name) {
+    def oRec = oBase.getOntology(name)
+    if(!oRec) {
+      return null
+    }
+    if(oRec.lastSubDate == 0) {
+      return null
+    }
+    boolean newO = false
+    if(!ontologies.get(oRec.id)) {
+      newO = true
+    }
+
+    try {
+      OWLOntologyManager lManager = OWLManager.createOWLOntologyManager()
+      OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration()
+      config.setFollowRedirects(true)
+      config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
+      def fSource = new FileDocumentSource(new File('onts/'+oRect.submissions[oRec.lastSubDate.toString()]))
+      def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+      ontology.put(oRec.id, ontology)
+      ontologyManagers.put(oRec.id, lManager)
+
+      println "Updated ontology: " oRec.id
+      if(newO) {
+        loadedOntologies++
+      }
+
+      reloadOntologyAnnotations(oRec.id)
+      reloadOntologyLabels(oRec.id)
+      createOntologyReasoner(oRec.id)
+    } catch(OWLOntologyInputSourceException e) {
+    } catch(IOException e) {
+    } catch(Exception e) {
     }
   }
 
   /**
    * Create the ontology manager and load it with the given ontology.
    * 
-   * @param ontologyLink URI to the OWL ontology to be queried.
-   * @throws OWLOntologyCreationException 
+   * @throws OWLOntologyCreationException, IOException
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     GParsPool.withPool {
-      this.oBase.ontologies.eachParallel { k, oRec ->
+      def allOnts = oBase.allOntologies()
+      allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 10) {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
@@ -167,7 +216,7 @@ class RequestManager {
           ontologyManagers.put(oRec.id, lManager)
 
           loadedOntologies++
-          println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+this.oBase.ontologies.size()+"]"
+          println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
         } catch (OWLOntologyAlreadyExistsException E) {
           // do nothing
           println 'DUPLICATE ' + oRec.id
@@ -193,6 +242,24 @@ class RequestManager {
       }
     }
   }
+
+  void createOntologyReasoner(String k, OWLReasonerFactory reasonerFactory, Map preferredLanguageMap) {
+    try {
+      OWLOntology ontology = ontologies.get(k) ;
+      OWLOntologyManager manager = ontologyManagers.get(k) ;
+      OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
+      oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+      NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+      this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+    } catch(InconsistentOntologyException e) {
+      println "inconsistent ontology " + k
+    } catch (java.lang.IndexOutOfBoundsException e) {
+      println "Failed " + k
+    } catch (Exception e) {
+      println "Failed " + k
+      e.printStackTrace()
+    }
+  }
       
   /**
    * Create and run the reasoning on the loaded OWL ontologies, creating a QueryEngine for each.
@@ -208,37 +275,31 @@ class RequestManager {
     OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
     GParsPool.withPool {
       ontologies.eachParallel { k, oRec ->
-        try {
-          OWLOntology ontology = ontologies.get(k) ;
-          OWLOntologyManager manager = ontologyManagers.get(k) ;
-          OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
-          oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-          NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-          this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
-        } catch(InconsistentOntologyException e) {
-          println "inconsistent ontology " + k
-        } catch (java.lang.IndexOutOfBoundsException e) {
-          println "Failed " + k
-        } catch (Exception e) {
-          println "Failed " + k
-        }
+        createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
       }
     }
     println "REASONED"
   }
-      
+
   /**
-   * Create list of RDFS_LABEL annotations to be used by the ShortFormProvider.
+   * Create list of RDFS_LABEL annotations to be used by the ShortFormProvider for a given ontology.
+   */
+  void reloadOntologyAnnotations(id) {
+    OWLDataFactory factory = ontologyManagers.get(id).getOWLDataFactory();
+    OWLAnnotationProperty rdfsLabel = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI()) ;                                                       
+    aProperties.add(rdfsLabel);
+    aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym"))) ;
+    aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"))) ;
+    aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"))) ;
+  }
+
+  /**
+   * Create list of RDFS_LABEL annotations to be used by the ShortFormProvider for all ontologies.
    */
   void loadAnnotations() {
     println "Making annotations" 
     for (String id : ontologyManagers.keySet()) { // For some reason .each doesn't work here
-      OWLDataFactory factory = ontologyManagers.get(id).getOWLDataFactory();
-      OWLAnnotationProperty rdfsLabel = factory.getOWLAnnotationProperty(OWLRDFVocabulary.RDFS_LABEL.getIRI()) ;                                                       
-      aProperties.add(rdfsLabel);
-      aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym"))) ;
-      aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym"))) ;
-      aProperties.add(factory.getOWLAnnotationProperty(IRI.create("http://www.geneontology.org/formats/oboInOwl#hasExactSynonym"))) ;
+      reloadOntologyAnnotations(id)
     }
   }
 

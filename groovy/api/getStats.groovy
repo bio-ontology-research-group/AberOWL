@@ -25,6 +25,7 @@ if(ontology) {
 	  'logicalAxiomCount': 0,
 	  'complexity': 0,
 	  'classCount': ont.getClassesInSignature(true).size(),
+          'loaded': rManager.ontologies.get(ontology) != null,
 	  'consistent': rManager.queryEngines.get(ontology) != null
 	]
 

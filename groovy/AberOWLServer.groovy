@@ -1,5 +1,6 @@
 @Grapes([
           @Grab('org.eclipse.jetty:jetty-server:9.0.0.M5'),
+          @Grab(group='redis.clients', module='jedis', version='2.5.2'),
           @Grab('org.eclipse.jetty:jetty-servlet:9.0.0.M5'),
           @Grab('javax.servlet:javax.servlet-api:3.0.1'),
           @Grab(group='com.google.code.gson', module='gson', version='2.3.1'),
@@ -25,6 +26,7 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/queryNames.groovy')
   context.addServlet(GroovyServlet, '/api/getStats.groovy')
   context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
+  context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))
 
