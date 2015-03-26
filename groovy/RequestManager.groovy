@@ -153,7 +153,7 @@ class RequestManager {
    * @param name corresponding to name of the ontology in the database
    */
   void reloadOntology(String name) {
-    def oRec = oBase.getOntology(name)
+    def oRec = oBase.getOntology(name, false)
     if(!oRec) {
       return null
     }
@@ -170,22 +170,33 @@ class RequestManager {
       OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration()
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
-      def fSource = new FileDocumentSource(new File('onts/'+oRect.submissions[oRec.lastSubDate.toString()]))
+      def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
       def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
-      ontology.put(oRec.id, ontology)
+      ontologies.put(oRec.id, ontology)
       ontologyManagers.put(oRec.id, lManager)
 
-      println "Updated ontology: " oRec.id
+      println "Updated ontology: " + oRec.id
       if(newO) {
         loadedOntologies++
       }
 
       reloadOntologyAnnotations(oRec.id)
       reloadOntologyLabels(oRec.id)
-      createOntologyReasoner(oRec.id)
+
+      List<String> langs = new ArrayList<>();
+      Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
+      for (OWLAnnotationProperty annotationProperty : this.aProperties) {
+        preferredLanguageMap.put(annotationProperty, langs);
+      }
+
+      OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
+      createOntologyReasoner(oRec.id, reasonerFactory, preferredLanguageMap)
     } catch(OWLOntologyInputSourceException e) {
+    println "input source exception for " + oRec.id
     } catch(IOException e) {
+    println "IOException exception for " + oRec.id
     } catch(Exception e) {
+    e.printStackTrace()
     }
   }
 
@@ -199,7 +210,7 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(attemptedOntologies > 10) {
+        if(attemptedOntologies > 5) {
           return;
         }
         try {
