@@ -1,17 +1,6 @@
 == Groovy Aber OWL ==
 
-Groovy Aber OWL is a testing alternative implementation of AberOWL in Groovy. Right now, it kinda works. Remember to build the Java project before running this, since it uses some of these classes.
+git submodule init
+groovy AberOWLServer.groovy
 
-Ontology repo test code runs with:
-
-```
-groovy -cp ../Libraries/commons-io-2.4.jar RemoteOntologyManager.groovy
-```
-
-Currently, you can run the hosted AberOWL with the following:
-
-```
-groovy -cp ../Libraries/owlapi-distribution-3.4.10.jar:../Libraries/elk-distribution-0.4.1-owlapi-library/elk-owlapi.jar:../dist/SparqOwlAPI.jar AberOWLServer.groovy
-```
-
-
+;)
