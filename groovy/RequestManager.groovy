@@ -6,7 +6,8 @@ import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 import java.util.concurrent.*
-import uk.ac.aber.lus11.sparqowlapi.util.*
+//import uk.ac.aber.lus11.sparqowlapi.util.*
+import util.*;
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
@@ -59,7 +60,7 @@ class RequestManager {
       tree = labels.get(ontUri) ;
     }
     if(tree !=null) {
-      SuggestTree.Node n = tree.autocompleteSuggestionsFor(query) ;
+      Node n = tree.autocompleteSuggestionsFor(query) ;
       if (n != null) {
         for (int i = 0 ; i < n.listLength() ; i++) {
           String elem = n.listElement(i) ;
@@ -260,6 +261,9 @@ class RequestManager {
       OWLOntologyManager manager = ontologyManagers.get(k) ;
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+      println "aProperties: " + aProperties == null
+      println "lMap: " + preferredLanguageMap == null
+      println "manager: " + manager == null
       NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
     } catch(InconsistentOntologyException e) {

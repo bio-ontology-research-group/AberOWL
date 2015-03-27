@@ -23,8 +23,8 @@ import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProvider;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProviderAdapter;
-import uk.ac.aber.lus11.sparqowlapi.request.*;
-import uk.ac.aber.lus11.sparqowlapi.util.*;
+//import uk.ac.aber.lus11.sparqowlapi.request.*;
+import util.*;
 
 /**
  * Parses Manchester OWL Syntax strings into a normalised ontology class description.

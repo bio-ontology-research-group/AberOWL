@@ -5,7 +5,7 @@ import groovy.json.*
 import org.json.simple.JSONValue;
 import com.google.gson.Gson;
 
-import uk.ac.aber.lus11.sparqowlapi.util.*
+import util.*;
 
 if(!application) {
   application = request.getApplication(true)
@@ -25,7 +25,7 @@ if (ontology == null || ontology.length()==0) { // query allLabels
 }
 
 if (tree !=null) {
-    SuggestTree.Node n = tree.autocompleteSuggestionsFor(query) ;
+    Node n = tree.autocompleteSuggestionsFor(query) ;
     if (n != null) {
         for (int i = 0 ; i < n.listLength() ; i++) {
             String elem = n.listElement(i) ;

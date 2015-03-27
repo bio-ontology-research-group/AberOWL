@@ -23,7 +23,7 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import uk.ac.aber.lus11.sparqowlapi.util.*;
+import util.*;
 
 /**
  * Manchester OWL Syntax query manager for a particular reasoned ontology.
