@@ -1,4 +1,0 @@
-<%@ page import="aberowl.OntologyVersion" %>
-
-
-
