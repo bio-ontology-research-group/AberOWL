@@ -22,7 +22,7 @@
  * (MIT License)
  */
 
-package util;
+package src;
 
 import java.util.*;
 

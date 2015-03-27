@@ -21,6 +21,8 @@
  * @author Luke Slater
  */
 
+package src
+
 enum RequestType {
 
 

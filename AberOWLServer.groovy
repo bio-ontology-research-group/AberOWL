@@ -16,6 +16,7 @@
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.servlet.*
 import groovy.servlet.*
+import src.*
 
 def startServer() {
   def server = new Server(8080)
