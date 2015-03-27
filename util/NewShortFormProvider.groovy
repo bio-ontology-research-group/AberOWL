@@ -301,12 +301,12 @@ public class OWLAnnotationValueVisitorsExNew implements OWLAnnotationValueVisito
                     @Override
                     public String visit(IRI iri) {
                         // TODO refactor the short form providers in here
-                        return '';
+                        return null;
                     }
 
                     @Override
                     public String visit(OWLAnonymousIndividual individual) {
-                        return '';
+                        return null;
                     }
 
                     @Override
