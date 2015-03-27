@@ -44,9 +44,6 @@ class RequestManager {
     if(reason) {
       createReasoner();
     }
-    println loadedOntologies
-    println ontologies.size()
-    getStats()
   }
       
   Set<String> listOntologies() {
@@ -196,11 +193,11 @@ class RequestManager {
       OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
       createOntologyReasoner(oRec.id, reasonerFactory, preferredLanguageMap)
     } catch(OWLOntologyInputSourceException e) {
-    println "input source exception for " + oRec.id
+      println "input source exception for " + oRec.id
     } catch(IOException e) {
-    println "IOException exception for " + oRec.id
+      println "IOException exception for " + oRec.id
     } catch(Exception e) {
-    e.printStackTrace()
+      e.printStackTrace()
     }
   }
 
@@ -264,9 +261,7 @@ class RequestManager {
       OWLOntologyManager manager = ontologyManagers.get(k) ;
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-      println "aProperties: " + aProperties == null
-      println "lMap: " + preferredLanguageMap == null
-      println "manager: " + manager == null
+
       NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
     } catch(InconsistentOntologyException e) {
