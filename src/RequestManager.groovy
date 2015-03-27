@@ -8,7 +8,6 @@ import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 import java.util.concurrent.*
-//import uk.ac.aber.lus11.sparqowlapi.util.*
 import util.*;
 import db.*;
 import groovyx.gpars.ParallelEnhancer
