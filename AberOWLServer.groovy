@@ -10,6 +10,7 @@
           @Grab(group='net.sourceforge.owlapi', module='owlapi-distribution', version='3.5.0'),
           @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.1'),
           @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
+          @Grab(group='org.apache.lucene', module='lucene-core', version='5.1.0'),
 	  @GrabConfig(systemClassLoader=true)
 	])
  

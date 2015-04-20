@@ -7,6 +7,11 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
+import org.apache.lucene.document.*
+import org.apache.lucene.analysis.*
+import org.apache.lucene.analysis.standard.*
+import org.apache.lucene.index.*
+import org.apache.lucene.store.*
 import java.util.concurrent.*
 import util.*;
 import db.*;
@@ -14,8 +19,6 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
-  int k = 500 ; // for SuggestTree
-  int maxLength = 10000 ; // for SuggestTree
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
   int noFileError = 0;
@@ -23,10 +26,6 @@ class RequestManager {
   int parseError = 0;
   int otherError = 0;
   OWLOntologyManager oManager;
-  SuggestTree allLabels = new SuggestTree(k, new HashMap<String, Integer>());
-  Map<String, Set<String>> allLabels2id = new HashMap<>() ;
-  Map<String, SuggestTree> labels = new LinkedHashMap<>(); 
-  Map<String, Map<String, Set<String>>> labels2id = new LinkedHashMap<>(); // ontUri -> label -> OWLClassIRI
   List<OWLAnnotationProperty> aProperties = new ArrayList<>();
   OWLDataFactory df = OWLManager.getOWLDataFactory() ;
   OntologyDatabase oBase = new OntologyDatabase()
@@ -84,66 +83,46 @@ class RequestManager {
     return results;
   }
 
-  void reloadOntologyLabels(String uri) {
-    labels.put(uri, new SuggestTree(k, new HashMap<String, Integer>())) ;
-    labels2id.put(uri, new LinkedHashMap<String, Set<String>>()) ;
-    OWLOntology ont = ontologies.get(uri) ;
-    for (OWLOntology o : ont.getImportsClosure()) {
-      for (OWLClass c : o.getClassesInSignature(true)) {
-        String classIRI = c.getIRI().toString() ;
-        for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-          if (annotation.getValue() instanceof OWLLiteral) {
-            OWLLiteral val = (OWLLiteral) annotation.getValue();
-            String label = val.getLiteral() ;
-            label = label.toLowerCase() ;
-            try {
-              allLabels.insert(label, maxLength - label.length()) ;
-            } catch (Exception E) {}
-            if (allLabels2id.get(label) == null) {
-              allLabels2id.put(label, new LinkedHashSet<String>()) ;
-            }
-            allLabels2id.get(label).add(c.getIRI().toString()) ;
-            if (labels2id.get(uri).get(label) == null) {
-              labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-            }
-            labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
-            try {
-              labels.get(uri).insert(label, maxLength - label.length()) ;
-            } catch (Exception E) {}
+  void reloadOntologyIndex(String uri) {
+    def ont = ontologies.get(uri)
+    
+    ont.getImportsClosure().each { iOnt -> 
+      iOnt.getClassesInSignature.each { iClass ->
+        def cIRI = iClass.getIRI().toString()
+        iClass.getAnnotations(iOnt, df.getRDFSLabel()).each { annotation ->
+          if(annotation.getValue() instanceof OWLLiteral) {
+            def val = (OWLLiteral) annotation.getValue()
+            def label = val.getLiteral().toLowerCase()
+            
+            def doc = new Document()
+            doc.add(new Field('ontology', uri, Field.Store.YES, Field.Index.YES))
+            doc.add(new Field('class', cIRI, Field.Store.YES, Field.Index.YES))
+            doc.add(new Field('label', label, Field.Store.YES, Field.Index.YES))
+            index.addDocument(doc)
           }
         }
-      }                                                                                                                                          
-      for (OWLObjectProperty c : o.getObjectPropertiesInSignature(true)) {
-        String classIRI = c.getIRI().toString() ;
-        for (OWLAnnotation annotation : c.getAnnotations(o, df.getRDFSLabel())) {
-          if (annotation.getValue() instanceof OWLLiteral) {
-            OWLLiteral val = (OWLLiteral) annotation.getValue();
-            String label = val.getLiteral() ;
-            label = label.toLowerCase() ;
-            try {
-              allLabels.insert(label, maxLength - label.length()) ;
-            } catch (Exception E) {}
-            if (allLabels2id.get(label) == null) {
-              allLabels2id.put(label, new LinkedHashSet<String>()) ;
-            }
-            allLabels2id.get(label).add(c.getIRI().toString()) ;
-                            
-            try {
-              labels.get(uri).insert(label, maxLength - label.length()) ;
-            } catch (Exception E) {}
-            if (labels2id.get(uri).get(label) == null) {
-              labels2id.get(uri).put(label, new LinkedHashSet<String>()) ;
-            }
-            labels2id.get(uri).get(label).add(c.getIRI().toString()) ;
+      }
+      iOnt.getObjectPropertiesInSignature(true).each { iClass ->
+        def cIRI = iClass.getIRI().toString()
+        iClass.getAnnotations(iOnt, df.getRDFSLabel()).each { annotation ->
+          if(annotation.getValue() instanceof OWLLiteral) {
+            def val = (OWLLiteral) annotation.getValue()
+            def label = val.getLiteral().toLowerCase()
+            
+            def doc = new Document()
+            doc.add(new Field('ontology', uri, Field.Store.YES, Field.Index.YES))
+            doc.add(new Field('class', cIRI, Field.Store.YES, Field.Index.YES))
+            doc.add(new Field('label', label, Field.Store.YES, Field.Index.YES))
+            index.addDocument(doc)
           }
         }
-      }                                                                                                                                          
+      }
     }
   }
 
-  void loadLabels() {
+  void loadIndex() {
     for (String uri : ontologies.keySet()) {
-      reloadOntologyLabels(uri)                                                                                                              
+      reloadOntologyIndex(uri)                                                                                                              
     }
   }
 
@@ -210,9 +189,6 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(attemptedOntologies > 5) {
-          return;
-        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
