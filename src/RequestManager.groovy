@@ -15,7 +15,7 @@ import org.apache.lucene.index.*
 import org.apache.lucene.store.*
 import org.apache.lucene.util.*
 import org.apache.lucene.search.*
-import org.apache.lucene.queryparser.classic.*
+import org.apache.lucene.queryparser.*
 import org.apache.lucene.search.highlight.*
 
 import java.util.concurrent.*
@@ -64,9 +64,17 @@ class RequestManager {
     SuggestTree tree = null ;
     //TODO ont specific
 
-    def hits = searcher.search(query, null, 1, Sort.RELEVANCE, true, true).scoreDocs
+    def parser = new classic.QueryParser('label', new StandardAnalyzer())
+    def fQuery = parser.parse(query+'*')
+    def hits = searcher.search(fQuery, 10).scoreDocs
+    def ret = []
 
-    return hits;
+    hits.each { h -> 
+      def hitDoc = searcher.doc(h.doc)
+      ret.add(hitDoc.get('label'))
+    }
+println ret
+    return ret;
   }
 
   void reloadOntologyIndex(String uri, IndexWriter index) {
