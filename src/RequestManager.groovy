@@ -7,11 +7,19 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
-import org.apache.lucene.document.*
-import org.apache.lucene.analysis.*
-import org.apache.lucene.analysis.standard.*
-import org.apache.lucene.index.*
-import org.apache.lucene.store.*
+
+import org.apache.lucene.search.Hits;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.search.Searcher;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+
 import java.util.concurrent.*
 import util.*;
 import db.*;
@@ -33,6 +41,9 @@ class RequestManager {
   def ontologies = new ConcurrentHashMap();
   def ontologyManagers = new ConcurrentHashMap();
   def queryEngines = new ConcurrentHashMap();
+
+  // Index things
+  RAMDirectory index = new RAMDirectory()
           
   RequestManager(boolean reason) {
     println "Loading ontologies"
@@ -83,7 +94,7 @@ class RequestManager {
     return results;
   }
 
-  void reloadOntologyIndex(String uri) {
+  void reloadOntologyIndex(String uri, IndexWriter index) {
     def ont = ontologies.get(uri)
     
     ont.getImportsClosure().each { iOnt -> 
@@ -121,9 +132,14 @@ class RequestManager {
   }
 
   void loadIndex() {
+    IndexWriter writer = new IndexWriter(index, new StandardAnalyzer(), true)
     for (String uri : ontologies.keySet()) {
-      reloadOntologyIndex(uri)                                                                                                              
+      reloadOntologyIndex(uri, index)
     }
+    writer.optimize()
+    writer.close()
+
+    searcher = new IndexSearcher(index)
   }
 
   /**
@@ -160,7 +176,7 @@ class RequestManager {
       }
 
       reloadOntologyAnnotations(oRec.id)
-      reloadOntologyLabels(oRec.id)
+      loadIndex() // TODO: reload only one instead of rewriting the whole index!
 
       List<String> langs = new ArrayList<>();
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
