@@ -8,17 +8,15 @@ import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 
-import org.apache.lucene.search.Hits;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.search.Searcher;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.*
+import org.apache.lucene.analysis.standard.StandardAnalyzer
+import org.apache.lucene.document.*
+import org.apache.lucene.index.*
+import org.apache.lucene.store.*
+import org.apache.lucene.util.*
+import org.apache.lucene.search.*
+import org.apache.lucene.queryparser.classic.*
+import org.apache.lucene.search.highlight.*
 
 import java.util.concurrent.*
 import util.*;
@@ -44,12 +42,13 @@ class RequestManager {
 
   // Index things
   RAMDirectory index = new RAMDirectory()
+  IndexSearcher searcher
           
   RequestManager(boolean reason) {
     println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
-    loadLabels();
+    loadIndex();
     if(reason) {
       createReasoner();
     }
@@ -63,42 +62,18 @@ class RequestManager {
     query = query.toLowerCase() ;
     Set<String> results = new LinkedHashSet<>() ;
     SuggestTree tree = null ;
-    if (ontUri == null || ontUri.length()==0) { // query allLabels
-      tree = allLabels ;
-    } else { // query ontUri
-      tree = labels.get(ontUri) ;
-    }
-    if(tree !=null) {
-      Node n = tree.autocompleteSuggestionsFor(query) ;
-      if (n != null) {
-        for (int i = 0 ; i < n.listLength() ; i++) {
-          String elem = n.listElement(i) ;
-          String elemForOWL ;
-          if (elem.indexOf(" ")>-1) {
-            elemForOWL = "'"+elem+"'";
-          } else {
-            elemForOWL = elem ;
-          }
-          Map<String, Set<String>> s2id = null ;
-          if  (ontUri == null || ontUri.length()==0) {
-            s2id = allLabels2id ;
-          } else {
-            s2id = labels2id.get(ontUri) ;
-          }
-          for (String id : s2id.get(elem)) {
-            results.add(elemForOWL) ;
-          }
-        }
-      }
-    }
-    return results;
+    //TODO ont specific
+
+    def hits = searcher.search(query, null, 1, Sort.RELEVANCE, true, true).scoreDocs
+
+    return hits;
   }
 
   void reloadOntologyIndex(String uri, IndexWriter index) {
     def ont = ontologies.get(uri)
     
     ont.getImportsClosure().each { iOnt -> 
-      iOnt.getClassesInSignature.each { iClass ->
+      iOnt.getClassesInSignature(true).each { iClass ->
         def cIRI = iClass.getIRI().toString()
         iClass.getAnnotations(iOnt, df.getRDFSLabel()).each { annotation ->
           if(annotation.getValue() instanceof OWLLiteral) {
@@ -106,9 +81,9 @@ class RequestManager {
             def label = val.getLiteral().toLowerCase()
             
             def doc = new Document()
-            doc.add(new Field('ontology', uri, Field.Store.YES, Field.Index.YES))
-            doc.add(new Field('class', cIRI, Field.Store.YES, Field.Index.YES))
-            doc.add(new Field('label', label, Field.Store.YES, Field.Index.YES))
+            doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+            doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+            doc.add(new Field('label', label, TextField.TYPE_STORED))
             index.addDocument(doc)
           }
         }
@@ -121,9 +96,9 @@ class RequestManager {
             def label = val.getLiteral().toLowerCase()
             
             def doc = new Document()
-            doc.add(new Field('ontology', uri, Field.Store.YES, Field.Index.YES))
-            doc.add(new Field('class', cIRI, Field.Store.YES, Field.Index.YES))
-            doc.add(new Field('label', label, Field.Store.YES, Field.Index.YES))
+            doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+            doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+            doc.add(new Field('label', label, TextField.TYPE_STORED))
             index.addDocument(doc)
           }
         }
@@ -132,14 +107,14 @@ class RequestManager {
   }
 
   void loadIndex() {
-    IndexWriter writer = new IndexWriter(index, new StandardAnalyzer(), true)
+    def iwc = new IndexWriterConfig(new StandardAnalyzer())
+    IndexWriter writer = new IndexWriter(index, iwc)
     for (String uri : ontologies.keySet()) {
-      reloadOntologyIndex(uri, index)
+      reloadOntologyIndex(uri, writer)
     }
-    writer.optimize()
     writer.close()
 
-    searcher = new IndexSearcher(index)
+    searcher = new IndexSearcher(DirectoryReader.open(index))
   }
 
   /**
@@ -205,6 +180,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 5) {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
