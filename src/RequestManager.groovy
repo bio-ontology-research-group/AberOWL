@@ -60,10 +60,6 @@ class RequestManager {
       
   Set<String> queryNames(String query, String ontUri) {
     query = query.toLowerCase() ;
-    Set<String> results = new LinkedHashSet<>() ;
-    SuggestTree tree = null ;
-    //TODO ont specific
-
     def parser = new classic.QueryParser('label', new StandardAnalyzer())
     def fQuery = parser.parse(query+'*')
     def hits = searcher.search(fQuery, 10).scoreDocs
@@ -73,7 +69,8 @@ class RequestManager {
       def hitDoc = searcher.doc(h.doc)
       ret.add(hitDoc.get('label'))
     }
-println ret
+    ret = ret.sort { it.size() }
+
     return ret;
   }
 
