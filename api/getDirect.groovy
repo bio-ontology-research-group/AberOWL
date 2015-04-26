@@ -6,22 +6,19 @@ if(!application) {
   application = request.getApplication(true)
 }
 def query = request.getParameter('query')
-def type = request.getParameter('type')
 def ontology = request.getParameter('ontology')
+def type = request.getParameter('type')
 def rManager = application.rManager
-
-if(type == null) {
-  type = 'all'
-}
-if(ontology == null) {
-  ontology = ''
-}
 
 try {
   def results = new HashMap()
   def start = System.currentTimeMillis()
 
-  def out = rManager.runQuery(query, type, ontology)
+  if(type == 'sub') {
+    def out = rManager.getDirectSubclasses(query, ontology)
+  } else if(type == 'super') {
+    def out = rManager.getDirectSuperclasses(query, ontology)
+  }
 
   def end = System.currentTimeMillis()
 
