@@ -53,7 +53,7 @@ public class QueryEngine {
      * @return A HashSet of classes relevant to the given class description in 
      * mOwl corresponding to the type of request.
      */
-    public Set<OWLClass> getClasses(String mOwl, RequestType requestType) {
+    public Set<OWLClass> getClasses(String mOwl, RequestType requestType, boolean direct) {
         if(mOwl == null || mOwl.trim().length() == 0) {
             return Collections.emptySet();
         }
@@ -66,32 +66,39 @@ public class QueryEngine {
   
         switch(requestType) {
 	case RequestType.SUPERCLASS:
-	    classes.addAll(sClasses(cExpression)); break;
+	    classes.addAll(getSuperClasses(cExpression)); break;
 	case RequestType.EQUIVALENT:
-	    classes.addAll(eClasses(cExpression)); break;
+	    classes.addAll(getEquivalentClasses(cExpression)); break;
 	case RequestType.SUBCLASS:
-	    classes.addAll(subClasses(cExpression)); break;
+	    classes.addAll(getSubClasses(cExpression)); break;
 	default: // default is a subclass query
-	    classes.addAll(subClasses(cExpression));
+	    classes.addAll(getSubClasses(cExpression));
 	    break;
         }
         return classes;
     }
 
-    private Set<OWLClass> sClasses(OWLClassExpression cExpression) {
+    private Set<OWLClass> getSuperClasses(OWLClassExpression cExpression) {
         return oReasoner.getSuperClasses(cExpression, false).getFlattened();
     }
     
-    private Set<OWLClass> eClasses(OWLClassExpression cExpression) {
+    private Set<OWLClass> getEquivalentClasses(OWLClassExpression cExpression) {
         Node<OWLClass> equivalentClasses = oReasoner.getEquivalentClasses(cExpression);
         Set<OWLClass> result;
         result = equivalentClasses.getEntities();
         return result;
     }
     
-    private Set<OWLClass> subClasses(OWLClassExpression cExpression) {
-        NodeSet<OWLClass> subClasses = oReasoner.getSubClasses(cExpression, false);
-        return subClasses.getFlattened();
+    private Set<OWLClass> getSubClasses(OWLClassExpression cExpression) {
+        return oReasoner.getSubClasses(cExpression, false).getFlattened()
+    }
+
+    private Set<OWLClass> getDirectSuperClasses(OWLClassExpression cExpression) {
+      return oReasoner.getSuperClasses(cExpression, true).getFlattened()
+    }
+
+    private Set<OWLClass> getDirectSubClasses(OWLClassExpression cExpression) {
+      return oReasoner.getSubClasses(cExpression, true).getFlattened()
     }
 
     /**

@@ -69,9 +69,8 @@ class RequestManager {
       def hitDoc = searcher.doc(h.doc)
       ret.add(hitDoc.get('label'))
     }
-    ret = ret.sort { it.size() }
 
-    return ret;
+    return ret.sort { it.size() }
   }
 
   void reloadOntologyIndex(String uri, IndexWriter index) {
@@ -319,6 +318,28 @@ class RequestManager {
     return result
   }
 
+  Set getDirectSubclasses(String mOwlQuery, String ontUri) {
+    QueryEngine queryEngine = queryEngines.get(ontUri)
+    OWLOntology ontology = ontologies.get(ontUri)
+    Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, RequestType.SUBCLASS, true)
+    resultSet.remove(df.getOWLNothing())
+    resultSet.remove(df.getOWLThing())
+    classes.addAll(classes2info(resultSet, ontology, ontUri))
+
+    return classes;
+  }
+
+  Set getDirectSuperclasses(String mOwlQuery, String ontUri) {
+    QueryEngine queryEngine = queryEngines.get(ontUri)
+    OWLOntology ontology = ontologies.get(ontUri)
+    Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, RequestType.SUPERCLASS, true)
+    resultSet.remove(df.getOWLNothing())
+    resultSet.remove(df.getOWLThing())
+    classes.addAll(classes2info(resultSet, ontology, ontUri))
+
+    return classes;
+  }
+
   /**
    * Iterate the query engines, collecting results from each and collating them into a single structure.
    * 
@@ -348,7 +369,7 @@ class RequestManager {
         String oListString = it.next() ;
         QueryEngine queryEngine = queryEngines.get(oListString) ;
         OWLOntology ontology = ontologies.get(oListString) ;
-          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
+          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, false) ;
           resultSet.remove(df.getOWLNothing()) ;
           resultSet.remove(df.getOWLThing()) ;
           classes.addAll(classes2info(resultSet, ontology, oListString)) ;
@@ -368,7 +389,7 @@ class RequestManager {
         OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
         oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
         NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-        Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType) ;
+        Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, false) ;
         resultSet.remove(df.getOWLNothing()) ;
         resultSet.remove(df.getOWLThing()) ;
         classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
@@ -376,12 +397,12 @@ class RequestManager {
         E.printStackTrace() ;
       }
     } else { // query one single ontology
-      QueryEngine queryEngine = queryEngines.get(ontUri) ;
-      OWLOntology ontology = ontologies.get(ontUri) ;
-        Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType) ;
-        resultSet.remove(df.getOWLNothing()) ;
-        resultSet.remove(df.getOWLThing()) ;
-        classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
+      QueryEngine queryEngine = queryEngines.get(ontUri)
+      OWLOntology ontology = ontologies.get(ontUri)
+      Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, false)
+      resultSet.remove(df.getOWLNothing())
+      resultSet.remove(df.getOWLThing())
+      classes.addAll(classes2info(resultSet, ontology, ontUri))
     }
 
     def end = System.currentTimeMillis()
