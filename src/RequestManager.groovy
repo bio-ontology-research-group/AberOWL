@@ -67,7 +67,11 @@ class RequestManager {
 
     hits.each { h -> 
       def hitDoc = searcher.doc(h.doc)
-      ret.add(hitDoc.get('label'))
+      def label = hitDoc.get('label') 
+      if(label.indexOf(' ') != -1) {
+        label = "'" + label + "'"
+      }
+      ret.add(label)
     }
 
     return ret.sort { it.size() }
@@ -184,6 +188,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 5) {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
