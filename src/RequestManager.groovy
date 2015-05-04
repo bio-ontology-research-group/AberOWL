@@ -188,9 +188,6 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(attemptedOntologies > 5) {
-          return;
-        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
