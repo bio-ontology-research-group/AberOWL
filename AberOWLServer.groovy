@@ -29,7 +29,6 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/runQuery.groovy')
   context.addServlet(GroovyServlet, '/api/queryNames.groovy')
   context.addServlet(GroovyServlet, '/api/getStats.groovy')
-  context.addServlet(GroovyServlet, '/api/getDirect.groovy')
   context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
   context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
   context.setAttribute('version', '0.1')
