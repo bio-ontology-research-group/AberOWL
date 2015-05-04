@@ -8,6 +8,7 @@ if(!application) {
 def query = request.getParameter('query')
 def type = request.getParameter('type')
 def ontology = request.getParameter('ontology')
+def direct = request.getParameter('direct')
 def rManager = application.rManager
 
 if(type == null) {
@@ -16,12 +17,16 @@ if(type == null) {
 if(ontology == null) {
   ontology = ''
 }
+if(direct == null) {
+  direct = ''
+}
+direct = direct.toBoolean()
 
 try {
   def results = new HashMap()
   def start = System.currentTimeMillis()
 
-  def out = rManager.runQuery(query, type, ontology)
+  def out = rManager.runQuery(query, type, ontology, direct)
 
   def end = System.currentTimeMillis()
 
