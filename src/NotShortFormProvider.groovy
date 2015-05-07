@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+package src
+
+import org.semanticweb.owlapi.model.OWLEntity
+import org.semanticweb.owlapi.util.*
+import org.semanticweb.owlapi.model.*
+import org.semanticweb.owlapi.model.OWLAnnotationValueVisitorEx
+
 /**
  * A short form provider which is not a short form provider. Provides full class IRI.
  * 
@@ -21,6 +28,49 @@
  * @author OWLAPI, Luke Slater (luke.slater@kaust.edu.sa)
  */
 public class NotShortFormProvider implements ShortFormProvider {
+
+  public NotShortFormProvider(
+          List<OWLAnnotationProperty> annotationProperties,
+          Map<OWLAnnotationProperty, List<String>> preferredLanguageMap,
+          OWLOntologySetProvider ontologySetProvider) {
+      this(annotationProperties, preferredLanguageMap, ontologySetProvider,
+              new SimpleShortFormProvider());
+  }
+
+  public NotShortFormProvider(
+            List<OWLAnnotationProperty> annotationProperties,
+            Map<OWLAnnotationProperty, List<String>> preferredLanguageMap,
+            OWLOntologySetProvider ontologySetProvider,
+            ShortFormProvider alternateShortFormProvider) {
+        this(ontologySetProvider, alternateShortFormProvider,
+                new SimpleIRIShortFormProvider(), annotationProperties,
+                preferredLanguageMap);
+  }
+
+  public NotShortFormProvider(ontologySetProvider,
+            alternateShortFormProvider,
+            alternateIRIShortFormProvider,
+            annotationProperties,
+            preferredLanguageMap) {
+        this(ontologySetProvider, alternateShortFormProvider,
+                alternateIRIShortFormProvider, annotationProperties,
+                preferredLanguageMap, new OWLAnnotationValueVisitorsExNew<String>());
+  }
+
+  public NotShortFormProvider(OWLOntologySetProvider ontologySetProvider,
+            ShortFormProvider alternateShortFormProvider,
+            IRIShortFormProvider alternateIRIShortFormProvider,
+            List<OWLAnnotationProperty> annotationProperties,
+            Map<OWLAnnotationProperty, List<String>> preferredLanguageMap,
+            OWLAnnotationValueVisitorEx<String> literalRenderer) {
+        this.ontologySetProvider = ontologySetProvider;
+        this.alternateShortFormProvider = alternateShortFormProvider;
+        this.alternateIRIShortFormProvider = alternateIRIShortFormProvider;
+        this.annotationProperties = annotationProperties;
+        this.preferredLanguageMap = preferredLanguageMap;
+        this.literalRenderer = literalRenderer;
+  }
+
   /**
    * Return the class IRI as a 'short form' of the class IRI.
    */
@@ -28,4 +78,26 @@ public class NotShortFormProvider implements ShortFormProvider {
   public String getShortForm(OWLEntity entity) {
     return entity.getIRI().toString()
   }
+
+  @Override
+  public void dispose() {}
+
+  public class OWLAnnotationValueVisitorsExNew implements OWLAnnotationValueVisitorEx {
+      @Override
+      public String visit(IRI iri) {
+          // TODO refactor the short form providers in here
+          return null;
+      }
+
+      @Override
+      public String visit(OWLAnonymousIndividual individual) {
+          return null;
+      }
+
+      @Override
+      public String visit(OWLLiteral literal) {
+          return literal.getLiteral();
+      }
+  }
 }
+

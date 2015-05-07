@@ -188,6 +188,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 5) {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
@@ -236,7 +239,7 @@ class RequestManager {
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
-      NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+      def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
@@ -370,7 +373,7 @@ class RequestManager {
         OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); 
         OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
         oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-        NewShortFormProvider sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+        def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
         Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct) ;
         resultSet.remove(df.getOWLNothing()) ;
         resultSet.remove(df.getOWLThing()) ;

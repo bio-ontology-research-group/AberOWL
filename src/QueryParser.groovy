@@ -60,10 +60,12 @@ public class QueryParser {
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
         parser.setDefaultOntology(ontology);
         OWLEntityChecker eChecker = new ShortFormEntityChecker(biSFormProvider);
-        parser.setOWLEntityChecker(eChecker);
+        //parser.setOWLEntityChecker(eChecker);
         result = parser.parseClassExpression();
       } catch(Exception e) {
         result = null 
       }
+
+      return result
     }
 }
