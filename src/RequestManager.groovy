@@ -240,8 +240,7 @@ class RequestManager {
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
-      //def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
-      def sForm = new NotShortFormProvider()
+      def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
@@ -334,7 +333,7 @@ class RequestManager {
    * @param requestType Type of class match to be performed. Valid values are: subclass, superclass, equivalent or all.
    * @return Set of OWL Classes.
    */
-  Set runQuery(String mOwlQuery, String type, String ontUri, boolean direct) {
+  Set runQuery(String mOwlQuery, String type, String ontUri, boolean direct, boolean labels) {
     def start = System.currentTimeMillis()
 
     type = type.toLowerCase()
@@ -356,7 +355,7 @@ class RequestManager {
         String oListString = it.next() ;
         QueryEngine queryEngine = queryEngines.get(oListString) ;
         OWLOntology ontology = ontologies.get(oListString) ;
-          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct)
+          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
           resultSet.remove(df.getOWLNothing()) ;
           resultSet.remove(df.getOWLThing()) ;
           classes.addAll(classes2info(resultSet, ontology, oListString)) ;
@@ -375,9 +374,8 @@ class RequestManager {
         OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); 
         OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
         oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-        //def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
-        def sForm = new SimpleShortFormProvider()
-        Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct) ;
+        def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+        Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels) ;
         resultSet.remove(df.getOWLNothing()) ;
         resultSet.remove(df.getOWLThing()) ;
         classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
@@ -387,7 +385,7 @@ class RequestManager {
     } else { // query one single ontology
       QueryEngine queryEngine = queryEngines.get(ontUri)
       OWLOntology ontology = ontologies.get(ontUri)
-      Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct)
+      Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
       resultSet.remove(df.getOWLNothing())
       resultSet.remove(df.getOWLThing())
       classes.addAll(classes2info(resultSet, ontology, ontUri))

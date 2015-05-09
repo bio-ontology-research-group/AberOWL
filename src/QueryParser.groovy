@@ -50,20 +50,23 @@ public class QueryParser {
      * @param mOwl String containing a class expression in Manchester OWL Syntax.
      * @return An OWLClassExpression generated from mOwl
      */
-    public OWLClassExpression parse(String mOwl) {
+    public OWLClassExpression parse(String mOwl, boolean labels) {
       def result = null
 
       try {
-	//mOwl = mOwl.toLowerCase() ;
         OWLDataFactory dFactory = this.ontology.getOWLOntologyManager().getOWLDataFactory();
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
         parser.setDefaultOntology(ontology);
  
         def eChecker = new BasicEntityChecker(dFactory, ontology)
-        parser.setOWLEntityChecker(eChecker)
+        if(labels) {
+          eChecker = new ShortFormEntityChecker(biSFormProvider)
+        }
 
-        result = parser.parseClassExpression();
+        parser.setOWLEntityChecker(eChecker)
+        result = parser.parseClassExpression()
       } catch(Exception e) {
+      e.printStackTrace()
         result = null 
       }
 

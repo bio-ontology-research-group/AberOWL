@@ -53,11 +53,11 @@ public class QueryEngine {
      * @return A HashSet of classes relevant to the given class description in 
      * mOwl corresponding to the type of request.
      */
-    public Set<OWLClass> getClasses(String mOwl, RequestType requestType, boolean direct) {
+    public Set<OWLClass> getClasses(String mOwl, RequestType requestType, boolean direct, boolean labels) {
         if(mOwl == null || mOwl.trim().length() == 0) {
             return Collections.emptySet();
         }
-        OWLClassExpression cExpression = parser.parse(mOwl);
+        OWLClassExpression cExpression = parser.parse(mOwl, labels);
         Set<OWLClass> classes = new HashSet<>();
 
         if(cExpression == null) {
