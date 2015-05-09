@@ -23,9 +23,8 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.util.BidirectionalShortFormProvider;
+import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.util.BidirectionalShortFormProviderAdapter;
-//import uk.ac.aber.lus11.sparqowlapi.request.*;
-import util.*;
 
 /**
  * Parses Manchester OWL Syntax strings into a normalised ontology class description.
@@ -36,7 +35,7 @@ public class QueryParser {
     private final BidirectionalShortFormProvider biSFormProvider;
     private final OWLOntology ontology;
     
-    public QueryParser(OWLOntology ontology, NewShortFormProvider sProvider) {
+    public QueryParser(ontology, sProvider) {
         this.ontology = ontology;
         biSFormProvider = new BidirectionalShortFormProviderAdapter(
             ontology.getOWLOntologyManager(),
@@ -55,14 +54,20 @@ public class QueryParser {
       def result = null
 
       try {
-	mOwl = mOwl.toLowerCase() ;
+	//mOwl = mOwl.toLowerCase() ;
         OWLDataFactory dFactory = this.ontology.getOWLOntologyManager().getOWLDataFactory();
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
         parser.setDefaultOntology(ontology);
-        OWLEntityChecker eChecker = new ShortFormEntityChecker(biSFormProvider);
-        //parser.setOWLEntityChecker(eChecker);
+ 
+        def eChecker = new BasicEntityChecker(dFactory)
+        //def eChecker = new ShortFormEntityChecker(biSFormProvider);
+        //println "hello i am parsing " + mOwl + " here is the result from the class get directly " + dFactory.getOWLClass(new IRI(mOwl)) + " and from the entity checker " +  eChecker.getOWLClass(mOwl)
+
+        parser.setOWLEntityChecker(eChecker)
+
         result = parser.parseClassExpression();
       } catch(Exception e) {
+      e.printStackTrace()
         result = null 
       }
 

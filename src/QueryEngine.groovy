@@ -24,7 +24,7 @@ import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
-import util.*;
+import org.semanticweb.owlapi.util.* ;
 
 /**
  * Manchester OWL Syntax query manager for a particular reasoned ontology.
@@ -34,9 +34,9 @@ import util.*;
 public class QueryEngine {
     private OWLReasoner oReasoner;
     private QueryParser parser;
-    private NewShortFormProvider sProvider;
+    private sProvider;
     
-    QueryEngine(OWLReasoner oReasoner, NewShortFormProvider sProvider) {
+    QueryEngine(oReasoner, sProvider) {
         this.oReasoner = oReasoner;
         this.sProvider = sProvider;
         this.parser = new QueryParser(oReasoner.getRootOntology(), sProvider);
@@ -116,7 +116,7 @@ public class QueryEngine {
     /**
      * @return the sProvider
      */
-    public NewShortFormProvider getsProvider() {
+    public getsProvider() {
         return sProvider;
     }
 }

@@ -7,6 +7,7 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
+import org.semanticweb.owlapi.util.*;
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
@@ -239,7 +240,8 @@ class RequestManager {
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
-      def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
+      //def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
+      def sForm = new NotShortFormProvider()
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
@@ -373,7 +375,8 @@ class RequestManager {
         OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); 
         OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
         oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-        def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
+        //def sForm = new NotShortFormProvider(aProperties, preferredLanguageMap, manager);
+        def sForm = new SimpleShortFormProvider()
         Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct) ;
         resultSet.remove(df.getOWLNothing()) ;
         resultSet.remove(df.getOWLThing()) ;
