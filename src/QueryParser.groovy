@@ -59,15 +59,11 @@ public class QueryParser {
         ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
         parser.setDefaultOntology(ontology);
  
-        def eChecker = new BasicEntityChecker(dFactory)
-        //def eChecker = new ShortFormEntityChecker(biSFormProvider);
-        //println "hello i am parsing " + mOwl + " here is the result from the class get directly " + dFactory.getOWLClass(new IRI(mOwl)) + " and from the entity checker " +  eChecker.getOWLClass(mOwl)
-
+        def eChecker = new BasicEntityChecker(dFactory, ontology)
         parser.setOWLEntityChecker(eChecker)
 
         result = parser.parseClassExpression();
       } catch(Exception e) {
-      e.printStackTrace()
         result = null 
       }
 

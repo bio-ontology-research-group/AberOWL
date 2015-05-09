@@ -5,45 +5,81 @@ import org.semanticweb.owlapi.expression.OWLEntityChecker
 
 public class BasicEntityChecker implements OWLEntityChecker {
    private final OWLDataFactory dFactory;
+   private final OWLOntology ontology;
 
 
-    public BasicEntityChecker(OWLDataFactory dFactory) {
+    public BasicEntityChecker(OWLDataFactory dFactory, OWLOntology ontology) {
         this.dFactory = dFactory;
+        this.ontology = ontology;
     }
 
     @Override
     public OWLClass getOWLClass(String name) {
-        println "getting " + new IRI(name)
-        println "result wos " + dFactory.getOWLClass(new IRI(name))
-        return dFactory.getOWLClass(new IRI(name))
+        name = name.replaceAll("<","").replaceAll(">","") 
+        def iri = new IRI(name)
+        def result = null
+        if(ontology.containsClassInSignature(iri)) {
+          result = dFactory.getOWLClass(iri)
+        }
+        return result
     }
 
 
     @Override
     public OWLDataProperty getOWLDataProperty(String name) {
-        return dFactory.getOWLDataProperty(new IRI(name))
+        name = name.replaceAll("<","").replaceAll(">","") 
+        def iri = new IRI(name)
+        def result = null
+        if(ontology.containsDataPropertyInSignature(iri)) {
+          result = dFactory.getOWLDataProperty(iri)
+        }
+        return result
     }
 
 
     @Override
     public OWLDatatype getOWLDatatype(String name) {
-        return dFactory.getOWLDataType(new IRI(name))
+        name = name.replaceAll("<","").replaceAll(">","") 
+        def iri = new IRI(name)
+        def result = null
+        if(ontology.containsDataTypeInSignature(iri)) {
+          result = dFactory.getOWLDataType(iri)
+        }
+        return result
     }
 
 
     @Override
     public OWLNamedIndividual getOWLIndividual(String name) {
-        return dFactory.getOWLNamedIndividual(new IRI(name))
+        name = name.replaceAll("<","").replaceAll(">","") 
+        def iri = new IRI(name)
+        def result = null
+        if(ontology.containsIndividualInSignature(iri)) {
+          result = dFactory.getOWLNamedIndividual(iri)
+        }
+        return result
     }
 
 
     @Override
     public OWLObjectProperty getOWLObjectProperty(String name) {
-        return dFactory.getOWLObjectProperty(new IRI(name))
+        name = name.replaceAll("<","").replaceAll(">","") 
+        def iri = new IRI(name)
+        def result = null
+        if(ontology.containsObjectPropertyInSignature(iri)) {
+          result = dFactory.getOWLObjectProperty(iri)
+        }
+        return result
     }
 
     @Override
     public OWLAnnotationProperty getOWLAnnotationProperty(String name) {
-        return dFactory.getOWLAnnotationProperty(new IRI(name))
+        name = name.replaceAll("<","").replaceAll(">","") 
+        def iri = new IRI(name)
+        def result = null
+        if(ontology.containsAnnotationPropertyInSignature(iri)) {
+          result = dFactory.getOWLAnnotationProperty(iri)
+        }
+        return result
     }
 }
