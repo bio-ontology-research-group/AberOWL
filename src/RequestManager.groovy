@@ -20,7 +20,6 @@ import org.apache.lucene.queryparser.*
 import org.apache.lucene.search.highlight.*
 
 import java.util.concurrent.*
-import util.*;
 import db.*;
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
@@ -32,6 +31,7 @@ class RequestManager {
   int importError = 0;
   int parseError = 0;
   int otherError = 0;
+  def lCount = 0
   OWLOntologyManager oManager;
   List<OWLAnnotationProperty> aProperties = new ArrayList<>();
   OWLDataFactory df = OWLManager.getOWLDataFactory() ;
@@ -69,13 +69,19 @@ class RequestManager {
     hits.each { h -> 
       def hitDoc = searcher.doc(h.doc)
       def label = hitDoc.get('label') 
+      def ontology = hitDoc.get('ontology') 
+      def iri = hitDoc.get('class') 
       if(label.indexOf(' ') != -1) {
         label = "'" + label + "'"
       }
-      ret.add(label)
+      ret.add([
+        'label': label,
+        'iri': iri,
+        'ontology': ontology
+      ])
     }
 
-    return ret.sort { it.size() }
+    return ret.sort { it.label.size() }
   }
 
   void reloadOntologyIndex(String uri, IndexWriter index) {
@@ -94,6 +100,9 @@ class RequestManager {
             doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
             doc.add(new Field('label', label, TextField.TYPE_STORED))
             index.addDocument(doc)
+            if(annotation != null) {
+              lCount += 1
+            }
           }
         }
       }
@@ -109,6 +118,9 @@ class RequestManager {
             doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
             doc.add(new Field('label', label, TextField.TYPE_STORED))
             index.addDocument(doc)
+            if(annotation != null) {
+              lCount += 1
+            }
           }
         }
       }
@@ -191,7 +203,7 @@ class RequestManager {
         attemptedOntologies++
         if(attemptedOntologies > 5) {
           return;
-        }
+        } 
         try {
           if(oRec.lastSubDate == 0) {
             return;
