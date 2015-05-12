@@ -77,7 +77,11 @@ class RequestManager {
       ret.add([
         'label': label,
         'iri': iri,
-        'ontology': ontology
+        'ontology': ontology,
+
+        // Make jquery happy
+        'value': label,
+        'data': iri
       ])
     }
 
