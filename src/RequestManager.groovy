@@ -60,9 +60,9 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    query = query.toLowerCase() ;
     def parser = new classic.QueryParser('label', new StandardAnalyzer())
-    def fQuery = parser.parse(query+'*')
+    query = query.toLowerCase().split().collect({ it += '*' }).join(' AND ')
+    def fQuery = parser.parse(query)
     def hits = searcher.search(fQuery, 10).scoreDocs
     def ret = []
 
@@ -205,6 +205,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 5) {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
