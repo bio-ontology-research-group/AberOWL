@@ -18,7 +18,7 @@ public class BasicEntityChecker implements OWLEntityChecker {
         name = name.replaceAll("<","").replaceAll(">","") 
         def iri = new IRI(name)
         def result = null
-        if(ontology.containsClassInSignature(iri)) {
+        if(ontology.containsClassInSignature(iri) || iri == dFactory.getOWLThing().getIRI() || iri == dFactory.getOWLNothing().getIRI()) {
           result = dFactory.getOWLClass(iri)
         }
         return result
@@ -30,7 +30,7 @@ public class BasicEntityChecker implements OWLEntityChecker {
         name = name.replaceAll("<","").replaceAll(">","") 
         def iri = new IRI(name)
         def result = null
-        if(ontology.containsDataPropertyInSignature(iri)) {
+        if(ontology.containsDataPropertyInSignature(iri) || iri == dFactory.getOWLTopDataProperty().getIRI() || iri == dFactory.getOWLBottomDataProperty().getIRI()) {
           result = dFactory.getOWLDataProperty(iri)
         }
         return result
@@ -66,7 +66,7 @@ public class BasicEntityChecker implements OWLEntityChecker {
         name = name.replaceAll("<","").replaceAll(">","") 
         def iri = new IRI(name)
         def result = null
-        if(ontology.containsObjectPropertyInSignature(iri)) {
+        if(ontology.containsObjectPropertyInSignature(iri) || iri == dFactory.getOWLTopObjectProperty().getIRI() || iri == dFactory.getOWLBottomDataProperty().getIRI()) {
           result = dFactory.getOWLObjectProperty(iri)
         }
         return result
