@@ -60,8 +60,16 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    def parser = new classic.QueryParser('label', new StandardAnalyzer())
-    query = query.toLowerCase().split().collect({ it += '*' }).join(' AND ')
+    String[] fields = ['label', 'ontology']
+    query = query.toLowerCase().split().collect({ 'label:' + it + '*' }).join(' AND ')
+    def parser
+    if(ontUri && ontUri != '') {
+      parser = new classic.MultiFieldQueryParser(fields, new StandardAnalyzer())
+      query += ' AND ontology:' + ontUri
+    } else {
+      parser = new classic.QueryParser('label', new StandardAnalyzer())
+    }
+
     def fQuery = parser.parse(query)
     def hits = searcher.search(fQuery, 10).scoreDocs
     def ret = []
