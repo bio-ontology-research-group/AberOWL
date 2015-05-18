@@ -294,6 +294,8 @@ class RequestManager {
 
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+
+      println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
     } catch (java.lang.IndexOutOfBoundsException e) {
