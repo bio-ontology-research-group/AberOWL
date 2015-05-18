@@ -66,7 +66,7 @@ class RequestManager {
     query = query.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
     def parser
     if(ontUri && ontUri != '') {
-      parser = new classic.MultiFieldQueryParser(fields, new StandardAnalyzer())
+      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
       query += ' AND ontology:' + ontUri
     } else {
       parser = new classic.QueryParser('label', new WhitespaceAnalyzer())
