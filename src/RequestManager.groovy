@@ -11,12 +11,14 @@ import org.semanticweb.owlapi.util.*;
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer
 import org.apache.lucene.document.*
 import org.apache.lucene.index.*
 import org.apache.lucene.store.*
 import org.apache.lucene.util.*
 import org.apache.lucene.search.*
 import org.apache.lucene.queryparser.*
+import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
 
 import java.util.concurrent.*
@@ -60,10 +62,18 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    def parser = new classic.QueryParser('label', new StandardAnalyzer())
-    query = query.toLowerCase().split().collect({ it += '*' }).join(' AND ')
+    String[] fields = ['label', 'ontology']
+    query = query.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    def parser
+    if(ontUri && ontUri != '') {
+      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
+      query += ' AND ontology:' + ontUri
+    } else {
+      parser = new classic.QueryParser('label', new WhitespaceAnalyzer())
+    }
+
     def fQuery = parser.parse(query)
-    def hits = searcher.search(fQuery, 10).scoreDocs
+    def hits = searcher.search(fQuery, 1000).scoreDocs
     def ret = []
 
     hits.each { h -> 
@@ -90,49 +100,78 @@ class RequestManager {
 
   void reloadOntologyIndex(String uri, IndexWriter index) {
     def ont = ontologies.get(uri)
+    def annotations = [
+      // Labels
+      df.getRDFSLabel(), 
+      df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#prefLabel')),
+      df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000111')),
+
+      // Synonyms
+      df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#altLabel')),
+      df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000118')),
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasExactSynonym')),
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasSynonym')),
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym')),
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym')),
+
+      
+      // Definitions
+      df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
+      df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#definition')),
+      df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition'))
+    ]
     
-    ont.getImportsClosure().each { iOnt -> 
-      iOnt.getClassesInSignature(true).each { iClass ->
+    ont.getImportsClosure().each { iOnt -> // OWLOntology
+      iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
         def cIRI = iClass.getIRI().toString()
-        iClass.getAnnotations(iOnt, df.getRDFSLabel()).each { annotation ->
-          if(annotation.getValue() instanceof OWLLiteral) {
-            def val = (OWLLiteral) annotation.getValue()
-            def label = val.getLiteral().toLowerCase()
-            
-            def doc = new Document()
-            doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
-            doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-            doc.add(new Field('label', label, TextField.TYPE_STORED))
-            index.addDocument(doc)
-            if(annotation != null) {
-              lCount += 1
+        def doc = new Document()
+        doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+        doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        
+        annotations.each {
+          iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
+            if(annotation.getValue() instanceof OWLLiteral) {
+              def val = (OWLLiteral) annotation.getValue()
+              def label = val.getLiteral().toLowerCase()
+              doc.add(new Field('label', label, TextField.TYPE_STORED))
+              if(annotation != null) {
+                lCount += 1
+              }
             }
           }
         }
+
+        index.addDocument(doc)
       }
+
       iOnt.getObjectPropertiesInSignature(true).each { iClass ->
         def cIRI = iClass.getIRI().toString()
-        iClass.getAnnotations(iOnt, df.getRDFSLabel()).each { annotation ->
-          if(annotation.getValue() instanceof OWLLiteral) {
-            def val = (OWLLiteral) annotation.getValue()
-            def label = val.getLiteral().toLowerCase()
-            
-            def doc = new Document()
-            doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
-            doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-            doc.add(new Field('label', label, TextField.TYPE_STORED))
-            index.addDocument(doc)
-            if(annotation != null) {
-              lCount += 1
+        def doc = new Document()
+        doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+        doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        
+        annotations.each {
+          iClass.getAnnotations(iOnt, it).each { annotation ->
+            if(annotation.getValue() instanceof OWLLiteral) {
+              def val = (OWLLiteral) annotation.getValue()
+              def label = val.getLiteral().toLowerCase()
+              
+              doc.add(new Field('label', label, TextField.TYPE_STORED))
+              if(annotation != null) {
+                lCount += 1
+              }
             }
           }
         }
+
+        index.addDocument(doc)
       }
     }
   }
 
   void loadIndex() {
-    def iwc = new IndexWriterConfig(new StandardAnalyzer())
+    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
     IndexWriter writer = new IndexWriter(index, iwc)
     for (String uri : ontologies.keySet()) {
       reloadOntologyIndex(uri, writer)
@@ -205,9 +244,6 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(attemptedOntologies > 5) {
-          return;
-        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
