@@ -11,12 +11,14 @@ import org.semanticweb.owlapi.util.*;
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer
 import org.apache.lucene.document.*
 import org.apache.lucene.index.*
 import org.apache.lucene.store.*
 import org.apache.lucene.util.*
 import org.apache.lucene.search.*
 import org.apache.lucene.queryparser.*
+import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
 
 import java.util.concurrent.*
@@ -61,17 +63,17 @@ class RequestManager {
       
   Set<String> queryNames(String query, String ontUri) {
     String[] fields = ['label', 'ontology']
-    query = query.toLowerCase().split().collect({ 'label:' + it + '*' }).join(' AND ')
+    query = query.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
     def parser
     if(ontUri && ontUri != '') {
       parser = new classic.MultiFieldQueryParser(fields, new StandardAnalyzer())
       query += ' AND ontology:' + ontUri
     } else {
-      parser = new classic.QueryParser('label', new StandardAnalyzer())
+      parser = new classic.QueryParser('label', new WhitespaceAnalyzer())
     }
 
     def fQuery = parser.parse(query)
-    def hits = searcher.search(fQuery, 10).scoreDocs
+    def hits = searcher.search(fQuery, 1000).scoreDocs
     def ret = []
 
     hits.each { h -> 
@@ -140,7 +142,7 @@ class RequestManager {
   }
 
   void loadIndex() {
-    def iwc = new IndexWriterConfig(new StandardAnalyzer())
+    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
     IndexWriter writer = new IndexWriter(index, iwc)
     for (String uri : ontologies.keySet()) {
       reloadOntologyIndex(uri, writer)
@@ -213,6 +215,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 5) {
+        return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
