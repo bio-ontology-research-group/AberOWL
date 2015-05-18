@@ -34,6 +34,7 @@ class RequestManager {
   int parseError = 0;
   int otherError = 0;
   def lCount = 0
+  def dCount = 0
   OWLOntologyManager oManager;
   List<OWLAnnotationProperty> aProperties = new ArrayList<>();
   OWLDataFactory df = OWLManager.getOWLDataFactory() ;
@@ -100,7 +101,7 @@ class RequestManager {
 
   void reloadOntologyIndex(String uri, IndexWriter index) {
     def ont = ontologies.get(uri)
-    def annotations = [
+    def labels = [
       // Labels
       df.getRDFSLabel(), 
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#prefLabel')),
@@ -112,10 +113,9 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasExactSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym')),
-      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym')),
-
-      
-      // Definitions
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym'))
+    ]
+    def definitions = [
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#definition')),
       df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
@@ -129,7 +129,7 @@ class RequestManager {
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         
-        annotations.each {
+        labels.each {
           iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
@@ -137,6 +137,18 @@ class RequestManager {
               doc.add(new Field('label', label, TextField.TYPE_STORED))
               if(annotation != null) {
                 lCount += 1
+              }
+            }
+          }
+        }
+        definitions.each {
+          iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
+            if(annotation.getValue() instanceof OWLLiteral) {
+              def val = (OWLLiteral) annotation.getValue()
+              def label = val.getLiteral().toLowerCase()
+              doc.add(new Field('definition', label, TextField.TYPE_STORED))
+              if(annotation != null) {
+                dCount += 1
               }
             }
           }
@@ -151,7 +163,7 @@ class RequestManager {
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         
-        annotations.each {
+        labels.each {
           iClass.getAnnotations(iOnt, it).each { annotation ->
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
@@ -160,6 +172,19 @@ class RequestManager {
               doc.add(new Field('label', label, TextField.TYPE_STORED))
               if(annotation != null) {
                 lCount += 1
+              }
+            }
+          }
+        }
+        definitions.each {
+          iClass.getAnnotations(iOnt, it).each { annotation ->
+            if(annotation.getValue() instanceof OWLLiteral) {
+              def val = (OWLLiteral) annotation.getValue()
+              def label = val.getLiteral().toLowerCase()
+              
+              doc.add(new Field('definition', label, TextField.TYPE_STORED))
+              if(annotation != null) {
+                dCount += 1
               }
             }
           }
@@ -486,7 +511,9 @@ class RequestManager {
         'noFileError': noFileError,
         'importError': importError,
         'parseError': parseError,
-        'otherError': otherError
+        'otherError': otherError,
+        'lCount': lCount,
+        'dCount': dCount
       ];
 
       for (String id : ontologies.keySet()) { // For some reason .each doesn't work here
