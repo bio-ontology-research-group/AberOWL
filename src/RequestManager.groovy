@@ -20,6 +20,7 @@ import org.apache.lucene.search.*
 import org.apache.lucene.queryparser.*
 import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
+import org.apache.lucene.index.IndexWriterConfig.OpenMode
 
 import java.util.concurrent.*
 import db.*;
@@ -121,7 +122,10 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition'))
     ]
-    
+
+    index.deleteDocuments(new Term('ontology', uri))
+
+    // Readd all classes for this ont
     ont.getImportsClosure().each { iOnt -> // OWLOntology
       iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
         def cIRI = iClass.getIRI().toString()
@@ -196,13 +200,23 @@ class RequestManager {
   }
 
   void loadIndex() {
-    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
-    IndexWriter writer = new IndexWriter(index, iwc)
-    for (String uri : ontologies.keySet()) {
-      reloadOntologyIndex(uri, writer)
-    }
-    writer.close()
+    loadIndex('')
+  }
 
+  void loadIndex(String ontology) {
+    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+    IndexWriter writer = new IndexWriter(index, iwc)
+
+    if(ontology == '') {
+      for (String uri : ontologies.keySet()) {
+        reloadOntologyIndex(uri, writer)
+      }
+    } else {
+      reloadOntologyIndex(ontology, writer)
+    }
+
+    writer.close()
     searcher = new IndexSearcher(DirectoryReader.open(index))
   }
 
@@ -240,7 +254,7 @@ class RequestManager {
       }
 
       reloadOntologyAnnotations(oRec.id)
-      loadIndex() // TODO: reload only one instead of rewriting the whole index!
+      loadIndex(name)
 
       List<String> langs = new ArrayList<>();
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
@@ -269,6 +283,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(attemptedOntologies > 5) {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
