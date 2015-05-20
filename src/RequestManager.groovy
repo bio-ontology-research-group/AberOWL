@@ -315,6 +315,7 @@ class RequestManager {
           importError++
         } catch(UnparsableOntologyException e) {
           println "Failed to parse ontology " + oRec.id
+          e.printStackTrace()
           parseError++
         } catch(UnloadableImportException e) {
           println "Failed to load imports for " + oRec.id
@@ -338,8 +339,10 @@ class RequestManager {
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
+      e.printStackTrace()
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
+      e.printStackTrace()
     } catch (Exception e) {
       println "Failed " + k
       e.printStackTrace()
