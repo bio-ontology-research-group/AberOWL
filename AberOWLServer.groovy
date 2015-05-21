@@ -32,6 +32,7 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/getStats.groovy')
   context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
   context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
+  context.addServlet(GroovyServlet, '/api/findRoot.groovy')
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))
 
