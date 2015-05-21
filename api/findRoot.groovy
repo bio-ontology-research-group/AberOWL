@@ -26,22 +26,28 @@ if(ontology && query) {
   try {
     def resultMap = [:] 
     
-    def out = rManager.runQuery(query, 'equivalent', ontology, true, false)
-    resultMap['classes'] = out[0]
+    def fOut = rManager.runQuery(query, 'equivalent', ontology, true, false)
+    def out = null
+    resultMap['classes'] = fOut
 
     def thingFound = false
     while(thingFound == false) {
       out = rManager.runQuery(query, 'superclass', ontology, true, false)
 
-      if(!out || (out && out[0].owlClass == '<http://www.w3.org/2002/07/owl%23Thing>')) {
+      if(!out || (out && out[0].owlClass == '<http://www.w3.org/2002/07/owl#Thing>')) {
         thingFound = true
         break
       } else {
         query = out[0].owlClass
       }
 
-      resultMap = [ 'classes': out, 'children': resultMap ]
+      out[0].children = resultMap
+      resultMap = [ 'classes': out ]
     }
+    
+    out = rManager.runQuery('<http://www.w3.org/2002/07/owl#Thing>', 'subclasses', ontology, true, false).findAll { it.owlClass != query }
+    resultMap.classes += out
+    resultMap['chosen'] = fOut[0]
 
     response.contentType = 'application/json'
     print new JsonBuilder(resultMap).toString()
