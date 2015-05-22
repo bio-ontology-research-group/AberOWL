@@ -41,9 +41,10 @@ class RequestManager {
   OWLDataFactory df = OWLManager.getOWLDataFactory() ;
   OntologyDatabase oBase = new OntologyDatabase()
 
-  def ontologies = new ConcurrentHashMap();
-  def ontologyManagers = new ConcurrentHashMap();
-  def queryEngines = new ConcurrentHashMap();
+  def ontologies = new ConcurrentHashMap()
+  def ontologyManagers = new ConcurrentHashMap()
+  def queryEngines = new ConcurrentHashMap()
+  def loadStati = new ConcurrentHashMap()
 
   // Index things
   RAMDirectory index = new RAMDirectory()
@@ -301,27 +302,33 @@ class RequestManager {
 
           loadedOntologies++
           println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
+          loadStati.put(oRec.id, 'loaded')
         } catch (OWLOntologyAlreadyExistsException E) {
-          // do nothing
           println 'DUPLICATE ' + oRec.id
         } catch (OWLOntologyInputSourceException e) {
           println "File not found for " + oRec.id
+          loadStati.put(oRec.id, 'unloadable')
           noFileError++
         } catch (IOException e) {
           println "Can't load external import for " + oRec.id 
+          loadStati.put(oRec.id, 'unloadable')
           importError++
         } catch(OWLOntologyCreationIOException e) {
           println "Failed to load imports for " + oRec.id
+          loadStati.put(oRec.id, 'unloadable')
           importError++
         } catch(UnparsableOntologyException e) {
           println "Failed to parse ontology " + oRec.id
           e.printStackTrace()
+          loadStati.put(oRec.id, 'unloadable')
           parseError++
         } catch(UnloadableImportException e) {
           println "Failed to load imports for " + oRec.id
+          loadStati.put(oRec.id, 'unloadable')
           importError++
         } catch (Exception E) {
           println oRec.id + ' other'
+          loadStati.put(oRec.id, 'unloadable')
           otherError++
         }
       }
@@ -337,15 +344,19 @@ class RequestManager {
 
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+      loadStati.put(k, 'classified')
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
       e.printStackTrace()
+      loadStati.put(k, 'inconsistent')
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
       e.printStackTrace()
+      loadStati.put(k, 'inconsistent')
     } catch (Exception e) {
       println "Failed " + k
       e.printStackTrace()
+      loadStati.put(k, 'inconsistent')
     }
   }
       

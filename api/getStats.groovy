@@ -17,34 +17,34 @@ def ontology = request.getParameter('ontology')
 def rManager = application.rManager
 
 if(ontology) {
-	def ont = rManager.ontologies.get(ontology)
-	def stats = [
-	  'rBoxAxiomCount': 0,
-	  'tBoxAxiomCount': 0,
-	  'totalAxiomCount': 0,
-	  'logicalAxiomCount': 0,
-	  'complexity': 0,
-	  'classCount': ont.getClassesInSignature(true).size(),
-          'loaded': rManager.ontologies.get(ontology) != null,
-	  'consistent': rManager.queryEngines.get(ontology) != null
-	]
+  def ont = rManager.ontologies.get(ontology)
+  def stats = [
+    'rBoxAxiomCount': 0,
+    'tBoxAxiomCount': 0,
+    'totalAxiomCount': 0,
+    'logicalAxiomCount': 0,
+    'complexity': 0,
+    'classCount': ont.getClassesInSignature(true).size(),
+    'loaded': rManager.ontologies.get(ontology) != null,
+    'consistent': rManager.queryEngines.get(ontology) != null
+  ]
 
-	AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { 
-	  stats.totalAxiomCount += 1
-	  stats.tBoxAxiomCount += 1
-	} }
-	AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { 
-	  stats.totalAxiomCount += 1 
-	  stats.rBoxAxiomCount += 1 
-	} }
+  AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { 
+    stats.totalAxiomCount += 1
+    stats.tBoxAxiomCount += 1
+  } }
+  AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { 
+    stats.totalAxiomCount += 1 
+    stats.rBoxAxiomCount += 1 
+  } }
 
-	stats.complexity = stats.totalAxiomCount / stats.classCount
-	stats.logicalAxiomCount = ont.getLogicalAxiomCount()
-response.contentType = 'application/json'
-print JSONValue.toJSONString(stats)
+  stats.complexity = stats.totalAxiomCount / stats.classCount
+  stats.logicalAxiomCount = ont.getLogicalAxiomCount()
+
+  response.contentType = 'application/json'
+  print JSONValue.toJSONString(stats)
 } else {
-	stats = rManager.getStats()
-response.contentType = 'application/json'
-print JSONValue.toJSONString(stats)
+  stats = rManager.getStats()
+  response.contentType = 'application/json'
+  print JSONValue.toJSONString(stats)
 }
-
