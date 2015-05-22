@@ -284,7 +284,7 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(attemptedOntologies > 5) {
+        if(oRec.id != 'FYPO') {
           return;
         }
         try {
@@ -411,7 +411,8 @@ class RequestManager {
         "ontologyURI": uri.toString(),
         "remainder": c.getIRI().getFragment(),
         "label": null,
-        "definition": null 
+        "definition": null,
+        "deprecated": false
       ];
 
       for (OWLOntology ont : o.getImportsClosure()) {
@@ -421,6 +422,13 @@ class RequestManager {
             info['label'] = val.getLiteral() ;
           }
         }
+
+        for (OWLAnnotation annotation : c.getAnnotations(ont)) {
+          if(annotation.isDeprecatedIRIAnnotation()) {
+            info['deprecated'] = true
+          }
+        }
+
         for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
@@ -428,7 +436,7 @@ class RequestManager {
           }
         }
       }
-      /* definition */
+
       result.add(info);
     }
     return result
