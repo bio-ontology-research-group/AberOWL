@@ -133,6 +133,7 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         
         labels.each {
           iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
@@ -167,6 +168,7 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         
         labels.each {
           iClass.getAnnotations(iOnt, it).each { annotation ->
@@ -284,9 +286,6 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(oRec.id != 'FYPO') {
-          return;
-        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
@@ -304,31 +303,45 @@ class RequestManager {
           println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
           loadStati.put(oRec.id, 'loaded')
         } catch (OWLOntologyAlreadyExistsException E) {
-          println 'DUPLICATE ' + oRec.id
+          if(oRec && oRec.id) {
+            println 'DUPLICATE ' + oRec.id
+          }
         } catch (OWLOntologyInputSourceException e) {
           println "File not found for " + oRec.id
-          loadStati.put(oRec.id, 'unloadable')
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           noFileError++
         } catch (IOException e) {
           println "Can't load external import for " + oRec.id 
-          loadStati.put(oRec.id, 'unloadable')
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           importError++
         } catch(OWLOntologyCreationIOException e) {
           println "Failed to load imports for " + oRec.id
-          loadStati.put(oRec.id, 'unloadable')
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           importError++
         } catch(UnparsableOntologyException e) {
           println "Failed to parse ontology " + oRec.id
           e.printStackTrace()
-          loadStati.put(oRec.id, 'unloadable')
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           parseError++
         } catch(UnloadableImportException e) {
           println "Failed to load imports for " + oRec.id
-          loadStati.put(oRec.id, 'unloadable')
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           importError++
         } catch (Exception E) {
           println oRec.id + ' other'
-          loadStati.put(oRec.id, 'unloadable')
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           otherError++
         }
       }
