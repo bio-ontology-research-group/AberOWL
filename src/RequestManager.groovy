@@ -133,7 +133,6 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         
         labels.each {
           iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
@@ -160,6 +159,7 @@ class RequestManager {
           }
         }
 
+        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         index.addDocument(doc)
       }
 
@@ -168,7 +168,6 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         
         labels.each {
           iClass.getAnnotations(iOnt, it).each { annotation ->
@@ -197,6 +196,7 @@ class RequestManager {
           }
         }
 
+        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         index.addDocument(doc)
       }
     }
