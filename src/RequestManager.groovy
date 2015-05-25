@@ -8,6 +8,7 @@ import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 import org.semanticweb.owlapi.util.*;
+import org.semanticweb.owlapi.search.*;
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
@@ -135,7 +136,7 @@ class RequestManager {
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         
         labels.each {
-          iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
@@ -147,7 +148,7 @@ class RequestManager {
           }
         }
         definitions.each {
-          iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
@@ -168,9 +169,10 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        println cIRI
         
         labels.each {
-          iClass.getAnnotations(iOnt, it).each { annotation ->
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
@@ -183,7 +185,7 @@ class RequestManager {
           }
         }
         definitions.each {
-          iClass.getAnnotations(iOnt, it).each { annotation ->
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
@@ -286,6 +288,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(oRec.id != 'GO') {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
@@ -429,20 +434,22 @@ class RequestManager {
       ];
 
       for (OWLOntology ont : o.getImportsClosure()) {
-        for (OWLAnnotation annotation : c.getAnnotations(ont, df.getRDFSLabel())) {
+
+          
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont, df.getRDFSLabel())) { // OWLAnnotationc.getAnnotations(ont, df.getRDFSLabel())) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
             info['label'] = val.getLiteral() ;
           }
         }
 
-        for (OWLAnnotation annotation : c.getAnnotations(ont)) {
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont)) {
           if(annotation.isDeprecatedIRIAnnotation()) {
             info['deprecated'] = true
           }
         }
 
-        for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
             info['definition'] = val.getLiteral() ;
