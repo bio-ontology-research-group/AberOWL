@@ -365,11 +365,11 @@ class RequestManager {
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
       e.printStackTrace()
-      loadStati.put(k, 'inconsistent')
+      loadStati.put(k, 'unloadable')
     } catch (Exception e) {
       println "Failed " + k
       e.printStackTrace()
-      loadStati.put(k, 'inconsistent')
+      loadStati.put(k, 'unloadable')
     }
   }
       
