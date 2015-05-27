@@ -131,6 +131,8 @@ class RequestManager {
     ont.getImportsClosure().each { iOnt -> // OWLOntology
       iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
         def cIRI = iClass.getIRI().toString()
+        def firstLabelRun = true
+        def lastFirstLabel = null
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
@@ -141,10 +143,17 @@ class RequestManager {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
               doc.add(new Field('label', label, TextField.TYPE_STORED))
+              if(firstLabelRun) {
+                lastFirstLabel = label;
+              }
               if(annotation != null) {
                 lCount += 1
               }
             }
+          }
+          if(lastFirstLabel) {
+            doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
+            firstLabelRun = false
           }
         }
         definitions.each {
@@ -161,11 +170,16 @@ class RequestManager {
         }
 
         doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
+        if(!lastFirstLabel) {
+          doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
+        }
         index.addDocument(doc)
       }
 
       iOnt.getObjectPropertiesInSignature(true).each { iClass ->
         def cIRI = iClass.getIRI().toString()
+        def firstLabelRun = true
+        def lastFirstLabel = null
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
@@ -178,10 +192,18 @@ class RequestManager {
               def label = val.getLiteral().toLowerCase()
               
               doc.add(new Field('label', label, TextField.TYPE_STORED))
+              if(firstLabelRun) {
+                lastFirstLabel = label;
+              }
               if(annotation != null) {
                 lCount += 1
               }
             }
+          }
+          
+          if(lastFirstLabel) {
+            doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
+            firstLabelRun = false
           }
         }
         definitions.each {
@@ -199,6 +221,9 @@ class RequestManager {
         }
 
         doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
+        if(!lastFirstLabel) {
+          doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
+        }
         index.addDocument(doc)
       }
     }
@@ -288,9 +313,6 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
-        if(oRec.id != 'GO') {
-          return;
-        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
@@ -434,8 +456,6 @@ class RequestManager {
       ];
 
       for (OWLOntology ont : o.getImportsClosure()) {
-
-          
         for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont, df.getRDFSLabel())) { // OWLAnnotationc.getAnnotations(ont, df.getRDFSLabel())) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
