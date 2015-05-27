@@ -67,7 +67,11 @@ class RequestManager {
       
   Set<String> queryNames(String query, String ontUri) {
     String[] fields = ['label', 'ontology']
-    query = query.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    def oQuery = query
+
+    //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    query = oQuery.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+
     def parser
     if(ontUri && ontUri != '') {
       parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
@@ -85,6 +89,7 @@ class RequestManager {
       def label = hitDoc.get('label') 
       def ontology = hitDoc.get('ontology') 
       def iri = hitDoc.get('class') 
+      def fLabel = hitDoc.get('first_label') 
       if(label.indexOf(' ') != -1) {
         label = "'" + label + "'"
       }
@@ -92,9 +97,10 @@ class RequestManager {
         'label': label,
         'iri': iri,
         'ontology': ontology,
+        'first_label': fLabel,
 
         // Make jquery happy
-        'value': label,
+        'value': fLabel,
         'data': iri
       ])
     }
