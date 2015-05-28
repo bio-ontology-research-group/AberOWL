@@ -16,7 +16,9 @@
 
 package src
 
-import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxEditorParser;
+//import org.semanticweb.owlapi.util.mansyntax.ManchesterOWLSyntaxClassExpressionParser;
+//import org.semanticweb.owlapi.mansyntax.ManchesterOWLSyntaxEditorParser
+import org.semanticweb.owlapi.manchestersyntax.parser.ManchesterOWLSyntaxClassExpressionParser
 import org.semanticweb.owlapi.expression.OWLEntityChecker;
 import org.semanticweb.owlapi.expression.ShortFormEntityChecker;
 import org.semanticweb.owlapi.model.OWLClassExpression;
@@ -55,16 +57,17 @@ public class QueryParser {
 
       try {
         OWLDataFactory dFactory = this.ontology.getOWLOntologyManager().getOWLDataFactory();
-        ManchesterOWLSyntaxEditorParser parser = new ManchesterOWLSyntaxEditorParser(dFactory, mOwl);
-        parser.setDefaultOntology(ontology);
- 
         def eChecker = new BasicEntityChecker(dFactory, ontology)
+        def parser = new ManchesterOWLSyntaxClassExpressionParser(dFactory, eChecker);
+
         if(labels) {
           eChecker = new ShortFormEntityChecker(biSFormProvider)
+          parser = new ManchesterOWLSyntaxClassExpressionParser(dFactory, eChecker);
         }
 
-        parser.setOWLEntityChecker(eChecker)
-        result = parser.parseClassExpression()
+ //       parser.setDefaultOntology(ontology);
+
+        result = parser.parse(mOwl);
       } catch(Exception e) {
       e.printStackTrace()
         result = null 

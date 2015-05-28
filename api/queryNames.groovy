@@ -14,4 +14,5 @@ def query = request.getParameter('term')
 def ontology = request.getParameter('ontology')
 def rManager = application.rManager
 
-print new JsonBuilder(rManager.queryNames(query, ontology)).toString()
+response.contentType = 'application/json'
+print new JsonBuilder(rManager.queryNames(query, ontology).sort { it.first_label.size() }).toString()

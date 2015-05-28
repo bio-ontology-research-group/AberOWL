@@ -8,6 +8,7 @@ import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 import org.semanticweb.owlapi.util.*;
+import org.semanticweb.owlapi.search.*;
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
@@ -20,6 +21,7 @@ import org.apache.lucene.search.*
 import org.apache.lucene.queryparser.*
 import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
+import org.apache.lucene.index.IndexWriterConfig.OpenMode
 
 import java.util.concurrent.*
 import db.*;
@@ -40,9 +42,10 @@ class RequestManager {
   OWLDataFactory df = OWLManager.getOWLDataFactory() ;
   OntologyDatabase oBase = new OntologyDatabase()
 
-  def ontologies = new ConcurrentHashMap();
-  def ontologyManagers = new ConcurrentHashMap();
-  def queryEngines = new ConcurrentHashMap();
+  def ontologies = new ConcurrentHashMap()
+  def ontologyManagers = new ConcurrentHashMap()
+  def queryEngines = new ConcurrentHashMap()
+  def loadStati = new ConcurrentHashMap()
 
   // Index things
   RAMDirectory index = new RAMDirectory()
@@ -64,7 +67,11 @@ class RequestManager {
       
   Set<String> queryNames(String query, String ontUri) {
     String[] fields = ['label', 'ontology']
-    query = query.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    def oQuery = query
+
+    //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    query = oQuery.toLowerCase().split().collect({ 'label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+
     def parser
     if(ontUri && ontUri != '') {
       parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
@@ -82,6 +89,7 @@ class RequestManager {
       def label = hitDoc.get('label') 
       def ontology = hitDoc.get('ontology') 
       def iri = hitDoc.get('class') 
+      def fLabel = hitDoc.get('first_label') 
       if(label.indexOf(' ') != -1) {
         label = "'" + label + "'"
       }
@@ -89,9 +97,10 @@ class RequestManager {
         'label': label,
         'iri': iri,
         'ontology': ontology,
+        'first_label': fLabel,
 
         // Make jquery happy
-        'value': label,
+        'value': fLabel,
         'data': iri
       ])
     }
@@ -121,28 +130,40 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition'))
     ]
-    
+
+    index.deleteDocuments(new Term('ontology', uri))
+
+    // Readd all classes for this ont
     ont.getImportsClosure().each { iOnt -> // OWLOntology
       iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
         def cIRI = iClass.getIRI().toString()
+        def firstLabelRun = true
+        def lastFirstLabel = null
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         
         labels.each {
-          iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
               doc.add(new Field('label', label, TextField.TYPE_STORED))
+              if(firstLabelRun) {
+                lastFirstLabel = label;
+              }
               if(annotation != null) {
                 lCount += 1
               }
             }
           }
+          if(lastFirstLabel) {
+            doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
+            firstLabelRun = false
+          }
         }
         definitions.each {
-          iClass.getAnnotations(iOnt, it).each { annotation -> // OWLAnnotation
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
@@ -154,30 +175,45 @@ class RequestManager {
           }
         }
 
+        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
+        if(!lastFirstLabel) {
+          doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
+        }
         index.addDocument(doc)
       }
 
       iOnt.getObjectPropertiesInSignature(true).each { iClass ->
         def cIRI = iClass.getIRI().toString()
+        def firstLabelRun = true
+        def lastFirstLabel = null
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        println cIRI
         
         labels.each {
-          iClass.getAnnotations(iOnt, it).each { annotation ->
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
               
               doc.add(new Field('label', label, TextField.TYPE_STORED))
+              if(firstLabelRun) {
+                lastFirstLabel = label;
+              }
               if(annotation != null) {
                 lCount += 1
               }
             }
           }
+          
+          if(lastFirstLabel) {
+            doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
+            firstLabelRun = false
+          }
         }
         definitions.each {
-          iClass.getAnnotations(iOnt, it).each { annotation ->
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
@@ -190,19 +226,33 @@ class RequestManager {
           }
         }
 
+        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
+        if(!lastFirstLabel) {
+          doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
+        }
         index.addDocument(doc)
       }
     }
   }
 
   void loadIndex() {
-    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
-    IndexWriter writer = new IndexWriter(index, iwc)
-    for (String uri : ontologies.keySet()) {
-      reloadOntologyIndex(uri, writer)
-    }
-    writer.close()
+    loadIndex('')
+  }
 
+  void loadIndex(String ontology) {
+    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+    IndexWriter writer = new IndexWriter(index, iwc)
+
+    if(ontology == '') {
+      for (String uri : ontologies.keySet()) {
+        reloadOntologyIndex(uri, writer)
+      }
+    } else {
+      reloadOntologyIndex(ontology, writer)
+    }
+
+    writer.close()
     searcher = new IndexSearcher(DirectoryReader.open(index))
   }
 
@@ -240,7 +290,7 @@ class RequestManager {
       }
 
       reloadOntologyAnnotations(oRec.id)
-      loadIndex() // TODO: reload only one instead of rewriting the whole index!
+      loadIndex(name)
 
       List<String> langs = new ArrayList<>();
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
@@ -284,26 +334,47 @@ class RequestManager {
 
           loadedOntologies++
           println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
+          loadStati.put(oRec.id, 'loaded')
         } catch (OWLOntologyAlreadyExistsException E) {
-          // do nothing
-          println 'DUPLICATE ' + oRec.id
+          if(oRec && oRec.id) {
+            println 'DUPLICATE ' + oRec.id
+          }
         } catch (OWLOntologyInputSourceException e) {
           println "File not found for " + oRec.id
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           noFileError++
         } catch (IOException e) {
           println "Can't load external import for " + oRec.id 
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           importError++
         } catch(OWLOntologyCreationIOException e) {
           println "Failed to load imports for " + oRec.id
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           importError++
         } catch(UnparsableOntologyException e) {
           println "Failed to parse ontology " + oRec.id
+          e.printStackTrace()
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           parseError++
         } catch(UnloadableImportException e) {
           println "Failed to load imports for " + oRec.id
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           importError++
         } catch (Exception E) {
           println oRec.id + ' other'
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
           otherError++
         }
       }
@@ -321,13 +392,19 @@ class RequestManager {
       this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 
       println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
+      loadStati.put(k, 'classified')
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
+      e.printStackTrace()
+      loadStati.put(k, 'inconsistent')
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
+      e.printStackTrace()
+      loadStati.put(k, 'unloadable')
     } catch (Exception e) {
       println "Failed " + k
       e.printStackTrace()
+      loadStati.put(k, 'unloadable')
     }
   }
       
@@ -382,24 +459,32 @@ class RequestManager {
         "ontologyURI": uri.toString(),
         "remainder": c.getIRI().getFragment(),
         "label": null,
-        "definition": null 
+        "definition": null,
+        "deprecated": false
       ];
 
       for (OWLOntology ont : o.getImportsClosure()) {
-        for (OWLAnnotation annotation : c.getAnnotations(ont, df.getRDFSLabel())) {
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont, df.getRDFSLabel())) { // OWLAnnotationc.getAnnotations(ont, df.getRDFSLabel())) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
             info['label'] = val.getLiteral() ;
           }
         }
-        for (OWLAnnotation annotation : c.getAnnotations(o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont)) {
+          if(annotation.isDeprecatedIRIAnnotation()) {
+            info['deprecated'] = true
+          }
+        }
+
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
             info['definition'] = val.getLiteral() ;
           }
         }
       }
-      /* definition */
+
       result.add(info);
     }
     return result

@@ -29,6 +29,7 @@ import org.semanticweb.owlapi.model.OWLObject;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologySetProvider;
 import org.semanticweb.owlapi.util.* ;
+import org.semanticweb.owlapi.search.*;
 
 /**
  * Modified version of the standard short form provider to add quotations around
@@ -197,8 +198,7 @@ public class NewShortFormProvider implements ShortFormProvider {
             AnnotationLanguageFilter checker = new AnnotationLanguageFilter(prop,
                     preferredLanguageMap.get(prop));
             for (OWLOntology ontology : ontologySetProvider.getOntologies()) {
-                for (OWLAnnotationAssertionAxiom ax : entity
-                        .getAnnotationAssertionAxioms(ontology)) {
+                for (OWLAnnotationAssertionAxiom ax : EntitySearcher.getAnnotationAssertionAxioms(entity, ontology)) {
                     ax.accept(checker);
                 }
             }
