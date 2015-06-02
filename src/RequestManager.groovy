@@ -142,18 +142,33 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-        
+
+        def xrefs = []
+        EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
+          if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
+            it.getAnnotations().each {
+              def label = it.getValue().getLiteral().toLowerCase()
+              if(!xrefs.contains(label)) {
+                xrefs << label
+              }
+            }
+          }
+        }
+
         labels.each {
           EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
-              doc.add(new Field('label', label, TextField.TYPE_STORED))
-              if(firstLabelRun) {
-                lastFirstLabel = label;
-              }
-              if(annotation != null) {
-                lCount += 1
+
+              if(!xrefs.contains(label)) {
+                doc.add(new Field('label', label, TextField.TYPE_STORED))
+                if(firstLabelRun) {
+                  lastFirstLabel = label;
+                }
+                if(annotation != null) {
+                  lCount += 1
+                }
               }
             }
           }
@@ -190,19 +205,33 @@ class RequestManager {
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         println cIRI
-        
+
+        def xrefs = []
+        EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
+          if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
+            it.getAnnotations().each {
+              def label = it.getValue().getLiteral().toLowerCase()
+              if(!xrefs.contains(label)) {
+                xrefs << label
+              }
+            }
+          }
+        }
+
         labels.each {
           EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
               
-              doc.add(new Field('label', label, TextField.TYPE_STORED))
-              if(firstLabelRun) {
-                lastFirstLabel = label;
-              }
-              if(annotation != null) {
-                lCount += 1
+              if(!xrefs.contains(label)) {
+                doc.add(new Field('label', label, TextField.TYPE_STORED))
+                if(firstLabelRun) {
+                  lastFirstLabel = label;
+                }
+                if(annotation != null) {
+                  lCount += 1
+                }
               }
             }
           }
@@ -319,6 +348,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(oRec.id != 'CHEBI') {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;
@@ -461,11 +493,25 @@ class RequestManager {
         "deprecated": false
       ];
 
+      def xrefs = []
+      EntitySearcher.getAnnotationAssertionAxioms(c, o).each {
+        if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
+          it.getAnnotations().each {
+            def label = it.getValue().getLiteral().toLowerCase()
+            if(!xrefs.contains(label)) {
+              xrefs << label
+            }
+          }
+        }
+      }
+
       for (OWLOntology ont : o.getImportsClosure()) {
         for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont, df.getRDFSLabel())) { // OWLAnnotationc.getAnnotations(ont, df.getRDFSLabel())) {
           if (annotation.getValue() instanceof OWLLiteral) {
             OWLLiteral val = (OWLLiteral) annotation.getValue();
-            info['label'] = val.getLiteral() ;
+            if(!xrefs.contains(val.getLiteral().toLowerCase())) {
+              info['label'] = val.getLiteral() ;
+            }
           }
         }
 
