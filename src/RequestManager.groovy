@@ -492,29 +492,18 @@ class RequestManager {
         "deprecated": false
       ];
 
-      def xrefs = []
-      EntitySearcher.getAnnotationAssertionAxioms(c, o).each {
-        if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
-          it.getAnnotations().each {
-            def label = it.getValue().getLiteral().toLowerCase()
-            if(!xrefs.contains(label)) {
-              xrefs << label
-            }
-          }
-        }
-      }
+    def bq = new BooleanQuery()
+    bq.add(new TermQuery(new Term('class', c.getIRI().toString())), BooleanClause.Occur.MUST);
+    bq.add(new TermQuery(new Term('ontology', uri.toString())), BooleanClause.Occur.MUST);
 
-      for (OWLOntology ont : o.getImportsClosure()) {
-        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont, df.getRDFSLabel())) { // OWLAnnotationc.getAnnotations(ont, df.getRDFSLabel())) {
-          if (annotation.getValue() instanceof OWLLiteral) {
-            OWLLiteral val = (OWLLiteral) annotation.getValue();
-            if(!xrefs.contains(val.getLiteral().toLowerCase())) {
-              info['label'] = val.getLiteral() ;
-            }
-          }
-        }
+    def dResult = searcher.search(bq, 1).scoreDocs[0]
+    def hitDoc = searcher.doc(dResult.doc)
+    def output = [:]
+    hitDoc.each {
+      info['label'] = hitDoc.get('first_label')
+    }
 
-        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, ont)) {
+        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
           if(annotation.isDeprecatedIRIAnnotation()) {
             info['deprecated'] = true
           }
@@ -526,10 +515,10 @@ class RequestManager {
             info['definition'] = val.getLiteral() ;
           }
         }
-      }
 
       result.add(info);
-    }
+}
+
     return result
   }
 
