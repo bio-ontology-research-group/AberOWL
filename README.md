@@ -2,5 +2,3 @@
 
 git submodule init
 groovy AberOWLServer.groovy
-
-;)
