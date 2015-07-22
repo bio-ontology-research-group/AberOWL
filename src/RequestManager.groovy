@@ -204,7 +204,6 @@ class RequestManager {
         def doc = new Document()
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-        println cIRI
 
         def xrefs = []
         EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
