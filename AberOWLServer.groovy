@@ -1,4 +1,5 @@
 @Grapes([
+          @Grab(group='javax.servlet', module='javax.servlet-api', version='3.1.0'),
           @Grab(group='org.eclipse.jetty', module='jetty-server', version='9.3.0.M2'),
           @Grab(group='org.eclipse.jetty', module='jetty-servlet', version='9.3.0.M2'),
           @Grab(group='redis.clients', module='jedis', version='2.5.2'),
