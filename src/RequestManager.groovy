@@ -294,7 +294,7 @@ class RequestManager {
     if(!oRec) {
       return null
     }
-    if(oRec.lastSubDate == 0) {
+    if(oRec.submissions.size() == 0) {
       return null
     }
     boolean newO = false
@@ -307,7 +307,7 @@ class RequestManager {
       OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration()
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
-      def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+      def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions.last().file))
       def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
       ontologies.put(oRec.id, ontology)
       ontologyManagers.put(oRec.id, lManager)
@@ -348,14 +348,14 @@ class RequestManager {
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
         try {
-          if(oRec.lastSubDate == 0) {
+          if(oRec.submissions.size() == 0) {
             return;
           }
           OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
           OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
           config.setFollowRedirects(true) ;
           config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
-          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions.last().file))
           def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
           ontologies.put(oRec.id ,ontology)
           ontologyManagers.put(oRec.id, lManager)
