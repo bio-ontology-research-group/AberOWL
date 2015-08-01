@@ -60,7 +60,7 @@ try {
   logstring += "\t"+(ontology?:"")
   logstring += "\t"+(direct?:"")
   logstring += "\t"+(labels?:"")
-  logstring += "\t"+(results.size()?:"")
+  logstring += "\t"+(out.size()?:"")
   logstring += "\t"+((end - start)?:"")
   log.info logstring
 
