@@ -56,12 +56,12 @@ try {
 
   def logstring = ""
   logstring += query?:""
-  logstring += "\t"+type?:""
-  logstring += "\t"+ontology?:""
-  logstring += "\t"+direct?:""
-  logstring += "\t"+labels?:""
-  logstring += "\t"+results.size()?:""
-  logstring += "\t"+(end - start)?:""
+  logstring += "\t"+(type?:"")
+  logstring += "\t"+(ontology?:"")
+  logstring += "\t"+(direct?:"")
+  logstring += "\t"+(labels?:"")
+  logstring += "\t"+(results.size()?:"")
+  logstring += "\t"+((end - start)?:"")
   log.info logstring
 
   response.contentType = 'application/json'
