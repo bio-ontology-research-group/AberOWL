@@ -13,7 +13,7 @@ if (!application.log) {
   Logger log = Logger.getInstance(getClass())
   log.level = Level.INFO
   // add an appender to log to file
-  log.addAppender(new FileAppender(new TTCCLayout(), 'queries.log'))
+  log.addAppender(new FileAppender(new TTCCLayout(), 'queries.log', true, true, 32768))
   application.log = log
   log.info 'Logger created'
 }
