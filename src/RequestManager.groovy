@@ -651,4 +651,31 @@ class RequestManager {
 
     return stats
   }
+  /**
+   * Gets the object properties from the ontology given
+   */
+  HashMap getObjectProperties(String oString){
+    HashMap objectProperties = new HashMap<String,String>();
+    if((oString!=null)&&(oString.length()>0)){
+      if(ontologies.containsKey(oString)) {
+        OWLOntology ont = ontologies.get(oString);
+        Iterator <OWLObjectProperty> it = ont.getObjectPropertiesInSignature(true).iterator();
+        OWLObjectProperty property;
+        while(it.hasNext()) {
+          property = it.next();
+          Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(property, ont).iterator();
+          OWLAnnotationAssertionAxiom axiom;
+          while(jt.hasNext()) {
+            axiom = jt.next();
+            if (axiom.getProperty().isLabel()) {
+              OWLLiteral value = (OWLLiteral) axiom.getValue();
+              objectProperties.put(value.getLiteral().toString(),axiom.getSubject().toString());
+            }
+          }
+        }
+      }
+    }
+    return objectProperties;
+  }
 }
+
