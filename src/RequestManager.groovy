@@ -75,7 +75,7 @@ class RequestManager {
     def parser
     if(ontUri && ontUri != '') {
       parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
-      query += ' AND ontology:' + ontUri
+      query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+ false;
     } else {
       parser = new classic.QueryParser('label', new WhitespaceAnalyzer())
     }
@@ -108,7 +108,7 @@ class RequestManager {
     return ret.sort { it.label.size() }
   }
 
-  void reloadOntologyIndex(String uri, IndexWriter index) {
+  void reloadOntologyIndex(String uri, IndexWriter index,boolean isOldVersion) {
     def ont = ontologies.get(uri)
     def labels = [
       // Labels
@@ -140,8 +140,10 @@ class RequestManager {
         def firstLabelRun = true
         def lastFirstLabel = null
         def doc = new Document()
+        //To indicate that it is a old version
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+        doc.add(new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED))
 
         def xrefs = []
         EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
@@ -264,24 +266,25 @@ class RequestManager {
   }
 
   void loadIndex() {
-    loadIndex('')
+    loadIndex('',false)
   }
 
-  void loadIndex(String ontology) {
-    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
-    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
-    IndexWriter writer = new IndexWriter(index, iwc)
+// Adding a parameter to Load Index to indicate that it is an old version
+  void loadIndex(String ontology,boolean isOldVersion) {
+      //If the ontologie is new version then is not indexed.
+      def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+      iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+      IndexWriter writer = new IndexWriter(index, iwc)
 
-    if(ontology == '') {
-      for (String uri : ontologies.keySet()) {
-        reloadOntologyIndex(uri, writer)
+      if (ontology == '') {
+        for (String uri : ontologies.keySet()) {
+          reloadOntologyIndex(uri, writer,isOldVersion)
+        }
+      } else {
+        reloadOntologyIndex(ontology, writer,isOldVersion)
       }
-    } else {
-      reloadOntologyIndex(ontology, writer)
-    }
-
-    writer.close()
-    searcher = new IndexSearcher(DirectoryReader.open(index))
+      writer.close()
+      searcher = new IndexSearcher(DirectoryReader.open(index))
   }
 
   /**
@@ -289,36 +292,60 @@ class RequestManager {
    *
    * @param name corresponding to name of the ontology in the database
    */
-  void reloadOntology(String name) {
+  void reloadOntology(String name,int version) {
     def oRec = oBase.getOntology(name, false)
     if(!oRec) {
-      return null
+      return
     }
     if(oRec.lastSubDate == 0) {
-      return null
+      return
     }
     boolean newO = false
     if(!ontologies.get(oRec.id)) {
       newO = true
     }
-
     try {
       OWLOntologyManager lManager = OWLManager.createOWLOntologyManager()
       OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration()
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
-      def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
-      def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
-      ontologies.put(oRec.id, ontology)
-      ontologyManagers.put(oRec.id, lManager)
+      if((version>=0)&&(version<oRec.submissions.size())) {
+        //I am not proud of this, but it is the only way to order the versions.
+        //I have preferred to not do many changes on the code
+        def list = oRec.submissions.keySet().sort();
+        //Firstly, It is necessary to get the timestamp
+        def timestamp = list.get(version);
+        def fSource = new FileDocumentSource(new File('onts/' + oRec.submissions.get(timestamp)))
+        def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+        //Load the different version of the ontology with a different key
+        def newId = oRec.id + '_' + version;
+        ontologies.put(newId, ontology)
+        ontologyManagers.put(newId, lManager)
+        println "Updated ontology: " + newId + " version: "+version
 
-      println "Updated ontology: " + oRec.id
+        reloadOntologyAnnotations(newId)
+        //loadIndex(name)
+        loadIndex(newId,newO)
+
+      }else{//In other case the actual ontology will be updated.
+        def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+        def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+        ontologies.put(oRec.id, ontology)
+        ontologyManagers.put(oRec.id, lManager)
+        println "Updated ontology: " + oRec.id
+
+        reloadOntologyAnnotations(oRec.id)
+        //loadIndex(name)
+        loadIndex(name,newO)
+
+      }
+
       if(newO) {
         loadedOntologies++
       }
-
-      reloadOntologyAnnotations(oRec.id)
-      loadIndex(name)
+      //reloadOntologyAnnotations(oRec.id)
+      //loadIndex(name)
+      //loadIndex(name,newO)
 
       List<String> langs = new ArrayList<>();
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
@@ -339,7 +366,9 @@ class RequestManager {
 
   /**
    * Create the ontology manager and load it with the given ontology.
-   * 
+   * Create the ontology manager and load it with the given ontology.
+   *
+   * @throws OWLOntologyCreationException, IOException
    * @throws OWLOntologyCreationException, IOException
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
@@ -479,6 +508,7 @@ class RequestManager {
   }
 
   Set classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
+
     ArrayList result = new ArrayList<HashMap>();
     for(def c : classes) {
       def info = [
@@ -491,33 +521,35 @@ class RequestManager {
         "deprecated": false
       ];
 
-    def bq = new BooleanQuery()
-    bq.add(new TermQuery(new Term('class', c.getIRI().toString())), BooleanClause.Occur.MUST);
-    bq.add(new TermQuery(new Term('ontology', uri.toString())), BooleanClause.Occur.MUST);
+      def bq = new BooleanQuery()
+      bq.add(new TermQuery(new Term('class', c.getIRI().toString())), BooleanClause.Occur.MUST);
+      bq.add(new TermQuery(new Term('ontology', uri.toString())), BooleanClause.Occur.MUST);
 
-    def dResult = searcher.search(bq, 1).scoreDocs[0]
-    def hitDoc = searcher.doc(dResult.doc)
-    def output = [:]
-    hitDoc.each {
-      info['label'] = hitDoc.get('first_label')
-    }
-
-        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
-          if(annotation.isDeprecatedIRIAnnotation()) {
-            info['deprecated'] = true
-          }
+      //def dResult = searcher.search(bq, 1).scoreDocs[0]
+      def scoreDocs = searcher.search(bq, 1).scoreDocs
+      if((scoreDocs!=null)&&(scoreDocs.length>0)) {
+        def dResult = scoreDocs[0]
+        def hitDoc = searcher.doc(dResult.doc)
+        //def output = [:]
+        hitDoc.each {
+          info['label'] = hitDoc.get('first_label')
         }
-
-        for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
-          if (annotation.getValue() instanceof OWLLiteral) {
-            OWLLiteral val = (OWLLiteral) annotation.getValue();
-            info['definition'] = val.getLiteral() ;
-          }
+      }
+      for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
+        if(annotation.isDeprecatedIRIAnnotation()) {
+          info['deprecated'] = true
         }
+      }
+
+      for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+        if (annotation.getValue() instanceof OWLLiteral) {
+          OWLLiteral val = (OWLLiteral) annotation.getValue();
+          info['definition'] = val.getLiteral() ;
+        }
+      }
 
       result.add(info);
-}
-
+    }
     return result
   }
 
@@ -528,12 +560,11 @@ class RequestManager {
    * @param requestType Type of class match to be performed. Valid values are: subclass, superclass, equivalent or all.
    * @return Set of OWL Classes.
    */
-  Set runQuery(String mOwlQuery, String type, String ontUri, boolean direct, boolean labels) {
+  Set runQuery(String mOwlQuery, String type, String ontUri,int version, boolean direct, boolean labels) {
     def start = System.currentTimeMillis()
 
     type = type.toLowerCase()
     def requestType
-
     switch(type) {
       case "superclass": requestType = RequestType.SUPERCLASS; break;
       case "subclass": requestType = RequestType.SUBCLASS; break;
@@ -575,15 +606,24 @@ class RequestManager {
         resultSet.remove(df.getOWLThing()) ;
         classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
       } catch (OWLOntologyCreationException E) {
-        E.printStackTrace() ;
+        E.printStackTrace();
       }
     } else { // query one single ontology
-      QueryEngine queryEngine = queryEngines.get(ontUri)
-      OWLOntology ontology = ontologies.get(ontUri)
-      Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
-      resultSet.remove(df.getOWLNothing())
-      resultSet.remove(df.getOWLThing())
-      classes.addAll(classes2info(resultSet, ontology, ontUri))
+      QueryEngine queryEngine = queryEngines.get(ontUri);
+      def oRec = oBase.getOntology(ontUri, false)
+      if(oRec!=null){
+        if((version>=0)&&(version<oRec.submissions.size())) {
+          ontUri = ontUri+"_"+version;
+        }
+        if(ontologies.containsKey(ontUri)) {
+          OWLOntology ontology = ontologies.get(ontUri)
+          println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
+          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+          resultSet.remove(df.getOWLNothing())
+          resultSet.remove(df.getOWLThing())
+          classes.addAll(classes2info(resultSet, ontology, ontUri))
+        }
+      }
     }
 
     def end = System.currentTimeMillis()
@@ -677,5 +717,5 @@ class RequestManager {
     }
     return objectProperties;
   }
-}
 
+}
