@@ -610,19 +610,16 @@ class RequestManager {
       }
     } else { // query one single ontology
       QueryEngine queryEngine = queryEngines.get(ontUri);
-      def oRec = oBase.getOntology(ontUri, false)
-      if(oRec!=null){
-        if((version>=0)&&(version<oRec.submissions.size())) {
-          ontUri = ontUri+"_"+version;
-        }
-        if(ontologies.containsKey(ontUri)) {
-          OWLOntology ontology = ontologies.get(ontUri)
-          println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
-          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
-          resultSet.remove(df.getOWLNothing())
-          resultSet.remove(df.getOWLThing())
-          classes.addAll(classes2info(resultSet, ontology, ontUri))
-        }
+      if(version>=0) {
+        ontUri = ontUri+"_"+version;
+      }
+      if(ontologies.containsKey(ontUri)) {
+        OWLOntology ontology = ontologies.get(ontUri)
+        println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
+        Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+        resultSet.remove(df.getOWLNothing())
+        resultSet.remove(df.getOWLThing())
+        classes.addAll(classes2info(resultSet, ontology, ontUri))
       }
     }
 
