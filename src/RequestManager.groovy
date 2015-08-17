@@ -24,6 +24,7 @@ import org.apache.lucene.search.highlight.*
 import org.apache.lucene.index.IndexWriterConfig.OpenMode
 
 import java.util.concurrent.*
+import java.util.timer.*
 import db.*;
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
@@ -47,6 +48,8 @@ class RequestManager {
   def queryEngines = new ConcurrentHashMap()
   def loadStati = new ConcurrentHashMap()
 
+  def oldOntologies = new ArrayList()
+
   // Index things
   RAMDirectory index = new RAMDirectory()
   IndexSearcher searcher
@@ -59,6 +62,24 @@ class RequestManager {
     if(reason) {
       createReasoner();
     }
+
+    // Unload old versions of ontologies
+    new Timer().schedule({
+      def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+      iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+      IndexWriter writer = new IndexWriter(index, iwc)
+
+      oldOntologies.each { id ->
+        ontologies.remove(id)
+        ontologyManagers.remove(id)
+        queryEngines.remove(id)
+        loadStati.remove(id)
+        index.deleteDocuments(new Term('ontology', id))
+      }
+
+      index.close()
+      oldOntologies.clear()
+    } as TimerTask, 5400000, 5400000) // 1.5 hours
   }
       
   Set<String> listOntologies() {
@@ -321,6 +342,8 @@ class RequestManager {
         def newId = oRec.id + '_' + version;
         ontologies.put(newId, ontology)
         ontologyManagers.put(newId, lManager)
+        oldOntologies.push(newId)
+
         println "Updated ontology: " + newId + " version: "+version
 
         reloadOntologyAnnotations(newId)
