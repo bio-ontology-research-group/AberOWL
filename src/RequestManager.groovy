@@ -65,21 +65,25 @@ class RequestManager {
 
     // Unload old versions of ontologies
     new Timer().schedule({
-      def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
-      iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
-      IndexWriter writer = new IndexWriter(index, iwc)
-
-      oldOntologies.each { id ->
-        ontologies.remove(id)
-        ontologyManagers.remove(id)
-        queryEngines.remove(id)
-        loadStati.remove(id)
-        index.deleteDocuments(new Term('ontology', id))
-      }
-
-      index.close()
-      oldOntologies.clear()
+      removeOldOntologies()
     } as TimerTask, 5400000, 5400000) // 1.5 hours
+  }
+
+  void removeOldOntologies() {
+    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+    IndexWriter writer = new IndexWriter(index, iwc)
+
+    oldOntologies.each { id ->
+      ontologies.remove(id)
+      ontologyManagers.remove(id)
+      queryEngines.remove(id)
+      loadStati.remove(id)
+      index.deleteDocuments(new Term('ontology', id))
+    }
+
+    index.close()
+    oldOntologies.clear()
   }
       
   Set<String> listOntologies() {
@@ -633,17 +637,21 @@ class RequestManager {
       }
     } else { // query one single ontology
       QueryEngine queryEngine = queryEngines.get(ontUri);
+      def vOntUri = ontUri
       if(version>=0) {
-        ontUri = ontUri+"_"+version;
+        vOntUri = ontUri+"_"+version;
       }
-      if(ontologies.containsKey(ontUri)) {
-        OWLOntology ontology = ontologies.get(ontUri)
-        println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
-        Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
-        resultSet.remove(df.getOWLNothing())
-        resultSet.remove(df.getOWLThing())
-        classes.addAll(classes2info(resultSet, ontology, ontUri))
+
+      if(!ontologies.containsKey(vOntUri)) {
+        reloadOntology(ontUri, version)
       }
+
+      OWLOntology ontology = ontologies.get(ontUri)
+      println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
+      Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+      resultSet.remove(df.getOWLNothing())
+      resultSet.remove(df.getOWLThing())
+      classes.addAll(classes2info(resultSet, ontology, ontUri))
     }
 
     def end = System.currentTimeMillis()
