@@ -79,7 +79,7 @@ class RequestManager {
       ontologyManagers.remove(id)
       queryEngines.remove(id)
       loadStati.remove(id)
-      index.deleteDocuments(new Term('ontology', id))
+      writer.deleteDocuments(new Term('ontology', id))
     }
 
     index.close()
