@@ -47,8 +47,7 @@ class RequestManager {
   def ontologyManagers = new ConcurrentHashMap()
   def queryEngines = new ConcurrentHashMap()
   def loadStati = new ConcurrentHashMap()
-
-  def oldOntologies = new ArrayList()
+  def oldOntologies = new ConcurrentHashMap()
 
   // Index things
   RAMDirectory index = new RAMDirectory()
@@ -66,24 +65,27 @@ class RequestManager {
     // Unload old versions of ontologies
     new Timer().schedule({
       removeOldOntologies()
-    } as TimerTask, 5400000, 5400000) // 1.5 hours
+    } as TimerTask, 600000, 600000) // 10 minutes
   }
 
   void removeOldOntologies() {
     def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
     iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
     IndexWriter writer = new IndexWriter(index, iwc)
+    def curTime = (int) (System.currentTimeMillis() / 1000L)
 
-    oldOntologies.each { id ->
-      ontologies.remove(id)
-      ontologyManagers.remove(id)
-      queryEngines.remove(id)
-      loadStati.remove(id)
-      writer.deleteDocuments(new Term('ontology', id))
+    oldOntologies.each { id, time ->
+      if(curTime - time > 3600000) { // if it's older than an hour /
+        ontologies.remove(id)
+        ontologyManagers.remove(id)
+        queryEngines.remove(id)
+        loadStati.remove(id)
+        writer.deleteDocuments(new Term('ontology', id))
+        oldOntologies.remove(id)
+      }
     }
 
     index.close()
-    oldOntologies.clear()
   }
       
   Set<String> listOntologies() {
@@ -346,7 +348,7 @@ class RequestManager {
         def newId = oRec.id + '_' + version;
         ontologies.put(newId, ontology)
         ontologyManagers.put(newId, lManager)
-        oldOntologies.push(newId)
+        oldOntologies.put(newId, (int) (System.currentTimeMillis() / 1000L))
 
         println "Updated ontology: " + newId + " version: "+version
 
