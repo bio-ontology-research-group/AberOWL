@@ -723,6 +723,7 @@ class RequestManager {
   }
   /**
    * Gets the object properties from the ontology given
+   * oString This paramater represents the id of the ontology.
    */
   HashMap getObjectProperties(String oString){
     HashMap objectProperties = new HashMap<String,String>();
@@ -739,7 +740,7 @@ class RequestManager {
             axiom = jt.next();
             if (axiom.getProperty().isLabel()) {
               OWLLiteral value = (OWLLiteral) axiom.getValue();
-              objectProperties.put(value.getLiteral().toString(),axiom.getSubject().toString());
+              objectProperties.put(value.getLiteral().toString(),"<"+axiom.getSubject().toString()+">");
             }
           }
         }
