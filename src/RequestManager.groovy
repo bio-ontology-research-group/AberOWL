@@ -137,10 +137,11 @@ class RequestManager {
 
   Set<String> queryOntologies(String query) {
     String[] fields = ['name', 'ontology', 'description']
-    def oQuery = query
+    def oQuery = classic.QueryParser.escape(query.toLowerCase())
 
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
-    query = 'lname:' + classic.QueryParser.escape(oQuery.toLowerCase()) + '* OR ldescription:' + classic.QueryParser.escape(oQuery.toLowerCase()) + '*'
+
+    query = 'lname:' + oQuery + '* OR ldescription:' + oQuery + '* OR lontology:' + oQuery + '*'
 
     def parser
     parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
@@ -156,7 +157,7 @@ class RequestManager {
     hits.each { h -> 
       def hitDoc = searcher.doc(h.doc)
       def name = hitDoc.get('name') 
-      def ontology = hitDoc.get('uri') 
+      def ontology = hitDoc.get('ontology') 
       def description = hitDoc.get('description') 
       ret.add([
         'name': name,
