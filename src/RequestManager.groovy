@@ -102,7 +102,7 @@ class RequestManager {
     def parser
     if(ontUri && ontUri != '') {
       parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
-      query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+ false;
+      query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
     } else {
       parser = new classic.QueryParser('label', new WhitespaceAnalyzer())
     }
@@ -135,7 +135,41 @@ class RequestManager {
     return ret.sort { it.label.size() }
   }
 
-  void reloadOntologyIndex(String uri, IndexWriter index,boolean isOldVersion) {
+  Set<String> queryOntologies(String query) {
+    String[] fields = ['name', 'ontology', 'description']
+    def oQuery = query
+
+    //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    query = 'lname:' + classic.QueryParser.escape(oQuery.toLowerCase()) + '* OR ldescription:' + classic.QueryParser.escape(oQuery.toLowerCase()) + '*'
+
+    def parser
+    parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
+    query += ' AND type:ontology'
+
+    println query
+
+    def fQuery = parser.parse(query)
+    println fQuery
+    def hits = searcher.search(fQuery, 1000).scoreDocs
+    def ret = []
+
+    hits.each { h -> 
+      def hitDoc = searcher.doc(h.doc)
+      def name = hitDoc.get('name') 
+      def ontology = hitDoc.get('uri') 
+      def description = hitDoc.get('description') 
+      ret.add([
+        'name': name,
+        'uri': ontology,
+        'description': description,
+      ])
+    }
+
+    return ret.sort { it.name.size() }
+  }
+
+
+  void reloadOntologyIndex(String uri, IndexWriter index, boolean isOldVersion) {
     def ont = ontologies.get(uri)
     def labels = [
       // Labels
@@ -160,6 +194,24 @@ class RequestManager {
 
     index.deleteDocuments(new Term('ontology', uri))
 
+    // Add record for the ontology itself
+    println 'getting ' + uri
+    def info = oBase.getOntology(uri)
+    println 'got ' + info.id
+    def oDoc = new Document()
+    // Storing seperate lower case versions of the field seems dumb
+    oDoc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+    oDoc.add(new Field('lontology', uri.toLowerCase(), TextField.TYPE_STORED))
+    oDoc.add(new Field("oldVersion", isOldVersion.toString(), TextField.TYPE_STORED))
+    oDoc.add(new Field('type', 'ontology', TextField.TYPE_STORED))
+    oDoc.add(new Field('name', info.name, TextField.TYPE_STORED))
+    oDoc.add(new Field('lname', info.name.toLowerCase(), TextField.TYPE_STORED))
+    if(info.description) {
+      oDoc.add(new Field('ldescription', info.description.toLowerCase(), TextField.TYPE_STORED))
+      oDoc.add(new Field('description', info.description, TextField.TYPE_STORED))
+    }
+    index.addDocument(oDoc)
+
     // Readd all classes for this ont
     ont.getImportsClosure().each { iOnt -> // OWLOntology
       iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
@@ -169,6 +221,7 @@ class RequestManager {
         def doc = new Document()
         //To indicate that it is a old version
         doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+        doc.add(new Field('type', 'class', TextField.TYPE_STORED))
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         doc.add(new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED))
 
@@ -293,22 +346,23 @@ class RequestManager {
   }
 
   void loadIndex() {
-    loadIndex('',false)
+    loadIndex('', false)
   }
 
 // Adding a parameter to Load Index to indicate that it is an old version
-  void loadIndex(String ontology,boolean isOldVersion) {
-      //If the ontologie is new version then is not indexed.
+  void loadIndex(String ontology, boolean isOldVersion) {
+      //If the ontology is new version then is not indexed.
       def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
       iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
       IndexWriter writer = new IndexWriter(index, iwc)
 
-      if (ontology == '') {
-        for (String uri : ontologies.keySet()) {
-          reloadOntologyIndex(uri, writer,isOldVersion)
+      if(ontology == '') {
+        println "Loading index"
+        for(String uri : ontologies.keySet()) {
+          reloadOntologyIndex(uri, writer, isOldVersion)
         }
       } else {
-        reloadOntologyIndex(ontology, writer,isOldVersion)
+        reloadOntologyIndex(ontology, writer, isOldVersion)
       }
       writer.close()
       searcher = new IndexSearcher(DirectoryReader.open(index))
@@ -404,6 +458,9 @@ class RequestManager {
     GParsPool.withPool {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
+        if(attemptedOntologies > 5) {
+          return;
+        }
         attemptedOntologies++
         try {
           if(oRec.lastSubDate == 0) {
@@ -537,7 +594,6 @@ class RequestManager {
   }
 
   Set classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
-
     ArrayList result = new ArrayList<HashMap>();
     for(def c : classes) {
       def info = [
