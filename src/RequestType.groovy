@@ -47,5 +47,6 @@ enum RequestType {
 	EQUIVALENT,
 	
 	SUBEQ,
-	SUPEQ
+	SUPEQ,
+	REALIZE
 	}
