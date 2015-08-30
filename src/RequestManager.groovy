@@ -459,9 +459,6 @@ class RequestManager {
     GParsPool.withPool {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
-        if(attemptedOntologies > 5) {
-          return;
-        }
         attemptedOntologies++
         try {
           if(oRec.lastSubDate == 0) {
