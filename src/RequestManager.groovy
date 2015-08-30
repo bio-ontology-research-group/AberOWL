@@ -1,8 +1,10 @@
 package src
 
+import javafx.beans.property.ObjectProperty
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.reasoner.*
+import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
@@ -722,31 +724,74 @@ class RequestManager {
     return stats
   }
   /**
-   * Gets the object properties from the ontology given
+   * Gets the sub object properties from the ontology given
    * oString This paramater represents the id of the ontology.
+   * rootObjectProperty This parameter represents the root object property asked.
    */
-  HashMap getObjectProperties(String oString){
-    HashMap objectProperties = new HashMap<String,String>();
-    if((oString!=null)&&(oString.length()>0)){
+  Set getObjectProperties(String oString,String rootObjectProperty){
+    Set objectProperties = new HashSet();
+    if((oString!=null)&&(oString.length()>0)&&(rootObjectProperty!=null)&&(rootObjectProperty.length()>0)){
       if(ontologies.containsKey(oString)) {
-        OWLOntology ont = ontologies.get(oString);
-        Iterator <OWLObjectProperty> it = ont.getObjectPropertiesInSignature(true).iterator();
-        OWLObjectProperty property;
-        while(it.hasNext()) {
-          property = it.next();
-          Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(property, ont).iterator();
+        OWLOntology ontology = ontologies.get(oString);
+        StructuralReasoner structuralReasoner = new StructuralReasoner(ontology,new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
+        OWLObjectProperty objectProperty = df.getOWLObjectProperty(IRI.create(rootObjectProperty));
+        Set<OWLObjectPropertyExpression> properties = structuralReasoner.getSubObjectProperties(objectProperty,true).getFlattened();
+
+        for(OWLObjectPropertyExpression expression : properties) {
+          Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(expression.getNamedProperty(), structuralReasoner.getRootOntology()).iterator();
           OWLAnnotationAssertionAxiom axiom;
-          while(jt.hasNext()) {
+          HashMap subProperty = new HashMap<String,String>();
+          while (jt.hasNext()) {
             axiom = jt.next();
             if (axiom.getProperty().isLabel()) {
               OWLLiteral value = (OWLLiteral) axiom.getValue();
-              objectProperties.put(value.getLiteral().toString(),"<"+axiom.getSubject().toString()+">");
+              subProperty.put('classURI',axiom.getSubject().toString());
+              subProperty.put('label',value.getLiteral().toString());
+              objectProperties.add(subProperty);
             }
           }
         }
       }
     }
     return objectProperties;
+  }
+
+  /**
+   * Retrieve the list of objects properties
+   */
+  HashMap getObjectProperties(String oString){
+    HashMap objectProperties = new HashMap<String,String>();
+    if((oString!=null)&&(oString.length()>0)){
+      if(ontologies.containsKey(oString)) {
+        OWLOntology ontology = ontologies.get(oString);
+        StructuralReasoner structuralReasoner = new StructuralReasoner(ontology,new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
+        getRecursiveObjectProperties(objectProperties,df.getOWLTopObjectProperty(),structuralReasoner);
+      }
+    }
+    return objectProperties;
+  }
+
+  private void getRecursiveObjectProperties(HashMap objectProperties,OWLObjectProperty rootObjectProperty, OWLReasoner reasoner){
+    Set<OWLObjectPropertyExpression> properties = reasoner.getSubObjectProperties(rootObjectProperty,true).getFlattened();
+
+    if(properties.empty){
+      return;
+    }
+    for(OWLObjectPropertyExpression expression : properties) {
+      Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(expression.getNamedProperty(), reasoner.getRootOntology()).iterator();
+      OWLAnnotationAssertionAxiom axiom;
+      while(jt.hasNext()) {
+        axiom = jt.next();
+        if (axiom.getProperty().isLabel()) {
+          OWLLiteral value = (OWLLiteral) axiom.getValue();
+          objectProperties.put(value.getLiteral().toString(),"<"+axiom.getSubject().toString()+">");
+        }
+      }
+
+      getRecursiveObjectProperties(objectProperties,expression.getNamedProperty(),reasoner);
+
+    }
+    return;
   }
 
 }
