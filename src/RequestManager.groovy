@@ -189,6 +189,7 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym'))
     ]
     def definitions = [
+      df.getRDFSComment(),
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#definition')),
       df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
