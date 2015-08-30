@@ -602,6 +602,7 @@ class RequestManager {
       case "equivalent": requestType = RequestType.EQUIVALENT; break;
       case "supeq": requestType = RequestType.SUPEQ; break;
       case "subeq": requestType = RequestType.SUBEQ; break;
+      case "realize": requestType = RequestType.REALIZE; break;
       default: requestType = RequestType.SUBEQ; break;
     }
 

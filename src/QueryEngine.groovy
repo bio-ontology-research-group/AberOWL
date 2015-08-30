@@ -71,6 +71,8 @@ public class QueryEngine {
             classes.addAll(getEquivalentClasses(cExpression)); break;
           case RequestType.SUBCLASS:
             classes.addAll(getSubClasses(cExpression, direct)); break;
+          case RequestType.REALIZE:
+	  classes.addAll(getIndividuals(cExpression, direct)); break;
           case RequestType.SUBEQ:
             classes.addAll(getSubClasses(cExpression, direct));
             classes.addAll(getEquivalentClasses(cExpression)); break;
@@ -97,6 +99,10 @@ public class QueryEngine {
     
     public Set<OWLClass> getSubClasses(OWLClassExpression cExpression, boolean direct) {
         return oReasoner.getSubClasses(cExpression, direct).getFlattened()
+    }
+
+  public Set<OWLClass> getIndividuals(OWLClassExpression cExpression, boolean direct) {
+    return oReasoner.getInstances(cExpression, direct).getFlattened()
     }
 
     /**
