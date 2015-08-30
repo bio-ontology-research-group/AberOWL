@@ -1,6 +1,5 @@
 package src
 
-import javafx.beans.property.ObjectProperty
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.reasoner.*
@@ -616,11 +615,11 @@ class RequestManager {
       if((scoreDocs!=null)&&(scoreDocs.length>0)) {
         def dResult = scoreDocs[0]
         def hitDoc = searcher.doc(dResult.doc)
-        //def output = [:]
         hitDoc.each {
           info['label'] = hitDoc.get('first_label')
         }
       }
+
       for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
         if(annotation.isDeprecatedIRIAnnotation()) {
           info['deprecated'] = true

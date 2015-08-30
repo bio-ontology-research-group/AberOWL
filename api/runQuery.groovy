@@ -35,7 +35,7 @@ try {
   def results = new HashMap()
   def start = System.currentTimeMillis()
   def iVersion = Integer.parseInt(sVersion);
-  def out = rManager.runQuery(query, type, ontology,iVersion, direct, labels)
+  def out = rManager.runQuery(query, type, ontology, iVersion, direct, labels)
 
   def end = System.currentTimeMillis()
 
