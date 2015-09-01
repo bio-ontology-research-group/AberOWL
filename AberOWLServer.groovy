@@ -33,6 +33,7 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/runQuery.groovy')
   context.addServlet(GroovyServlet, '/api/getClass.groovy')
   context.addServlet(GroovyServlet, '/api/queryNames.groovy')
+  context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
   context.addServlet(GroovyServlet, '/api/getStats.groovy')
   context.addServlet(GroovyServlet, '/api/getStatuses.groovy')
   context.addServlet(GroovyServlet, '/api/listOntologies.groovy')

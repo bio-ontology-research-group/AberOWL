@@ -26,13 +26,13 @@ if(ontology && query) {
   try {
     def resultMap = [:] 
     
-    def fOut = rManager.runQuery(query, 'equivalent', ontology, true, false).toArray()
+    def fOut = rManager.runQuery(query, 'equivalent', ontology, -1, true, false).toArray()
     ArrayList out = null
     resultMap['classes'] = fOut
 
     def thingFound = false
     while(thingFound == false) {
-      out = rManager.runQuery(query, 'superclass', ontology, true, false).toArray()
+      out = rManager.runQuery(query, 'superclass', ontology, -1, true, false).toArray()
 
       if(!out || (out && out[0].owlClass == '<http://www.w3.org/2002/07/owl#Thing>')) {
         thingFound = true
@@ -45,8 +45,11 @@ if(ontology && query) {
       resultMap = [ 'classes': out ]
     }
     
-    def nOut = rManager.runQuery('<http://www.w3.org/2002/07/owl#Thing>', 'subclasses', ontology, true, false).findAll { it.owlClass != query }
+    def nOut = rManager.runQuery('<http://www.w3.org/2002/07/owl#Thing>', 'subclasses', ontology, -1, true, false).findAll { it.owlClass != query }
+
+    // THIS WORKS ON GOOD GROOVY VERSIONS > 2.0
     resultMap.classes += nOut
+
     resultMap['chosen'] = fOut[0]
 
     response.contentType = 'application/json'
