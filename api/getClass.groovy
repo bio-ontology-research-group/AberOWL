@@ -20,7 +20,8 @@ if(!application) {
 }
 def query = request.getParameter('query')
 def ontology = request.getParameter('ontology')
-def rManager = application.rManager
+def objectProperty = request.getParameter('objectProperty');
+def rManager = application.rManager;
 
 if(ontology && query) {
   try {
@@ -33,6 +34,7 @@ if(ontology && query) {
 
     def result = rManager.searcher.search(bq, 1).scoreDocs[0]
     def hitDoc = rManager.searcher.doc(result.doc)
+
     def output = [:]
     hitDoc.each {
       output[it.name] = hitDoc.get(it.name)
@@ -43,7 +45,20 @@ if(ontology && query) {
   } catch(Exception e) {
     print e
   }
-} else {
+}else if(ontology && objectProperty){
+  try {
+
+    def result = rManager.getInfoObjectProperty(ontology,objectProperty);
+    def output = [:]
+    result.keySet().each { key ->
+      output[key] = result.get(key)
+    }
+    response.contentType = 'application/json'
+    print new JsonBuilder(output).toString()
+  } catch(Exception e) {
+    print e
+  }
+}else {
   println 'missing stuff'
 }
 
