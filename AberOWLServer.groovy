@@ -19,6 +19,7 @@
           @Grab(group='aopalliance', module='aopalliance', version='1.0'),
 	  @GrabConfig(systemClassLoader=true)
 	])
+@Grab(group='javax.el', module='javax.el-api', version='3.0.0'),
  
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.servlet.*
@@ -26,7 +27,7 @@ import groovy.servlet.*
 import src.*
 
 def startServer() {
-  def server = new Server(9222)
+  def server = new Server(55555)
   def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
 
   context.resourceBase = '.'
