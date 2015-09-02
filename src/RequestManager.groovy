@@ -86,7 +86,7 @@ class RequestManager {
       }
     }
 
-    index.close()
+    writer.close()
   }
       
   Set<String> listOntologies() {
