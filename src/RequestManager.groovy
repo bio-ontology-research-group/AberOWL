@@ -778,6 +778,28 @@ class RequestManager {
 
     return stats
   }
+
+  HashMap getInfoObjectProperty(String oString,String uriObjectProperty){
+    HashMap objectProperties = new HashMap<String,String>();
+    if((oString!=null)&&(oString.length()>0)){
+      if(ontologies.containsKey(oString)) {
+        OWLOntology ontology = ontologies.get(oString);
+        OWLObjectProperty objectProperty = df.getOWLObjectProperty(IRI.create(uriObjectProperty));
+        Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(objectProperty, ontology).iterator();
+        OWLAnnotationAssertionAxiom axiom;
+        while (jt.hasNext()) {
+          axiom = jt.next();
+          if (axiom.getProperty().isLabel()) {
+            OWLLiteral value = (OWLLiteral) axiom.getValue();
+            objectProperties.put('classURI',axiom.getSubject().toString());
+            objectProperties.put('label',value.getLiteral().toString());
+          }
+        }
+      }
+    }
+    return objectProperties;
+  }
+
   /**
    * Gets the sub object properties from the ontology given
    * oString This paramater represents the id of the ontology.
