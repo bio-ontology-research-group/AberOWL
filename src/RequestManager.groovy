@@ -53,7 +53,7 @@ class RequestManager {
   // Index things
   RAMDirectory index = new RAMDirectory()
   IndexSearcher searcher
-          
+  
   RequestManager(boolean reason) {
     println "Loading ontologies"
     loadOntologies();
@@ -95,6 +95,7 @@ class RequestManager {
       
   Set<String> queryNames(String query, String ontUri) {
     String[] fields = ['label', 'ontology', 'oboid', 'definition']
+    def allFields = MultiFields.getFields(DirectoryReader.open(index))
     def oQuery = query
 
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
@@ -102,10 +103,10 @@ class RequestManager {
 
     def parser
     if(ontUri && ontUri != '') {
-      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
+      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer())
       query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
     } else {
-      parser = new classic.QueryParser('label', new WhitespaceAnalyzer())
+      parser = new classic.QueryParser(allFields, new WhitespaceAnalyzer())
     }
 
     def fQuery = parser.parse(query)
@@ -179,8 +180,8 @@ class RequestManager {
       // Labels
       df.getRDFSLabel(), 
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#prefLabel')),
-      df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000111')),
-
+      df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000111'))
+      /*
       // Synonyms
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#altLabel')),
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000118')),
@@ -188,6 +189,7 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym'))
+      */
     ]
     def definitions = [
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
