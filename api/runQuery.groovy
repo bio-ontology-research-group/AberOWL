@@ -1,10 +1,23 @@
 // Run a query and ting
 
 import groovy.json.*
+import org.apache.log4j.*
+import groovy.util.logging.*
 
 if(!application) {
   application = request.getApplication(true)
 }
+if (!application.log) {
+  Logger log = Logger.getInstance(getClass())
+    log.level = Level.INFO
+      // add an appender to log to file
+        log.addAppender(new RollingFileAppender(new TTCCLayout(), 'queries.log', true))
+	  application.log = log
+	    log.info 'Logger created'
+	    }
+def log = application.log
+	    
+
 def query = request.getParameter('query')
 def type = request.getParameter('type')
 def ontology = request.getParameter('ontology')
@@ -41,6 +54,17 @@ try {
 
   results.put('time', (end - start))
   results.put('result', out)
+
+  def logstring = ""
+    logstring += query?:""
+      logstring += "\t"+(type?:"")
+        logstring += "\t"+(ontology?:"")
+	  logstring += "\t"+(direct?:"")
+	    logstring += "\t"+(labels?:"")
+	      logstring += "\t"+(out.size()?:"")
+	        logstring += "\t"+((end - start)?:"")
+		  log.info logstring
+		  
 
   response.contentType = 'application/json'
   print new JsonBuilder(results).toString()
