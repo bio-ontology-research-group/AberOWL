@@ -36,8 +36,9 @@ if(ontology && query) {
     def hitDoc = rManager.searcher.doc(result.doc)
 
     def output = [:]
+    output['label'] = hitDoc.get('label')
     hitDoc.each {
-      if (! (it.name in ["oldVersion", "first_label"])) {
+      if (! (it.name in ["oldVersion", "first_label", "label"])) {
 	output[it.name] = hitDoc.get(it.name)
       }
     }

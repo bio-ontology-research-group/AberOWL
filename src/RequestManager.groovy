@@ -94,7 +94,7 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    String[] fields = ['label', 'ontology', 'oboid']
+    String[] fields = ['label', 'ontology', 'oboid', 'definition']
     def oQuery = query
 
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
@@ -227,16 +227,16 @@ class RequestManager {
 	Field f = null
         //To indicate that it is a old version
 	f = new Field('ontology', uri, TextField.TYPE_STORED)
-	f.setBoost(0.8)
+	f.setBoost(2)
         doc.add(f)
 	f= new Field('type', 'class', TextField.TYPE_STORED)
-	f.setBoost(0.01)
+	f.setBoost(0.00001)
         doc.add(f)
 	f = new Field('class', cIRI, TextField.TYPE_STORED)
-	f.setBoost(0.1)
+	f.setBoost(0.01)
         doc.add(f)
 	f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
-	f.setBoost(0.000001)
+	f.setBoost(0.00000001)
         doc.add(f)
 
 	def annoMap = [:].withDefault { new TreeSet() }
@@ -266,15 +266,15 @@ class RequestManager {
 	// generate OBO-style ID for the index
 	def oboId = ""
 	if (cIRI.lastIndexOf("/")>-1) {
-	  oboId = cIRI.substring(0,cIRI.lastIndexOf("/"))
+	  oboId = cIRI.substring(cIRI.lastIndexOf("/")+1)
 	}
 	if (cIRI.lastIndexOf("#")>-1) {
-	  oboId = cIRI.substring(0,cIRI.lastIndexOf("#"))
+	  oboId = cIRI.substring(cIRI.lastIndexOf("#")+1)
 	}
 	if (oboId.size()>0) {
 	  oboId.replaceAll("_",":")
 	  f = new Field('oboid', oboId, TextField.TYPE_STORED)
-	  f.setBoost(0.8)
+	  f.setBoost(5)
 	  doc.add(f)
 	}
 	
@@ -299,7 +299,9 @@ class RequestManager {
               def label = val.getLiteral().toLowerCase()
 
 	      if(!xrefs.contains(label)) {
-                doc.add(new Field('label', label, TextField.TYPE_STORED))
+		f = new Field('label', label, TextField.TYPE_STORED)
+		f.setBoost(2.0)
+                doc.add(f)
                 if(firstLabelRun) {
                   lastFirstLabel = label;
                 }
@@ -311,7 +313,7 @@ class RequestManager {
           }
           if(lastFirstLabel) {
 	    f = new Field('first_label', lastFirstLabel, TextField.TYPE_STORED)
-	    f.setBoost(0.9)
+	    f.setBoost(2.0)
             doc.add(f)
             firstLabelRun = false
           }
