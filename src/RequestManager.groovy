@@ -118,19 +118,21 @@ class RequestManager {
       def ontology = hitDoc.get('ontology') 
       def iri = hitDoc.get('class') 
       def fLabel = hitDoc.get('first_label') 
+      def definition = hitDoc.get('definition')
       if(label.indexOf(' ') != -1) {
         label = "'" + label + "'"
       }
       ret.add([
-        'label': label,
-        'iri': iri,
-        'ontology': ontology,
-        'first_label': fLabel,
-
-        // Make jquery happy
-        'value': fLabel,
-        'data': iri
-      ])
+		'label': label,
+	       'iri': iri,
+	       'ontology': ontology,
+	       'first_label': fLabel,
+	       'definition': definition,
+		
+		// Make jquery happy
+	       'value': fLabel,
+	       'data': iri
+	      ])
     }
 
     return ret.sort { it.label.size() }
@@ -188,11 +190,11 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym'))
     ]
     def definitions = [
-      df.getRDFSComment(),
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#definition')),
       df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
-      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition'))
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition')),
+      df.getRDFSComment()
     ]
 
     index.deleteDocuments(new Term('ontology', uri))
@@ -228,6 +230,29 @@ class RequestManager {
         doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
         doc.add(new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED))
 
+	def annoMap = [:].withDefault { new TreeSet() }
+	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
+	  def aProp = anno.getProperty()
+	  if (anno.getValue() instanceof OWLLiteral) {
+	    def aVal = anno.getValue().getLiteral()
+	    def aLabels = []
+	    if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
+	      EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
+		def lab = l.getValue().getLiteral().toLowerCase()
+		annoMap[lab].add(aVal)
+	      }
+	    } else {
+	      annoMap[aProp.toString()].add(aVal)
+	    }
+	  }
+	}
+
+	annoMap.each { k, v ->
+	  v.each { val ->
+	    doc.add(new Field(k, val, TextField.TYPE_STORED))
+	  }
+	}
+	
         def xrefs = []
         EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
           if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
@@ -274,7 +299,7 @@ class RequestManager {
             }
           }
         }
-
+      
         doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
         if(!lastFirstLabel) {
           doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
@@ -301,6 +326,29 @@ class RequestManager {
             }
           }
         }
+
+	def annoMap = [:].withDefault { new TreeSet() }
+	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
+	  def aProp = anno.getProperty()
+	  if (anno.getValue() instanceof OWLLiteral) {
+	    def aVal = anno.getValue().getLiteral()
+	    def aLabels = []
+	    if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
+	      EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
+		def lab = l.getValue().getLiteral().toLowerCase()
+		annoMap[lab].add(aVal)
+	      }
+	    } else {
+	      annoMap[aProp.toString()].add(aVal)
+	    }
+	  }
+	}
+
+	annoMap.each { k, v ->
+	  v.each { val ->
+	    doc.add(new Field(k, val, TextField.TYPE_STORED))
+	  }
+	}
 
         labels.each {
           EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
@@ -610,30 +658,40 @@ class RequestManager {
       bq.add(new TermQuery(new Term('class', c.getIRI().toString())), BooleanClause.Occur.MUST);
       bq.add(new TermQuery(new Term('ontology', uri.toString())), BooleanClause.Occur.MUST);
 
-      //def dResult = searcher.search(bq, 1).scoreDocs[0]
-      def scoreDocs = searcher.search(bq, 1).scoreDocs
-      if((scoreDocs!=null)&&(scoreDocs.length>0)) {
-        def dResult = scoreDocs[0]
-        def hitDoc = searcher.doc(dResult.doc)
-        hitDoc.each {
-          info['label'] = hitDoc.get('first_label')
-        }
-      }
-
       for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
         if(annotation.isDeprecatedIRIAnnotation()) {
           info['deprecated'] = true
         }
+      }      
+      if (!info['deprecated']) { // ignore all deprecated classes! TODO: trigger this by query flag
+      
+	def scoreDocs = searcher.search(bq, 1).scoreDocs
+	if((scoreDocs!=null)&&(scoreDocs.length>0)) {
+	  def dResult = scoreDocs[0]
+	  def hitDoc = searcher.doc(dResult.doc)
+	  hitDoc.each {
+	    info['label'] = hitDoc.get('first_label')
+	  }
+	  hitDoc.getFields().each { field ->
+	    def fName = field.name()
+	    hitDoc.getValues(fName).each { fVal ->
+	      if (info[fName] == null) { info[fName] = [] }
+	      info[fName] << fVal
+	    }
+	  }
+	}
+	
+	
+	
+	for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+	  if (annotation.getValue() instanceof OWLLiteral) {
+	    OWLLiteral val = (OWLLiteral) annotation.getValue();
+	    info['definition'] = val.getLiteral() ;
+	  }
+	}
+	
+	result.add(info);
       }
-
-      for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
-        if (annotation.getValue() instanceof OWLLiteral) {
-          OWLLiteral val = (OWLLiteral) annotation.getValue();
-          info['definition'] = val.getLiteral() ;
-        }
-      }
-
-      result.add(info);
     }
     return result
   }

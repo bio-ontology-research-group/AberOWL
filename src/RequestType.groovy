@@ -48,5 +48,8 @@ enum RequestType {
 	
 	SUBEQ,
 	SUPEQ,
-	REALIZE
+	REALIZE,
+	EQUIVALENTOP, // equivalent object properties
+	SUBOP, // sub object properties
+	SUPOP // 
 	}
