@@ -56,15 +56,15 @@ try {
   results.put('result', out)
 
   def logstring = ""
-    logstring += query?:""
-      logstring += "\t"+(type?:"")
-        logstring += "\t"+(ontology?:"")
-	  logstring += "\t"+(direct?:"")
-	    logstring += "\t"+(labels?:"")
-	      logstring += "\t"+(out.size()?:"")
-	        logstring += "\t"+((end - start)?:"")
-		  log.info logstring
-		  
+  logstring += query?:""
+  logstring += "\t"+(type?:"")
+  logstring += "\t"+(ontology?:"")
+  logstring += "\t"+(direct?:"")
+  logstring += "\t"+(labels?:"")
+  logstring += "\t"+(out.size()?:"")
+  logstring += "\t"+((end - start)?:"")
+  log.info logstring
+  
 
   response.contentType = 'application/json'
   print new JsonBuilder(results).toString()

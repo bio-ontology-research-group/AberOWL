@@ -94,7 +94,7 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    String[] fields = ['label', 'ontology']
+    String[] fields = ['label', 'ontology', 'oboid']
     def oQuery = query
 
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
@@ -135,7 +135,7 @@ class RequestManager {
 	      ])
     }
 
-    return ret.sort { it.label.size() }
+    return ret //.sort { it.label.size() }
   }
 
   Set<String> queryOntologies(String query) {
@@ -224,11 +224,20 @@ class RequestManager {
         def firstLabelRun = true
         def lastFirstLabel = null
         def doc = new Document()
+	Field f = null
         //To indicate that it is a old version
-        doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
-        doc.add(new Field('type', 'class', TextField.TYPE_STORED))
-        doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-        doc.add(new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED))
+	f = new Field('ontology', uri, TextField.TYPE_STORED)
+	f.setBoost(0.8)
+        doc.add(f)
+	f= new Field('type', 'class', TextField.TYPE_STORED)
+	f.setBoost(0.01)
+        doc.add(f)
+	f = new Field('class', cIRI, TextField.TYPE_STORED)
+	f.setBoost(0.1)
+        doc.add(f)
+	f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
+	f.setBoost(0.000001)
+        doc.add(f)
 
 	def annoMap = [:].withDefault { new TreeSet() }
 	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
@@ -246,14 +255,32 @@ class RequestManager {
 	    }
 	  }
 	}
-
 	annoMap.each { k, v ->
 	  v.each { val ->
-	    doc.add(new Field(k, val, TextField.TYPE_STORED))
+	    f = new Field(k, val, TextField.TYPE_STORED)
+	    f.setBoost(0.1)
+	    doc.add(f)
 	  }
 	}
+
+	// generate OBO-style ID for the index
+	def oboId = ""
+	if (cIRI.lastIndexOf("/")>-1) {
+	  oboId = cIRI.substring(0,cIRI.lastIndexOf("/"))
+	}
+	if (cIRI.lastIndexOf("#")>-1) {
+	  oboId = cIRI.substring(0,cIRI.lastIndexOf("#"))
+	}
+	if (oboId.size()>0) {
+	  oboId.replaceAll("_",":")
+	  f = new Field('oboid', oboId, TextField.TYPE_STORED)
+	  f.setBoost(0.8)
+	  doc.add(f)
+	}
+	
 	
         def xrefs = []
+	/* this was a workaround, bug should be fixed now in the ontologies 
         EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
           if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
             it.getAnnotations().each {
@@ -264,14 +291,14 @@ class RequestManager {
             }
           }
         }
-
+	*/
         labels.each {
           EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
 
-              if(!xrefs.contains(label)) {
+	      if(!xrefs.contains(label)) {
                 doc.add(new Field('label', label, TextField.TYPE_STORED))
                 if(firstLabelRun) {
                   lastFirstLabel = label;
@@ -283,7 +310,9 @@ class RequestManager {
             }
           }
           if(lastFirstLabel) {
-            doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
+	    f = new Field('first_label', lastFirstLabel, TextField.TYPE_STORED)
+	    f.setBoost(0.9)
+            doc.add(f)
             firstLabelRun = false
           }
         }
@@ -292,17 +321,22 @@ class RequestManager {
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
-              doc.add(new Field('definition', label, TextField.TYPE_STORED))
+	      f = new Field('definition', label, TextField.TYPE_STORED)
+	      f.setBoost(0.85)
+              doc.add(f)
               if(annotation != null) {
                 dCount += 1
               }
             }
           }
         }
-      
-        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
+	f = new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
+	f.setBoost(0.1) // that's a shitty label, don't boost it
+        doc.add(f) // add remainder
         if(!lastFirstLabel) {
-          doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
+	  f = new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
+	  f.setBoost(0.1) // that's a shitty label, don't boost it
+          doc.add(f)
         }
         index.addDocument(doc)
       }
@@ -679,17 +713,18 @@ class RequestManager {
 	      info[fName] << fVal
 	    }
 	  }
+	  info['definition'] = hitDoc.get('definition')
 	}
 	
 	
-	
+	/*
 	for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
 	  if (annotation.getValue() instanceof OWLLiteral) {
 	    OWLLiteral val = (OWLLiteral) annotation.getValue();
 	    info['definition'] = val.getLiteral() ;
 	  }
 	}
-	
+	*/
 	result.add(info);
       }
     }
