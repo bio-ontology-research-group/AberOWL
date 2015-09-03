@@ -37,7 +37,9 @@ if(ontology && query) {
 
     def output = [:]
     hitDoc.each {
-      output[it.name] = hitDoc.get(it.name)
+      if (! (it.name in ["oldVersion", "first_label"])) {
+	output[it.name] = hitDoc.get(it.name)
+      }
     }
 
     response.contentType = 'application/json'
