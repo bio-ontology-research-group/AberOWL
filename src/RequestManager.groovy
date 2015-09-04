@@ -94,29 +94,35 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    String[] fields = ['label', 'ontology', 'oboid', 'definition']
+    //    String[] fields = ['label', 'ontology', 'oboid', 'definition']
     List<String> fList = []
     MultiFields.getFields(DirectoryReader.open(index))?.each { fList << it }
     String[] allFields = fList.toArray(new String[fList.size()])
-    println allFields
     def oQuery = query
-
+    Map boostVals = ['label':10,
+		     'oboid':20,
+		     'ontology':50,
+		     'definition':5
+    ]
+    
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
-    query = oQuery.toLowerCase().split().collect({ '*' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
-
+    //    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    query = oQuery.split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
+    
     def parser
     if(ontUri && ontUri != '') {
-      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer())
+      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer(), boostVals)
       query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
     } else {
-      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer())
+      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer(), boostVals)
     }
 
     def fQuery = parser.parse(query)
     def hits = searcher.search(fQuery, 1000).scoreDocs
     def ret = []
 
-    hits.each { h -> 
+    hits.each { h ->
+      //      println searcher.explain(fQuery, h.doc).toString()
       def hitDoc = searcher.doc(h.doc)
       def label = hitDoc.get('label') 
       def ontology = hitDoc.get('ontology') 
@@ -232,16 +238,12 @@ class RequestManager {
 	Field f = null
         //To indicate that it is a old version
 	f = new Field('ontology', uri, TextField.TYPE_STORED)
-	f.setBoost(2)
         doc.add(f)
 	f= new Field('type', 'class', TextField.TYPE_STORED)
-	f.setBoost(0.00001)
         doc.add(f)
 	f = new Field('class', cIRI, TextField.TYPE_STORED)
-	f.setBoost(0.01)
         doc.add(f)
 	f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
-	f.setBoost(0.00000001)
         doc.add(f)
 
 	def annoMap = [:].withDefault { new TreeSet() }
@@ -256,14 +258,13 @@ class RequestManager {
 		annoMap[lab].add(aVal)
 	      }
 	    } else {
-	      annoMap[aProp.toString()].add(aVal)
+	      annoMap[aProp.toString()?.replaceAll("<","")?.replaceAll(">","")].add(aVal)
 	    }
 	  }
 	}
 	annoMap.each { k, v ->
 	  v.each { val ->
 	    f = new Field(k, val, TextField.TYPE_STORED)
-	    f.setBoost(0.1)
 	    doc.add(f)
 	  }
 	}
@@ -276,10 +277,9 @@ class RequestManager {
 	if (cIRI.lastIndexOf("#")>-1) {
 	  oboId = cIRI.substring(cIRI.lastIndexOf("#")+1)
 	}
-	if (oboId.size()>0) {
-	  oboId.replaceAll("_",":")
-	  f = new Field('oboid', oboId, TextField.TYPE_STORED)
-	  f.setBoost(5)
+	if (oboId.length()>0) {
+	  oboId = oboId.replaceAll("_",":")
+	  f = new Field('oboid', oboId, StringField.TYPE_STORED)
 	  doc.add(f)
 	}
 	
@@ -305,7 +305,6 @@ class RequestManager {
 
 	      if(!xrefs.contains(label)) {
 		f = new Field('label', label, TextField.TYPE_STORED)
-		f.setBoost(2.0)
                 doc.add(f)
                 if(firstLabelRun) {
                   lastFirstLabel = label;
@@ -318,7 +317,6 @@ class RequestManager {
           }
           if(lastFirstLabel) {
 	    f = new Field('first_label', lastFirstLabel, TextField.TYPE_STORED)
-	    f.setBoost(2.0)
             doc.add(f)
             firstLabelRun = false
           }
@@ -329,7 +327,6 @@ class RequestManager {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
 	      f = new Field('definition', label, TextField.TYPE_STORED)
-	      f.setBoost(0.85)
               doc.add(f)
               if(annotation != null) {
                 dCount += 1
@@ -338,11 +335,9 @@ class RequestManager {
           }
         }
 	f = new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
-	f.setBoost(0.1) // that's a shitty label, don't boost it
         doc.add(f) // add remainder
         if(!lastFirstLabel) {
 	  f = new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
-	  f.setBoost(0.1) // that's a shitty label, don't boost it
           doc.add(f)
         }
         index.addDocument(doc)
