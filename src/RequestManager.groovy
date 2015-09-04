@@ -108,7 +108,7 @@ class RequestManager {
       parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer())
       query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
     } else {
-      parser = new classic.QueryParser(allFields, new WhitespaceAnalyzer())
+      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer())
     }
 
     def fQuery = parser.parse(query)
