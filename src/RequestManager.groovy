@@ -95,7 +95,8 @@ class RequestManager {
       
   Set<String> queryNames(String query, String ontUri) {
     String[] fields = ['label', 'ontology', 'oboid', 'definition']
-    def allFields = MultiFields.getFields(DirectoryReader.open(index))
+    List<String> allFields = []
+    MultiFields.getFields(DirectoryReader.open(index))?.each { allFields << it }
     def oQuery = query
 
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
