@@ -93,7 +93,7 @@ class RequestManager {
     return ontologies.keySet() ;
   }
       
-  Set<String> queryNames(String query, String ontUri) {
+  List<String> queryNames(String query, String ontUri) {
     String[] fields = ['label', 'ontology', 'oboid', 'definition', 'synonym', 'AberOWL-catch-all']
     // List<String> fList = []
     // MultiFields.getFields(DirectoryReader.open(index))?.each {
@@ -152,8 +152,6 @@ class RequestManager {
 	       'data': iri
 	      ])
     }
-
-    println "Return val: "+ret
 
     return ret
   }
