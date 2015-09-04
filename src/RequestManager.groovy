@@ -249,7 +249,7 @@ class RequestManager {
 	def deprecated = false
 	def annoMap = [:].withDefault { new TreeSet() }
 	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
-	  if(annotation.isDeprecatedIRIAnnotation()) {
+	  if(anno.isDeprecatedIRIAnnotation()) {
 	    deprecated = true
 	  }
 	  def aProp = anno.getProperty()
