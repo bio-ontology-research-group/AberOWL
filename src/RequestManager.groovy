@@ -246,8 +246,12 @@ class RequestManager {
 	f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
         doc.add(f)
 
+	def deprecated = false
 	def annoMap = [:].withDefault { new TreeSet() }
 	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
+	  if(annotation.isDeprecatedIRIAnnotation()) {
+	    deprecated = true
+	  }
 	  def aProp = anno.getProperty()
 	  if (anno.getValue() instanceof OWLLiteral) {
 	    def aVal = anno.getValue().getLiteral()
@@ -340,7 +344,9 @@ class RequestManager {
 	  f = new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
           doc.add(f)
         }
-        index.addDocument(doc)
+	if (!deprecated) {
+	  index.addDocument(doc)
+	}
       }
 
       iOnt.getObjectPropertiesInSignature(true).each { iClass ->
