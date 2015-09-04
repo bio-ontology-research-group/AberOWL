@@ -98,10 +98,11 @@ class RequestManager {
     List<String> fList = []
     MultiFields.getFields(DirectoryReader.open(index))?.each { fList << it }
     String[] allFields = fList.toArray(new String[fList.size()])
+    println allFields
     def oQuery = query
 
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
-    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
+    query = oQuery.toLowerCase().split().collect({ '*' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
 
     def parser
     if(ontUri && ontUri != '') {
