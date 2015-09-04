@@ -35,11 +35,12 @@ if(ontology && query) {
     def result = rManager.searcher.search(bq, 1).scoreDocs[0]
     def hitDoc = rManager.searcher.doc(result.doc)
 
-    def output = [:]
-    output['label'] = hitDoc.get('label')
-    hitDoc.each {
-      if (! (it.name in ["oldVersion", "first_label", "label"])) {
-	output[it.name] = hitDoc.get(it.name)
+    def output = [:].withDefault { new TreeSet() }
+    hitDoc.each { fieldName ->
+      if (! (fieldName.name in ["oldVersion", "first_label"])) {
+	hitDoc.getValues(fieldName.name).each {
+	  output[fieldName.name].add(it)
+	}
       }
     }
 

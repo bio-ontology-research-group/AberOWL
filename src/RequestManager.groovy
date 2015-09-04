@@ -62,7 +62,7 @@ class RequestManager {
     if(reason) {
       createReasoner();
     }
-
+    
     // Unload old versions of ontologies
     new Timer().schedule({
       removeOldOntologies()
@@ -94,34 +94,42 @@ class RequestManager {
   }
       
   Set<String> queryNames(String query, String ontUri) {
-    //    String[] fields = ['label', 'ontology', 'oboid', 'definition']
-    List<String> fList = []
-    MultiFields.getFields(DirectoryReader.open(index))?.each { fList << it }
-    String[] allFields = fList.toArray(new String[fList.size()])
+    String[] fields = ['label', 'ontology', 'oboid', 'definition', 'synonym', 'AberOWL-catch-all']
+    // List<String> fList = []
+    // MultiFields.getFields(DirectoryReader.open(index))?.each {
+    //   def s = it.toString()?.toLowerCase()
+    //   if (s.contains("label") || s.contains("ontology") || s.contains("definition") || s.contains("description") || s.contains("oboid") || s.contains("synonym")) {
+    // 	fList << it
+    //   }
+    // }
+    //    String[] allFields = fList.toArray(new String[fList.size()])
     def oQuery = query
-    Map boostVals = ['label':10,
-		     'oboid':20,
-		     'ontology':50,
-		     'definition':5
+    Map boostVals = ['label':100,
+		     'ontology':1000,
+		     'oboid':10000,
+		     'definition':10,
+		     'synonym':75,
+		     'AberOWL-catch-all':0.01
     ]
     
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
     //    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
-    query = oQuery.split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
+    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
     
     def parser
     if(ontUri && ontUri != '') {
-      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer(), boostVals)
+      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
       query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
     } else {
-      parser = new classic.MultiFieldQueryParser(allFields, new WhitespaceAnalyzer(), boostVals)
+      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
+      query += ' AND oldVersion:'+false;
     }
 
     def fQuery = parser.parse(query)
-    def hits = searcher.search(fQuery, 1000).scoreDocs
+    def hits = searcher.search(fQuery, 1000, Sort.RELEVANCE, true, true).scoreDocs
     def ret = []
-
-    hits.each { h ->
+    
+    hits?.each { h ->
       //      println searcher.explain(fQuery, h.doc).toString()
       def hitDoc = searcher.doc(h.doc)
       def label = hitDoc.get('label') 
@@ -129,11 +137,11 @@ class RequestManager {
       def iri = hitDoc.get('class') 
       def fLabel = hitDoc.get('first_label') 
       def definition = hitDoc.get('definition')
-      if(label.indexOf(' ') != -1) {
+      if(label && label.indexOf(' ') != -1) {
         label = "'" + label + "'"
       }
       ret.add([
-		'label': label,
+	       'label': label,
 	       'iri': iri,
 	       'ontology': ontology,
 	       'first_label': fLabel,
@@ -145,7 +153,9 @@ class RequestManager {
 	      ])
     }
 
-    return ret //.sort { it.label.size() }
+    println "Return val: "+ret
+
+    return ret
   }
 
   Set<String> queryOntologies(String query) {
@@ -192,13 +202,15 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000111'))
       /*
       // Synonyms
+      */
+    ]
+    def synonyms = [
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#altLabel')),
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000118')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasExactSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym')),
       df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasBroadSynonym'))
-      */
     ]
     def definitions = [
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
@@ -253,22 +265,26 @@ class RequestManager {
 	    deprecated = true
 	  }
 	  def aProp = anno.getProperty()
-	  if (anno.getValue() instanceof OWLLiteral) {
-	    def aVal = anno.getValue().getLiteral()
-	    def aLabels = []
-	    if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
-	      EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
-		def lab = l.getValue().getLiteral().toLowerCase()
-		annoMap[lab].add(aVal)
+	  if (!(aProp in labels || aProp in definitions || aProp in synonyms)) {
+	    if (anno.getValue() instanceof OWLLiteral) {
+	      def aVal = anno.getValue().getLiteral()?.toLowerCase()
+	      def aLabels = []
+	      if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
+		EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
+		  def lab = l.getValue().getLiteral().toLowerCase()
+		  annoMap[lab].add(aVal)
+		}
+	      } else {
+		annoMap[aProp.toString()?.replaceAll("<","")?.replaceAll(">","")].add(aVal)
 	      }
-	    } else {
-	      annoMap[aProp.toString()?.replaceAll("<","")?.replaceAll(">","")].add(aVal)
 	    }
 	  }
 	}
 	annoMap.each { k, v ->
 	  v.each { val ->
 	    f = new Field(k, val, TextField.TYPE_STORED)
+	    doc.add(f)
+	    f = new Field("AberOWL-catch-all", val, TextField.TYPE_STORED)
 	    doc.add(f)
 	  }
 	}
@@ -282,7 +298,7 @@ class RequestManager {
 	  oboId = cIRI.substring(cIRI.lastIndexOf("#")+1)
 	}
 	if (oboId.length()>0) {
-	  oboId = oboId.replaceAll("_",":")
+	  oboId = oboId.replaceAll("_",":").toLowerCase()
 	  f = new Field('oboid', oboId, StringField.TYPE_STORED)
 	  doc.add(f)
 	}
@@ -301,22 +317,31 @@ class RequestManager {
           }
         }
 	*/
-        labels.each {
+	synonyms.each {
           EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
             if(annotation.getValue() instanceof OWLLiteral) {
               def val = (OWLLiteral) annotation.getValue()
               def label = val.getLiteral().toLowerCase()
-
-	      if(!xrefs.contains(label)) {
+	      
+	      f = new Field('synonym', label, TextField.TYPE_STORED)
+	      doc.add(f)
+            }
+	  }
+	}
+	def hasLabel = false
+	labels.each {
+          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
+            if(annotation.getValue() instanceof OWLLiteral) {
+              def val = (OWLLiteral) annotation.getValue()
+              def label = val.getLiteral().toLowerCase()
+	      if (label) {
 		f = new Field('label', label, TextField.TYPE_STORED)
-                doc.add(f)
-                if(firstLabelRun) {
-                  lastFirstLabel = label;
-                }
-                if(annotation != null) {
-                  lCount += 1
-                }
-              }
+		doc.add(f)
+		hasLabel = true
+		if(firstLabelRun) {
+		  lastFirstLabel = label;
+		}
+	      }
             }
           }
           if(lastFirstLabel) {
@@ -338,8 +363,10 @@ class RequestManager {
             }
           }
         }
-	f = new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
-        doc.add(f) // add remainder
+	if (! hasLabel) {
+	  f = new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
+	  doc.add(f) // add remainder
+	}
         if(!lastFirstLabel) {
 	  f = new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
           doc.add(f)
@@ -373,7 +400,7 @@ class RequestManager {
 	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
 	  def aProp = anno.getProperty()
 	  if (anno.getValue() instanceof OWLLiteral) {
-	    def aVal = anno.getValue().getLiteral()
+	    def aVal = anno.getValue().getLiteral()?.toLowerCase()
 	    def aLabels = []
 	    if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
 	      EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
