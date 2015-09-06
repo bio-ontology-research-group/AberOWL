@@ -37,7 +37,7 @@ if(ontology && query) {
 
     def output = [:].withDefault { new TreeSet() }
     hitDoc.each { fieldName ->
-      if (! (fieldName.name in ["oldVersion", "first_label"])) {
+      if (! (fieldName.name in ["oldVersion", "first_label", "AberOWL-catch-all"])) {
 	hitDoc.getValues(fieldName.name).each {
 	  output[fieldName.name].add(it)
 	}
