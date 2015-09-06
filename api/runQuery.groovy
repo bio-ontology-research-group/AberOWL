@@ -66,6 +66,7 @@ try {
   log.info logstring
   
 
+  results['result'] = results['result'].sort { it.label }
   response.contentType = 'application/json'
   print new JsonBuilder(results).toString()
 } catch(Exception e) {
