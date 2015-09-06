@@ -25,7 +25,8 @@ def rManager = application.rManager;
 
 if(ontology && query) {
   try {
-    def results = new HashMap()
+    def results = [:]
+    //def results = []
     def start = System.currentTimeMillis()
 
     def bq = new BooleanQuery()
@@ -43,7 +44,20 @@ if(ontology && query) {
 	}
       }
     }
-
+    output = output.sort { x, y ->
+      if (x.key == 'label') {
+	-1
+      } else if (y.key == 'label') {
+	1
+      } else if (x.key == 'definition' && y.key != 'label') {
+	-1
+      } else if (x.key == 'oboid' && y.key != 'label' && y.key != 'definition') {
+	-1
+      } else {
+	x.key.compareTo(y.key)
+      }
+    }
+    
     response.contentType = 'application/json'
     print new JsonBuilder(output).toString()
   } catch(Exception e) {
