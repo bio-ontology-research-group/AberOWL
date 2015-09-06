@@ -770,7 +770,9 @@ class RequestManager {
 	  }
 	}
 	*/
-	result.add(info);
+	if (info['label'] != null) {
+	  result.add(info);
+	}
       }
     }
     return result

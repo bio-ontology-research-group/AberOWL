@@ -64,7 +64,6 @@ try {
   logstring += "\t"+(out.size()?:"")
   logstring += "\t"+((end - start)?:"")
   log.info logstring
-  
 
   results['result'] = results['result'].sort { it.label }
   response.contentType = 'application/json'

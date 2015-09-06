@@ -35,7 +35,6 @@ if(ontology && query) {
 
     def result = rManager.searcher.search(bq, 1).scoreDocs[0]
     def hitDoc = rManager.searcher.doc(result.doc)
-
     def output = [:].withDefault { new TreeSet() }
     hitDoc.each { fieldName ->
       if (! (fieldName.name in ["oldVersion", "first_label", "AberOWL-catch-all"])) {
