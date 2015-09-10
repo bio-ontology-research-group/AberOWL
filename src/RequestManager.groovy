@@ -753,8 +753,8 @@ class RequestManager {
 	    def fName = field.name()
 	    if (fName!="AberOWL-catch-all") {
 	      hitDoc.getValues(fName).each { fVal ->
-		if (info[fName] == null) { info[fName] = [] }
-		info[fName] << fVal
+		if (info[fName] == null) { info[fName] = new LinkedHashSet() }
+		info[fName].add(fVal)
 	      }
 	    }
 	  }
