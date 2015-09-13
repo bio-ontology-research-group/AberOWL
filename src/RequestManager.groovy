@@ -859,10 +859,44 @@ class RequestManager {
     return classes;
   }
 
+  
   Set runQuery(String mOwlQuery, String type, String ontUri) {
     return runQuery(mOwlQuery, type, ontUri, false)
   }
-      
+
+  /** This returns the direct R-successors of a class C in O
+      class and relations are given as String-IRIs
+   */
+  Set relationQuery(String relation, String cl, String ontUri, int version) {
+    Set classes = new HashSet<>();
+
+    QueryEngine queryEngine = queryEngines.get(ontUri);
+    def vOntUri = ontUri
+    if(version>=0) {
+      vOntUri = ontUri+"_"+version;
+    }
+    
+    if(!ontologies.containsKey(vOntUri)) {
+      reloadOntology(ontUri, version)
+    }
+    
+    OWLOntology ontology = ontologies.get(ontUri)
+
+    // get the direct subclasses of cl
+    Set<OWLClass> subclasses = queryEngine.getClasses(cl, RequestType.SUBCLASS, true, false)
+    // These are all the classes for which the R some C property holds
+    String query1 = "<$relation> SOME $cl"
+    Set<OWLClass> mainResult = queryEngine.getClasses(query1, RequestType.SUBCLASS, true, false)
+    // Now remove all classes that are not specific to cl (i.e., there is a more specific class in which the R-edge can be created)
+    subclasses.each { sc ->
+      String query2 = "$relation SOME "+sc.toString()
+      def subResult = queryEngine.getClasses(query2, RequestType.SUBCLASS, true, false)
+      mainResult = mainResult - subResult
+    }
+    classes.addAll(classes2info(mainResult, ontology, ontUri))
+    return classes
+  }
+
   Map<String, QueryEngine> getQueryEngines() {
     return this.queryEngines;
   }
