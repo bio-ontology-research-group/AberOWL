@@ -23,6 +23,7 @@ def ontology = request.getParameter('ontology')
 def rManager = application.rManager
 
 if(ontology && query) {
+  query = java.net.URLDecoder.decode(query, "UTF-8")
   try {
     def resultMap = [:] 
     

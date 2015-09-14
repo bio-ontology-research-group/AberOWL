@@ -24,11 +24,11 @@ def objectProperty = request.getParameter('objectProperty');
 def rManager = application.rManager;
 
 if(ontology && query) {
+  query = java.net.URLDecoder.decode(query, "UTF-8")
   try {
     def results = [:]
     //def results = []
     def start = System.currentTimeMillis()
-
     def bq = new BooleanQuery()
     bq.add(new TermQuery(new Term('class', query)), BooleanClause.Occur.MUST);
     bq.add(new TermQuery(new Term('ontology', ontology)), BooleanClause.Occur.MUST);
