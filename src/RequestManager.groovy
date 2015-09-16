@@ -93,7 +93,7 @@ class RequestManager {
       }
     }
 
-    writer.close()
+    writer.commit()
   }
       
   Set<String> listOntologies() {
@@ -164,12 +164,10 @@ class RequestManager {
   }
 
   Set<String> queryOntologies(String query) {
-    String[] fields = ['name', 'ontology', 'description']
+    String[] fields = ['name', 'lontology', 'description']
     def oQuery = classic.QueryParser.escape(query.toLowerCase())
 
-    //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
-
-    query = 'lname:' + oQuery + '* OR ldescription:' + oQuery + '* OR lontology:' + oQuery + '*'
+    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
 
     def parser
     parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
@@ -492,7 +490,7 @@ class RequestManager {
       } else {
         reloadOntologyIndex(ontology, writer, isOldVersion)
       }
-      writer.close()
+      writer.commit()
       searcher = new IndexSearcher(DirectoryReader.open(index))
   }
 
