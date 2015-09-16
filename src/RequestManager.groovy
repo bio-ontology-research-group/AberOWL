@@ -867,13 +867,13 @@ class RequestManager {
   /** This returns the direct R-successors of a class C in O
       class and relations are given as String-IRIs
    */
-  Set relationQuery(String relation, String cl, String ontUri, int version) {
+  Set relationQuery(String relation, String cl, String ontUri, Integer version) {
     Set classes = new HashSet<>();
 
     QueryEngine queryEngine = queryEngines.get(ontUri);
     def vOntUri = ontUri
     if(version>=0) {
-      vOntUri = ontUri+"_"+version;
+      vOntUri = ontUri+"_"+version
     }
     
     if(!ontologies.containsKey(vOntUri)) {

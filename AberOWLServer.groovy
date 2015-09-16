@@ -27,7 +27,7 @@ import groovy.servlet.*
 import src.*
 
 def startServer() {
-  def server = new Server(55557)
+  def server = new Server(55555)
   def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
 
   context.resourceBase = '.'
