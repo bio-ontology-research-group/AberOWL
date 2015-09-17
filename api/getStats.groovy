@@ -20,15 +20,18 @@ if(ontology) {
   def ont = rManager.ontologies.get(ontology)
   def stats = [
     'rBoxAxiomCount': 0,
-    'tBoxAxiomCount': 0,
-    'totalAxiomCount': 0,
-    'logicalAxiomCount': 0,
-    'complexity': 0,
-    'classCount': ont.getClassesInSignature(true).size(),
-    'loaded': rManager.ontologies.get(ontology) != null,
-    'consistent': rManager.queryEngines.get(ontology) != null
+	       'tBoxAxiomCount': 0,
+	       'totalAxiomCount': 0,
+	       'unsatisfiableClassesCount':0,
+	       'logicalAxiomCount': 0,
+	       'complexity': 0,
+	       'classCount': ont.getClassesInSignature(true).size(),
+	       'loaded': rManager.ontologies.get(ontology) != null,
+	       'consistent': rManager.queryEngines.get(ontology) != null
   ]
 
+  def unsatis = rManager.runQuery("<http://www.w3.org/2002/07/owl#Nothing>", "equivalent", ontology, -1, false, false)
+  stats.unsatisfiableClassesCount = unsatis.size()
   AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { 
     stats.totalAxiomCount += 1
     stats.tBoxAxiomCount += 1
