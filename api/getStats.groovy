@@ -25,6 +25,7 @@ if(ontology) {
 	       'unsatisfiableClassesCount':0,
 	       'logicalAxiomCount': 0,
 	       'complexity': 0,
+	       'annotations':[:],
 	       'classCount': ont.getClassesInSignature(true).size(),
 	       'loaded': rManager.ontologies.get(ontology) != null,
 	       'consistent': rManager.queryEngines.get(ontology) != null
@@ -44,6 +45,14 @@ if(ontology) {
   stats.complexity = stats.totalAxiomCount / stats.classCount
   stats.logicalAxiomCount = ont.getLogicalAxiomCount()
 
+  ont.getAnnotations().each { a ->
+    try {
+      def prop = a.getProperty().toString()?.replaceAll("<","")?.replaceAll(">","")
+      def val = a.getValue()?.getLiteral()?.toString()
+      stats['annotations'][prop] = val
+    } catch (Exception E) {}
+  }
+  
   response.contentType = 'application/json'
   print JSONValue.toJSONString(stats)
 } else {
