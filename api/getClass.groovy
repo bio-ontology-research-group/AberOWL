@@ -60,7 +60,8 @@ if(ontology && query) {
     response.contentType = 'application/json'
     print new JsonBuilder(output).toString()
   } catch(Exception e) {
-    print e
+    
+    print new JsonBuilder([:]).toString()
   }
 }else if(ontology && objectProperty){
   try {
@@ -73,7 +74,7 @@ if(ontology && query) {
     response.contentType = 'application/json'
     print new JsonBuilder(output).toString()
   } catch(Exception e) {
-    print e
+    print new JsonBuilder([:]).toString()
   }
 }else {
   println 'missing stuff'
