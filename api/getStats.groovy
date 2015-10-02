@@ -16,6 +16,28 @@ if(!application) {
 def ontology = request.getParameter('ontology')
 def rManager = application.rManager
 
+
+def PREFIX_MAP = [
+  "http://www.geneontology.org/formats/oboInOwl#" : "oboInOwl:",
+  "http://purl.org/dc/elements/1.1/" : "dc:",
+  "http://protege.stanford.edu/plugins/owl/protege#" : "protege:",
+  "http://purl.org/dc/terms/" : "dc:",
+  "http://purl.org/dc/elements/1.1/" : "dc:",
+  "http://purl.org/dc/terms/" : "dc:",
+  "http://purl.org/vocab/vann/" : "vann:",
+  "http://purl.org/spar/cito/" : "cito:",
+  "http://semanticscience.org/resource/" : "sio:"
+]
+
+def prefixUrls = { String s ->
+  PREFIX_MAP.keySet().each { prefix ->
+    if (s.startsWith(prefix)) {
+      s = s.replaceAll(prefix, PREFIX_MAP[prefix])
+    }
+  }
+  s
+}
+
 if(ontology) {
   def ont = rManager.ontologies.get(ontology)
   def stats = [
@@ -48,6 +70,7 @@ if(ontology) {
   ont.getAnnotations().each { a ->
     try {
       def prop = a.getProperty().toString()?.replaceAll("<","")?.replaceAll(">","")
+      prop = prefixUrls(prop)
       def val = a.getValue()?.getLiteral()?.toString()
       stats['annotations'][prop] = val
     } catch (Exception E) {}
