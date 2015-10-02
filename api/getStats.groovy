@@ -57,6 +57,7 @@ if(ontology) {
 
   def unsatis = rManager.runQuery("<http://www.w3.org/2002/07/owl#Nothing>", "equivalent", ontology, -1, false, false)
   stats.unsatisfiableClassesCount = unsatis.size()
+  /*
   AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { 
     stats.totalAxiomCount += 1
     stats.tBoxAxiomCount += 1
@@ -65,10 +66,10 @@ if(ontology) {
     stats.totalAxiomCount += 1 
     stats.rBoxAxiomCount += 1 
   } }
-
+  
   stats.complexity = stats.totalAxiomCount / stats.classCount
   stats.logicalAxiomCount = ont.getLogicalAxiomCount()
-
+  */
   ont.getAnnotations().each { a ->
     try {
       def prop = a.getProperty().toString()?.replaceAll("<","")?.replaceAll(">","")
@@ -77,6 +78,7 @@ if(ontology) {
       stats['annotations'][prop] = val
     } catch (Exception E) {}
   }
+  stats['annotations'] = stats['annotations'].sort ()
   
   response.contentType = 'application/json'
   print JSONValue.toJSONString(stats)
