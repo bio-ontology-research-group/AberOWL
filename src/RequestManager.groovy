@@ -1,6 +1,8 @@
 package src
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
+import org.semanticweb.elk.owlapi.ElkReasonerConfiguration
+import org.semanticweb.elk.reasoner.config.*
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.reasoner.*
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner
@@ -31,6 +33,8 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
+  private static final ELK_THREADS = "64"
+
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
   int noFileError = 0;
@@ -121,18 +125,32 @@ class RequestManager {
     
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
     //    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
-    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
+    //    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
     
-    def parser
-    if(ontUri && ontUri != '') {
-      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
-      query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
-    } else {
-      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
-      query += ' AND oldVersion:'+false;
+
+    def parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
+    def queryList = []
+    oQuery.toLowerCase().split().each {
+      def ll = new LinkedHashSet()
+      boostVals.each { l, v ->
+	ll.add(parser.parse(l+":"+classic.QueryParser.escape(it) +"^"+v))
+      }
+      queryList << new DisjunctionMaxQuery(ll, 0.1)
     }
 
-    def fQuery = parser.parse(query)
+    
+    if(ontUri && ontUri != '') {
+      queryList << parser.parse('ontology:' + ontUri)
+      queryList << parser.parse('oldVersion:'+false)
+    } else {
+      queryList << parser.parse('oldVersion:'+false)
+    }
+
+    def fQuery = new BooleanQuery()
+    queryList.each { q ->
+      fQuery.add(q, BooleanClause.Occur.MUST)
+    }
+    //    def fQuery = parser.parse(query)
     def hits = searcher.search(fQuery, 1000, Sort.RELEVANCE, true, true).scoreDocs
     def ret = []
     
@@ -254,6 +272,9 @@ class RequestManager {
       Field f = null
       //To indicate that it is a old version
       f = new Field('ontology', uri, TextField.TYPE_STORED)
+      doc.add(f)
+      // make ontologies searchable
+      f = new Field('AberOWL-catch-all', uri.toLowerCase(), TextField.TYPE_STORED)
       doc.add(f)
       f= new Field('type', 'class', TextField.TYPE_STORED)
       doc.add(f)
@@ -654,7 +675,14 @@ class RequestManager {
     try {
       OWLOntology ontology = ontologies.get(k) ;
       OWLOntologyManager manager = ontologyManagers.get(k) ;
-      OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
+      /* Configure Elk */
+      ReasonerConfiguration eConf = ReasonerConfiguration.getConfiguration()
+      eConf.setParameter(ReasonerConfiguration.NUM_OF_WORKING_THREADS, this.ELK_THREADS)
+      eConf.setParameter(ReasonerConfiguration.INCREMENTAL_MODE_ALLOWED, "true")
+      eConf.setParameter(ReasonerConfiguration.INCREMENTAL_TAXONOMY, "true")
+      /* OWLAPI Reasoner config, no progress monitor */
+      OWLReasonerConfiguration rConf = new ElkReasonerConfiguration(OWLReasonerConfiguration.getDefaultOwlReasonerConfiguration(null), eConf)
+      OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology, rConf);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
