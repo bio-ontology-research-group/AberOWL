@@ -12,6 +12,7 @@ import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 import org.semanticweb.owlapi.util.*;
 import org.semanticweb.owlapi.search.*;
+import org.semanticweb.owlapi.manchestersyntax.renderer.*;
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
@@ -105,7 +106,7 @@ class RequestManager {
   }
       
   List<String> queryNames(String query, String ontUri) {
-    String[] fields = ['label', 'ontology', 'oboid', 'definition', 'synonym', 'AberOWL-catch-all']
+    String[] fields = ['label', 'ontology', 'oboid', 'definition', 'synonym', 'AberOWL-catch-all', 'AberOWL-sublass', 'AberOWL-equivalent']
     // List<String> fList = []
     // MultiFields.getFields(DirectoryReader.open(index))?.each {
     //   def s = it.toString()?.toLowerCase()
@@ -116,10 +117,12 @@ class RequestManager {
     //    String[] allFields = fList.toArray(new String[fList.size()])
     def oQuery = query
     Map boostVals = ['label':100,
-		     'ontology':1000,
-		     'oboid':10000,
+		     'ontology':1000, // when ontology is added to query, sort by ontology
+		     'oboid':10000, // definitely want the matching id returned first when searching for ID
 		     'definition':10,
 		     'synonym':75,
+		     'AberOWL-subclass':25, // less than synonym/label, but more than definition
+		     'AberOWL-equivalent':25, // less than synonym/label, but more than definition
 		     'AberOWL-catch-all':0.01
 		    ]
     
@@ -263,6 +266,14 @@ class RequestManager {
     OWLOntologyImportsClosureSetProvider mp = new OWLOntologyImportsClosureSetProvider(manager, ont)
     OWLOntologyMerger merger = new OWLOntologyMerger(mp, false)
     def iOnt = merger.createMergedOntology(manager, IRI.create("http://test.owl"))
+
+    // set up the renderer for the axioms
+    def sProvider = new AnnotationValueShortFormProvider(
+      Collections.singletonList(df.getRDFSLabel()),
+      Collections.<OWLAnnotationProperty, List<String>>emptyMap(),
+      manager);
+    def manSyntaxRenderer = new ManchesterOWLSyntaxOWLObjectRendererImpl()
+    manSyntaxRenderer.setShortFormProvider(sProvider)
     
     iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
       def cIRI = iClass.getIRI().toString()
@@ -282,6 +293,21 @@ class RequestManager {
       doc.add(f)
       f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
       doc.add(f)
+
+      /* get the axioms */
+      EntitySearcher.getSubClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
+	if (! cExpr.isClassExpressionLiteral()) {
+	  f = new Field('AberOWL-subclass', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
+	  doc.add(f)
+	}
+      }
+      EntitySearcher.getEquivalentClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
+	if (! cExpr.isClassExpressionLiteral()) {
+	  f = new Field('AberOWL-equivalent', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
+	  doc.add(f)
+	}
+      }
+
       
       def deprecated = false
       def annoMap = [:].withDefault { new TreeSet() }
@@ -605,7 +631,9 @@ class RequestManager {
    * @throws OWLOntologyCreationException, IOException
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
-    GParsPool.withPool {
+    def pool = null
+    GParsPool.withPool { p ->
+      pool = p
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
 	attemptedOntologies++
@@ -613,6 +641,7 @@ class RequestManager {
 	    if(oRec.lastSubDate == 0) {
 	      return;
 	    }
+	    print "Loading "+oRec.id+" from "+oRec.submissions[oRec.lastSubDate.toString()]+"... "
 	    OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
 	    OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
 	    config.setFollowRedirects(true) ;
@@ -622,8 +651,8 @@ class RequestManager {
 	    ontologies.put(oRec.id ,ontology)
 	    ontologyManagers.put(oRec.id, lManager)
 
-	    loadedOntologies++
-	      println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
+	    loadedOntologies+=1
+	    println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
 	    loadStati.put(oRec.id, 'loaded')
 	  } catch (OWLOntologyAlreadyExistsException E) {
 	  if(oRec && oRec.id) {
@@ -665,8 +694,8 @@ class RequestManager {
 	  if(oRec && oRec.id) {
 	    loadStati.put(oRec.id, 'unloadable')
 	  }
-	  otherError++
-	    }
+	  otherError+=1
+	}
       }
     }
   }
@@ -681,7 +710,7 @@ class RequestManager {
       eConf.setParameter(ReasonerConfiguration.INCREMENTAL_MODE_ALLOWED, "true")
       eConf.setParameter(ReasonerConfiguration.INCREMENTAL_TAXONOMY, "true")
       /* OWLAPI Reasoner config, no progress monitor */
-      OWLReasonerConfiguration rConf = new ElkReasonerConfiguration(OWLReasonerConfiguration.getDefaultOwlReasonerConfiguration(null), eConf)
+      OWLReasonerConfiguration rConf = new ElkReasonerConfiguration(ElkReasonerConfiguration.getDefaultOwlReasonerConfiguration(new NullReasonerProgressMonitor()), eConf)
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology, rConf);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
@@ -717,11 +746,15 @@ class RequestManager {
     }
 
     OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
-    GParsPool.withPool(1) {
-      ontologies.eachParallel { k, oRec ->
+    //    GParsExecutorsPool.withPool(1) {
+    ontologies.each { k, oRec ->
+      try {
 	createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
+      } catch (Exception E) {
+	println "Exception encountered when reasoning $k: " + E
       }
     }
+    //    }
     println "REASONED"
   }
 
