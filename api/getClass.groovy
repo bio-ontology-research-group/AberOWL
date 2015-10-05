@@ -99,9 +99,23 @@ if(ontology && query) {
 	-1
       } else if (x.key == 'oboid' && y.key != 'label' && y.key != 'definition') {
 	-1
+      } else if (x.key == 'AberOWL-equivalent' && y.key != 'oboid' && y.key != 'label' && y.key != 'definition') {
+	-1
+      } else if (x.key == 'AberOWL-subclass' && y.key != 'oboid' && y.key != 'label' && y.key != 'definition') {
+	-1
       } else {
 	x.key.compareTo(y.key)
       }
+    }
+    
+    def translateKeys = ["AberOWL-equivalent" : "EquivalentTo:", "AberOWL-subclass" : "SubClassOf:"]
+    output = output.inject ([:]) { map, v -> 
+      if (translateKeys[v.key]) {
+	map[ translateKeys[ v.key ] ] = "<tt>"+v.value+"</tt>"
+      } else {
+	map[ v.key ] = v.value
+      }
+      map 
     }
     
     response.contentType = 'application/json'
