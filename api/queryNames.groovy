@@ -16,7 +16,7 @@ def rManager = application.rManager
 
 response.contentType = 'application/json'
 
-def res = rManager.queryNames(query, ontology)
+def res = rManager.queryNames(query, ontology).groupBy { it.label }
 print new JsonBuilder(res)
 
 
