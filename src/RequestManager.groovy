@@ -72,10 +72,10 @@ class RequestManager {
     println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
-    loadIndex();
     if(reason) {
       createReasoner();
     }
+    loadIndex();
     
     // Unload old versions of ontologies
     new Timer().schedule({
@@ -221,6 +221,7 @@ class RequestManager {
 
   void reloadOntologyIndex(String uri, IndexWriter index, boolean isOldVersion) {
     def ont = ontologies.get(uri)
+    def oReasoner = queryEngines.get(uri)?.getoReasoner()
     def manager = ont.getOWLOntologyManager()
     def labels = [
       // Labels
@@ -294,6 +295,14 @@ class RequestManager {
       f = new Field('class', cIRI, TextField.TYPE_STORED)
       doc.add(f)
       f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
+      doc.add(f)
+
+      /* check if this class is a leaf node in the taxonomy */
+      if (oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
+	f = new Field("isLeafNode","true", TextField.TYPE_STORED)
+      } else {
+	f = new Field("isLeafNode","false", TextField.TYPE_STORED)
+      }
       doc.add(f)
 
       /* get the axioms */
