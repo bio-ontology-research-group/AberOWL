@@ -731,16 +731,17 @@ class RequestManager {
       // check if there are many many unsatisfiable classes, then switch to structural reasoner
       if (oReasoner.getEquivalentClasses(df.getOWLNothing()).getEntitiesMinusBottom().size() >= MAX_UNSATISFIABLE_CLASSES) {
 	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
-	oReasoner = sReasoner.createReasoner(ontology)
+	oReasoner = sReasonerFactory.createReasoner(ontology)
 	loadStati.put(k, 'incoherent')
 	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
       } else {
 	println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
+	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 	loadStati.put(k, 'classified')
       }
     } catch(InconsistentOntologyException e) {
       StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
-      OWLReasoner sr = sReasoner.createReasoner(ontology)
+      OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
       this.queryEngines.put(k, new QueryEngine(sr, sForm))
       println "inconsistent ontology " + k
