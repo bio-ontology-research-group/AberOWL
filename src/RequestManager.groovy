@@ -36,7 +36,7 @@ import groovyx.gpars.GParsPool
 
 class RequestManager {
   private static final ELK_THREADS = "16"
-  private static final MAX_UNSATISFIABLE_CLASSES = "500"
+  private static final MAX_UNSATISFIABLE_CLASSES = 250
 
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
