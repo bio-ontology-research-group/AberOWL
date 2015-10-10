@@ -713,8 +713,9 @@ class RequestManager {
   }
 
   void createOntologyReasoner(String k, OWLReasonerFactory reasonerFactory, Map preferredLanguageMap) {
+    OWLOntology ontology
     try {
-      OWLOntology ontology = ontologies.get(k) ;
+      ontology = ontologies.get(k) ;
       OWLOntologyManager manager = ontologyManagers.get(k) ;
       /* Configure Elk */
       ReasonerConfiguration eConf = ReasonerConfiguration.getConfiguration()
@@ -734,16 +735,21 @@ class RequestManager {
 	oReasoner = sReasonerFactory.createReasoner(ontology)
 	loadStati.put(k, 'incoherent')
 	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+	println "Successfully classified but switched to structural reasoner " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
       } else {
 	println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
 	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 	loadStati.put(k, 'classified')
       }
     } catch(InconsistentOntologyException e) {
-      StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
-      OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
-      def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
-      this.queryEngines.put(k, new QueryEngine(sr, sForm))
+      try {
+	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
+	OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
+	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
+	this.queryEngines.put(k, new QueryEngine(sr, sForm))
+      } catch (Exception E) {
+	println "Terminal error with $k"
+      }
       println "inconsistent ontology " + k
       e.printStackTrace()
       loadStati.put(k, 'inconsistent')
