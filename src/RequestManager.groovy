@@ -36,7 +36,7 @@ import groovyx.gpars.GParsPool
 
 class RequestManager {
   private static final ELK_THREADS = "16"
-  private static final MAX_UNSATISFIABLE_CLASSES = 500
+  private static final MAX_UNSATISFIABLE_CLASSES = 250
 
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
@@ -72,10 +72,10 @@ class RequestManager {
     println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
-    loadIndex();
     if(reason) {
       createReasoner();
     }
+    loadIndex();
     
     // Unload old versions of ontologies
     new Timer().schedule({
@@ -221,6 +221,7 @@ class RequestManager {
 
   void reloadOntologyIndex(String uri, IndexWriter index, boolean isOldVersion) {
     def ont = ontologies.get(uri)
+    def oReasoner = queryEngines.get(uri)?.getoReasoner()
     def manager = ont.getOWLOntologyManager()
     def labels = [
       // Labels
@@ -294,6 +295,14 @@ class RequestManager {
       f = new Field('class', cIRI, TextField.TYPE_STORED)
       doc.add(f)
       f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
+      doc.add(f)
+
+      /* check if this class is a leaf node in the taxonomy */
+      if (oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
+	f = new Field("isLeafNode","true", TextField.TYPE_STORED)
+      } else {
+	f = new Field("isLeafNode","false", TextField.TYPE_STORED)
+      }
       doc.add(f)
 
       /* get the axioms */
@@ -722,16 +731,17 @@ class RequestManager {
       // check if there are many many unsatisfiable classes, then switch to structural reasoner
       if (oReasoner.getEquivalentClasses(df.getOWLNothing()).getEntitiesMinusBottom().size() >= MAX_UNSATISFIABLE_CLASSES) {
 	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
-	oReasoner = sReasoner.createReasoner(ontology)
+	oReasoner = sReasonerFactory.createReasoner(ontology)
 	loadStati.put(k, 'incoherent')
 	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
       } else {
 	println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
+	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 	loadStati.put(k, 'classified')
       }
     } catch(InconsistentOntologyException e) {
       StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
-      OWLReasoner sr = sReasoner.createReasoner(ontology)
+      OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
       this.queryEngines.put(k, new QueryEngine(sr, sForm))
       println "inconsistent ontology " + k
