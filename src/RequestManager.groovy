@@ -13,6 +13,7 @@ import org.semanticweb.owlapi.owllink.*;
 import org.semanticweb.owlapi.util.*;
 import org.semanticweb.owlapi.search.*;
 import org.semanticweb.owlapi.manchestersyntax.renderer.*;
+import org.semanticweb.owlapi.reasoner.structural.*
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
@@ -34,7 +35,8 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
-  private static final ELK_THREADS = "64"
+  private static final ELK_THREADS = "16"
+  private static final MAX_UNSATISFIABLE_CLASSES = "500"
 
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
@@ -613,6 +615,7 @@ class RequestManager {
       }
 
       OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
+      
       createOntologyReasoner(oRec.id, reasonerFactory, preferredLanguageMap)
     } catch(OWLOntologyInputSourceException e) {
       println "input source exception for " + oRec.id
@@ -715,11 +718,22 @@ class RequestManager {
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-      this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 
-      println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
-      loadStati.put(k, 'classified')
+      // check if there are many many unsatisfiable classes, then switch to structural reasoner
+      if (oReasoner.getEquivalentClasses(df.getOWLNothing()).getEntitiesMinusBottom().size() >= MAX_UNSATISFIABLE_CLASSES) {
+	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
+	oReasoner = sReasoner.createReasoner(ontology)
+	loadStati.put(k, 'incoherent')
+	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+      } else {
+	println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
+	loadStati.put(k, 'classified')
+      }
     } catch(InconsistentOntologyException e) {
+      StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
+      OWLReasoner sr = sReasoner.createReasoner(ontology)
+      def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
+      this.queryEngines.put(k, new QueryEngine(sr, sForm))
       println "inconsistent ontology " + k
       e.printStackTrace()
       loadStati.put(k, 'inconsistent')
@@ -746,15 +760,15 @@ class RequestManager {
     }
 
     OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
-    //    GParsExecutorsPool.withPool(1) {
-    ontologies.each { k, oRec ->
-      try {
-	createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
-      } catch (Exception E) {
-	println "Exception encountered when reasoning $k: " + E
+    GParsPool.withPool {
+      ontologies.eachParallel { k, oRec ->
+	try {
+	  createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
+	} catch (Exception E) {
+	  println "Exception encountered when reasoning $k: " + E
+	}
       }
     }
-    //    }
     println "REASONED"
   }
 
