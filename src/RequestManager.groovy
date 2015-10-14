@@ -35,8 +35,8 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
-  private static final ELK_THREADS = "16"
-  private static final MAX_UNSATISFIABLE_CLASSES = 250
+  private static final ELK_THREADS = "64"
+  private static final MAX_UNSATISFIABLE_CLASSES = 100
 
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
@@ -77,6 +77,8 @@ class RequestManager {
     }
     loadIndex();
     
+    println "Loading of ontologies finished; AberOWL is ready for service."
+
     // Unload old versions of ontologies
     new Timer().schedule({
 			   removeOldOntologies()
@@ -296,14 +298,16 @@ class RequestManager {
       doc.add(f)
       f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
       doc.add(f)
-
-      /* check if this class is a leaf node in the taxonomy */
-      if (oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
+      
+      
+      /* check if this class is a leaf node in the taxonomy
+      if (oReasoner && oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
 	f = new Field("isLeafNode","true", TextField.TYPE_STORED)
       } else {
 	f = new Field("isLeafNode","false", TextField.TYPE_STORED)
       }
       doc.add(f)
+      */
 
       /* get the axioms */
       EntitySearcher.getSubClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
@@ -545,8 +549,10 @@ class RequestManager {
 
     if(ontology == '') {
       println "Loading index"
-      for(String uri : ontologies.keySet()) {
-	reloadOntologyIndex(uri, writer, isOldVersion)
+      GParsPool.withPool {
+	ontologies.keySet().eachParallel { uri ->
+	  reloadOntologyIndex(uri, writer, isOldVersion)
+	}
       }
     } else {
       reloadOntologyIndex(ontology, writer, isOldVersion)
@@ -742,16 +748,16 @@ class RequestManager {
 	loadStati.put(k, 'classified')
       }
     } catch(InconsistentOntologyException e) {
+      println "inconsistent ontology " + k
       try {
 	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
 	OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
-	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
+	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, ontologyManagers.get(k))
 	this.queryEngines.put(k, new QueryEngine(sr, sForm))
       } catch (Exception E) {
 	println "Terminal error with $k"
+	E.printStackTrace()
       }
-      println "inconsistent ontology " + k
-      e.printStackTrace()
       loadStati.put(k, 'inconsistent')
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k

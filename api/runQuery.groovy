@@ -69,5 +69,5 @@ try {
   response.contentType = 'application/json'
   print new JsonBuilder(results).toString()
 } catch(Exception e) {
-  print e.printStackTrace()
+  e.printStackTrace()
 }
