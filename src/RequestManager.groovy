@@ -298,7 +298,7 @@ class RequestManager {
       doc.add(f)
 
       /* check if this class is a leaf node in the taxonomy */
-      if (oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
+      if (oReasoner && oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
 	f = new Field("isLeafNode","true", TextField.TYPE_STORED)
       } else {
 	f = new Field("isLeafNode","false", TextField.TYPE_STORED)
