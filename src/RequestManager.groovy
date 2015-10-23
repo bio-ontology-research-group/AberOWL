@@ -35,7 +35,7 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
-  private static final ELK_THREADS = "64"
+  private static final ELK_THREADS = "8"
   private static final MAX_UNSATISFIABLE_CLASSES = 100
 
   int loadedOntologies = 0;
@@ -123,7 +123,7 @@ class RequestManager {
     Map boostVals = ['label':100,
 		     'ontology':1000, // when ontology is added to query, sort by ontology
 		     'oboid':10000, // definitely want the matching id returned first when searching for ID
-		     'definition':10,
+		     'definition':3,
 		     'synonym':75,
 		     'AberOWL-subclass':25, // less than synonym/label, but more than definition
 		     'AberOWL-equivalent':25, // less than synonym/label, but more than definition

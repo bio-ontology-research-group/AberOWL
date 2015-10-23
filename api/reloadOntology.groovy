@@ -24,6 +24,7 @@ try{
   //rManager.queryEngines.remove('FMA')
   rManager.reloadOntology(name,version)
 }catch(Exception e){
-	print e
+  println "<pre>"
+  e.getStackTrace()?.each { println it }
 }
 // Get result and whatnot here
