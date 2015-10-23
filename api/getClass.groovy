@@ -32,6 +32,7 @@ def PREFIX_MAP = [
   "http://purl.org/dc/terms/" : "dc:",
   "http://purl.org/vocab/vann/" : "vann:",
   "http://purl.org/spar/cito/" : "cito:",
+  "http://purl.org/sig/ont/fma/" : "fma:",
   "http://purl.obolibrary.org/obo/" : "obo:",
   "http://www.w3.org/2004/02/skos/core" : "skos:",
   "http://semanticscience.org/resource/" : "sio:"
