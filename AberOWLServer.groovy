@@ -8,10 +8,11 @@
           @Grab(group='com.googlecode.json-simple', module='json-simple', version='1.1.1'),
           @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
 
-          @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.0.2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.0.2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.0.2'),
+	  @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.1.0-RC2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.1.0-RC2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.1.0-RC2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.1.0-RC2'),
 
           @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
           @Grab(group='org.apache.lucene', module='lucene-core', version='5.2.1'),
@@ -25,9 +26,14 @@ import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.servlet.*
 import groovy.servlet.*
 import src.*
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
 
+Logger.getRootLogger().setLevel(Level.ERROR)
+
+PORT = new Integer(args[0])
 def startServer() {
-  def server = new Server(55555)
+  def server = new Server(PORT)
   def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
 
   context.resourceBase = '.'
