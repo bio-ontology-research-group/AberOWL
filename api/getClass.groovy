@@ -112,7 +112,7 @@ if(ontology && query) {
     def translateKeys = ["AberOWL-equivalent" : "EquivalentTo:", "AberOWL-subclass" : "SubClassOf:"]
     output = output.inject ([:]) { map, v -> 
       if (translateKeys[v.key]) {
-	map[ translateKeys[ v.key ] ] = "<tt>"+v.value+"</tt>"
+	map[ translateKeys[ v.key ] ] = v.value.sort{it.length()}.inject("", {s, val -> s + "<div id='man-axiom'>"+val+"</div>"})
       } else {
 	map[ v.key ] = v.value
       }
