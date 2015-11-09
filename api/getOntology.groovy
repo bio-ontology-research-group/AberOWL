@@ -1,3 +1,5 @@
+import groovy.json.*
+
 if(!application) {
   application = request.getApplication(true)
 }
@@ -8,9 +10,9 @@ if(ontology) {
   def record = rManager.oBase.getOntology(ontology);
 
   record.submissions.each { a, y ->
-    record.submissions[y] = RequestManager.WebRoot
+    record.submissions[a] = rManager.WEB_ROOT + 'onts/' + y
   }
 
   response.contentType = 'application/json'
-  print new JsonBuilder(output).toString()
+  print new JsonBuilder(record).toString()
 }
