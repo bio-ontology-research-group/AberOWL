@@ -47,11 +47,9 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
   context.addServlet(GroovyServlet, '/api/findRoot.groovy')
   context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
-<<<<<<< HEAD
   context.addServlet(GroovyServlet, '/api/getOntology.groovy')
-=======
   context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
->>>>>>> b04f9b5008d4b470d378ba0d24c91646dc129688
+
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))
 
