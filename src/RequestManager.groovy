@@ -31,6 +31,8 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
+  static WebRoot = 'http://aber-owl.net/'
+
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
   int noFileError = 0;
@@ -579,6 +581,9 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies++
+        if(oRec.id != 'GO-EXT') {
+          return;
+        }
         try {
           if(oRec.lastSubDate == 0) {
             return;

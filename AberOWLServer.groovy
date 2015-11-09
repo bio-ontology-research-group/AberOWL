@@ -41,10 +41,12 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
   context.addServlet(GroovyServlet, '/api/findRoot.groovy')
   context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
+  context.addServlet(GroovyServlet, '/api/getOntology.groovy')
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))
 
   server.start()
 }
+
 println org.semanticweb.owlapi.util.VersionInfo.getVersionInfo();
 startServer()
