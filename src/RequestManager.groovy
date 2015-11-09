@@ -35,6 +35,7 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
+  private static final WEB_ROOT = 'http://aber-owl.net/'
   private static final ELK_THREADS = "8"
   private static final MAX_UNSATISFIABLE_CLASSES = 100
 
@@ -658,66 +659,68 @@ class RequestManager {
       pool = p
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
-	attemptedOntologies++
-	  try {
-	    if(oRec.lastSubDate == 0) {
-	      return;
-	    }
-	    print "Loading "+oRec.id+" from "+oRec.submissions[oRec.lastSubDate.toString()]+"... "
-	    OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
-	    OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
-	    config.setFollowRedirects(true) ;
-	    config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
-	    def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
-	    def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
-	    ontologies.put(oRec.id ,ontology)
-	    ontologyManagers.put(oRec.id, lManager)
+        attemptedOntologies++
+        if(attemptedOntologies > 5) {
+          return;
+        }
+        try {
+          if(oRec.lastSubDate == 0) {
+            return;
+          }
+          OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
+          OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
+          config.setFollowRedirects(true) ;
+          config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
+          def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+          def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
+          ontologies.put(oRec.id ,ontology)
+          ontologyManagers.put(oRec.id, lManager)
 
-	    loadedOntologies+=1
-	    println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
-	    loadStati.put(oRec.id, 'loaded')
-	  } catch (OWLOntologyAlreadyExistsException E) {
-	  if(oRec && oRec.id) {
-	    println 'DUPLICATE ' + oRec.id
-	  }
-	} catch (OWLOntologyInputSourceException e) {
-	  println "File not found for " + oRec.id 
-	  if(oRec && oRec.id) {
-	    loadStati.put(oRec.id, 'unloadable')
-	  }
-	  noFileError++
-	    } catch (IOException e) {
-	  println "Can't load external import for " + oRec.id 
-	  if(oRec && oRec.id) {
-	    loadStati.put(oRec.id, 'unloadable')
-	  }
-	  importError++
-	    } catch(OWLOntologyCreationIOException e) {
-	  println "Failed to load imports for " + oRec.id
-	  if(oRec && oRec.id) {
-	    loadStati.put(oRec.id, 'unloadable')
-	  }
-	  importError++
-	    } catch(UnparsableOntologyException e) {
-	  println "Failed to parse ontology " + oRec.id
-	  e.printStackTrace()
-	  if(oRec && oRec.id) {
-	    loadStati.put(oRec.id, 'unloadable')
-	  }
-	  parseError++
-	    } catch(UnloadableImportException e) {
-	  println "Failed to load imports for " + oRec.id
-	  if(oRec && oRec.id) {
-	    loadStati.put(oRec.id, 'unloadable')
-	  }
-	  importError++
-	    } catch (Exception E) {
-	  println oRec.id + ' other'
-	  if(oRec && oRec.id) {
-	    loadStati.put(oRec.id, 'unloadable')
-	  }
-	  otherError+=1
-	}
+          loadedOntologies++
+          println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
+          loadStati.put(oRec.id, 'loaded')
+        } catch (OWLOntologyAlreadyExistsException E) {
+          if(oRec && oRec.id) {
+            println 'DUPLICATE ' + oRec.id
+          }
+        } catch (OWLOntologyInputSourceException e) {
+          println "File not found for " + oRec.id
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
+          noFileError++
+        } catch (IOException e) {
+          println "Can't load external import for " + oRec.id 
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
+          importError++
+        } catch(OWLOntologyCreationIOException e) {
+          println "Failed to load imports for " + oRec.id
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
+          importError++
+        } catch(UnparsableOntologyException e) {
+          println "Failed to parse ontology " + oRec.id
+          e.printStackTrace()
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
+          parseError++
+        } catch(UnloadableImportException e) {
+          println "Failed to load imports for " + oRec.id
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
+          importError++
+        } catch (Exception E) {
+          println oRec.id + ' other'
+          if(oRec && oRec.id) {
+            loadStati.put(oRec.id, 'unloadable')
+          }
+          otherError++
+        }
       }
     }
   }
