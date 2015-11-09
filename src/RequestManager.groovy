@@ -277,7 +277,7 @@ class RequestManager {
       Collections.singletonList(df.getRDFSLabel()),
       Collections.<OWLAnnotationProperty, List<String>>emptyMap(),
       manager);
-    def manSyntaxRenderer = new ManchesterOWLSyntaxOWLObjectRendererImpl()
+    def manSyntaxRenderer = new AberOWLSyntaxRendererImpl()
     manSyntaxRenderer.setShortFormProvider(sProvider)
     
     iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
@@ -310,17 +310,21 @@ class RequestManager {
       */
 
       /* get the axioms */
-      EntitySearcher.getSubClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
-	if (! cExpr.isClassExpressionLiteral()) {
-	  f = new Field('AberOWL-subclass', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
-	  doc.add(f)
-	}
+      EntitySearcher.getSuperClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
+	//if (! cExpr.isClassExpressionLiteral()) {
+	f = new Field('AberOWL-subclass', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
+	doc.add(f)
+	f = new Field('AberOWL-catch-all', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
+	doc.add(f)
+	//}
       }
       EntitySearcher.getEquivalentClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
-	if (! cExpr.isClassExpressionLiteral()) {
+	//if (! cExpr.isClassExpressionLiteral()) {
 	  f = new Field('AberOWL-equivalent', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
 	  doc.add(f)
-	}
+	  f = new Field('AberOWL-catch-all', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
+	  doc.add(f)
+	  //}
       }
 
       
@@ -754,11 +758,11 @@ class RequestManager {
 	OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
 	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, ontologyManagers.get(k))
 	this.queryEngines.put(k, new QueryEngine(sr, sForm))
+	loadStati.put(k, 'inconsistent')
       } catch (Exception E) {
 	println "Terminal error with $k"
 	E.printStackTrace()
       }
-      loadStati.put(k, 'inconsistent')
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
       e.printStackTrace()
