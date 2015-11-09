@@ -1,6 +1,8 @@
 package src
 
 import org.semanticweb.elk.owlapi.ElkReasonerFactory;
+import org.semanticweb.elk.owlapi.ElkReasonerConfiguration
+import org.semanticweb.elk.reasoner.config.*
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.reasoner.*
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasoner
@@ -10,6 +12,8 @@ import org.semanticweb.owlapi.io.*;
 import org.semanticweb.owlapi.owllink.*;
 import org.semanticweb.owlapi.util.*;
 import org.semanticweb.owlapi.search.*;
+import org.semanticweb.owlapi.manchestersyntax.renderer.*;
+import org.semanticweb.owlapi.reasoner.structural.*
 
 import org.apache.lucene.analysis.*
 import org.apache.lucene.analysis.standard.StandardAnalyzer
@@ -31,7 +35,9 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 class RequestManager {
-  static WebRoot = 'http://aber-owl.net/'
+  private static final WEB_ROOT = 'http://aber-owl.net/'
+  private static final ELK_THREADS = "8"
+  private static final MAX_UNSATISFIABLE_CLASSES = 100
 
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
@@ -46,6 +52,7 @@ class RequestManager {
   OWLDataFactory df = OWLManager.getOWLDataFactory() ;
   OntologyDatabase oBase = new OntologyDatabase()
 
+
   def ontologies = new ConcurrentHashMap()
   def ontologyManagers = new ConcurrentHashMap()
   def queryEngines = new ConcurrentHashMap()
@@ -55,26 +62,34 @@ class RequestManager {
   // Index things
   RAMDirectory index = new RAMDirectory()
   IndexSearcher searcher
+  IndexWriterConfig iwc 
+  IndexWriter writer 
   
   RequestManager(boolean reason) {
+    this.iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+    this.writer = new IndexWriter(index, iwc)
+
     println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
-    loadIndex();
     if(reason) {
       createReasoner();
     }
+    loadIndex();
     
+    println "Loading of ontologies finished; AberOWL is ready for service."
+
     // Unload old versions of ontologies
     new Timer().schedule({
-      removeOldOntologies()
-    } as TimerTask, 600000, 600000) // 10 minutes
+			   removeOldOntologies()
+			 } as TimerTask, 600000, 600000) // 10 minutes
   }
 
   void removeOldOntologies() {
-    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
-    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
-    IndexWriter writer = new IndexWriter(index, iwc)
+    //    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+    //    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+    //    IndexWriter writer = new IndexWriter(index, iwc)
     def curTime = (int) (System.currentTimeMillis() / 1000L)
 
     oldOntologies.each { id, time ->
@@ -88,15 +103,15 @@ class RequestManager {
       }
     }
 
-    writer.close()
+    writer.commit()
   }
       
   Set<String> listOntologies() {
     return ontologies.keySet() ;
   }
       
-  Set<String> queryNames(String query, String ontUri) {
-    String[] fields = ['label', 'ontology', 'oboid', 'definition', 'synonym', 'AberOWL-catch-all']
+  List<String> queryNames(String query, String ontUri) {
+    String[] fields = ['label', 'ontology', 'oboid', 'definition', 'synonym', 'AberOWL-catch-all', 'AberOWL-sublass', 'AberOWL-equivalent']
     // List<String> fList = []
     // MultiFields.getFields(DirectoryReader.open(index))?.each {
     //   def s = it.toString()?.toLowerCase()
@@ -107,27 +122,43 @@ class RequestManager {
     //    String[] allFields = fList.toArray(new String[fList.size()])
     def oQuery = query
     Map boostVals = ['label':100,
-		     'ontology':1000,
-		     'oboid':10000,
-		     'definition':10,
+		     'ontology':1000, // when ontology is added to query, sort by ontology
+		     'oboid':10000, // definitely want the matching id returned first when searching for ID
+		     'definition':3,
 		     'synonym':75,
+		     'AberOWL-subclass':25, // less than synonym/label, but more than definition
+		     'AberOWL-equivalent':25, // less than synonym/label, but more than definition
 		     'AberOWL-catch-all':0.01
-    ]
+		    ]
     
     //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
     //    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
-    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
+    //    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) +'*' }).join(' AND ')
     
-    def parser
-    if(ontUri && ontUri != '') {
-      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
-      query += ' AND ontology:' + ontUri+ ' AND oldVersion:'+false;
-    } else {
-      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
-      query += ' AND oldVersion:'+false;
+
+    def parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer(), boostVals)
+    def queryList = []
+    oQuery.toLowerCase().split().each {
+      def ll = new LinkedHashSet()
+      boostVals.each { l, v ->
+	ll.add(parser.parse(l+":"+classic.QueryParser.escape(it) +"^"+v))
+      }
+      queryList << new DisjunctionMaxQuery(ll, 0.1)
     }
 
-    def fQuery = parser.parse(query)
+    
+    if(ontUri && ontUri != '') {
+      queryList << parser.parse('ontology:' + ontUri)
+      queryList << parser.parse('oldVersion:'+false)
+    } else {
+      queryList << parser.parse('oldVersion:'+false)
+    }
+
+    def fQuery = new BooleanQuery()
+    queryList.each { q ->
+      fQuery.add(q, BooleanClause.Occur.MUST)
+    }
+    //    def fQuery = parser.parse(query)
     def hits = searcher.search(fQuery, 1000, Sort.RELEVANCE, true, true).scoreDocs
     def ret = []
     
@@ -143,7 +174,7 @@ class RequestManager {
         label = "'" + label + "'"
       }
       ret.add([
-	       'label': label,
+		'label': label,
 	       'iri': iri,
 	       'ontology': ontology,
 	       'first_label': fLabel,
@@ -155,18 +186,14 @@ class RequestManager {
 	      ])
     }
 
-    println "Return val: "+ret
-
     return ret
   }
 
   Set<String> queryOntologies(String query) {
-    String[] fields = ['name', 'ontology', 'description']
+    String[] fields = ['name', 'lontology', 'description']
     def oQuery = classic.QueryParser.escape(query.toLowerCase())
 
-    //query = oQuery.toLowerCase().split().collect({ 'first_label:' + classic.QueryParser.escape(it) + '*' }).join(' AND ')
-
-    query = 'lname:' + oQuery + '* OR ldescription:' + oQuery + '* OR lontology:' + oQuery + '*'
+    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
 
     def parser
     parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
@@ -185,10 +212,10 @@ class RequestManager {
       def ontology = hitDoc.get('ontology') 
       def description = hitDoc.get('description') 
       ret.add([
-        'name': name,
-        'uri': ontology,
-        'description': description,
-      ])
+		'name': name,
+	       'uri': ontology,
+	       'description': description,
+	      ])
     }
 
     return ret.sort { it.name.size() }
@@ -197,14 +224,13 @@ class RequestManager {
 
   void reloadOntologyIndex(String uri, IndexWriter index, boolean isOldVersion) {
     def ont = ontologies.get(uri)
+    def oReasoner = queryEngines.get(uri)?.getoReasoner()
+    def manager = ont.getOWLOntologyManager()
     def labels = [
       // Labels
       df.getRDFSLabel(), 
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#prefLabel')),
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000111'))
-      /*
-      // Synonyms
-      */
     ]
     def synonyms = [
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#altLabel')),
@@ -218,8 +244,7 @@ class RequestManager {
       df.getOWLAnnotationProperty(new IRI('http://purl.obolibrary.org/obo/IAO_0000115')),
       df.getOWLAnnotationProperty(new IRI('http://www.w3.org/2004/02/skos/core#definition')),
       df.getOWLAnnotationProperty(new IRI('http://purl.org/dc/elements/1.1/description')),
-      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition')),
-      df.getRDFSComment()
+      df.getOWLAnnotationProperty(new IRI('http://www.geneontology.org/formats/oboInOwl#hasDefinition'))
     ]
 
     index.deleteDocuments(new Term('ontology', uri))
@@ -243,164 +268,71 @@ class RequestManager {
     index.addDocument(oDoc)
 
     // Readd all classes for this ont
-    ont.getImportsClosure().each { iOnt -> // OWLOntology
-      iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
-        def cIRI = iClass.getIRI().toString()
-        def firstLabelRun = true
-        def lastFirstLabel = null
-        def doc = new Document()
-	Field f = null
-        //To indicate that it is a old version
-	f = new Field('ontology', uri, TextField.TYPE_STORED)
-        doc.add(f)
-	f= new Field('type', 'class', TextField.TYPE_STORED)
-        doc.add(f)
-	f = new Field('class', cIRI, TextField.TYPE_STORED)
-        doc.add(f)
-	f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
-        doc.add(f)
 
-	def deprecated = false
-	def annoMap = [:].withDefault { new TreeSet() }
-	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
-	  if(anno.isDeprecatedIRIAnnotation()) {
-	    deprecated = true
-	  }
-	  def aProp = anno.getProperty()
-	  if (!(aProp in labels || aProp in definitions || aProp in synonyms)) {
-	    if (anno.getValue() instanceof OWLLiteral) {
-	      def aVal = anno.getValue().getLiteral()?.toLowerCase()
-	      def aLabels = []
-	      if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
-		EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
-		  def lab = l.getValue().getLiteral().toLowerCase()
-		  annoMap[lab].add(aVal)
-		}
-	      } else {
-		annoMap[aProp.toString()?.replaceAll("<","")?.replaceAll(">","")].add(aVal)
-	      }
-	    }
-	  }
-	}
-	annoMap.each { k, v ->
-	  v.each { val ->
-	    f = new Field(k, val, TextField.TYPE_STORED)
-	    doc.add(f)
-	    f = new Field("AberOWL-catch-all", val, TextField.TYPE_STORED)
-	    doc.add(f)
-	  }
-	}
+    OWLOntologyImportsClosureSetProvider mp = new OWLOntologyImportsClosureSetProvider(manager, ont)
+    OWLOntologyMerger merger = new OWLOntologyMerger(mp, false)
+    def iOnt = merger.createMergedOntology(manager, IRI.create("http://test.owl"))
 
-	// generate OBO-style ID for the index
-	def oboId = ""
-	if (cIRI.lastIndexOf("/")>-1) {
-	  oboId = cIRI.substring(cIRI.lastIndexOf("/")+1)
-	}
-	if (cIRI.lastIndexOf("#")>-1) {
-	  oboId = cIRI.substring(cIRI.lastIndexOf("#")+1)
-	}
-	if (oboId.length()>0) {
-	  oboId = oboId.replaceAll("_",":").toLowerCase()
-	  f = new Field('oboid', oboId, StringField.TYPE_STORED)
+    // set up the renderer for the axioms
+    def sProvider = new AnnotationValueShortFormProvider(
+      Collections.singletonList(df.getRDFSLabel()),
+      Collections.<OWLAnnotationProperty, List<String>>emptyMap(),
+      manager);
+    def manSyntaxRenderer = new ManchesterOWLSyntaxOWLObjectRendererImpl()
+    manSyntaxRenderer.setShortFormProvider(sProvider)
+    
+    iOnt.getClassesInSignature(true).each { iClass -> // OWLClass
+      def cIRI = iClass.getIRI().toString()
+      def firstLabelRun = true
+      def lastFirstLabel = null
+      def doc = new Document()
+      Field f = null
+      //To indicate that it is a old version
+      f = new Field('ontology', uri, TextField.TYPE_STORED)
+      doc.add(f)
+      // make ontologies searchable
+      f = new Field('AberOWL-catch-all', uri.toLowerCase(), TextField.TYPE_STORED)
+      doc.add(f)
+      f= new Field('type', 'class', TextField.TYPE_STORED)
+      doc.add(f)
+      f = new Field('class', cIRI, TextField.TYPE_STORED)
+      doc.add(f)
+      f = new Field("oldVersion",isOldVersion.toString(), TextField.TYPE_STORED)
+      doc.add(f)
+      
+      
+      /* check if this class is a leaf node in the taxonomy
+      if (oReasoner && oReasoner.getSubClasses(iClass, true).isBottomSingleton()) {
+	f = new Field("isLeafNode","true", TextField.TYPE_STORED)
+      } else {
+	f = new Field("isLeafNode","false", TextField.TYPE_STORED)
+      }
+      doc.add(f)
+      */
+
+      /* get the axioms */
+      EntitySearcher.getSubClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
+	if (! cExpr.isClassExpressionLiteral()) {
+	  f = new Field('AberOWL-subclass', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
 	  doc.add(f)
 	}
-	
-	
-        def xrefs = []
-	/* this was a workaround, bug should be fixed now in the ontologies 
-        EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
-          if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
-            it.getAnnotations().each {
-              def label = it.getValue().getLiteral().toLowerCase()
-              if(!xrefs.contains(label)) {
-                xrefs << label
-              }
-            }
-          }
-        }
-	*/
-	synonyms.each {
-          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
-            if(annotation.getValue() instanceof OWLLiteral) {
-              def val = (OWLLiteral) annotation.getValue()
-              def label = val.getLiteral().toLowerCase()
-	      
-	      f = new Field('synonym', label, TextField.TYPE_STORED)
-	      doc.add(f)
-            }
-	  }
-	}
-	def hasLabel = false
-	labels.each {
-          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
-            if(annotation.getValue() instanceof OWLLiteral) {
-              def val = (OWLLiteral) annotation.getValue()
-              def label = val.getLiteral().toLowerCase()
-	      if (label) {
-		f = new Field('label', label, TextField.TYPE_STORED)
-		doc.add(f)
-		hasLabel = true
-		if(firstLabelRun) {
-		  lastFirstLabel = label;
-		}
-	      }
-            }
-          }
-          if(lastFirstLabel) {
-	    f = new Field('first_label', lastFirstLabel, TextField.TYPE_STORED)
-            doc.add(f)
-            firstLabelRun = false
-          }
-        }
-        definitions.each {
-          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
-            if(annotation.getValue() instanceof OWLLiteral) {
-              def val = (OWLLiteral) annotation.getValue()
-              def label = val.getLiteral().toLowerCase()
-	      f = new Field('definition', label, TextField.TYPE_STORED)
-              doc.add(f)
-              if(annotation != null) {
-                dCount += 1
-              }
-            }
-          }
-        }
-	if (! hasLabel) {
-	  f = new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
-	  doc.add(f) // add remainder
-	}
-        if(!lastFirstLabel) {
-	  f = new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
-          doc.add(f)
-        }
-	if (!deprecated) {
-	  index.addDocument(doc)
+      }
+      EntitySearcher.getEquivalentClasses(iClass, iOnt).each { cExpr -> // OWL Class Expression
+	if (! cExpr.isClassExpressionLiteral()) {
+	  f = new Field('AberOWL-equivalent', manSyntaxRenderer.render(cExpr), TextField.TYPE_STORED)
+	  doc.add(f)
 	}
       }
 
-      iOnt.getObjectPropertiesInSignature(true).each { iClass ->
-        def cIRI = iClass.getIRI().toString()
-        def firstLabelRun = true
-        def lastFirstLabel = null
-        def doc = new Document()
-        doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
-        doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
-
-        def xrefs = []
-        EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
-          if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
-            it.getAnnotations().each {
-              def label = it.getValue().getLiteral().toLowerCase()
-              if(!xrefs.contains(label)) {
-                xrefs << label
-              }
-            }
-          }
-        }
-
-	def annoMap = [:].withDefault { new TreeSet() }
-	EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
-	  def aProp = anno.getProperty()
+      
+      def deprecated = false
+      def annoMap = [:].withDefault { new TreeSet() }
+      EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
+	if(anno.isDeprecatedIRIAnnotation()) {
+	  deprecated = true
+	}
+	def aProp = anno.getProperty()
+	if (!(aProp in labels || aProp in definitions || aProp in synonyms)) {
 	  if (anno.getValue() instanceof OWLLiteral) {
 	    def aVal = anno.getValue().getLiteral()?.toLowerCase()
 	    def aLabels = []
@@ -410,60 +342,198 @@ class RequestManager {
 		annoMap[lab].add(aVal)
 	      }
 	    } else {
-	      annoMap[aProp.toString()].add(aVal)
+	      annoMap[aProp.toString()?.replaceAll("<","")?.replaceAll(">","")].add(aVal)
 	    }
 	  }
 	}
-
-	annoMap.each { k, v ->
-	  v.each { val ->
-	    doc.add(new Field(k, val, TextField.TYPE_STORED))
+      }
+      annoMap.each { k, v ->
+	v.each { val ->
+	  f = new Field(k, val, TextField.TYPE_STORED)
+	  doc.add(f)
+	  f = new Field("AberOWL-catch-all", val, TextField.TYPE_STORED)
+	  doc.add(f)
+	}
+      }
+      
+      // generate OBO-style ID for the index
+      def oboId = ""
+      if (cIRI.lastIndexOf("/")>-1) {
+	oboId = cIRI.substring(cIRI.lastIndexOf("/")+1)
+      }
+      if (cIRI.lastIndexOf("#")>-1) {
+	oboId = cIRI.substring(cIRI.lastIndexOf("#")+1)
+      }
+      if (oboId.length()>0) {
+	oboId = oboId.replaceAll("_",":").toLowerCase()
+	f = new Field('oboid', oboId, StringField.TYPE_STORED)
+	doc.add(f)
+      }
+      
+      
+      def xrefs = []
+      /* this was a workaround, bug should be fixed now in the ontologies 
+	 EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
+	 if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
+	 it.getAnnotations().each {
+	 def label = it.getValue().getLiteral().toLowerCase()
+	 if(!xrefs.contains(label)) {
+	 xrefs << label
+	 }
+	 }
+	 }
+	 }
+      */
+      synonyms.each {
+	EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each { ax ->
+	  if (ax.getProperty() == it) {
+	    //	EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
+	    if(ax.getValue() instanceof OWLLiteral) {
+	      def val = (OWLLiteral) ax.getValue()
+	      def label = val.getLiteral().toLowerCase()
+	    
+	      f = new Field('synonym', label, TextField.TYPE_STORED)
+	      doc.add(f)
+	    }
 	  }
 	}
-
-        labels.each {
-          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
-            if(annotation.getValue() instanceof OWLLiteral) {
-              def val = (OWLLiteral) annotation.getValue()
-              def label = val.getLiteral().toLowerCase()
-              
-              if(!xrefs.contains(label)) {
-                doc.add(new Field('label', label, TextField.TYPE_STORED))
-                if(firstLabelRun) {
-                  lastFirstLabel = label;
-                }
-                if(annotation != null) {
-                  lCount += 1
-                }
-              }
-            }
-          }
-          
-          if(lastFirstLabel) {
-            doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
-            firstLabelRun = false
-          }
-        }
-        definitions.each {
-          EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
-            if(annotation.getValue() instanceof OWLLiteral) {
-              def val = (OWLLiteral) annotation.getValue()
-              def label = val.getLiteral().toLowerCase()
-              
-              doc.add(new Field('definition', label, TextField.TYPE_STORED))
-              if(annotation != null) {
-                dCount += 1
-              }
-            }
-          }
-        }
-
-        doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
-        if(!lastFirstLabel) {
-          doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
-        }
-        index.addDocument(doc)
       }
+      def hasLabel = false
+      labels.each {
+	EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each { ax ->
+	  if (ax.getProperty() == it) {
+	    //	EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
+	    if(ax.getValue() instanceof OWLLiteral) {
+	      def val = (OWLLiteral) ax.getValue()
+	      def label = val.getLiteral().toLowerCase()
+	      if (label) {
+		f = new Field('label', label, TextField.TYPE_STORED)
+		doc.add(f)
+		hasLabel = true
+		if(firstLabelRun) {
+		  lastFirstLabel = label;
+		}
+	      }
+	    }
+	  }
+	}
+	if(lastFirstLabel) {
+	  f = new Field('first_label', lastFirstLabel, TextField.TYPE_STORED)
+	  doc.add(f)
+	  firstLabelRun = false
+	}
+      }
+      definitions.each {
+	EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
+	  if(annotation.getValue() instanceof OWLLiteral) {
+	    def val = (OWLLiteral) annotation.getValue()
+	    def label = val.getLiteral().toLowerCase()
+	    f = new Field('definition', label, TextField.TYPE_STORED)
+	    doc.add(f)
+	    if(annotation != null) {
+	      dCount += 1
+	    }
+	  }
+	}
+      }
+      if (! hasLabel) {
+	f = new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
+	doc.add(f) // add remainder
+      }
+      if(!lastFirstLabel) {
+	f = new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)
+	doc.add(f)
+      }
+      if (!deprecated) {
+	index.addDocument(doc)
+      }
+    }
+    
+    iOnt.getObjectPropertiesInSignature(true).each { iClass ->
+      def cIRI = iClass.getIRI().toString()
+      def firstLabelRun = true
+      def lastFirstLabel = null
+      def doc = new Document()
+      doc.add(new Field('ontology', uri, TextField.TYPE_STORED))
+      doc.add(new Field('class', cIRI, TextField.TYPE_STORED))
+      
+      def xrefs = []
+      EntitySearcher.getAnnotationAssertionAxioms(iClass, iOnt).each {
+	if(it.getProperty().getIRI() == new IRI('http://www.geneontology.org/formats/oboInOwl#hasDbXref')) {
+	  it.getAnnotations().each {
+	    def label = it.getValue().getLiteral().toLowerCase()
+	    if(!xrefs.contains(label)) {
+	      xrefs << label
+	    }
+	  }
+	}
+      }
+      
+      def annoMap = [:].withDefault { new TreeSet() }
+      EntitySearcher.getAnnotations(iClass, iOnt).each { anno ->
+	def aProp = anno.getProperty()
+	if (anno.getValue() instanceof OWLLiteral) {
+	  def aVal = anno.getValue().getLiteral()?.toLowerCase()
+	  def aLabels = []
+	  if (EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).size() > 0) {
+	    EntitySearcher.getAnnotations(aProp, iOnt, df.getRDFSLabel()).each { l ->
+	      def lab = l.getValue().getLiteral().toLowerCase()
+	      annoMap[lab].add(aVal)
+	    }
+	  } else {
+	    annoMap[aProp.toString()].add(aVal)
+	  }
+	}
+      }
+      
+      annoMap.each { k, v ->
+	v.each { val ->
+	  doc.add(new Field(k, val, TextField.TYPE_STORED))
+	}
+      }
+      
+      labels.each {
+	EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
+	  if(annotation.getValue() instanceof OWLLiteral) {
+	    def val = (OWLLiteral) annotation.getValue()
+	    def label = val.getLiteral().toLowerCase()
+            
+	    if(!xrefs.contains(label)) {
+	      doc.add(new Field('label', label, TextField.TYPE_STORED))
+	      if(firstLabelRun) {
+		lastFirstLabel = label;
+	      }
+	      if(annotation != null) {
+		lCount += 1
+	      }
+	    }
+	  }
+	}
+        
+	if(lastFirstLabel) {
+	  doc.add(new Field('first_label', lastFirstLabel, TextField.TYPE_STORED))
+	  firstLabelRun = false
+	}
+      }
+      definitions.each {
+	EntitySearcher.getAnnotations(iClass, iOnt, it).each { annotation -> // OWLAnnotation
+	  if(annotation.getValue() instanceof OWLLiteral) {
+	    def val = (OWLLiteral) annotation.getValue()
+	    def label = val.getLiteral().toLowerCase()
+            
+	    doc.add(new Field('definition', label, TextField.TYPE_STORED))
+	    if(annotation != null) {
+	      dCount += 1
+	    }
+	  }
+	}
+      }
+      
+      doc.add(new Field('label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED)) // add remainder
+      if(!lastFirstLabel) {
+	doc.add(new Field('first_label', iClass.getIRI().getFragment().toString().toLowerCase(), TextField.TYPE_STORED))
+      }
+      index.addDocument(doc)
     }
   }
 
@@ -471,23 +541,25 @@ class RequestManager {
     loadIndex('', false)
   }
 
-// Adding a parameter to Load Index to indicate that it is an old version
+  // Adding a parameter to Load Index to indicate that it is an old version
   void loadIndex(String ontology, boolean isOldVersion) {
-      //If the ontology is new version then is not indexed.
-      def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
-      iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
-      IndexWriter writer = new IndexWriter(index, iwc)
+    //If the ontology is new version then is not indexed.
+    //    def iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
+    //    iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
+    //    IndexWriter writer = new IndexWriter(index, iwc)
 
-      if(ontology == '') {
-        println "Loading index"
-        for(String uri : ontologies.keySet()) {
-          reloadOntologyIndex(uri, writer, isOldVersion)
-        }
-      } else {
-        reloadOntologyIndex(ontology, writer, isOldVersion)
+    if(ontology == '') {
+      println "Loading index"
+      GParsPool.withPool {
+	ontologies.keySet().eachParallel { uri ->
+	  reloadOntologyIndex(uri, writer, isOldVersion)
+	}
       }
-      writer.close()
-      searcher = new IndexSearcher(DirectoryReader.open(index))
+    } else {
+      reloadOntologyIndex(ontology, writer, isOldVersion)
+    }
+    writer.commit()
+    searcher = new IndexSearcher(DirectoryReader.open(index))
   }
 
   /**
@@ -513,41 +585,41 @@ class RequestManager {
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
       if((version>=0)&&(version<oRec.submissions.size())) {
-        //I am not proud of this, but it is the only way to order the versions.
-        //I have preferred to not do many changes on the code
-        def list = oRec.submissions.keySet().sort();
-        //Firstly, It is necessary to get the timestamp
-        def timestamp = list.get(version);
-        def fSource = new FileDocumentSource(new File('onts/' + oRec.submissions.get(timestamp)))
-        def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
-        //Load the different version of the ontology with a different key
-        def newId = oRec.id + '_' + version;
-        ontologies.put(newId, ontology)
-        ontologyManagers.put(newId, lManager)
-        oldOntologies.put(newId, (int) (System.currentTimeMillis() / 1000L))
+	//I am not proud of this, but it is the only way to order the versions.
+	//I have preferred to not do many changes on the code
+	def list = oRec.submissions.keySet().sort();
+	//Firstly, It is necessary to get the timestamp
+	def timestamp = list.get(version);
+	def fSource = new FileDocumentSource(new File('onts/' + oRec.submissions.get(timestamp)))
+	def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+	//Load the different version of the ontology with a different key
+	def newId = oRec.id + '_' + version;
+	ontologies.put(newId, ontology)
+	ontologyManagers.put(newId, lManager)
+	oldOntologies.put(newId, (int) (System.currentTimeMillis() / 1000L))
 
-        println "Updated ontology: " + newId + " version: "+version
+	println "Updated ontology: " + newId + " version: "+version
 
-        reloadOntologyAnnotations(newId)
-        //loadIndex(name)
-        loadIndex(newId,newO)
+	reloadOntologyAnnotations(newId)
+	//loadIndex(name)
+	loadIndex(newId,newO)
 
       }else{//In other case the actual ontology will be updated.
-        def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
-        def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
-        ontologies.put(oRec.id, ontology)
-        ontologyManagers.put(oRec.id, lManager)
-        println "Updated ontology: " + oRec.id
+	def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+	def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+	ontologies.put(oRec.id, ontology)
+	ontologyManagers.put(oRec.id, lManager)
+	println "Updated ontology: " + oRec.id
 
-        reloadOntologyAnnotations(oRec.id)
-        //loadIndex(name)
-        loadIndex(name,newO)
+	reloadOntologyAnnotations(oRec.id)
+	//loadIndex(name)
+	loadIndex(name,newO)
 
       }
 
       if(newO) {
-        loadedOntologies++
-      }
+	loadedOntologies++
+	  }
       //reloadOntologyAnnotations(oRec.id)
       //loadIndex(name)
       //loadIndex(name,newO)
@@ -555,10 +627,11 @@ class RequestManager {
       List<String> langs = new ArrayList<>();
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
       for (OWLAnnotationProperty annotationProperty : this.aProperties) {
-        preferredLanguageMap.put(annotationProperty, langs);
+	preferredLanguageMap.put(annotationProperty, langs);
       }
 
       OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
+      
       createOntologyReasoner(oRec.id, reasonerFactory, preferredLanguageMap)
     } catch(OWLOntologyInputSourceException e) {
       println "input source exception for " + oRec.id
@@ -577,9 +650,12 @@ class RequestManager {
    * @throws OWLOntologyCreationException, IOException
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
-    GParsPool.withPool {
+    def pool = null
+    GParsPool.withPool { p ->
+      pool = p
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
+<<<<<<< HEAD
         attemptedOntologies++
         if(oRec.id != 'GO-EXT') {
           return;
@@ -642,25 +718,112 @@ class RequestManager {
           }
           otherError++
         }
+=======
+	attemptedOntologies++
+	  try {
+	    if(oRec.lastSubDate == 0) {
+	      return;
+	    }
+	    print "Loading "+oRec.id+" from "+oRec.submissions[oRec.lastSubDate.toString()]+"... "
+	    OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
+	    OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;
+	    config.setFollowRedirects(true) ;
+	    config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;
+	    def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+	    def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
+	    ontologies.put(oRec.id ,ontology)
+	    ontologyManagers.put(oRec.id, lManager)
+
+	    loadedOntologies+=1
+	    println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
+	    loadStati.put(oRec.id, 'loaded')
+	  } catch (OWLOntologyAlreadyExistsException E) {
+	  if(oRec && oRec.id) {
+	    println 'DUPLICATE ' + oRec.id
+	  }
+	} catch (OWLOntologyInputSourceException e) {
+	  println "File not found for " + oRec.id 
+	  if(oRec && oRec.id) {
+	    loadStati.put(oRec.id, 'unloadable')
+	  }
+	  noFileError++
+	    } catch (IOException e) {
+	  println "Can't load external import for " + oRec.id 
+	  if(oRec && oRec.id) {
+	    loadStati.put(oRec.id, 'unloadable')
+	  }
+	  importError++
+	    } catch(OWLOntologyCreationIOException e) {
+	  println "Failed to load imports for " + oRec.id
+	  if(oRec && oRec.id) {
+	    loadStati.put(oRec.id, 'unloadable')
+	  }
+	  importError++
+	    } catch(UnparsableOntologyException e) {
+	  println "Failed to parse ontology " + oRec.id
+	  e.printStackTrace()
+	  if(oRec && oRec.id) {
+	    loadStati.put(oRec.id, 'unloadable')
+	  }
+	  parseError++
+	    } catch(UnloadableImportException e) {
+	  println "Failed to load imports for " + oRec.id
+	  if(oRec && oRec.id) {
+	    loadStati.put(oRec.id, 'unloadable')
+	  }
+	  importError++
+	    } catch (Exception E) {
+	  println oRec.id + ' other'
+	  if(oRec && oRec.id) {
+	    loadStati.put(oRec.id, 'unloadable')
+	  }
+	  otherError+=1
+	}
+>>>>>>> b04f9b5008d4b470d378ba0d24c91646dc129688
       }
     }
   }
 
   void createOntologyReasoner(String k, OWLReasonerFactory reasonerFactory, Map preferredLanguageMap) {
+    OWLOntology ontology
     try {
-      OWLOntology ontology = ontologies.get(k) ;
+      ontology = ontologies.get(k) ;
       OWLOntologyManager manager = ontologyManagers.get(k) ;
-      OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
+      /* Configure Elk */
+      ReasonerConfiguration eConf = ReasonerConfiguration.getConfiguration()
+      eConf.setParameter(ReasonerConfiguration.NUM_OF_WORKING_THREADS, this.ELK_THREADS)
+      eConf.setParameter(ReasonerConfiguration.INCREMENTAL_MODE_ALLOWED, "true")
+      eConf.setParameter(ReasonerConfiguration.INCREMENTAL_TAXONOMY, "true")
+      /* OWLAPI Reasoner config, no progress monitor */
+      OWLReasonerConfiguration rConf = new ElkReasonerConfiguration(ElkReasonerConfiguration.getDefaultOwlReasonerConfiguration(new NullReasonerProgressMonitor()), eConf)
+      OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology, rConf);
       oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-      this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 
-      println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
-      loadStati.put(k, 'classified')
+      // check if there are many many unsatisfiable classes, then switch to structural reasoner
+      if (oReasoner.getEquivalentClasses(df.getOWLNothing()).getEntitiesMinusBottom().size() >= MAX_UNSATISFIABLE_CLASSES) {
+	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
+	oReasoner = sReasonerFactory.createReasoner(ontology)
+	loadStati.put(k, 'incoherent')
+	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+	println "Successfully classified but switched to structural reasoner " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
+      } else {
+	println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
+	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+	loadStati.put(k, 'classified')
+      }
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
-      e.printStackTrace()
+      try {
+	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
+	OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
+	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, ontologyManagers.get(k))
+	this.queryEngines.put(k, new QueryEngine(sr, sForm))
+      } catch (Exception E) {
+	println "Terminal error with $k"
+	E.printStackTrace()
+      }
       loadStati.put(k, 'inconsistent')
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
@@ -677,7 +840,7 @@ class RequestManager {
    * Create and run the reasoning on the loaded OWL ontologies, creating a QueryEngine for each.
    */
   void createReasoner() {
-    println "REASING"
+    println "REASONING"
     List<String> langs = new ArrayList<>();
     Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
     for (OWLAnnotationProperty annotationProperty : this.aProperties) {
@@ -687,7 +850,11 @@ class RequestManager {
     OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
     GParsPool.withPool {
       ontologies.eachParallel { k, oRec ->
-        createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
+	try {
+	  createOntologyReasoner(k, reasonerFactory, preferredLanguageMap)
+	} catch (Exception E) {
+	  println "Exception encountered when reasoning $k: " + E
+	}
       }
     }
     println "REASONED"
@@ -719,13 +886,13 @@ class RequestManager {
     ArrayList result = new ArrayList<HashMap>();
     for(def c : classes) {
       def info = [
-        "owlClass": c.toString(),
-        "classURI": c.getIRI().toString(),
-        "ontologyURI": uri.toString(),
-        "remainder": c.getIRI().getFragment(),
-        "label": null,
-        "definition": null,
-        "deprecated": false
+	"owlClass": c.toString(),
+	"classURI": c.getIRI().toString(),
+	"ontologyURI": uri.toString(),
+	"remainder": c.getIRI().getFragment(),
+	"label": null,
+	"definition": null,
+	"deprecated": false
       ];
 
       def bq = new BooleanQuery()
@@ -733,9 +900,9 @@ class RequestManager {
       bq.add(new TermQuery(new Term('ontology', uri.toString())), BooleanClause.Occur.MUST);
 
       for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
-        if(annotation.isDeprecatedIRIAnnotation()) {
-          info['deprecated'] = true
-        }
+	if(annotation.isDeprecatedIRIAnnotation()) {
+	  info['deprecated'] = true
+	}
       }      
       if (!info['deprecated']) { // ignore all deprecated classes! TODO: trigger this by query flag
       
@@ -748,9 +915,11 @@ class RequestManager {
 	  }
 	  hitDoc.getFields().each { field ->
 	    def fName = field.name()
-	    hitDoc.getValues(fName).each { fVal ->
-	      if (info[fName] == null) { info[fName] = [] }
-	      info[fName] << fVal
+	    if (fName!="AberOWL-catch-all") {
+	      info[fName] = new LinkedHashSet()
+	      hitDoc.getValues(fName).each { fVal ->
+		info[fName].add(fVal)
+	      }
 	    }
 	  }
 	  info['definition'] = hitDoc.get('definition')
@@ -758,14 +927,16 @@ class RequestManager {
 	
 	
 	/*
-	for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
+	  for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
 	  if (annotation.getValue() instanceof OWLLiteral) {
-	    OWLLiteral val = (OWLLiteral) annotation.getValue();
-	    info['definition'] = val.getLiteral() ;
+	  OWLLiteral val = (OWLLiteral) annotation.getValue();
+	  info['definition'] = val.getLiteral() ;
 	  }
-	}
+	  }
 	*/
-	result.add(info);
+	if (info['label'] != null) {
+	  result.add(info);
+	}
       }
     }
     return result
@@ -784,58 +955,58 @@ class RequestManager {
     type = type.toLowerCase()
     def requestType
     switch(type) {
-      case "superclass": requestType = RequestType.SUPERCLASS; break;
-      case "subclass": requestType = RequestType.SUBCLASS; break;
-      case "equivalent": requestType = RequestType.EQUIVALENT; break;
-      case "supeq": requestType = RequestType.SUPEQ; break;
-      case "subeq": requestType = RequestType.SUBEQ; break;
-      case "realize": requestType = RequestType.REALIZE; break;
-      default: requestType = RequestType.SUBEQ; break;
+    case "superclass": requestType = RequestType.SUPERCLASS; break;
+    case "subclass": requestType = RequestType.SUBCLASS; break;
+    case "equivalent": requestType = RequestType.EQUIVALENT; break;
+    case "supeq": requestType = RequestType.SUPEQ; break;
+    case "subeq": requestType = RequestType.SUBEQ; break;
+    case "realize": requestType = RequestType.REALIZE; break;
+    default: requestType = RequestType.SUBEQ; break;
     }
 
     Set classes = new HashSet<>();
     if (ontUri == null || ontUri.length() == 0) { // query all the ontologies in the repo
       Iterator<String> it = queryEngines.keySet().iterator() ;
       while (it.hasNext()) {
-        String oListString = it.next() ;
-        QueryEngine queryEngine = queryEngines.get(oListString) ;
-        OWLOntology ontology = ontologies.get(oListString) ;
-          Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
-          resultSet.remove(df.getOWLNothing()) ;
-          resultSet.remove(df.getOWLThing()) ;
-          classes.addAll(classes2info(resultSet, ontology, oListString)) ;
+	String oListString = it.next() ;
+	QueryEngine queryEngine = queryEngines.get(oListString) ;
+	OWLOntology ontology = ontologies.get(oListString) ;
+	Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+	resultSet.remove(df.getOWLNothing()) ;
+	resultSet.remove(df.getOWLThing()) ;
+	classes.addAll(classes2info(resultSet, ontology, oListString)) ;
       }
     } else if (queryEngines.get(ontUri) == null) { // download the ontology and query
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
       for (OWLAnnotationProperty annotationProperty : this.aProperties) {
-        preferredLanguageMap.put(annotationProperty, new ArrayList<String>());
+	preferredLanguageMap.put(annotationProperty, new ArrayList<String>());
       }
       try {
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager() ;
-        OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;                                                                            
-        config.setFollowRedirects(true) ;                                                                                                                         
-        config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;                                                                           
-        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new IRIDocumentSource(IRI.create(ontUri)), config);
-        OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); 
-        OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
-        oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-        def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-        Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels) ;
-        resultSet.remove(df.getOWLNothing()) ;
-        resultSet.remove(df.getOWLThing()) ;
-        classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
+	OWLOntologyManager manager = OWLManager.createOWLOntologyManager() ;
+	OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration() ;                                                                            
+	config.setFollowRedirects(true) ;                                                                                                                         
+	config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT) ;                                                                           
+	OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new IRIDocumentSource(IRI.create(ontUri)), config);
+	OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); 
+	OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
+	oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
+	Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels) ;
+	resultSet.remove(df.getOWLNothing()) ;
+	resultSet.remove(df.getOWLThing()) ;
+	classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
       } catch (OWLOntologyCreationException E) {
-        E.printStackTrace();
+	E.printStackTrace();
       }
     } else { // query one single ontology
       QueryEngine queryEngine = queryEngines.get(ontUri);
       def vOntUri = ontUri
       if(version>=0) {
-        vOntUri = ontUri+"_"+version;
+	vOntUri = ontUri+"_"+version;
       }
 
       if(!ontologies.containsKey(vOntUri)) {
-        reloadOntology(ontUri, version)
+	reloadOntology(ontUri, version)
       }
 
       OWLOntology ontology = ontologies.get(ontUri)
@@ -852,10 +1023,44 @@ class RequestManager {
     return classes;
   }
 
+  
   Set runQuery(String mOwlQuery, String type, String ontUri) {
     return runQuery(mOwlQuery, type, ontUri, false)
   }
-      
+
+  /** This returns the direct R-successors of a class C in O
+      class and relations are given as String-IRIs
+  */
+  Set relationQuery(String relation, String cl, String ontUri, Integer version) {
+    Set classes = new HashSet<>();
+
+    QueryEngine queryEngine = queryEngines.get(ontUri);
+    def vOntUri = ontUri
+    if(version>=0) {
+      vOntUri = ontUri+"_"+version
+    }
+    
+    if(!ontologies.containsKey(vOntUri)) {
+      reloadOntology(ontUri, version)
+    }
+    
+    OWLOntology ontology = ontologies.get(ontUri)
+
+    // get the direct subclasses of cl
+    Set<OWLClass> subclasses = queryEngine.getClasses(cl, RequestType.SUBCLASS, true, false)
+    // These are all the classes for which the R some C property holds
+    String query1 = "<$relation> SOME $cl"
+    Set<OWLClass> mainResult = queryEngine.getClasses(query1, RequestType.SUBCLASS, true, false)
+    // Now remove all classes that are not specific to cl (i.e., there is a more specific class in which the R-edge can be created)
+    subclasses.each { sc ->
+      String query2 = "$relation SOME "+sc.toString()
+      def subResult = queryEngine.getClasses(query2, RequestType.SUBCLASS, true, false)
+      mainResult = mainResult - subResult
+    }
+    classes.addAll(classes2info(mainResult, ontology, ontUri))
+    return classes
+  }
+
   Map<String, QueryEngine> getQueryEngines() {
     return this.queryEngines;
   }
@@ -881,29 +1086,29 @@ class RequestManager {
     def stats = []
     if (oString == null || oString.length() == 0) { // query all the ontologies in the repo
       stats = [
-        'aCount': 0, // Axiom count
-        'cCount': 0, // Class count
-        'oCount': ontologies.size(),
-        'noFileError': noFileError,
-        'importError': importError,
-        'parseError': parseError,
-        'otherError': otherError,
-        'lCount': lCount,
-        'dCount': dCount
+	'aCount': 0, // Axiom count
+	       'cCount': 0, // Class count
+	       'oCount': ontologies.size(),
+	       'noFileError': noFileError,
+	       'importError': importError,
+	       'parseError': parseError,
+	       'otherError': otherError,
+	       'lCount': lCount,
+	       'dCount': dCount
       ];
 
       for (String id : ontologies.keySet()) { // For some reason .each doesn't work here
-        OWLOntology oRec = ontologies.get(id) ;
-        stats.aCount += oRec.getAxiomCount()
-        stats.cCount += oRec.getClassesInSignature(true).size()
+	OWLOntology oRec = ontologies.get(id) ;
+	stats.aCount += oRec.getAxiomCount()
+	stats.cCount += oRec.getClassesInSignature(true).size()
       }
 
       println stats
     } else {
       OWLOntology ont = ontologies.get(oString) ;
       stats = [
-        'axiomCount': 0,
-        'classCount': ont.getClassesInSignature(true).size()
+	'axiomCount': 0,
+	       'classCount': ont.getClassesInSignature(true).size()
       ]
       AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount += 1 } }
       AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount += 1 } }
@@ -916,18 +1121,18 @@ class RequestManager {
     HashMap objectProperties = new HashMap<String,String>();
     if((oString!=null)&&(oString.length()>0)){
       if(ontologies.containsKey(oString)) {
-        OWLOntology ontology = ontologies.get(oString);
-        OWLObjectProperty objectProperty = df.getOWLObjectProperty(IRI.create(uriObjectProperty));
-        Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(objectProperty, ontology).iterator();
-        OWLAnnotationAssertionAxiom axiom;
-        while (jt.hasNext()) {
-          axiom = jt.next();
-          if (axiom.getProperty().isLabel()) {
-            OWLLiteral value = (OWLLiteral) axiom.getValue();
-            objectProperties.put('classURI',axiom.getSubject().toString());
-            objectProperties.put('label',value.getLiteral().toString());
-          }
-        }
+	OWLOntology ontology = ontologies.get(oString);
+	OWLObjectProperty objectProperty = df.getOWLObjectProperty(IRI.create(uriObjectProperty));
+	Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(objectProperty, ontology).iterator();
+	OWLAnnotationAssertionAxiom axiom;
+	while (jt.hasNext()) {
+	  axiom = jt.next();
+	  if (axiom.getProperty().isLabel()) {
+	    OWLLiteral value = (OWLLiteral) axiom.getValue();
+	    objectProperties.put('classURI',axiom.getSubject().toString());
+	    objectProperties.put('label',value.getLiteral().toString());
+	  }
+	}
       }
     }
     return objectProperties;
@@ -942,25 +1147,25 @@ class RequestManager {
     Set objectProperties = new HashSet();
     if((oString!=null)&&(oString.length()>0)&&(rootObjectProperty!=null)&&(rootObjectProperty.length()>0)){
       if(ontologies.containsKey(oString)) {
-        OWLOntology ontology = ontologies.get(oString);
-        StructuralReasoner structuralReasoner = new StructuralReasoner(ontology,new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
-        OWLObjectProperty objectProperty = df.getOWLObjectProperty(IRI.create(rootObjectProperty));
-        Set<OWLObjectPropertyExpression> properties = structuralReasoner.getSubObjectProperties(objectProperty,true).getFlattened();
+	OWLOntology ontology = ontologies.get(oString);
+	StructuralReasoner structuralReasoner = new StructuralReasoner(ontology,new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
+	OWLObjectProperty objectProperty = df.getOWLObjectProperty(IRI.create(rootObjectProperty));
+	Set<OWLObjectPropertyExpression> properties = structuralReasoner.getSubObjectProperties(objectProperty,true).getFlattened();
 
-        for(OWLObjectPropertyExpression expression : properties) {
-          Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(expression.getNamedProperty(), structuralReasoner.getRootOntology()).iterator();
-          OWLAnnotationAssertionAxiom axiom;
-          HashMap subProperty = new HashMap<String,String>();
-          while (jt.hasNext()) {
-            axiom = jt.next();
-            if (axiom.getProperty().isLabel()) {
-              OWLLiteral value = (OWLLiteral) axiom.getValue();
-              subProperty.put('classURI',axiom.getSubject().toString());
-              subProperty.put('label',value.getLiteral().toString());
-              objectProperties.add(subProperty);
-            }
-          }
-        }
+	for(OWLObjectPropertyExpression expression : properties) {
+	  Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(expression.getNamedProperty(), structuralReasoner.getRootOntology()).iterator();
+	  OWLAnnotationAssertionAxiom axiom;
+	  HashMap subProperty = new HashMap<String,String>();
+	  while (jt.hasNext()) {
+	    axiom = jt.next();
+	    if (axiom.getProperty().isLabel()) {
+	      OWLLiteral value = (OWLLiteral) axiom.getValue();
+	      subProperty.put('classURI',axiom.getSubject().toString());
+	      subProperty.put('label',value.getLiteral().toString());
+	      objectProperties.add(subProperty);
+	    }
+	  }
+	}
       }
     }
     return objectProperties;
@@ -973,9 +1178,9 @@ class RequestManager {
     HashMap objectProperties = new HashMap<String,String>();
     if((oString!=null)&&(oString.length()>0)){
       if(ontologies.containsKey(oString)) {
-        OWLOntology ontology = ontologies.get(oString);
-        StructuralReasoner structuralReasoner = new StructuralReasoner(ontology,new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
-        getRecursiveObjectProperties(objectProperties,df.getOWLTopObjectProperty(),structuralReasoner);
+	OWLOntology ontology = ontologies.get(oString);
+	StructuralReasoner structuralReasoner = new StructuralReasoner(ontology,new SimpleConfiguration(), BufferingMode.NON_BUFFERING);
+	getRecursiveObjectProperties(objectProperties,df.getOWLTopObjectProperty(),structuralReasoner);
       }
     }
     return objectProperties;
@@ -991,11 +1196,11 @@ class RequestManager {
       Iterator<OWLAnnotationAssertionAxiom> jt = EntitySearcher.getAnnotationAssertionAxioms(expression.getNamedProperty(), reasoner.getRootOntology()).iterator();
       OWLAnnotationAssertionAxiom axiom;
       while(jt.hasNext()) {
-        axiom = jt.next();
-        if (axiom.getProperty().isLabel()) {
-          OWLLiteral value = (OWLLiteral) axiom.getValue();
-          objectProperties.put(value.getLiteral().toString(),"<"+axiom.getSubject().toString()+">");
-        }
+	axiom = jt.next();
+	if (axiom.getProperty().isLabel()) {
+	  OWLLiteral value = (OWLLiteral) axiom.getValue();
+	  objectProperties.put(value.getLiteral().toString(),"<"+axiom.getSubject().toString()+">");
+	}
       }
 
       getRecursiveObjectProperties(objectProperties,expression.getNamedProperty(),reasoner);

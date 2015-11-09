@@ -18,9 +18,13 @@ if(sVersion == null) {
 }
 
 try{
-	def version = Integer.parseInt(sVersion);
-	rManager.reloadOntology(name,version)
+  def version = Integer.parseInt(sVersion);
+  //rManager.ontologies.remove('FMA')
+  //rManager.ontologyManagers.remove('FMA')
+  //rManager.queryEngines.remove('FMA')
+  rManager.reloadOntology(name,version)
 }catch(Exception e){
-	print e
+  println "<pre>"
+  e.getStackTrace()?.each { println it }
 }
 // Get result and whatnot here
