@@ -13,7 +13,7 @@ if((objectProperty)&&(ontology)) {
     response.contentType = 'application/json'
     print new JsonBuilder(objectProperties)
 }else if(ontology){
-    def objectProperties = rManager.getObjectProperties(ontology).sort {it.label}
+    def objectProperties = rManager.getObjectProperties(ontology)
     response.contentType = 'application/json'
     print new JsonBuilder(objectProperties)
 }

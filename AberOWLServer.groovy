@@ -9,10 +9,10 @@
           @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
 
 	  @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.1.0-RC2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.1.0-RC2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.1.0-RC2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.1.0-RC2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.1.0'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.1.0'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.1.0'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.1.0'),
 
           @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
           @Grab(group='org.apache.lucene', module='lucene-core', version='5.2.1'),
@@ -47,11 +47,14 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
   context.addServlet(GroovyServlet, '/api/findRoot.groovy')
   context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
+  context.addServlet(GroovyServlet, '/api/getOntology.groovy')
   context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
+
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))
 
   server.start()
 }
+
 println org.semanticweb.owlapi.util.VersionInfo.getVersionInfo();
 startServer()
