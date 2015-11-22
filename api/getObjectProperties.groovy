@@ -8,6 +8,7 @@ if(!application) {
 def ontology = request.getParameter('ontology')
 def objectProperty = request.getParameter('rootObjectProperty');
 def rManager = application.rManager
+
 if((objectProperty)&&(ontology)) {
   def objectProperties = rManager.getObjectProperties(ontology,objectProperty).sort {it.label}
     response.contentType = 'application/json'
