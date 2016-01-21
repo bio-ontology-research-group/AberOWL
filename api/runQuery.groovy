@@ -32,7 +32,7 @@ if(type == null) {
 if(ontology == null) {
   ontology = ''
 }
-if(sVersion == null) {
+if(sVersion == null || sVersion == '0') {
   sVersion = '-1';
 }
 if(direct == null) {
