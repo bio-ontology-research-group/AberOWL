@@ -65,7 +65,17 @@ try {
   logstring += "\t"+((end - start)?:"")
   log.info logstring
 
-  results['result'] = results['result'].sort { it.label[0] }
+  results['result'] = results['result'].sort {LinkedHashMap<String,LinkedHashSet> a,b ->
+    if((a.containsKey("label"))&&(b.containsKey("label"))) {
+      return (a.get("label").toList().get(0).compareTo(b.get("label").toList().get(0)));
+    }else if(a.containsKey("label")){
+      return(1);
+    }else if(b.containsKey("label")){
+      return(-1);
+    }else{
+      return(0);
+    }
+  }
   response.contentType = 'application/json'
   print new JsonBuilder(results).toString()
 } catch(Exception e) {
