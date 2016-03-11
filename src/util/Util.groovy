@@ -9,7 +9,9 @@ class Util {
         Scanner s = new Scanner(request.getInputStream(), "UTF-8").useDelimiter("\\A");
         return new JsonSlurper().parseText(s.hasNext() ? s.next() : "");
     } else {
-		return request.getParameterMap()
+		def params = [:]
+        request.getParameterNames().each { params[it] = request.getParameter(it) }
+        return params
 	}
   }
 

@@ -41,10 +41,11 @@ if(direct == null) {
   direct = ''
 }
 direct = direct.toBoolean()
+
 if(labels == null) {
   labels = 'false'
 }
-labels = labels.toBoolean()
+labels = labels.asBoolean()
 
 try {
   def results = new HashMap()
