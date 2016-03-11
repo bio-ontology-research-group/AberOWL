@@ -1,12 +1,14 @@
 import groovy.json.JsonBuilder
 import org.json.simple.JSONValue;
+import src.util.Util
 
 if(!application) {
     application = request.getApplication(true)
 }
 
-def ontology = request.getParameter('ontology')
-def objectProperty = request.getParameter('rootObjectProperty');
+def params = Util.extractParams(request)
+def ontology = params.ontology
+def objectProperty = params.rootObjectProperty
 def rManager = application.rManager
 
 if((objectProperty)&&(ontology)) {

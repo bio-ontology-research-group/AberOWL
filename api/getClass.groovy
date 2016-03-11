@@ -12,15 +12,18 @@ import org.apache.lucene.queryparser.*
 import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
 import org.apache.lucene.index.IndexWriterConfig.OpenMode
+import src.util.Util
 
 import groovy.json.*
 
 if(!application) {
   application = request.getApplication(true)
 }
-def query = request.getParameter('query')
-def ontology = request.getParameter('ontology')
-def objectProperty = request.getParameter('objectProperty');
+def params = Util.extractParams(request)
+
+def query = params.query
+def ontology = params.ontology
+def objectProperty = params.objectProperty
 def rManager = application.rManager;
 
 def PREFIX_MAP = [

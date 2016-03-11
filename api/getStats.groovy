@@ -8,12 +8,15 @@ import org.semanticweb.owlapi.reasoner.*
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
+import src.util.Util
+
+def params = Util.extractParams(request)
 
 if(!application) {
   application = request.getApplication(true)
 }
 
-def ontology = request.getParameter('ontology')
+def ontology = params.ontology
 def rManager = application.rManager
 
 

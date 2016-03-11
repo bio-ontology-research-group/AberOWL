@@ -1,9 +1,11 @@
 import groovy.json.*
+import src.util.Util
 
 if(!application) {
   application = request.getApplication(true)
 }
-def ontology = request.getParameter('ontology')
+def params = Util.extractParams(request)
+def ontology = params.ontology
 def rManager = application.rManager
 
 if(ontology) {

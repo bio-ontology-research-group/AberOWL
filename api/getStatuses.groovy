@@ -6,6 +6,7 @@ import org.semanticweb.owlapi.reasoner.*
 import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.io.*;
+import src.util.Util
 
 if(!application) {
   application = request.getApplication(true)

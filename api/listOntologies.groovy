@@ -14,10 +14,13 @@ import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
 import org.apache.lucene.index.IndexWriterConfig.OpenMode
 
+import src.util.Util
+
 def rManager = application.rManager
 response.contentType = 'application/json'
 
-def ontology = request.getParameter('ontology')
+def params = Util.extractParams(request)
+def ontology = params.ontology
 
 if(ontology) {
   //  query = java.net.URLDecoder.decode(query, "UTF-8")
