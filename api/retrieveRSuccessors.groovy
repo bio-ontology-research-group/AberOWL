@@ -1,15 +1,17 @@
 // Gets the relational direct successors
 
 import groovy.json.*
+import src.util.Util
 
 if(!application) {
   application = request.getApplication(true)
 }
 
-def relation = request.getParameter('relation')
-def qClass = request.getParameter('class')
-def ontology = request.getParameter('ontology')
-def version = request.getParameter('version')
+def params = Util.extractParams(request)
+def relation = params.relation
+def qClass = params.class
+def ontology = params.ontology
+def version = params.version
 def rManager = application.rManager
 
 if (!relation || !qClass || !ontology) {

@@ -3,6 +3,7 @@
 import groovy.json.*
 import org.apache.log4j.*
 import groovy.util.logging.*
+import src.util.Util
 
 if(!application) {
   application = request.getApplication(true)
@@ -17,13 +18,14 @@ if (!application.log) {
 	    }
 def log = application.log
 	    
+def params = Util.extractParams(request)
 
-def query = request.getParameter('query')
-def type = request.getParameter('type')
-def ontology = request.getParameter('ontology')
-def direct = request.getParameter('direct')
-def labels = request.getParameter('labels')
-def sVersion = request.getParameter('version');
+def query = params.query
+def type = params.type
+def ontology = params.ontology
+def direct = params.direct
+def labels = params.labels
+def sVersion = params.version
 def rManager = application.rManager
 
 if(type == null) {
