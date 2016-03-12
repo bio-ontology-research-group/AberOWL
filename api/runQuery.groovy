@@ -10,12 +10,12 @@ if(!application) {
 }
 if (!application.log) {
   Logger log = Logger.getInstance(getClass())
-    log.level = Level.INFO
-      // add an appender to log to file
-        log.addAppender(new RollingFileAppender(new TTCCLayout(), 'queries.log', true))
-	  application.log = log
-	    log.info 'Logger created'
-	    }
+  log.level = Level.INFO
+  // add an appender to log to file
+  log.addAppender(new RollingFileAppender(new TTCCLayout(), 'queries.log', true))
+  application.log = log
+  log.info 'Logger created'
+}
 def log = application.log
 	    
 def params = Util.extractParams(request)
@@ -38,21 +38,28 @@ if(sVersion == null || sVersion == '0') {
   sVersion = '-1';
 }
 if(direct == null) {
-  direct = ''
+  direct = 'true'
 }
-direct = direct.toBoolean()
+if (direct == "false") {
+  direct = false
+} else {
+  direct = true
+}
 
 if(labels == null) {
   labels = 'false'
 }
-labels = labels.asBoolean()
+if (labels == 'false') {
+  labels = false
+} else {
+  labels = true
+}
 
 try {
   def results = new HashMap()
   def start = System.currentTimeMillis()
   def iVersion = Integer.parseInt(sVersion);
   def out = rManager.runQuery(query, type, ontology, iVersion, direct, labels)
-
   def end = System.currentTimeMillis()
 
   results.put('time', (end - start))
