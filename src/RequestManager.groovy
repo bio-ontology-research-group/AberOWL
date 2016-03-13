@@ -679,46 +679,45 @@ class RequestManager {
 
           loadedOntologies++
           println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
-          loadStati.put(oRec.id, 'loaded')
+          loadStati.put(oRec.id, [ 'status': 'loaded' ])
         } catch (OWLOntologyAlreadyExistsException E) {
           if(oRec && oRec.id) {
             println 'DUPLICATE ' + oRec.id
           }
         } catch (OWLOntologyInputSourceException e) {
-          println "File not found for " + oRec.id
           if(oRec && oRec.id) {
-            loadStati.put(oRec.id, 'unloadable')
+            loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
           noFileError++
         } catch (IOException e) {
           println "Can't load external import for " + oRec.id 
           if(oRec && oRec.id) {
-            loadStati.put(oRec.id, 'unloadable')
+            loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
           importError++
         } catch(OWLOntologyCreationIOException e) {
           println "Failed to load imports for " + oRec.id
           if(oRec && oRec.id) {
-            loadStati.put(oRec.id, 'unloadable')
+            loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
           importError++
         } catch(UnparsableOntologyException e) {
           println "Failed to parse ontology " + oRec.id
           e.printStackTrace()
           if(oRec && oRec.id) {
-            loadStati.put(oRec.id, 'unloadable')
+            loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
           parseError++
         } catch(UnloadableImportException e) {
           println "Failed to load imports for " + oRec.id
           if(oRec && oRec.id) {
-            loadStati.put(oRec.id, 'unloadable')
+            loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
           importError++
         } catch (Exception E) {
           println oRec.id + ' other'
           if(oRec && oRec.id) {
-            loadStati.put(oRec.id, 'unloadable')
+            loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
           otherError++
         }
@@ -747,13 +746,13 @@ class RequestManager {
       if (oReasoner.getEquivalentClasses(df.getOWLNothing()).getEntitiesMinusBottom().size() >= MAX_UNSATISFIABLE_CLASSES) {
 	StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
 	oReasoner = sReasonerFactory.createReasoner(ontology)
-	loadStati.put(k, 'incoherent')
+      loadStati.put(k, [ 'status': 'incoherent' ])
 	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
 	println "Successfully classified but switched to structural reasoner " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
       } else {
 	println "Successfully classified " + k + " ["+this.queryEngines.size()+"/"+ontologies.size()+"]"
 	this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
-	loadStati.put(k, 'classified')
+      loadStati.put(k, [ 'status': 'classified' ])
       }
     } catch(InconsistentOntologyException e) {
       println "inconsistent ontology " + k
@@ -762,7 +761,7 @@ class RequestManager {
 	OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
 	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, ontologyManagers.get(k))
 	this.queryEngines.put(k, new QueryEngine(sr, sForm))
-	loadStati.put(k, 'inconsistent')
+      loadStati.put(k, [ 'status': 'inconsistent', 'message': e.getMessage() ])
       } catch (Exception E) {
 	println "Terminal error with $k"
 	E.printStackTrace()
@@ -770,11 +769,11 @@ class RequestManager {
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
       e.printStackTrace()
-      loadStati.put(k, 'unloadable')
+      loadStati.put(k, [ 'status': 'unloadable', 'message': e.getMessage() ])
     } catch (Exception e) {
       println "Failed " + k
       e.printStackTrace()
-      loadStati.put(k, 'unloadable')
+      loadStati.put(k, [ 'status': 'unloadable', 'message': e.getMessage() ])
     }
   }
       
