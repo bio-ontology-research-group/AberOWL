@@ -34,10 +34,14 @@ import db.*;
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
+import com.google.common.collect.*
+
 class RequestManager {
   private static final WEB_ROOT = 'http://aber-owl.net/'
   private static final ELK_THREADS = "8"
-  private static final MAX_UNSATISFIABLE_CLASSES = 100
+  private static final MAX_UNSATISFIABLE_CLASSES = 500
+
+  private static final MAX_QUERY_RESULTS = 25000 // max classes returned by query; to prevent DoS; TODO: replace by paging!
 
   int loadedOntologies = 0;
   int attemptedOntologies = 0;
@@ -905,11 +909,12 @@ class RequestManager {
     Set classes = new HashSet<>();
     if (ontUri == null || ontUri.length() == 0) { // query all the ontologies in the repo
       Iterator<String> it = queryEngines.keySet().iterator() ;
-      while (it.hasNext()) {
+      /* TODO: add paging */
+      while (it.hasNext() && classes.size() < MAX_QUERY_RESULTS) {
 	String oListString = it.next() ;
 	QueryEngine queryEngine = queryEngines.get(oListString) ;
 	OWLOntology ontology = ontologies.get(oListString) ;
-	Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+	Set<OWLClass> resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
 	resultSet.remove(df.getOWLNothing()) ;
 	resultSet.remove(df.getOWLThing()) ;
 	classes.addAll(classes2info(resultSet, ontology, oListString)) ;
