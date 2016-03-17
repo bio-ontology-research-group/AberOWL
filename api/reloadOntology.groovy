@@ -21,9 +21,6 @@ if(sVersion == null) {
 
 try{
   def version = Integer.parseInt(sVersion);
-  //rManager.ontologies.remove('FMA')
-  //rManager.ontologyManagers.remove('FMA')
-  //rManager.queryEngines.remove('FMA')
   rManager.reloadOntology(name,version)
 }catch(Exception e){
   println "<pre>"

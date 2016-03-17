@@ -577,11 +577,15 @@ class RequestManager {
    */
   void reloadOntology(String name,int version) {
     def oRec = oBase.getOntology(name, false)
+    println 'got record ' + oRec.id
     if(!oRec) {
-      return
+      println 'no oRec'
+      return;
     }
+    println oRec.lastSubDate
     if(oRec.lastSubDate == 0) {
-      return
+      println 'lastSubDate 0'
+      return;
     }
     boolean newO = false
     if(!ontologies.get(oRec.id)) {
@@ -593,41 +597,43 @@ class RequestManager {
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
       if((version>=0)&&(version<oRec.submissions.size())) {
-	//I am not proud of this, but it is the only way to order the versions.
-	//I have preferred to not do many changes on the code
-	def list = oRec.submissions.keySet().sort();
-	//Firstly, It is necessary to get the timestamp
-	def timestamp = list.get(version);
-	def fSource = new FileDocumentSource(new File('onts/' + oRec.submissions.get(timestamp)))
-	def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
-	//Load the different version of the ontology with a different key
-	def newId = oRec.id + '_' + version;
-	ontologies.put(newId, ontology)
-	ontologyManagers.put(newId, lManager)
-	oldOntologies.put(newId, (int) (System.currentTimeMillis() / 1000L))
 
-	println "Updated ontology: " + newId + " version: "+version
+        //I am not proud of this, but it is the only way to order the versions.
+        //I have preferred to not do many changes on the code
+        def list = oRec.submissions.keySet().sort();
 
-	reloadOntologyAnnotations(newId)
-	//loadIndex(name)
-	loadIndex(newId,newO)
+        //Firstly, It is necessary to get the timestamp
+        def timestamp = list.get(version);
+        def fSource = new FileDocumentSource(new File('onts/' + oRec.submissions.get(timestamp)))
+        def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
 
-      }else{//In other case the actual ontology will be updated.
-	def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
-	def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
-	ontologies.put(oRec.id, ontology)
-	ontologyManagers.put(oRec.id, lManager)
-	println "Updated ontology: " + oRec.id
+        //Load the different version of the ontology with a different key
+        def newId = oRec.id + '_' + version;
+        ontologies.put(newId, ontology)
+        ontologyManagers.put(newId, lManager)
+        oldOntologies.put(newId, (int) (System.currentTimeMillis() / 1000L)) //
 
-	reloadOntologyAnnotations(oRec.id)
-	//loadIndex(name)
-	loadIndex(name,newO)
+        println "Updated ontology: " + newId + " version: "+version
 
+        reloadOntologyAnnotations(newId)
+        //loadIndex(name)
+        loadIndex(newId,newO)
+      }else{ //In other case the actual ontology will be updated.
+println 'trying to update current v of ontology'
+        def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+        def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+        ontologies.put(oRec.id, ontology)
+        ontologyManagers.put(oRec.id, lManager)
+        println "Updated ontology: " + oRec.id
+
+        reloadOntologyAnnotations(oRec.id)
+        //loadIndex(name)
+        loadIndex(name,newO)
       }
 
       if(newO) {
-	loadedOntologies++
-	  }
+        loadedOntologies++
+      }
       //reloadOntologyAnnotations(oRec.id)
       //loadIndex(name)
       //loadIndex(name,newO)
@@ -635,7 +641,7 @@ class RequestManager {
       List<String> langs = new ArrayList<>();
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
       for (OWLAnnotationProperty annotationProperty : this.aProperties) {
-	preferredLanguageMap.put(annotationProperty, langs);
+        preferredLanguageMap.put(annotationProperty, langs);
       }
 
       OWLReasonerFactory reasonerFactory = new ElkReasonerFactory(); // May be replaced with any reasoner using the standard interface
