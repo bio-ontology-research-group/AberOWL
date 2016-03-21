@@ -72,7 +72,7 @@ public class QueryEngine {
           case RequestType.SUBCLASS:
             classes.addAll(getSubClasses(cExpression, direct)); break;
           case RequestType.REALIZE:
-	  classes.addAll(getIndividuals(cExpression, direct)); break;
+            classes.addAll(getIndividuals(cExpression, direct)); break;
           case RequestType.SUBEQ:
             classes.addAll(getSubClasses(cExpression, direct));
             classes.addAll(getEquivalentClasses(cExpression)); break;
