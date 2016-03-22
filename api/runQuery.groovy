@@ -55,6 +55,8 @@ if (labels == 'false') {
   labels = true
 }
 
+response.contentType = 'application/json'
+
 try {
   def results = new HashMap()
   def start = System.currentTimeMillis()
@@ -86,8 +88,14 @@ try {
       return(0);
     }
   }
-  response.contentType = 'application/json'
   print new JsonBuilder(results).toString()
+} catch(java.lang.IllegalArgumentException e) {
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Ontology not found.' ]).toString() 
+} catch(org.semanticweb.owlapi.manchestersyntax.renderer.ParserException e) {
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Query parsing error: ' + e.getMessage() ]).toString() 
 } catch(Exception e) {
-  e.printStackTrace()
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
 }
