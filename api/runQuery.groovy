@@ -63,7 +63,6 @@ try {
   def iVersion = Integer.parseInt(sVersion);
   def out = rManager.runQuery(query, type, ontology, iVersion, direct, labels)
   def end = System.currentTimeMillis()
-
   results.put('time', (end - start))
   results.put('result', out)
 
@@ -99,3 +98,4 @@ try {
   response.setStatus(400)
   println new JsonBuilder([ 'err': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
 }
+

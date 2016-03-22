@@ -55,7 +55,7 @@ public class QueryParser {
     public OWLClassExpression parse(String mOwl, boolean labels) {
       def result = null
 
-      //try {
+      try {
         OWLDataFactory dFactory = this.ontology.getOWLOntologyManager().getOWLDataFactory();
         def eChecker = new BasicEntityChecker(dFactory, ontology)
         def parser = new ManchesterOWLSyntaxClassExpressionParser(dFactory, eChecker);
@@ -68,10 +68,10 @@ public class QueryParser {
  //       parser.setDefaultOntology(ontology);
 
         result = parser.parse(mOwl);
-      //} /*catch(Exception e) {
-       /* e.printStackTrace()
-        result = null 
-      }*/
+      } catch(Exception e) {
+	/* e.printStackTrace() */
+	result = null 
+      }
 
       return result
     }
