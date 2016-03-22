@@ -709,7 +709,7 @@ println 'trying to update current v of ontology'
           importError++
         } catch(UnparsableOntologyException e) {
           println "Failed to parse ontology " + oRec.id
-          e.printStackTrace()
+	  //          e.printStackTrace()
           if(oRec && oRec.id) {
             loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
@@ -881,6 +881,9 @@ println 'trying to update current v of ontology'
 	  }
 	  }
 	*/
+	if (info['label'] == null) {
+	  info['label'] = info['remainder']
+	}
 	if (info['label'] != null) {
 	  result.add(info);
 	}
@@ -919,7 +922,7 @@ println 'trying to update current v of ontology'
 	String oListString = it.next() ;
 	QueryEngine queryEngine = queryEngines.get(oListString) ;
 	OWLOntology ontology = ontologies.get(oListString) ;
-	Set<OWLClass> resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
+	Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
 	resultSet.remove(df.getOWLNothing()) ;
 	resultSet.remove(df.getOWLThing()) ;
 	classes.addAll(classes2info(resultSet, ontology, oListString)) ;
@@ -939,7 +942,7 @@ println 'trying to update current v of ontology'
 	OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
 	oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
 	def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-	Set<OWLClass> resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels) ;
+	Set resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels) ;
 	resultSet.remove(df.getOWLNothing()) ;
 	resultSet.remove(df.getOWLThing()) ;
 	classes.addAll(classes2info(resultSet, ontology, ontUri)) ;
@@ -959,7 +962,8 @@ println 'trying to update current v of ontology'
 
       OWLOntology ontology = ontologies.get(ontUri)
       println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
-      Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+      Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
+      //Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
       resultSet.remove(df.getOWLNothing())
       resultSet.remove(df.getOWLThing())
       classes.addAll(classes2info(resultSet, ontology, ontUri))
