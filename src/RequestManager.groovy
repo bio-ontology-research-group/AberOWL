@@ -203,10 +203,10 @@ class RequestManager {
     parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
     query += ' AND type:ontology'
 
-    println query
+    //println query
 
     def fQuery = parser.parse(query)
-    println fQuery
+    //println fQuery
     def hits = searcher.search(fQuery, 1000).scoreDocs
     def ret = []
 
@@ -619,7 +619,7 @@ class RequestManager {
         //loadIndex(name)
         loadIndex(newId,newO)
       }else{ //In other case the actual ontology will be updated.
-println 'trying to update current v of ontology'
+	println 'trying to update current version of ontology'
         def fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
         def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
         ontologies.put(oRec.id, ontology)
@@ -961,7 +961,7 @@ println 'trying to update current v of ontology'
       }
 
       OWLOntology ontology = ontologies.get(ontUri)
-      println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
+      //println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
       Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
       //Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
       resultSet.remove(df.getOWLNothing())
