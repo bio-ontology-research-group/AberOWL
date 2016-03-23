@@ -881,8 +881,9 @@ class RequestManager {
 	  }
 	  }
 	*/
-	if (info['label'] == null) {
+	if (info['label'] == null) { // add but make deprecated
 	  info['label'] = info['remainder']
+	  info['deprecated'] = true
 	}
 	if (info['label'] != null) {
 	  result.add(info);
