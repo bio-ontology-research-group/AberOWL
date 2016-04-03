@@ -89,7 +89,7 @@ public class SparqlAdaptor {
 
     }
 
-    protected List<String> querySparql(String graphName, String subjectConcept, List<String> properties) {
+    protected List<String> querySparql(String graphName, String concept, List<String> properties) {
         ArrayList<String> children = new ArrayList<String>();
         try{
             Connection kbConn = virtuosoConnection();
@@ -99,7 +99,7 @@ public class SparqlAdaptor {
             String property;
             while(itProperties.hasNext()){
                 property = itProperties.next();
-                sentence = "SPARQL SELECT ?o FROM <"+graphBasedName+graphName+"> WHERE { <"+subjectConcept+"> <"+property+"> ?o}"
+                sentence = "SPARQL SELECT ?s FROM <"+graphBasedName+graphName+"> WHERE { ?s <"+property+"> <"+concept+">}"
                 ResultSet resultSet = stmt.executeQuery(sentence);
                 String object;
                 while(resultSet.next()){
@@ -142,7 +142,11 @@ public class SparqlAdaptor {
                                     " -op [*]";
 
                             def process = command.execute();
-                            System.out.println(process.text);
+                            def outputStream = new StringBuffer();
+                            process.consumeProcessErrorStream(outputStream);
+                            println process.text
+                            println outputStream.toString()
+                            
                             Model graphModel = ModelFactory.createDefaultModel();
                             InputStream input = FileManager.get().open(graphFile.getAbsolutePath())
                             graphModel.read(input,"")

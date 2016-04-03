@@ -31,6 +31,7 @@ import org.apache.lucene.index.IndexWriterConfig.OpenMode
 import java.util.concurrent.*
 import java.util.timer.*
 import db.*;
+import sparql.*;
 import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
@@ -577,7 +578,11 @@ class RequestManager {
    */
   void reloadOntology(String name,int version) {
     def oRec = oBase.getOntology(name, false)
+<<<<<<< Updated upstream
     println 'got record ' + oRec.id
+=======
+    def fSource = null;
+>>>>>>> Stashed changes
     if(!oRec) {
       println 'no oRec'
       return;
@@ -597,6 +602,38 @@ class RequestManager {
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
       if((version>=0)&&(version<oRec.submissions.size())) {
+<<<<<<< Updated upstream
+=======
+	//I am not proud of this, but it is the only way to order the versions.
+	//I have preferred to not do many changes on the code
+	def list = oRec.submissions.keySet().sort();
+	//Firstly, It is necessary to get the timestamp
+	def timestamp = list.get(version);
+        fSource = new FileDocumentSource(new File('onts/' + oRec.submissions.get(timestamp)))
+	def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+	//Load the different version of the ontology with a different key
+	def newId = oRec.id + '_' + version;
+	ontologies.put(newId, ontology)
+	ontologyManagers.put(newId, lManager)
+	oldOntologies.put(newId, (int) (System.currentTimeMillis() / 1000L))
+
+	println "Updated ontology: " + newId + " version: "+version
+
+	reloadOntologyAnnotations(newId)
+	//loadIndex(name)
+	loadIndex(newId,newO)
+
+      }else{//In other case the actual ontology will be updated.
+          fSource = new FileDocumentSource(new File('onts/'+oRec.submissions[oRec.lastSubDate.toString()]))
+	def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
+	ontologies.put(oRec.id, ontology)
+	ontologyManagers.put(oRec.id, lManager)
+	println "Updated ontology: " + oRec.id
+
+	reloadOntologyAnnotations(oRec.id)
+	//loadIndex(name)
+	loadIndex(name,newO)
+>>>>>>> Stashed changes
 
         //I am not proud of this, but it is the only way to order the versions.
         //I have preferred to not do many changes on the code
@@ -630,6 +667,7 @@ class RequestManager {
         //loadIndex(name)
         loadIndex(name,newO)
       }
+
 
       if(newO) {
         loadedOntologies++
@@ -683,7 +721,12 @@ class RequestManager {
           ontologies.put(oRec.id ,ontology)
           ontologyManagers.put(oRec.id, lManager)
 
-          loadedOntologies++
+          //We build the graph for the updated ontology.
+          SparqlAdaptor adaptor =  new SparqlAdaptor();
+          adaptor.convertOntology(oRec.id,oRec.lastSubDate.toString(),fSource)
+
+
+            loadedOntologies++
           println "Successfully loaded " + oRec.id + " ["+loadedOntologies+"/"+allOnts.size()+"]"
           loadStati.put(oRec.id, [ 'status': 'loaded' ])
         } catch (OWLOntologyAlreadyExistsException E) {
@@ -721,7 +764,8 @@ class RequestManager {
           }
           importError++
         } catch (Exception E) {
-          println oRec.id + ' other'
+            E.printStackTrace()
+            println oRec.id + ' other'
           if(oRec && oRec.id) {
             loadStati.put(oRec.id, [ 'status': 'unloadable', 'message': e.getMessage() ])
           }
@@ -1161,5 +1205,21 @@ class RequestManager {
     }
     return;
   }
+
+    public ArrayList sparqlTest(String graphName,String concept,List<String> properties){
+        ArrayList result = new ArrayList<HashMap>();
+        SparqlAdaptor adaptor =  new SparqlAdaptor();
+        List<String> instances = adaptor.querySparql(graphName,concept, properties);
+        if(instances){
+            for(def c : instances) {
+                def info = [
+                        "owlClass"  : c,
+                        "label"     : c.substring(c.lastIndexOf("/")+1,c.length())
+                ];
+                result.add(info);
+            }
+        }
+        return(result);
+    }
 
 }

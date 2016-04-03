@@ -1,0 +1,2551 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:j.0="http://purl.obolibrary.org/obo/#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003141">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002094">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002727">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004924">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002014">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002757">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000007">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB/owl:Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000106">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000802">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000870">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000991">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003281">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002919">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001397">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001058">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003128">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0009830">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001288">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001511">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003811">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003045">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001426">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009171">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0005145">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005333">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005369">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006528">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000716">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006693">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000704">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002013">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0000012">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000825">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000006">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB/owl:Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003076">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001625">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009673">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003270">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001396">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003402">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003058">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003202">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001993">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000099">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000969">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100518">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000618">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011632">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000005">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000002"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002157">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011535">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002634">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003077">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003198">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002917">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009113">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011675">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001395">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003059">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011590">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002120">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003826">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005456">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100749">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002495">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002621">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000004">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000002"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000726">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011403">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0006042">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002059">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000956">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009114">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003646">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001394">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009586">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001297">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005293">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003119">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002090">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0005110">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001520">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003985">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001677">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003961">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002240">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002591">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002155">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0008034">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0009126">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100758">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005405">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000097">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002511">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000822">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000017">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011463">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100601">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0010535">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001959">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003774">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001410">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001717">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005375">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002360">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0012115">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001760">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002401">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000518">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002871">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004416">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000103">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000845">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002788">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000833">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004929">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001271">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011462">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0008852">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011014">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006280">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001629">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001859">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100820">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001956">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0010522">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001300">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001946">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0005584">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001552">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001578">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001699">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011353">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000083">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011377">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005601">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005039">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002959">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009732">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0006087">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004417">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005528">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000100">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000112">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0000768">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000505">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004950">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009308">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002189">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006555">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002315">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011612">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000989">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000009">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000008"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000832">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000488">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002719">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003207">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000670">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003786">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100732">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001846">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001824">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003401">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003043">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001920">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0009125">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0008033">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000096">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009854">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002140">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005638">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000407">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000855">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002459">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002326">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0004120">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000008">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000007"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000831">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000572">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003765">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001792">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0005978">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100963">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0009831">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001845">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001007">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001954">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001944">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001956">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001943">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005178">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000093">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002870">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005558">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002664">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002894">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0000063">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000011">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000008"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002301">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002797">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0008356">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0004893">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002501">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0010024">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000842">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001860">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000365">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100512">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001575">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001942">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002899">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001627">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0010980">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000082">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001518">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001639">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003780">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006568">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000010">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000008"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005317">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002318">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005559">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100537">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004747">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000147">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002578">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002910">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004953">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001061">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002958">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011409">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003690">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011034">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001695">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100852">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0010998">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005384">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003333">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001259">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001953">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011430">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001711">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001626">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001638">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100817">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001941">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005289">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011998">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0006112">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002359">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002715">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0010951">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0009800">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0007863">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005264">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003564">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001735">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005048">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100806">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001952">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0010982">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0012125">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003418">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009644">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004943">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0007917">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006510">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0006353">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0006094">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002104">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003606">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003002">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0008705">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0010124">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002605">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003921">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001681">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0000182">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003565">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001988">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001554">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003541">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003674">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001733">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0000750">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002018">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000166">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000939">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0011606">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002941">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0005303">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001973">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003233">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001082">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003596">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001919">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001256">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001268">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003003">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003124">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002097">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006536">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0009058">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002843">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001998">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0000218">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000010">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000708">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000938">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000002">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000001"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002710">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011947">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0008770">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001863">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0008283">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001548">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001081">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000970">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001376">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001013">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002908">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003149">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001635">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001658">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004421">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003692">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003070">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005338">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000001">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB/owl:Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002028">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002149">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004934">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002597">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002038">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000013">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004469">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0004324">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002842">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002498">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001874">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0200042">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002529">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0011970">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001402">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000763">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0009674">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001472">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0001264">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001278">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002180">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0003233">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001622">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003259">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001513">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0010508">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000020">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000718">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/DIAB_000012">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002039">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0006264">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002354">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0002611">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0006279">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002027">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000556">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0007868">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002758">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0002637">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0100543">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0003074">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0000762">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:symptom_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001928">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001289">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/MP_0005491">
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000009"/>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:cause_of rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.obolibrary.org/obo/HP_0001645">
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/DIAB_000006"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000011"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000010"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000004"/>
+    <j.0:manifests_in rdf:resource="http://purl.obolibrary.org/obo/DIAB_000005"/>
+  </rdf:Description>
+</rdf:RDF>
