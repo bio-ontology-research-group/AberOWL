@@ -58,6 +58,3 @@ if (!prefix) {
   }
   print new JsonBuilder(rmap.sort { it.key.length() })
 }
-
-
-//.sort { it.first_label.size() }).toString()

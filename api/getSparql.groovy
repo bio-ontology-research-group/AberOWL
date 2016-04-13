@@ -33,8 +33,9 @@ if(concept && graphName && objectsProperties){
   } catch(Exception e) {
     print new JsonBuilder([:]).toString()
   }
-}else {
-  println 'missing stuff'
+} else {
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Missing parameters. Please refer to the API documentation.' ]).toString() 
 }
 
 

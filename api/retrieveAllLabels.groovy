@@ -35,5 +35,8 @@ if(ontology) {
     }
   }
   print new JsonBuilder(output).toString()
+} else {
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Missing parameters. Please refer to the API documentation.' ]).toString() 
 }
 
