@@ -1163,7 +1163,7 @@ class RequestManager {
     return;
   }
 
-  public ArrayList sparqlTest(String graphName,String concept,List<String> properties){
+/*  public ArrayList sparqlTest(String graphName,String concept,List<String> properties){
         ArrayList result = new ArrayList<HashMap>();
         SparqlAdaptor adaptor =  new SparqlAdaptor();
         List<String> instances = adaptor.querySparql(graphName,concept, properties);
@@ -1177,6 +1177,6 @@ class RequestManager {
             }
         }
         return(result);
-    }
+    }*/
 
 }
