@@ -971,7 +971,7 @@ class RequestManager {
     }
 
     def end = System.currentTimeMillis()
-    println(mOwlQuery + ' ' + type + ' took: ' + (end - start) + 'ms')
+    //    println(mOwlQuery + ' ' + type + ' took: ' + (end - start) + 'ms')
 
     return classes;
   }
