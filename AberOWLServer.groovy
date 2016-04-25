@@ -51,7 +51,8 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
   context.addServlet(GroovyServlet, '/api/getOntology.groovy')
   context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
-  //  context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
+  context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
+  //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
 
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))

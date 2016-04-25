@@ -29,5 +29,6 @@ try {
   response.contentType = 'application/json'
   print new JsonBuilder(results).toString()
 } catch(Exception e) {
-  print e.printStackTrace()
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
 }

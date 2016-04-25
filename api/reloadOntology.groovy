@@ -23,7 +23,7 @@ try{
   def version = Integer.parseInt(sVersion);
   rManager.reloadOntology(name,version)
 }catch(Exception e){
-  println "<pre>"
-  e.getStackTrace()?.each { println it }
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
 }
 // Get result and whatnot here

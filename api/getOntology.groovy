@@ -17,4 +17,7 @@ if(ontology) {
 
   response.contentType = 'application/json'
   print new JsonBuilder(record).toString()
+} else {
+  response.setStatus(404)
+  println new JsonBuilder([ 'err': true, 'message': 'Ontology not found.' ]).toString() 
 }
