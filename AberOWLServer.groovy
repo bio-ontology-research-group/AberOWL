@@ -14,6 +14,8 @@
           @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.1.0'),
           @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.1.0'),
 
+	  @Grab(group='com.google.guava', module='guava', version='19.0'),
+
           @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
           @Grab(group='org.apache.lucene', module='lucene-core', version='5.2.1'),
           @Grab(group='org.apache.lucene', module='lucene-analyzers-common', version='5.2.1'),
@@ -49,6 +51,7 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
   context.addServlet(GroovyServlet, '/api/getOntology.groovy')
   context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
+  //  context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
 
   context.setAttribute('version', '0.1')
   context.setAttribute("rManager", new RequestManager(true))
