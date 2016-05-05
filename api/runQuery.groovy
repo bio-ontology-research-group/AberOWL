@@ -25,7 +25,8 @@ def type = params.type
 def ontology = params.ontology
 def direct = params.direct
 def labels = params.labels
-def sVersion = params.version
+//def sVersion = params.version
+def sVersion = null
 def rManager = application.rManager
 
 if(type == null) {

@@ -11,7 +11,8 @@ def params = Util.extractParams(request)
 def relation = params.relation
 def qClass = params.class
 def ontology = params.ontology
-def version = params.version
+//def version = params.version
+def version = null
 def rManager = application.rManager
 
 if (!relation || !qClass || !ontology) {

@@ -86,9 +86,12 @@ class RequestManager {
     println "Loading of ontologies finished; AberOWL is ready for service."
 
     // Unload old versions of ontologies
+    // remove temporarily...
+    /*
     new Timer().schedule({
       removeOldOntologies()
     } as TimerTask, 600000, 600000) // 10 minutes
+    */
   }
 
   void removeOldOntologies() {
@@ -195,35 +198,39 @@ class RequestManager {
   }
 
   Set<String> queryOntologies(String query) {
-    String[] fields = ['name', 'lontology', 'description']
-    def oQuery = classic.QueryParser.escape(query.toLowerCase())
+    if (query) {
+      String[] fields = ['name', 'lontology', 'description']
+      def oQuery = classic.QueryParser.escape(query.toLowerCase())
 
-    query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
-
-    def parser
-    parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
-    query += ' AND type:ontology'
-
-    //println query
-
-    def fQuery = parser.parse(query)
-    //println fQuery
-    def hits = searcher.search(fQuery, 1000).scoreDocs
-    def ret = []
-
-    hits.each { h ->
-      def hitDoc = searcher.doc(h.doc)
-      def name = hitDoc.get('name')
-      def ontology = hitDoc.get('ontology')
-      def description = hitDoc.get('description')
-      ret.add([
-              'name': name,
-              'uri' : ontology,
-              'description': description,
-      ])
+      query = oQuery.toLowerCase().split().collect({ classic.QueryParser.escape(it) + '*' }).join(' AND ')
+      
+      def parser
+      parser = new classic.MultiFieldQueryParser(fields, new WhitespaceAnalyzer())
+      query += ' AND type:ontology'
+      
+      //println query
+      
+      def fQuery = parser.parse(query)
+      //println fQuery
+      def hits = searcher.search(fQuery, 1000).scoreDocs
+      def ret = []
+      
+      hits.each { h ->
+	def hitDoc = searcher.doc(h.doc)
+	def name = hitDoc.get('name')
+	def ontology = hitDoc.get('ontology')
+	def description = hitDoc.get('description')
+	ret.add([
+		  'name': name,
+		 'uri' : ontology,
+		 'description': description,
+		])
+      }
+      
+      return ret.sort { it.name.size() }
+    } else {
+      return []
     }
-
-    return ret.sort { it.name.size() }
   }
 
 
@@ -597,6 +604,9 @@ class RequestManager {
       config.setFollowRedirects(true)
       config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
       if ((version >= 0) && (version < oRec.submissions.size())) {
+	// do nothing
+	
+	/*
 
         //I am not proud of this, but it is the only way to order the versions.
         //I have preferred to not do many changes on the code
@@ -618,6 +628,7 @@ class RequestManager {
         reloadOntologyAnnotations(newId)
         //loadIndex(name)
         loadIndex(newId, newO)
+	*/
       } else { //In other case the actual ontology will be updated.
         println 'trying to update current version of ontology'
         def fSource = new FileDocumentSource(new File('onts/' + oRec.submissions[oRec.lastSubDate.toString()]))
@@ -721,7 +732,7 @@ class RequestManager {
             loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
           }
           importError++
-        } catch (Exception E) {
+        } catch (Exception e) {
           println oRec.id + ' other'
           if (oRec && oRec.id) {
             loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
