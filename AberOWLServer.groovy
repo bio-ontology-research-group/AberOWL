@@ -9,10 +9,10 @@
           @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
 
 	  @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.1.0'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.1.0'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.1.0'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.1.0'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.2.3'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.2.3'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.2.3'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.2.3'),
 
 	  @Grab(group='com.google.guava', module='guava', version='19.0'),
 
@@ -25,17 +25,27 @@
 @Grab(group='javax.el', module='javax.el-api', version='3.0.0')
  
 import org.eclipse.jetty.server.Server
+import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.jetty.servlet.*
 import groovy.servlet.*
 import src.*
+import java.util.concurrent.*
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
+import org.eclipse.jetty.server.nio.*
+import org.eclipse.jetty.util.thread.*
 
 Logger.getRootLogger().setLevel(Level.ERROR)
 
 PORT = new Integer(args[0])
 def startServer() {
-  def server = new Server(PORT)
+  Server server = new Server(PORT)
+  server.getThreadPool().setMaxThreads(5000)
+  server.getThreadPool().setIdleTimeout(5000)
+  println server.getThreadPool()
+  //  ServerConnector connector = new ServerConnector(server)
+
+  //  def server = new Server(PORT)
   def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
 
   context.resourceBase = '.'
