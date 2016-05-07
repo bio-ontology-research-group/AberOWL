@@ -746,13 +746,14 @@ class RequestManager {
   void createOntologyReasoner(String k, OWLReasonerFactory reasonerFactory, Map preferredLanguageMap) {
     OWLOntology ontology
     try {
-      ontology = ontologies.get(k);
-      OWLOntologyManager manager = ontologyManagers.get(k);
+      ontology = ontologies[k]
+      OWLOntologyManager manager = ontologyManagers[k]
       /* Configure Elk */
       ReasonerConfiguration eConf = ReasonerConfiguration.getConfiguration()
       eConf.setParameter(ReasonerConfiguration.NUM_OF_WORKING_THREADS, this.ELK_THREADS)
       eConf.setParameter(ReasonerConfiguration.INCREMENTAL_MODE_ALLOWED, "true")
-      eConf.setParameter(ReasonerConfiguration.INCREMENTAL_TAXONOMY, "true")
+      //eConf.setParameter(ReasonerConfiguration.INCREMENTAL_TAXONOMY, "true")
+
       /* OWLAPI Reasoner config, no progress monitor */
       OWLReasonerConfiguration rConf = new ElkReasonerConfiguration(ElkReasonerConfiguration.getDefaultOwlReasonerConfiguration(new NullReasonerProgressMonitor()), eConf)
       OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology, rConf);
@@ -760,26 +761,31 @@ class RequestManager {
 
       def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
 
+      // dispose of old reasoners, close the threadpool
+      queryEngines[k]?.getoReasoner()?.dispose()
+
       // check if there are many many unsatisfiable classes, then switch to structural reasoner
       if (oReasoner.getEquivalentClasses(df.getOWLNothing()).getEntitiesMinusBottom().size() >= MAX_UNSATISFIABLE_CLASSES) {
+	oReasoner.dispose()
         StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
         oReasoner = sReasonerFactory.createReasoner(ontology)
-        loadStati.put(k, ['status': 'incoherent'])
-        this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
+        loadStati[k] = ['status': 'incoherent']
+        this.queryEngines[k] = new QueryEngine(oReasoner, sForm)
         println "Successfully classified but switched to structural reasoner " + k + " [" + this.queryEngines.size() + "/" + ontologies.size() + "]"
       } else {
         println "Successfully classified " + k + " [" + this.queryEngines.size() + "/" + ontologies.size() + "]"
-        this.queryEngines.put(k, new QueryEngine(oReasoner, sForm));
-        loadStati.put(k, ['status': 'classified'])
+        this.queryEngines[k] = new QueryEngine(oReasoner, sForm)
+        loadStati.put[k] = ['status': 'classified'])
       }
     } catch (InconsistentOntologyException e) {
       println "inconsistent ontology " + k
       try {
+	oReasoner.dispose()
         StructuralReasonerFactory sReasonerFactory = new StructuralReasonerFactory()
         OWLReasoner sr = sReasonerFactory.createReasoner(ontology)
         def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, ontologyManagers.get(k))
-        this.queryEngines.put(k, new QueryEngine(sr, sForm))
-        loadStati.put(k, ['status': 'inconsistent', 'message': e.getMessage()])
+        this.queryEngines[k] = new QueryEngine(sr, sForm)
+        loadStati[k] = ['status': 'inconsistent', 'message': e.getMessage()]
       } catch (Exception E) {
         println "Terminal error with $k"
         E.printStackTrace()
@@ -959,6 +965,7 @@ class RequestManager {
         resultSet.remove(df.getOWLNothing());
         resultSet.remove(df.getOWLThing());
         classes.addAll(classes2info(resultSet, ontology, ontUri));
+	oReasoner.dispose()
       } catch (OWLOntologyCreationException E) {
         E.printStackTrace();
       }
