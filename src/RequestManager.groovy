@@ -775,7 +775,7 @@ class RequestManager {
       } else {
         println "Successfully classified " + k + " [" + this.queryEngines.size() + "/" + ontologies.size() + "]"
         this.queryEngines[k] = new QueryEngine(oReasoner, sForm)
-        loadStati.put[k] = ['status': 'classified'])
+        loadStati.put[k] = ['status': 'classified']
       }
     } catch (InconsistentOntologyException e) {
       println "inconsistent ontology " + k
