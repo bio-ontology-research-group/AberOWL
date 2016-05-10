@@ -39,12 +39,12 @@ if(sVersion == null || sVersion == '0') {
   sVersion = '-1';
 }
 if(direct == null) {
-  direct = 'true'
+  direct = "false"
 }
-if (direct == "false") {
-  direct = false
-} else {
+if (direct == "true") {
   direct = true
+} else {
+  direct = false
 }
 
 if(labels == null) {
