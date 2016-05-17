@@ -75,7 +75,7 @@ class RequestManager {
     iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
     this.writer = new IndexWriter(index, iwc)
 
-    println "Loading ontologies"
+    //    println "Loading ontologies"
     loadOntologies();
     loadAnnotations();
     if (reason) {
@@ -775,7 +775,7 @@ class RequestManager {
       } else {
         println "Successfully classified " + k + " [" + this.queryEngines.size() + "/" + ontologies.size() + "]"
         this.queryEngines[k] = new QueryEngine(oReasoner, sForm)
-        loadStati.put[k] = ['status': 'classified']
+        loadStati[k] = ['status': 'classified']
       }
     } catch (InconsistentOntologyException e) {
       println "inconsistent ontology " + k
@@ -793,11 +793,11 @@ class RequestManager {
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + k
       e.printStackTrace()
-      loadStati.put(k, ['status': 'unloadable', 'message': e.getMessage()])
+      loadStati[k] = ['status': 'unloadable', 'message': e.getMessage()]
     } catch (Exception e) {
       println "Failed " + k
       e.printStackTrace()
-      loadStati.put(k, ['status': 'unloadable', 'message': e.getMessage()])
+      loadStati[k] = ['status': 'unloadable', 'message': e.getMessage()]
     }
   }
 
@@ -947,28 +947,28 @@ class RequestManager {
         classes.addAll(classes2info(resultSet, ontology, oListString));
       }
     } else if (queryEngines.get(ontUri) == null) { // download the ontology and query
-      Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>();
+      Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>()
       for (OWLAnnotationProperty annotationProperty : this.aProperties) {
-        preferredLanguageMap.put(annotationProperty, new ArrayList<String>());
+        preferredLanguageMap.put(annotationProperty, new ArrayList<String>())
       }
       try {
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-        OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
-        config.setFollowRedirects(true);
-        config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT);
-        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new IRIDocumentSource(IRI.create(ontUri)), config);
-        OWLReasonerFactory reasonerFactory = new ElkReasonerFactory();
-        OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology);
-        oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
-        def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager);
-        Set resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels);
-        resultSet.remove(df.getOWLNothing());
-        resultSet.remove(df.getOWLThing());
-        classes.addAll(classes2info(resultSet, ontology, ontUri));
+        OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
+        OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration()
+        config.setFollowRedirects(true)
+        config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT)
+        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new IRIDocumentSource(IRI.create(ontUri)), config)
+        OWLReasonerFactory reasonerFactory = new ElkReasonerFactory()
+        OWLReasoner oReasoner = reasonerFactory.createReasoner(ontology)
+        oReasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY)
+        def sForm = new NewShortFormProvider(aProperties, preferredLanguageMap, manager)
+        Set resultSet = new QueryEngine(oReasoner, sForm).getClasses(mOwlQuery, requestType, direct, labels)
+        resultSet.remove(df.getOWLNothing())
+        resultSet.remove(df.getOWLThing())
+        classes.addAll(classes2info(resultSet, ontology, ontUri))
 	oReasoner.dispose()
       } catch (OWLOntologyCreationException E) {
-        E.printStackTrace();
-      }
+        // E.printStackTrace();
+      } 
     } else { // query one single ontology
       QueryEngine queryEngine = queryEngines.get(ontUri);
       def vOntUri = ontUri
@@ -1058,37 +1058,36 @@ class RequestManager {
     def stats = []
     if (oString == null || oString.length() == 0) { // query all the ontologies in the repo
       stats = [
-              'aCount'    : 0, // Axiom count
-              'cCount'    : 0, // Class count
-              'oCount'    : ontologies.size(),
-              'noFileError': noFileError,
-              'importError': importError,
-              'parseError': parseError,
-              'otherError': otherError,
-              'lCount'    : lCount,
-              'dCount'    : dCount
-      ];
-
+	'aCount'    : 0, // Axiom count
+	       'cCount'    : 0, // Class count
+	       'oCount'    : ontologies.size(),
+	       'noFileError': noFileError,
+	       'importError': importError,
+	       'parseError': parseError,
+	       'otherError': otherError,
+	       'lCount'    : lCount,
+	       'dCount'    : dCount
+      ]
+      
       for (String id : ontologies.keySet()) { // For some reason .each doesn't work here
         OWLOntology oRec = ontologies.get(id);
         stats.aCount += oRec.getAxiomCount()
         stats.cCount += oRec.getClassesInSignature(true).size()
       }
-
-      println stats
+      
     } else {
       OWLOntology ont = ontologies.get(oString);
       stats = [
-              'axiomCount': 0,
-              'classCount': ont.getClassesInSignature(true).size()
+	'axiomCount': 0,
+	       'classCount': ont.getClassesInSignature(true).size()
       ]
       AxiomType.TBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount += 1 } }
       AxiomType.RBoxAxiomTypes.each { ont.getAxioms(it, true).each { stats.axiomCount += 1 } }
     }
-
+    
     return stats
   }
-
+  
   HashMap getInfoObjectProperty(String oString, String uriObjectProperty) {
     HashMap objectProperties = new HashMap<String, String>();
     if ((oString != null) && (oString.length() > 0)) {
