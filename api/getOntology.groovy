@@ -1,9 +1,14 @@
 import groovy.json.*
+import src.util.Util
+import org.eclipse.jetty.server.*
 
 if(!application) {
   application = request.getApplication(true)
 }
-def ontology = request.getParameter('ontology')
+//println request.getAttribute("org.eclipse.jetty.server.Server").getRequestLog().isStarted()
+//println application.getServer()
+def params = Util.extractParams(request)
+def ontology = params.ontology
 def rManager = application.rManager
 
 if(ontology) {
@@ -15,4 +20,7 @@ if(ontology) {
 
   response.contentType = 'application/json'
   print new JsonBuilder(record).toString()
+} else {
+  response.setStatus(404)
+  println new JsonBuilder([ 'err': true, 'message': 'Ontology not found.' ]).toString() 
 }

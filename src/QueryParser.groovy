@@ -69,8 +69,8 @@ public class QueryParser {
 
         result = parser.parse(mOwl);
       } catch(Exception e) {
-      e.printStackTrace()
-        result = null 
+	/* e.printStackTrace() */
+	result = null 
       }
 
       return result

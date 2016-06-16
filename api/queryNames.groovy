@@ -16,15 +16,17 @@ import org.apache.lucene.queryparser.*
 import org.apache.lucene.queryparser.simple.*
 import org.apache.lucene.search.highlight.*
 import org.apache.lucene.index.IndexWriterConfig.OpenMode
+import src.util.Util
 
 import util.*;
 
 if(!application) {
   application = request.getApplication(true)
 }
-def query = request.getParameter('term')
-def ontology = request.getParameter('ontology')
-def prefix = request.getParameter('prefix')?:"false"
+def params = Util.extractParams(request)
+def query = params.term
+def ontology = params.ontology
+def prefix = params.prefix?:"false"
 def rManager = application.rManager
 
 prefix = Boolean.valueOf(prefix)
@@ -56,6 +58,3 @@ if (!prefix) {
   }
   print new JsonBuilder(rmap.sort { it.key.length() })
 }
-
-
-//.sort { it.first_label.size() }).toString()

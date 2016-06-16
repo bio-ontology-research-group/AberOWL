@@ -1,9 +1,11 @@
 import groovy.json.*
+import src.util.Util
 
 def API_KEY = '7LWB1EK24e8Pj7XorQdG9FnsxQA3H41VDKIxN1BeEv5n'
 
-def name = request.getParameter('name')
-def sVersion = request.getParameter('version')
+def params = Util.extractParams(request)
+def name = params.name
+def sVersion = params.version
 def rManager = application.rManager
 
 def result = [
@@ -19,12 +21,9 @@ if(sVersion == null) {
 
 try{
   def version = Integer.parseInt(sVersion);
-  //rManager.ontologies.remove('FMA')
-  //rManager.ontologyManagers.remove('FMA')
-  //rManager.queryEngines.remove('FMA')
   rManager.reloadOntology(name,version)
 }catch(Exception e){
-  println "<pre>"
-  e.getStackTrace()?.each { println it }
+  response.setStatus(400)
+  println new JsonBuilder([ 'err': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
 }
 // Get result and whatnot here
