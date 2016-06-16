@@ -675,7 +675,7 @@ class RequestManager {
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     def pool = null
-    GParsPool.withPool { p ->
+    GParsPool.withPool(23) { p ->
       pool = p
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
@@ -684,6 +684,7 @@ class RequestManager {
           if (oRec.lastSubDate == 0) {
             return;
           }
+          println "Loading " + oRec.id + " [" + loadedOntologies + "/" + allOnts.size() + "]"
           OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
           OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
           config.setFollowRedirects(true);
