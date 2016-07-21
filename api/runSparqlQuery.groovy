@@ -27,7 +27,7 @@ if(concept && graphName && objectsProperties){
   try {
     ArrayList<String> oProperties = new ArrayList<String>();
     oProperties.add(objectsProperties);
-    def result = rManager.sparqlTest(graphName,concept,oProperties);
+    def result = rManager.runSparqlQuery(graphName,concept,oProperties);
     response.contentType = 'application/json'
     print new JsonBuilder(result).toString()
   } catch(Exception e) {
