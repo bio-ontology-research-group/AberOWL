@@ -228,7 +228,7 @@ public class SparqlAdaptor {
     public List<HashMap> querySparql(String graphName, String label, String property) {
         ArrayList<HashMap> result = new ArrayList<HashMap>();
         try{
-            graphName+="_ELK";//teomporarily
+            graphName+="_ELK";//temporarily
             System.out.println(graphName);
             VirtGraph virtGraph = new VirtGraph(graphBasedName+graphName,virtuosoPool);
             java.sql.Statement stmt = virtGraph.createStatement();
