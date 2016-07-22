@@ -35,6 +35,7 @@ import groovyx.gpars.ParallelEnhancer
 import groovyx.gpars.GParsPool
 
 import com.google.common.collect.*
+import sparql.SparqlAdaptor
 
 class RequestManager {
   private static final WEB_ROOT = 'http://aber-owl.net/'
@@ -74,6 +75,7 @@ class RequestManager {
     this.iwc = new IndexWriterConfig(new WhitespaceAnalyzer())
     iwc.setOpenMode(OpenMode.CREATE_OR_APPEND)
     this.writer = new IndexWriter(index, iwc)
+
 
     //    println "Loading ontologies"
     loadOntologies();
@@ -1179,20 +1181,21 @@ class RequestManager {
     return;
   }
 
-/*  public ArrayList sparqlTest(String graphName,String concept,List<String> properties){
-        ArrayList result = new ArrayList<HashMap>();
-        SparqlAdaptor adaptor =  new SparqlAdaptor();
-        List<String> instances = adaptor.querySparql(graphName,concept, properties);
-        if(instances){
-            for(def c : instances) {
-                def info = [
-                        "owlClass"  : c,
-                        "label"     : c.substring(c.lastIndexOf("/")+1,c.length())
-                ];
-                result.add(info);
-            }
-        }
-        return(result);
-    }*/
-
+  public ArrayList<HashMap> runSparqlQuery(String ontology,String version,String query,String objectProperty){
+      ArrayList<HashMap> result = null;
+      if(((ontology!=null)&&(!ontology.isEmpty()))&&((version!=null)&&(!version.isEmpty())) &&
+              ((query!=null)&&(!query.isEmpty()))&&((objectProperty!=null)&&(!objectProperty.isEmpty()))) {
+        SparqlAdaptor sparqlAdaptor = new SparqlAdaptor();
+        int ontPos = Integer.parseInt(version);
+        OntologyRecord oRecord = oBase.getOntology(ontology);
+        //Firstly we sort the list of the submissions by timestamps.
+        def list = oRecord.submissions.keySet().sort();
+        //We get the timestamp related to the version, which represent the actual position of the ontology.
+        String timestamp = list.get(ontPos).toString();
+        String graphName = oRecord.submissions.get(timestamp);
+        graphName = graphName.substring(0,graphName.lastIndexOf(".")) //We extract the name of the ontology
+        result = sparqlAdaptor.querySparql(graphName, query, objectProperty);
+      }
+      return(result);
+    }
 }
