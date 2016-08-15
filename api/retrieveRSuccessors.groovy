@@ -24,7 +24,7 @@ if (version == null) {
 
 try {
   def results = new HashMap()
-  def out = rManager.relationQuery(relation, qClass, ontology, Integer.parseInt(version))
+  def out = rManager.relationQuery(relation, qClass, ontology, version)
 
   results['result'] = out
   response.contentType = 'application/json'
