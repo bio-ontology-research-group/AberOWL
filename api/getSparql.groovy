@@ -18,24 +18,19 @@ import groovy.json.*
 if(!application) {
   application = request.getApplication(true)
 }
-def query = request.getParameter('query');
-def version = request.getParameter('version');
-def ontology = request.getParameter('ontology');
-def objectProperty = request.getParameter('objectProperty');
+def concept = request.getParameter('concept')
+def graphName = request.getParameter('graphName')
+def objectsProperties = request.getParameter('objectProperties');
 def rManager = application.rManager;
 
-if(query && version && ontology && objectProperty){
+if(concept && graphName && objectsProperties){
   try {
-    def results = new HashMap()
-    def start = System.currentTimeMillis()
-    def out = rManager.runSparqlQuery(ontology,version,query,objectProperty);
-    def end = System.currentTimeMillis()
-    results.put('time', (end - start))
-    results.put('result', out)
+    ArrayList<String> oProperties = new ArrayList<String>();
+    oProperties.add(objectsProperties);
+    def result = rManager.sparqlTest(graphName,concept,oProperties);
     response.contentType = 'application/json'
-    print new JsonBuilder(results).toString()
+    print new JsonBuilder(result).toString()
   } catch(Exception e) {
-    e.printStackTrace()
     print new JsonBuilder([:]).toString()
   }
 } else {
