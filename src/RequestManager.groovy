@@ -33,6 +33,7 @@ class RequestManager {
   private static final MAX_UNSATISFIABLE_CLASSES = 500
 
   private static final MAX_QUERY_RESULTS = 5000
+  private static final MAX_REASONER_RESULTS = 25000
   // max classes returned by query; to prevent DoS; TODO: replace by paging!
 
   private static final URL = 'http://10.81.0.162:9200/'
@@ -57,7 +58,8 @@ class RequestManager {
   def loadStati = new ConcurrentHashMap()
   def oldOntologies = new ConcurrentHashMap()
 
-  def search(def type, def map) {
+  def static search(def type, def map) {
+
     def url = 'http://10.81.0.162:9200'
     def http = new HTTPBuilder(url)
     def j = new groovy.json.JsonBuilder(map)
@@ -73,8 +75,6 @@ class RequestManager {
       println j.toPrettyString()
     }
   }
-}
-
 
   RequestManager(boolean reason) {
 
@@ -87,13 +87,6 @@ class RequestManager {
 
     println "Loading of ontologies finished; AberOWL is ready for service."
 
-    // Unload old versions of ontologies
-    // remove temporarily...
-    /*
-    new Timer().schedule({
-      removeOldOntologies()
-    } as TimerTask, 600000, 600000) // 10 minutes
-    */
   }
 
   Set<String> listOntologies() {
@@ -209,6 +202,9 @@ class RequestManager {
       def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config)
       println "Updated ontology: " + oRec.id
       
+      ontologies.put(oRec.id, ontology)
+      ontologyManagers.put(oRec.id, lManager)
+
       reloadOntologyAnnotations(oRec.id)
 
       if (newO) {
@@ -219,14 +215,12 @@ class RequestManager {
       for (OWLAnnotationProperty annotationProperty : this.aProperties) {
         preferredLanguageMap.put(annotationProperty, langs);
       }
-
-      OWLReasonerFactory reasonerFactory = new ElkReasonerFactory();
-      // May be replaced with any reasoner using the standard interface
+      OWLReasonerFactory reasonerFactory = new ElkReasonerFactory()
       createOntologyReasoner(oRec.id, reasonerFactory, preferredLanguageMap)
-      ontologies.put(oRec.id, ontology)
-      ontologyManagers.put(oRec.id, lManager)
+
+      // May be replaced with any reasoner using the standard interface
     } catch (OWLOntologyInputSourceException e) {
-      println "input source exception for " + oRec.id
+      println "input source exception for " + oRec.id + ": " + e.getMessage()
     } catch (IOException e) {
       println "IOException exception for " + oRec.id
     } catch (Exception e) {
@@ -243,69 +237,72 @@ class RequestManager {
    */
   void loadOntologies() throws OWLOntologyCreationException, IOException {
     def pool = null
-    GParsPool.withPool(23) { p ->
+    GParsPool.withPool(8) { p ->
       pool = p
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
-        attemptedOntologies++
-        try {
-          if (oRec.lastSubDate == 0) {
-            return;
-          }
-          println "Loading " + oRec.id + " [" + loadedOntologies + "/" + allOnts.size() + "]"
-          OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
-          OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
-          config.setFollowRedirects(true);
-          config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT);
-	  def fSource = new FileDocumentSource(new File('../ontologies/' + oRec.id + '/live/' + oRec.id + '.owl'))
-          def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
-          ontologies.put(oRec.id, ontology)
-          ontologyManagers.put(oRec.id, lManager)
-
-          loadedOntologies++
-          println "Successfully loaded " + oRec.id + " [" + loadedOntologies + "/" + allOnts.size() + "]"
-          loadStati.put(oRec.id, ['status': 'loaded'])
-        } catch (OWLOntologyAlreadyExistsException E) {
-          if (oRec && oRec.id) {
-            println 'DUPLICATE ' + oRec.id
-          }
-        } catch (OWLOntologyInputSourceException e) {
-          if (oRec && oRec.id) {
-            loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
-          }
-          noFileError++
-        } catch (IOException e) {
-          println "Can't load external import for " + oRec.id
-          if (oRec && oRec.id) {
-            loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
-          }
-          importError++
-        } catch (OWLOntologyCreationIOException e) {
-          println "Failed to load imports for " + oRec.id
-          if (oRec && oRec.id) {
-            loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
-          }
-          importError++
-        } catch (UnparsableOntologyException e) {
-          println "Failed to parse ontology " + oRec.id
-          //          e.printStackTrace()
-          if (oRec && oRec.id) {
-            loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
-          }
-          parseError++
-        } catch (UnloadableImportException e) {
-          println "Failed to load imports for " + oRec.id
-          if (oRec && oRec.id) {
-            loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
-          }
-          importError++
-        } catch (Exception e) {
-          println oRec.id + ' other'
-          if (oRec && oRec.id) {
-            loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
-          }
-          otherError++
-        }
+        attemptedOntologies+=1
+	//	if (oRec.id in ["CHEBI"]) {
+	if (true) {
+	  try {
+	    if (oRec.lastSubDate == 0) {
+	      return;
+	    }
+	    println "Loading " + oRec.id + " [" + loadedOntologies + "/" + allOnts.size() + "]"
+	    OWLOntologyManager lManager = OWLManager.createOWLOntologyManager();
+	    OWLOntologyLoaderConfiguration config = new OWLOntologyLoaderConfiguration();
+	    config.setFollowRedirects(true);
+	    config = config.setMissingImportHandlingStrategy(MissingImportHandlingStrategy.SILENT);
+	    def fSource = new FileDocumentSource(new File('../ontologies/' + oRec.id + '/live/' + oRec.id + '.owl'))
+	    def ontology = lManager.loadOntologyFromOntologyDocument(fSource, config);
+	    ontologies.put(oRec.id, ontology)
+	    ontologyManagers.put(oRec.id, lManager)
+	    
+	    loadedOntologies++
+	      println "Successfully loaded " + oRec.id + " [" + loadedOntologies + "/" + allOnts.size() + "]"
+	    loadStati.put(oRec.id, ['status': 'loaded'])
+	  } catch (OWLOntologyAlreadyExistsException E) {
+	    if (oRec && oRec.id) {
+	      println 'DUPLICATE ' + oRec.id
+	    }
+	  } catch (OWLOntologyInputSourceException e) {
+	    if (oRec && oRec.id) {
+	      loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
+	    }
+	    noFileError+=1
+	  } catch (IOException e) {
+	    println "Can't load external import for " + oRec.id
+	    if (oRec && oRec.id) {
+	      loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
+	    }
+	    importError+=1
+	  } catch (OWLOntologyCreationIOException e) {
+	    println "Failed to load imports for " + oRec.id
+	    if (oRec && oRec.id) {
+	      loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
+	    }
+	    importError+=1
+	  } catch (UnparsableOntologyException e) {
+	    println "Failed to parse ontology " + oRec.id
+	    //          e.printStackTrace()
+	    if (oRec && oRec.id) {
+	      loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
+	    }
+	    parseError+=1
+	  } catch (UnloadableImportException e) {
+	    println "Failed to load imports for " + oRec.id
+	    if (oRec && oRec.id) {
+	      loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
+	    }
+	    importError++
+	      } catch (Exception e) {
+	    println oRec.id + ' other'
+	    if (oRec && oRec.id) {
+	      loadStati.put(oRec.id, ['status': 'unloadable', 'message': e.getMessage()])
+	    }
+	    otherError+=1
+	  }
+	}
       }
     }
   }
@@ -428,34 +425,41 @@ class RequestManager {
               "deprecated": false
       ];
 
-      def bq = new BooleanQuery()
-      bq.add(new TermQuery(new Term('class', c.getIRI().toString())), BooleanClause.Occur.MUST);
-      bq.add(new TermQuery(new Term('ontology', uri.toString())), BooleanClause.Occur.MUST);
+      def fQuery = ["query": ["bool":["must":[]]]]
+      def ll = []
+      ll << ["term" : ["class" : c.getIRI().toString()]]
+      ll << ["term" : ["ontology" : uri.toString()]]
+      ll.each {
+	fQuery.query.bool.must << it
+      }
 
       for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o)) {
         if (annotation.isDeprecatedIRIAnnotation()) {
           info['deprecated'] = true
         }
       }
-      if (!info['deprecated']) { // ignore all deprecated classes! TODO: trigger this by query flag
+      if (info['deprecated'] == false) { // ignore all deprecated classes! TODO: trigger this by query flag
 
-        def scoreDocs = searcher.search(bq, 1).scoreDocs
-        if ((scoreDocs != null) && (scoreDocs.length > 0)) {
-          def dResult = scoreDocs[0]
-          def hitDoc = searcher.doc(dResult.doc)
-          hitDoc.each {
-            info['label'] = hitDoc.get('first_label')
+	def hits = search("owlclass", fQuery)
+	if (hits.hits.hits.size()>0) {
+	  def dResult = hits.hits.hits[0]._source
+          dResult.each {
+            info['label'] = dResult['first_label']
           }
-          hitDoc.getFields().each { field ->
-            def fName = field.name()
+          dResult.keySet().each { field ->
+            def fName = field
             if (fName != "AberOWL-catch-all") {
-              info[fName] = new LinkedHashSet()
-              hitDoc.getValues(fName).each { fVal ->
-                info[fName].add(fVal)
-              }
+	      if (dResult[fName] instanceof List) {
+		info[fName] = new LinkedHashSet()
+		dResult[fName].each { fVal ->
+		  info[fName].add(fVal)
+		}
+	      } else {
+		info[fName] = dResult[fName]
+	      }
             }
           }
-          info['definition'] = hitDoc.get('definition')
+          info['definition'] = dResult['definition']
         }
 
         /*
@@ -469,8 +473,8 @@ class RequestManager {
         if (info['label'] == null) { // add but make deprecated
           info['label'] = info['remainder']
           info['deprecated'] = true
-        }
-        if (info['label'] != null) {
+        } else {
+	  //        if (info['label'] != null) {
           result.add(info);
         }
       }
@@ -503,15 +507,14 @@ class RequestManager {
     Set classes = new HashSet<>();
     if (ontUri == null || ontUri.length() == 0) { // query all the ontologies in the repo
       Iterator<String> it = queryEngines.keySet().iterator();
-      /* TODO: add paging */
       while (it.hasNext() && classes.size() < MAX_QUERY_RESULTS) {
         String oListString = it.next();
         QueryEngine queryEngine = queryEngines.get(oListString);
         OWLOntology ontology = ontologies.get(oListString);
-        Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
+        Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_REASONER_RESULTS))
         resultSet.remove(df.getOWLNothing());
         resultSet.remove(df.getOWLThing());
-        classes.addAll(classes2info(resultSet, ontology, oListString));
+        classes.addAll(classes2info(resultSet, ontology, oListString))
       }
     } else if (queryEngines.get(ontUri) == null) { // download the ontology and query
       Map<OWLAnnotationProperty, List<String>> preferredLanguageMap = new HashMap<>()
@@ -548,8 +551,8 @@ class RequestManager {
       }
 
       OWLOntology ontology = ontologies.get(ontUri)
-      //println(String.valueOf(queryEngine)+"-->"+mOwlQuery+"-->"+requestType+"-->"+direct+"-->"+labels);
-      Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_QUERY_RESULTS))
+      //      println queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+      Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_REASONER_RESULTS))
       //Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
       resultSet.remove(df.getOWLNothing())
       resultSet.remove(df.getOWLThing())
@@ -746,21 +749,4 @@ class RequestManager {
     }
     return;
   }
-
-/*  public ArrayList sparqlTest(String graphName,String concept,List<String> properties){
-        ArrayList result = new ArrayList<HashMap>();
-        SparqlAdaptor adaptor =  new SparqlAdaptor();
-        List<String> instances = adaptor.querySparql(graphName,concept, properties);
-        if(instances){
-            for(def c : instances) {
-                def info = [
-                        "owlClass"  : c,
-                        "label"     : c.substring(c.lastIndexOf("/")+1,c.length())
-                ];
-                result.add(info);
-            }
-        }
-        return(result);
-    }*/
-
 }

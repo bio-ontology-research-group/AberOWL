@@ -1,3 +1,4 @@
+package src
 // Run a query and ting
 
 import groovy.json.*
@@ -12,24 +13,25 @@ def ontology = request.getParameter('ontology')
 def rManager = application.rManager
 
 if(ontology) {
-  query = java.net.URLDecoder.decode(query, "UTF-8")
+  query = java.net.URLDecoder.decode(ontology, "UTF-8")
   def output = new TreeSet()
-  try {
-    def results = [:]
-    //def results = []
-    def start = System.currentTimeMillis()
-    def bq = new BooleanQuery()
-    //    bq.add(new TermQuery(new Term('class', query)), BooleanClause.Occur.MUST);
-    bq.add(new TermQuery(new Term('ontology', ontology)), BooleanClause.Occur.MUST);
-
-    def results = rManager.searcher.search(bq, 100000).scoreDocs
-    results.each { result ->
-      def hitDoc = rManager.searcher.doc(result.doc)
-      hitDoc.each { fieldName ->
-	if (fieldName.name in ["label", "synonym"]) {
-	  hitDoc.getValues(fieldName.name).each {
-	    output.add(it)
-	  }
+  def results = [:]
+  def start = System.currentTimeMillis()
+  def fQuery = ["query": ["bool":["must":[]]]]
+  def ll = []
+  ll << ["term" : ["ontology" : query]]
+  ll.each {
+    fQuery.query.bool.must << it
+  }
+  
+  def hits = RequestManager.search("owlclass", fQuery)
+  
+  def hitDoc = hits.hits.hits.collect { it._source }
+  hitDoc.each { result ->
+    result.each { fieldName, value ->
+      if (fieldName in ["label", "synonym"]) {
+	value.each {
+	  output.add(it)
 	}
       }
     }

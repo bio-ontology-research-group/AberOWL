@@ -1,25 +1,28 @@
 // Run a query and ting
 
-import org.apache.lucene.analysis.*
-import org.apache.lucene.analysis.standard.StandardAnalyzer
-import org.apache.lucene.analysis.core.WhitespaceAnalyzer
-import org.apache.lucene.document.*
-import org.apache.lucene.index.*
-import org.apache.lucene.store.*
-import org.apache.lucene.util.*
-import org.apache.lucene.search.*
-import org.apache.lucene.queryparser.*
-import org.apache.lucene.queryparser.simple.*
-import org.apache.lucene.search.highlight.*
-import org.apache.lucene.index.IndexWriterConfig.OpenMode
-import src.util.Util
-
+//import src.util.Util
 import groovy.json.*
+import org.eclipse.jetty.server.Request
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
+import groovyx.net.http.ContentType
+
+
+def extractParams(Request request) throws IOException {
+  if ("POST".equalsIgnoreCase(request.getMethod())) {
+    Scanner s = new Scanner(request.getInputStream(), "UTF-8").useDelimiter("\\A");
+    return new JsonSlurper().parseText(s.hasNext() ? s.next() : "");
+  } else {
+    def params = [:]
+    request.getParameterNames().each { params[it] = request.getParameter(it) }
+        return params
+  }
+}
 
 if(!application) {
   application = request.getApplication(true)
 }
-def params = Util.extractParams(request)
+def params = extractParams(request)
 
 def query = params.query
 def ontology = params.ontology
@@ -73,6 +76,22 @@ def prefixUrls2 = { String s ->
   s
 }
 
+def search(def type, def map) {
+  def url = 'http://10.81.0.162:9200'
+  def http = new HTTPBuilder(url)
+  def j = new groovy.json.JsonBuilder(map)
+  try {
+    def t 
+    http.post( path: '/aberowl/'+type+'/_search', body: j.toPrettyString() ) { resp, reader ->
+      t = reader
+    }
+    http.shutdown()
+    return t
+  } catch (Exception E) {
+    E.printStackTrace()
+    println j.toPrettyString()
+  }
+}
 
 if(ontology && query) {
   query = java.net.URLDecoder.decode(query, "UTF-8")
@@ -80,17 +99,27 @@ if(ontology && query) {
     def results = [:]
     //def results = []
     def start = System.currentTimeMillis()
-    def bq = new BooleanQuery()
-    bq.add(new TermQuery(new Term('class', query)), BooleanClause.Occur.MUST);
-    bq.add(new TermQuery(new Term('ontology', ontology)), BooleanClause.Occur.MUST);
 
-    def result = rManager.searcher.search(bq, 1).scoreDocs[0]
-    def hitDoc = rManager.searcher.doc(result.doc)
+    def fQuery = ["query": ["bool":["must":[]]]]
+    def ll = []
+    ll << ["term" : ["class" : query]]
+    ll << ["term" : ["ontology" : ontology]]
+    ll.each {
+      fQuery.query.bool.must << it
+    }
+
+    def hits = search("owlclass", fQuery)
+
+    def hitDoc = hits.hits.hits[0]._source
     def output = [:].withDefault { new TreeSet() }
-    hitDoc.each { fieldName ->
-      if (! (fieldName.name in ["oldVersion", "first_label", "AberOWL-catch-all"])) {
-	hitDoc.getValues(fieldName.name).each {
-	  output[prefixUrls(fieldName.name)].add(prefixUrls2(it))
+    hitDoc.keySet().each { fieldName ->
+      if (! (fieldName in ["oldVersion", "first_label", "AberOWL-catch-all"])) {
+	if (hitDoc[fieldName] instanceof List) {
+	  hitDoc[fieldName].each {
+	    output[prefixUrls(fieldName)].add(prefixUrls2(it))
+	  }
+	} else {
+	  output[prefixUrls(fieldName)].add(prefixUrls2(hitDoc[fieldName]))
 	}
       }
     }
@@ -107,12 +136,14 @@ if(ontology && query) {
 	-1
       } else if (x.key == 'AberOWL-subclass' && y.key != 'oboid' && y.key != 'label' && y.key != 'definition') {
 	-1
+      } else if (x.key == 'AberOWL-disjoint' && y.key != 'oboid' && y.key != 'label' && y.key != 'definition') {
+	-1
       } else {
 	x.key.compareTo(y.key)
       }
     }
     
-    def translateKeys = ["AberOWL-equivalent" : "EquivalentTo:", "AberOWL-subclass" : "SubClassOf:"]
+    def translateKeys = ["AberOWL-equivalent" : "EquivalentTo:", "AberOWL-subclass" : "SubClassOf:", "AberOWL-disjoint" : "DisjointWith:"]
     output = output.inject ([:]) { map, v -> 
       if (translateKeys[v.key]) {
 	map[ translateKeys[ v.key ] ] = v.value.sort{it.length()}.inject("", {s, val -> s + "<div id='man-axiom'>"+val+"</div>"})
