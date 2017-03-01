@@ -78,9 +78,9 @@ try {
   logstring += "\t"+((end - start)?:"")
   log.info logstring
 
-  results['result'] = results['result'].sort {LinkedHashMap<String,LinkedHashSet> a,b ->
+  results['result'] = results['result'].sort { a,b ->
     if((a.containsKey("label"))&&(b.containsKey("label"))) {
-      return (a.get("label").toList().get(0).compareTo(b.get("label").toList().get(0)));
+      return (a.get("label").compareTo(b.get("label")));
     }else if(a.containsKey("label")){
       return(1);
     }else if(b.containsKey("label")){

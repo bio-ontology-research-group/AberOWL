@@ -65,11 +65,9 @@ public class QueryParser {
           parser = new ManchesterOWLSyntaxClassExpressionParser(dFactory, eChecker);
         }
 
- //       parser.setDefaultOntology(ontology);
-
         result = parser.parse(mOwl);
       } catch(Exception e) {
-	/* e.printStackTrace() */
+	//	e.printStackTrace()
 	result = null 
       }
 

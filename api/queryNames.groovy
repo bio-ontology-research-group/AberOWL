@@ -54,7 +54,7 @@ if (!prefix) {
   def hits = search("owlclass", m)
   def results = hits.hits.hits.collect {it._source}
   
-  result.each { h ->
+  results.each { h ->
     //    def output = [:].withDefault { new TreeSet() }
     def lab = h["label"]
     def url = h["class"]
