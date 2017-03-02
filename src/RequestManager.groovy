@@ -244,7 +244,7 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies+=1
-	//	if (oRec.id in ["PhenomeNET"]) {
+	//	if (oRec.id in ["go-plus"]) {
 	if (true) {
 	  try {
 	    if (oRec.lastSubDate == 0) {
@@ -433,7 +433,6 @@ class RequestManager {
           info['deprecated'] = true
         }
       }
-
       if (info['deprecated'] == false ) {
 	def labels = [
 	  df.getRDFSLabel(),
@@ -476,53 +475,10 @@ class RequestManager {
 	  }
 	} catch (Exception E) {}
       
-	/*
-      def fQuery = ["query": ["bool":["must":[]]]]
-      def ll = []
-      ll << ["term" : ["class" : c.getIRI().toString()]]
-      ll << ["term" : ["ontology" : uri.toString()]]
-      ll.each {
-	fQuery.query.bool.must << it
-      }
-
-      if (info['deprecated'] == false) { // ignore all deprecated classes! TODO: trigger this by query flag
-	def hits = search("owlclass", fQuery)
-	if (hits.hits.hits.size()>0) {
-	  def dResult = hits.hits.hits[0]._source
-          dResult.each {
-            info['label'] = dResult['first_label']
-          }
-          dResult.keySet().each { field ->
-            def fName = field
-            if (fName != "AberOWL-catch-all") {
-	      if (dResult[fName] instanceof List) {
-		info[fName] = new LinkedHashSet()
-		dResult[fName].each { fVal ->
-		  info[fName].add(fVal)
-		}
-	      } else {
-		info[fName] = dResult[fName]
-	      }
-            }
-          }
-          info['definition'] = dResult['definition']
-        }
-	*/
-        /*
-          for (OWLAnnotation annotation : EntitySearcher.getAnnotations(c, o, df.getOWLAnnotationProperty(IRI.create("http://purl.obolibrary.org/obo/IAO_0000115")))) {
-          if (annotation.getValue() instanceof OWLLiteral) {
-          OWLLiteral val = (OWLLiteral) annotation.getValue();
-          info['definition'] = val.getLiteral() ;
-          }
-          }
-        */
         if (info['label'] == null) { // add but make deprecated
           info['label'] = info['remainder']
-          info['deprecated'] = true
-        } else {
-	  //        if (info['label'] != null) {
-          result.add(info);
-        }
+	}
+	result.add(info);
       }
     }
     return result
@@ -590,7 +546,7 @@ class RequestManager {
       OWLOntology ontology = ontologies.get(ontUri)
       //      println queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
       Set resultSet = Sets.newHashSet(Iterables.limit(queryEngine.getClasses(mOwlQuery, requestType, direct, labels), MAX_REASONER_RESULTS))
-      //Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
+     //Set<OWLClass> resultSet = queryEngine.getClasses(mOwlQuery, requestType, direct, labels)
       resultSet.remove(df.getOWLNothing())
       resultSet.remove(df.getOWLThing())
       classes.addAll(classes2info(resultSet, ontology, ontUri))
