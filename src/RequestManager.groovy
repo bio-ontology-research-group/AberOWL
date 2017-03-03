@@ -34,7 +34,7 @@ class RequestManager {
   private static final MAX_UNSATISFIABLE_CLASSES = 500
 
   private static final MAX_QUERY_RESULTS = 5000
-  private static final MAX_REASONER_RESULTS = 10000
+  private static final MAX_REASONER_RESULTS = 100000
   // max classes returned by query; to prevent DoS; TODO: replace by paging!
 
   private static final URL = 'http://10.81.0.162:9200/'
@@ -244,8 +244,8 @@ class RequestManager {
       def allOnts = oBase.allOntologies()
       allOnts.eachParallel { oRec ->
         attemptedOntologies+=1
-	//	if (oRec.id in ["go-plus"]) {
-	if (true) {
+	if (oRec.id in ["CHEBI"]) {
+	  //if (true) {
 	  try {
 	    if (oRec.lastSubDate == 0) {
 	      return;
@@ -416,6 +416,7 @@ class RequestManager {
 
   Set classes2info(Set<OWLClass> classes, OWLOntology o, String uri) {
     ArrayList result = new ArrayList<HashMap>();
+    println classes.size()
     //    for (def c : classes) {
     classes.each { c ->
       def info = [
