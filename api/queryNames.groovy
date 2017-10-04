@@ -9,8 +9,9 @@ import groovyx.net.http.HTTPBuilder
 
 import util.*;
 
+
 def search(def type, def map) {
-  def url = 'http://10.81.0.162:9200'
+  def url = 'http://127.0.0.1:9200'
   def http = new HTTPBuilder(url)
   def j = new groovy.json.JsonBuilder(map)
   try {
@@ -31,19 +32,18 @@ if(!application) {
 }
 def params = Util.extractParams(request)
 def query = params.term
-def ontology = params.ontology
 def prefix = params.prefix?:"false"
 def rManager = application.rManager
+def ontology = application.ontology
 
 prefix = Boolean.valueOf(prefix)
 
 response.contentType = 'application/json'
 
 if (!prefix) {
-  def res = rManager.queryNames(query, ontology).groupBy { it.label }
+  def res = rManager.queryNames(query).groupBy { it.label }
   print new JsonBuilder(res)
 } else { // prefix query
-
   def m = ["query": ["bool":["must":[]]]]
   def ll = []
   ll << ["prefix" : ["synonym" : query]]
@@ -53,10 +53,10 @@ if (!prefix) {
   }
   def hits = search("owlclass", m)
   def results = hits.hits.hits.collect {it._source}
-  
+  def rmap = [:]
   results.each { h ->
     //    def output = [:].withDefault { new TreeSet() }
-    def lab = h["label"]
+    def lab = h["label"][0]
     def url = h["class"]
     rmap[lab] = url
   }

@@ -9,7 +9,7 @@ if(!application) {
   application = request.getApplication(true)
 }
 
-def ontology = request.getParameter('ontology')
+def ontology = application.ontology
 def rManager = application.rManager
 
 if(ontology) {

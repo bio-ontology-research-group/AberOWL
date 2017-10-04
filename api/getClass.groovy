@@ -25,7 +25,7 @@ if(!application) {
 def params = extractParams(request)
 
 def query = params.query
-def ontology = params.ontology
+def ontology = application.ontology
 def objectProperty = params.objectProperty
 def rManager = application.rManager;
 
@@ -77,7 +77,7 @@ def prefixUrls2 = { String s ->
 }
 
 def search(def type, def map) {
-  def url = 'http://10.81.0.162:9200'
+  def url = 'http://127.0.0.1:9200'
   def http = new HTTPBuilder(url)
   def j = new groovy.json.JsonBuilder(map)
   try {

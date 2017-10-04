@@ -7,17 +7,17 @@
           @Grab(group='com.googlecode.json-simple', module='json-simple', version='1.1.1'),
 	  //	  @Grab(group='org.slf4j', module='slf4j-log4j12', version='1.7.10'),
 
-	  @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.2'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.2.3'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.2.3'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.2.3'),
-          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.2.3'),
+	  @Grab(group='org.semanticweb.elk', module='elk-owlapi', version='0.4.3'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-api', version='4.3.2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-apibinding', version='4.3.2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-impl', version='4.3.2'),
+          @Grab(group='net.sourceforge.owlapi', module='owlapi-parsers', version='4.3.2'),
 
 	  @Grab(group='com.google.guava', module='guava', version='19.0'),
 
 	  @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1' ),
 
-          @Grab(group='org.codehaus.gpars', module='gpars', version='1.1.0'),
+          @Grab(group='org.codehaus.gpars', module='gpars', version='1.2.1'),
           @Grab(group='aopalliance', module='aopalliance', version='1.0'),
 	  @GrabConfig(systemClassLoader=true)
 	])
@@ -44,7 +44,7 @@ def startServer() {
   //  ServerConnector connector = new ServerConnector(server)
 
   //  def server = new Server(PORT)
-  def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
+  def context = new ServletContextHandler(server, '/GO/', ServletContextHandler.SESSIONS)
 
   context.resourceBase = '.'
   context.addServlet(GroovyServlet, '/api/runQuery.groovy')
@@ -62,8 +62,9 @@ def startServer() {
   context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
   //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
 
-  context.setAttribute('version', '0.1')
-  context.setAttribute("rManager", new RequestManager(true))
+  context.setAttribute('version', '0.2')
+  context.setAttribute("rManager", new RequestManager("GO"))
+  context.setAttribute("ontology", "GO")
 
   server.start()
 }

@@ -10,9 +10,8 @@ if(!application) {
 def params = Util.extractParams(request)
 def relation = params.relation
 def qClass = params.class
-def ontology = params.ontology
+def ontology = application.ontology
 //def version = params.version
-def version = null
 def rManager = application.rManager
 
 if (!relation || !qClass || !ontology) {
@@ -24,7 +23,7 @@ if (version == null) {
 
 try {
   def results = new HashMap()
-  def out = rManager.relationQuery(relation, qClass, ontology, version)
+  def out = rManager.relationQuery(relation, qClass)
 
   results['result'] = out
   response.contentType = 'application/json'
