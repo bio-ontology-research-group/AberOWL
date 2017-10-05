@@ -25,6 +25,7 @@
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.ServerConnector
 import org.eclipse.jetty.servlet.*
+import org.eclipse.jetty.server.handler.*
 import groovy.servlet.*
 import src.*
 import java.util.concurrent.*
@@ -40,34 +41,61 @@ def startServer() {
   Server server = new Server(PORT)
   server.getThreadPool().setMaxThreads(5000)
   server.getThreadPool().setIdleTimeout(5000)
-  println server.getThreadPool()
   //  ServerConnector connector = new ServerConnector(server)
 
-  //  def server = new Server(PORT)
-  def context = new ServletContextHandler(server, '/GO/', ServletContextHandler.SESSIONS)
+  HandlerCollection contextHandlerCollection = new HandlerCollection(true)
+  server.setHandler(contextHandlerCollection)
 
+  def errorHandler = new ErrorHandler()
+  errorHandler.setShowStacks(true)
+  server.start()
+
+  def context = new ServletContextHandler(contextHandlerCollection, '/', ServletContextHandler.SESSIONS)
   context.resourceBase = '.'
-  context.addServlet(GroovyServlet, '/api/runQuery.groovy')
-  context.addServlet(GroovyServlet, '/api/getClass.groovy')
-  context.addServlet(GroovyServlet, '/api/queryNames.groovy')
   context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
-  context.addServlet(GroovyServlet, '/api/getStats.groovy')
-  context.addServlet(GroovyServlet, '/api/getStatuses.groovy')
-  context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
-  context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
-  context.addServlet(GroovyServlet, '/api/findRoot.groovy')
-  context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
-  context.addServlet(GroovyServlet, '/api/getOntology.groovy')
-  context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
-  context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
-  //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
-
-  context.setAttribute('version', '0.2')
-  context.setAttribute("rManager", new RequestManager("GO"))
-  context.setAttribute("ontology", "GO")
-
+  context.setErrorHandler(errorHandler)
+  contextHandlerCollection.addHandler(context)
+  context.start()
+  // add all the global servlets and management scripts
+  //  println "Server started"
+  
+  def oSet = new LinkedHashSet()
+  new File("../ontologies/").eachFile { file ->
+    if (oSet.size()<=3) {
+      def ontId = file.getName()
+      println "Adding $ontId"
+      context = new ServletContextHandler()
+      def localErrorHandler = new ErrorHandler()
+      localErrorHandler.setShowStacks(true)
+      context.setErrorHandler(localErrorHandler)
+      context.resourceBase = '.'
+      context.setContextPath("/"+ontId+"/")
+      context.addServlet(GroovyServlet, '/api/runQuery.groovy')
+      context.addServlet(GroovyServlet, '/api/getClass.groovy')
+      context.addServlet(GroovyServlet, '/api/queryNames.groovy')
+      //      context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
+      context.addServlet(GroovyServlet, '/api/getStats.groovy')
+      context.addServlet(GroovyServlet, '/api/getStatuses.groovy')
+      context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
+      context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
+      context.addServlet(GroovyServlet, '/api/findRoot.groovy')
+      context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
+      context.addServlet(GroovyServlet, '/api/getOntology.groovy')
+      context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
+      context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
+      //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
+      
+      context.setAttribute('version', '0.2')
+      context.setAttribute("rManager", new RequestManager(ontId))
+      context.setAttribute("ontology", ontId)
+      contextHandlerCollection.addHandler(context)
+      context.start()
+      println "Added " + context.getContextPath() + ":\n" + context.getResourcePaths("/$ontId/")
+      oSet.add(ontId)
+    }
+  }
   server.start()
 }
 
-println org.semanticweb.owlapi.util.VersionInfo.getVersionInfo();
+println "Using OWL API version "+org.semanticweb.owlapi.util.VersionInfo.getVersionInfo();
 startServer()

@@ -70,7 +70,7 @@ class RequestManager {
     loadOntology()
     loadAnnotations()
     createReasoner()
-    println "Loading of ontology finished; AberOWL is ready for service."
+    println "Finished loading $ontUri"
   }
 
   // Set<String> listOntologies() {
@@ -128,33 +128,6 @@ class RequestManager {
     }
     return ret
   }
-
-  /* // to be moved
-     Set<String> queryOntologies(String query) {
-     if (query) {
-     String[] fields = ['name', 'lontology', 'description']
-
-     def oQuery = query
-     def omap = [:]
-     omap = ["query": ["bool" : ["should" : []]]]
-     fields.each { f ->
-     def m = ["match": ["${f}": ["query":oQuery]]]
-     omap.query.bool.should << m
-     }
-     def hits = search("ontology", omap)
-     def ret = []
-     hits.hits.hits.each { 
-     def temp = it._source
-     temp.value = temp.first_label
-     temp.data = temp["class"]
-     ret << temp
-     }
-     return ret.sort { it.name.size() }
-     } else {
-     return []
-     }
-     }
-  */
 
   /**
    * Load a new or replace an existing ontology
@@ -240,7 +213,6 @@ class RequestManager {
 	loadStati['status'] = 'unloadable'
 	loadStati['message'] = e.getMessage()
       }
-      noFileError+=1
     } catch (IOException e) {
       println "Can't load external import for " + oRec.id
       if (oRec && oRec.id) {
@@ -322,12 +294,12 @@ class RequestManager {
       }
     } catch (java.lang.IndexOutOfBoundsException e) {
       println "Failed " + ontUri
-      e.printStackTrace()
+      //      e.printStackTrace()
       loadStati['status'] = 'unloadable'
       loadStati['message'] = e.getMessage()
     } catch (Exception e) {
       println "Failed " + ontUri
-      e.printStackTrace()
+      //      e.printStackTrace()
       loadStati['status'] = 'unloadable'
       loadStati['message'] = e.getMessage()
     }
