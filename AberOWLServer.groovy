@@ -36,66 +36,59 @@ import org.eclipse.jetty.util.thread.*
 
 Logger.getRootLogger().setLevel(Level.ERROR)
 
-PORT = new Integer(args[0])
-def startServer() {
-  Server server = new Server(PORT)
-  server.getThreadPool().setMaxThreads(5000)
-  server.getThreadPool().setIdleTimeout(5000)
-  //  ServerConnector connector = new ServerConnector(server)
+PORTRANGE = 62000..65000
 
-  HandlerCollection contextHandlerCollection = new HandlerCollection(true)
-  server.setHandler(contextHandlerCollection)
-
-  def errorHandler = new ErrorHandler()
-  errorHandler.setShowStacks(true)
-  server.start()
-
-  def context = new ServletContextHandler(contextHandlerCollection, '/', ServletContextHandler.SESSIONS)
-  context.resourceBase = '.'
-  context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
-  context.setErrorHandler(errorHandler)
-  contextHandlerCollection.addHandler(context)
-  context.start()
-  // add all the global servlets and management scripts
-  //  println "Server started"
-  
-  def oSet = new LinkedHashSet()
-  new File("../ontologies/").eachFile { file ->
-    if (oSet.size()<=3) {
-      def ontId = file.getName()
-      println "Adding $ontId"
-      context = new ServletContextHandler()
-      def localErrorHandler = new ErrorHandler()
-      localErrorHandler.setShowStacks(true)
-      context.setErrorHandler(localErrorHandler)
-      context.resourceBase = '.'
-      context.setContextPath("/"+ontId+"/")
-      context.addServlet(GroovyServlet, '/api/runQuery.groovy')
-      context.addServlet(GroovyServlet, '/api/getClass.groovy')
-      context.addServlet(GroovyServlet, '/api/queryNames.groovy')
-      //      context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
-      context.addServlet(GroovyServlet, '/api/getStats.groovy')
-      context.addServlet(GroovyServlet, '/api/getStatuses.groovy')
-      context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
-      context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
-      context.addServlet(GroovyServlet, '/api/findRoot.groovy')
-      context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
-      context.addServlet(GroovyServlet, '/api/getOntology.groovy')
-      context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
-      context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
-      //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
-      
-      context.setAttribute('version', '0.2')
-      context.setAttribute("rManager", new RequestManager(ontId))
-      context.setAttribute("ontology", ontId)
-      contextHandlerCollection.addHandler(context)
-      context.start()
-      println "Added " + context.getContextPath() + ":\n" + context.getResourcePaths("/$ontId/")
-      oSet.add(ontId)
+def startServer(def ontId) {
+  Server server = null
+  def usedPort = -1
+  for (Integer port : PORTRANGE) {
+    if (!server) {
+      try {
+	println "Trying port $port..."
+	server = new Server(port)
+	usedPort = port
+      } catch (Exception E) { 
+	println E.getMessage()
+      }
     }
   }
+  if (!server) {
+    System.err.println("Failed to create server, cannot open port.")
+    System.exit(-1)
+  }
+  
+  def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
+  context.resourceBase = '.'
+
+  def file = new File("../ontologies/"+ontId)
+  println "Starting $ontId"
+  def localErrorHandler = new ErrorHandler()
+  localErrorHandler.setShowStacks(true)
+  context.setErrorHandler(localErrorHandler)
+  context.resourceBase = '.'
+  //  context.setContextPath("/"+ontId+"/")
+  context.addServlet(GroovyServlet, '/api/runQuery.groovy')
+  context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
+  context.addServlet(GroovyServlet, '/api/getClass.groovy')
+  context.addServlet(GroovyServlet, '/api/queryNames.groovy')
+  context.addServlet(GroovyServlet, '/api/getStats.groovy')
+  context.addServlet(GroovyServlet, '/api/getStatuses.groovy')
+  context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
+  context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
+  context.addServlet(GroovyServlet, '/api/findRoot.groovy')
+  context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
+  context.addServlet(GroovyServlet, '/api/getOntology.groovy')
+  context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
+  context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
+  //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
+
+  context.setAttribute('port', usedPort)
+  context.setAttribute('version', '0.2')
+  context.setAttribute("rManager", new RequestManager(ontId))
+  context.setAttribute("ontology", ontId)
+  //  println "Added " + context.getContextPath() + ":\n" + context.getResourcePaths("/$ontId/")
   server.start()
 }
 
-println "Using OWL API version "+org.semanticweb.owlapi.util.VersionInfo.getVersionInfo();
-startServer()
+def ontId = args[0]
+startServer(ontId)
