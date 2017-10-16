@@ -34,61 +34,38 @@ import org.apache.log4j.Level
 import org.eclipse.jetty.server.nio.*
 import org.eclipse.jetty.util.thread.*
 
+// main proxy
+
 Logger.getRootLogger().setLevel(Level.ERROR)
 
-PORTRANGE = 62000..65000
+PORT = 55560
 
-def startServer(def ontId) {
-  Server server = null
-  def usedPort = -1
-  for (Integer port : PORTRANGE) {
-    if (!server) {
-      try {
-	println "Trying port $port..."
-	server = new Server(port)
-	usedPort = port
-      } catch (Exception E) { 
-	println E.getMessage()
-      }
-    }
-  }
-  if (!server) {
-    System.err.println("Failed to create server, cannot open port.")
-    System.exit(-1)
-  }
-  
+def startServer() {
+  Server server = new Server(PORT)
   def context = new ServletContextHandler(server, '/', ServletContextHandler.SESSIONS)
   context.resourceBase = '.'
 
-  def file = new File("../ontologies/"+ontId)
-  println "Starting $ontId"
-  def localErrorHandler = new ErrorHandler()
-  localErrorHandler.setShowStacks(true)
-  context.setErrorHandler(localErrorHandler)
-  context.resourceBase = '.'
-  //  context.setContextPath("/"+ontId+"/")
-  context.addServlet(GroovyServlet, '/api/runQuery.groovy')
-  context.addServlet(GroovyServlet, '/api/queryOntologies.groovy')
-  context.addServlet(GroovyServlet, '/api/getClass.groovy')
-  context.addServlet(GroovyServlet, '/api/queryNames.groovy')
-  context.addServlet(GroovyServlet, '/api/getStats.groovy')
-  context.addServlet(GroovyServlet, '/api/getStatuses.groovy')
-  context.addServlet(GroovyServlet, '/api/listOntologies.groovy')
-  context.addServlet(GroovyServlet, '/api/reloadOntology.groovy')
-  context.addServlet(GroovyServlet, '/api/findRoot.groovy')
-  context.addServlet(GroovyServlet, '/api/getObjectProperties.groovy')
-  context.addServlet(GroovyServlet, '/api/getOntology.groovy')
-  context.addServlet(GroovyServlet, '/api/retrieveRSuccessors.groovy')
-  context.addServlet(GroovyServlet, '/api/retrieveAllLabels.groovy')
-  //  context.addServlet(GroovyServlet, '/api/getSparql.groovy')
+  ConcurrentHashMap omap = new ConcurrentHashMap(1000, 0.7, 64) // initial size, load level, concurrency
 
-  context.setAttribute('port', usedPort)
-  context.setAttribute('version', '0.2')
-  context.setAttribute("rManager", new RequestManager(ontId))
-  context.setAttribute("ontology", ontId)
-  //  println "Added " + context.getContextPath() + ":\n" + context.getResourcePaths("/$ontId/")
+  context.resourceBase = '.'
+  context.addServlet(GroovyServlet, '/o-api/registerOntology.groovy')
+  context.addServlet(GroovyServlet, '/o-api/getOmap.groovy')
+  context.addServlet(GroovyServlet, '/o-api/runQuery.groovy')
+  context.addServlet(GroovyServlet, '/o-api/queryOntologies.groovy')
+  context.addServlet(GroovyServlet, '/o-api/getClass.groovy')
+  context.addServlet(GroovyServlet, '/o-api/queryNames.groovy')
+  context.addServlet(GroovyServlet, '/o-api/getStats.groovy')
+  context.addServlet(GroovyServlet, '/o-api/getStatuses.groovy')
+  context.addServlet(GroovyServlet, '/o-api/listOntologies.groovy')
+  context.addServlet(GroovyServlet, '/o-api/reloadOntology.groovy')
+  context.addServlet(GroovyServlet, '/o-api/findRoot.groovy')
+  context.addServlet(GroovyServlet, '/o-api/getObjectProperties.groovy')
+  context.addServlet(GroovyServlet, '/o-api/getOntology.groovy')
+  context.addServlet(GroovyServlet, '/o-api/retrieveRSuccessors.groovy')
+  context.addServlet(GroovyServlet, '/o-api/retrieveAllLabels.groovy')
+  context.setAttribute('version', '0.9.9')
+  context.setAttribute('omap', omap)
   server.start()
 }
 
-def ontId = args[0]
-startServer(ontId)
+startServer()
