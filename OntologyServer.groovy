@@ -21,6 +21,8 @@
           @Grab(group='aopalliance', module='aopalliance', version='1.0'),
 	  @GrabConfig(systemClassLoader=true)
 	])
+@Grab(group='javax.el', module='javax.el-api', version='3.0.0')
+
  
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.ServerConnector
@@ -33,12 +35,14 @@ import org.apache.log4j.Logger
 import org.apache.log4j.Level
 import org.eclipse.jetty.server.nio.*
 import org.eclipse.jetty.util.thread.*
+import org.eclipse.jetty.util.log.Log
+import org.eclipse.jetty.util.log.StdErrLog
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
 import groovyx.net.http.ContentType
 
-PORTRANGE = 62000..65000
-MASTER_SERVER = "http://10.254.21.27:55560/"
+Log.setLog(new StdErrLog())
+MASTER_SERVER = "http://10.254.145.14:55560/"
 http = new HTTPBuilder(MASTER_SERVER)
 
 def startServer(def ontId) {
@@ -80,7 +84,7 @@ def startServer(def ontId) {
   context.setAttribute('version', '0.2')
   server.start()
   println "Server started on "+server.getURI()+", registering..."
-  def resp = http.get( path: '/o-api/registerOntology.groovy', query : [ ontology : ontId, uri : server.getURI() ] )
+  def resp = http.get( path: '/oapi/registerOntology.groovy', query : [ ontology : ontId, uri : server.getURI() ] )
   println "Server response: " + resp
   println "Classifying..."
 
