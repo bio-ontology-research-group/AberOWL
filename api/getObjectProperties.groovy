@@ -7,19 +7,16 @@ if(!application) {
 }
 
 def params = Util.extractParams(request)
-def ontology = params.ontology
+def ontology = application.ontology
 def objectProperty = params.rootObjectProperty
 def rManager = application.rManager
 
-if(objectProperty && ontology) {
-  def objectProperties = rManager.getObjectProperties(ontology,objectProperty).sort {it.label}
-    response.contentType = 'application/json'
-    print new JsonBuilder(objectProperties)
-}else if(ontology){
-    def objectProperties = rManager.getObjectProperties(ontology)
+if(objectProperty) {
+  def objectProperties = rManager.getObjectProperties(objectProperty).sort {it.label}
     response.contentType = 'application/json'
     print new JsonBuilder(objectProperties)
 } else {
-  response.setStatus(400)
-  println new JsonBuilder([ 'err': true, 'message': 'Missing parameters. Please refer to the API documentation.' ]).toString() 
+    def objectProperties = rManager.getObjectProperties()
+    response.contentType = 'application/json'
+    print new JsonBuilder(objectProperties)
 }

@@ -25,7 +25,6 @@ if(!application) {
 def params = extractParams(request)
 
 def query = params.query
-def ontology = application.ontology
 def objectProperty = params.objectProperty
 def rManager = application.rManager;
 

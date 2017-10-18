@@ -17,23 +17,17 @@ if (!application.log) {
   log.info 'Logger created'
 }
 def log = application.log
-	    
 def params = Util.extractParams(request)
 
 def query = params.query
 def type = params.type
-def ontology = params.ontology
 def direct = params.direct
 def labels = params.labels
-//def sVersion = params.version
 def sVersion = null
 def rManager = application.rManager
 
 if(type == null) {
   type = 'all'
-}
-if(ontology == null) {
-  ontology = ''
 }
 if(sVersion == null || sVersion == '0') {
   sVersion = '-1';
@@ -63,7 +57,7 @@ try {
   def start = System.currentTimeMillis()
   def iVersion = Integer.parseInt(sVersion);
 
-  def out = rManager.runQuery(query, type, ontology, iVersion, direct, labels)
+  def out = rManager.runQuery(query, type, direct, labels)
   def end = System.currentTimeMillis()
   results.put('time', (end - start))
   results.put('result', out)
@@ -71,7 +65,6 @@ try {
   def logstring = ""
   logstring += query?:""
   logstring += "\t"+(type?:"")
-  logstring += "\t"+(ontology?:"")
   logstring += "\t"+(direct?:"")
   logstring += "\t"+(labels?:"")
   logstring += "\t"+(out.size()?:"")
@@ -92,12 +85,12 @@ try {
   print new JsonBuilder(results).toString()
 } catch(java.lang.IllegalArgumentException e) {
   response.setStatus(400)
-  println new JsonBuilder([ 'err': true, 'message': 'Ontology not found.' ]).toString() 
+  print new JsonBuilder([ 'error': true, 'message': 'Ontology not found.' ]).toString() 
 } catch(org.semanticweb.owlapi.manchestersyntax.renderer.ParserException e) {
   response.setStatus(400)
-  println new JsonBuilder([ 'err': true, 'message': 'Query parsing error: ' + e.getMessage() ]).toString() 
+  print new JsonBuilder([ 'error': true, 'message': 'Query parsing error: ' + e.getMessage() ]).toString() 
 } catch(Exception e) {
   response.setStatus(400)
-  println new JsonBuilder([ 'err': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
+  print new JsonBuilder([ 'error': true, 'message': 'Generic query error: ' + e.getMessage() ]).toString() 
 }
 
